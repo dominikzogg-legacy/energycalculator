@@ -1,0 +1,8 @@
+/app/cache
+/app/config/parameters.yml
+/app/log
+/assets
+/vendor
+saxulum.db
+
+.idea

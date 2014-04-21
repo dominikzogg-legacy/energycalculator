@@ -1,0 +1,18 @@
+{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+
+{% block pagetitle %}{{ (transprefix~".edit.title")|trans() }}{% endblock %}
+
+{% block body %}
+    <form action="{{ url(editroute, {'id': entity.id}) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+        <h1>{{ (transprefix~".edit.title")|trans() }}</h1>
+        {{ form_widget(form, {'form_type': 'horizontal'}) }}
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-success" type="submit" name="save" value="{{ (transprefix~".edit.save")|trans() }}" />
+                <input class="btn" type="submit" name="saveandclose" value="{{ (transprefix~".edit.saveandclose")|trans() }}" />
+                <input class="btn" type="submit" name="saveandnew" value="{{ (transprefix~".edit.saveandnew")|trans() }}" />
+                <a class="btn btn-danger" href="{{ url(listroute) }}">{{ (transprefix~".edit.back")|trans() }}</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

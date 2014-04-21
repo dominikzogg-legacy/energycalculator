@@ -1,0 +1,19 @@
+{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+
+{% block pagetitle %}{{ "login.title"|trans() }}{% endblock %}
+
+{% block body %}
+    <h1>{{ "login.title"|trans() }}</h1>
+    <form action="{{ url('login_check') }}" method="post">
+        {{ error }}
+        <div class="fieldwrapper">
+            <label for="_username">{{ "form.label.username"|trans() }}</label>
+            <input id="_username" type="text" name="_username" value="{{ last_username }}" />
+        </div>
+        <div class="fieldwrapper">
+            <label for="_password">{{ "form.label.password"|trans() }}</label>
+            <input id="_password" type="password" name="_password" value="" />
+        </div>
+        <input class="btn btn-success" type="submit" value="{{ "login.login"|trans() }}" />
+    </form>
+{% endblock %}

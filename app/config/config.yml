@@ -1,0 +1,30 @@
+env: %env%
+root_dir: %root_dir%
+cache_dir: %root_dir%/app/cache/%env%
+
+twig.options:
+  cache: %root_dir%/app/cache/%env%/twig
+twig.form.templates:
+  - @DominikzoggEnergyCalculator/Form/fields.html.twig
+
+http_cache.cache_dir: %root_dir%/app/cache/%env%/httpcache
+
+security.firewalls:
+  unsecured:
+    anonymous: true
+
+monolog.logfile: %root_dir%/app/log/%env%.log
+
+orm.proxies_dir: %root_dir%/app/cache/%env%/doctrine/proxies
+
+profiler.cache_dir: %root_dir%/app/cache/%env%/profiler
+
+assetic.asset.root: %root_dir%
+assetic.asset.asset_root: %root_dir%/assets
+assetic_asset_path: assets
+
+route_controller_cache: %root_dir%/app/cache/%env%/controller
+
+console.cache: %root_dir%/app/cache/%env%/console
+
+translation_cache: %root_dir%/app/cache/%env%/translation

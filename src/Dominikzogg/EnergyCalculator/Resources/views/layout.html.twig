@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{% block pagetitle %}{% endblock pagetitle %}</title>
+    {% block stylesheet %}
+        {% stylesheets filter='lessphp,csscopyfile' output='css/libraries.css'
+        'vendor/twbs/bootstrap/less/bootstrap.less'
+        'vendor/twbs/bootstrap/less/responsive.less'
+        'vendor/braincrafted/bootstrap-bundle/Bc/Bundle/BootstrapBundle/Resources/less/form.less'
+        %}
+        <link rel="stylesheet" href="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}" />
+        {% endstylesheets %}
+        {% stylesheets filter='csscopyfile' output='css/base.css'
+        'src/Dominikzogg/EnergyCalculator/Resources/public/css/*css'
+        %}
+        <link rel="stylesheet" href="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock stylesheet %}
+    {% block scripts %}
+        {% javascripts output='js/libraries.js'
+        'vendor/jquery/jquery/jquery-*.js'
+        'vendor/twbs/bootstrap/js/bootstrap-*.js'
+        'vendor/braincrafted/bootstrap-bundle/Bc/Bundle/BootstrapBundle/Resources/js/bc-bootstrap-collection.js'
+        %}
+        <script type="text/javascript" src="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock scripts %}
+</head>
+<body>
+<div class="row-fluid">
+    <div class="span3">
+        {{ knp_menu_render('main', {'nav_type': 'list'}) }}
+    </div>
+    <div class="span9">
+        {% block body %}{% endblock body %}
+    </div>
+</div>
+</body>
+</html>

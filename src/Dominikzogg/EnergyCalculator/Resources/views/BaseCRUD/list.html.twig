@@ -1,0 +1,29 @@
+{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+
+{% block pagetitle %}{{ (transprefix~".list.title")|trans() }}{% endblock %}
+
+{% block body %}
+    <h1>{{ (transprefix~".list.title")|trans() }}</h1>
+    {% if entities|length > 0 %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ (transprefix~".list.name")|trans() }}</th>
+                <th>{{ (transprefix~".list.actions")|trans() }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity }}</td>
+                    <td>
+                        <a class="btn" href="{{ url(editroute, {'id': entity.id }) }}">{{ (transprefix~".list.edit")|trans() }}</a>
+                        <a class="btn btn-danger" href="{{ url(deleteroute, {'id': entity.id }) }}">{{ (transprefix~".list.delete")|trans() }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <a class="btn" href="{{ url(editroute) }}">{{ (transprefix~".list.create")|trans() }}</a>
+{% endblock %}

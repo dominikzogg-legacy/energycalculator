@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+putenv('APP_DEBUG=true');
+putenv('APP_ENV=dev');
+
+$app = require('app.php');
+/** @var Silex\Application $app */
+$app->boot();
+
+$app['console']->run();
