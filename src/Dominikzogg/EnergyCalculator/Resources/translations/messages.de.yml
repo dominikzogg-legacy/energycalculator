@@ -52,10 +52,10 @@ comestible:
     back: *back
   label:
     name: *name
-    calorie: Kalorien
-    protein: Eiweiss
-    fat: Fett
-    carbohydrate: Kohlenhydrat
+    calorie: Kalorien (100g/ml)
+    protein: Eiweiss (100g/ml)
+    fat: Fett (100g/ml)
+    carbohydrate: Kohlenhydrat (100g/ml)
   list:
     title: Nahrungsmittel Liste
     name: *name
