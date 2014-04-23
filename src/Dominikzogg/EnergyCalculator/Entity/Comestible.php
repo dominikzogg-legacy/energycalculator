@@ -9,8 +9,10 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
  * @ORM\Entity()
  * @ORM\Table(name="comestible")
  */
-class Comestible
+class Comestible implements UserReferenceInterface
 {
+    use UserReferenceTrait;
+
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")

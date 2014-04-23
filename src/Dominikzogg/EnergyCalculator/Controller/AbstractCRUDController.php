@@ -4,6 +4,7 @@ namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Dominikzogg\EnergyCalculator\Entity\User;
+use Dominikzogg\EnergyCalculator\Entity\UserReferenceInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactory;
@@ -106,7 +107,15 @@ abstract class AbstractCRUDController
      */
     protected function listAction()
     {
-        $entities = $this->doctrine->getManager()->getRepository($this->entityClass)->findAll();
+        $entity = new $this->entityClass;
+
+        if($entity instanceof UserReferenceInterface) {
+            $entities = $this->doctrine->getManager()->getRepository($this->entityClass)->findBy(array(
+                'user' => $this->getUser()->getId()
+            ));
+        } else {
+            $entities = $this->doctrine->getManager()->getRepository($this->entityClass)->findAll();
+        }
 
         return $this->renderView($this->listTemplate, array(
             'entities' => $entities,
@@ -132,6 +141,9 @@ abstract class AbstractCRUDController
             }
         } else {
             $entity = new $this->entityClass;
+            if($entity instanceof UserReferenceInterface) {
+                $entity->setUser($this->getUser());
+            }
         }
 
         $form = $this->createForm(new $this->formTypeClass, $entity);
