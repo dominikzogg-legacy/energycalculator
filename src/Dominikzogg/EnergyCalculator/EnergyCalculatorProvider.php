@@ -4,6 +4,7 @@ namespace Dominikzogg\EnergyCalculator;
 
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
 use Dominikzogg\EnergyCalculator\Provider\UserProvider;
+use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
 use Saxulum\BundleProvider\Provider\AbstractBundleProvider;
 use Saxulum\SaxulumBootstrapProvider\SaxulumBootstrapProvider;
 use Silex\Application;
@@ -20,6 +21,12 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
 
         $app->register(new SaxulumBootstrapProvider());
         $app->register(new MenuProvider());
+
+        $app['twig'] = $app->share($app->extend('twig', function(\Twig_Environment $twig) {
+            $twig->addExtension(new FormHelperExtension());
+
+            return $twig;
+        }));
 
         $app['security.firewalls'] = array(
             'default' => array(

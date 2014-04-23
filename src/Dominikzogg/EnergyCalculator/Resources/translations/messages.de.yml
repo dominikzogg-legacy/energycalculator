@@ -1,6 +1,7 @@
 nav:
   manage:
     title: Daten verwalten
+    day: Tag
     comestible: Nahrungsmittel
   administration:
     title: Administration
@@ -9,12 +10,38 @@ nav:
 actions: &actions Aktionen
 back: &back zurück
 create: &create erstellen
+date: &date Datum
 delete: &delete löschen
 edit: &edit bearbeiten
 name: &name Name
 save: &save speichern
 saveandclose: &saveandclose speichern und schliessen
 saveandnew: &saveandnew speichern und neu
+
+day:
+  edit:
+    title: Tag bearbeiten
+    save: *save
+    saveandclose: *saveandclose
+    saveandnew: *saveandnew
+    back: *back
+  label:
+    date: *date
+    weightMorning: Gewicht am Morgen
+    weightEvening: Gewicht am Abend
+    comestiblesWithinDay: Nahrungsmittel
+    comestiblesWithinDay_collection:
+      add: Nahrungsmittel hinzufügen
+      remove: Nahrungsmittel entfernen
+      comestible: Nahrungsmittel
+      amount: Menge in g/ml
+  list:
+    title: Tages Liste
+    name: *name
+    actions: *actions
+    edit: *edit
+    delete: *delete
+    create: *create
 
 comestible:
   edit:

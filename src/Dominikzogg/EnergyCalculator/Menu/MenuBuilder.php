@@ -54,8 +54,11 @@ class MenuBuilder
      */
     protected function createManageMenu(ItemInterface $menu, Request $request)
     {
-        $fittingMenu = $menu->addChild($this->translator->trans('nav.manage.title'));
-        $fittingMenu->addChild($this->translator->trans('nav.manage.comestible'), array(
+        $manageMenu = $menu->addChild($this->translator->trans('nav.manage.title'));
+        $manageMenu->addChild($this->translator->trans('nav.manage.day'), array(
+            'route' => 'day_list'
+        ));
+        $manageMenu->addChild($this->translator->trans('nav.manage.comestible'), array(
             'route' => 'comestible_list'
         ));
     }

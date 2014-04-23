@@ -29,25 +29,25 @@ class Comestible implements UserReferenceInterface
 
     /**
      * @var float
-     * @ORM\Column(name="calorie", type="decimal", precision=8, scale=4, nullable=false)
+     * @ORM\Column(name="calorie", type="decimal", precision=10, scale=4, nullable=false)
      */
     protected $calorie = 0;
 
     /**
      * @var float
-     * @ORM\Column(name="protein", type="decimal", precision=8, scale=4, nullable=false)
+     * @ORM\Column(name="protein", type="decimal", precision=10, scale=4, nullable=false)
      */
     protected $protein = 0;
 
     /**
      * @var float
-     * @ORM\Column(name="fat", type="decimal", precision=8, scale=4, nullable=false)
+     * @ORM\Column(name="fat", type="decimal", precision=10, scale=4, nullable=false)
      */
     protected $fat = 0;
 
     /**
      * @var float
-     * @ORM\Column(name="carbohydrate", type="decimal", precision=8, scale=4, nullable=false)
+     * @ORM\Column(name="carbohydrate", type="decimal", precision=10, scale=4, nullable=false)
      */
     protected $carbohydrate = 0;
 

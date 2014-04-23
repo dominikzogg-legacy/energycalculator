@@ -146,7 +146,15 @@ abstract class AbstractCRUDController
             }
         }
 
-        $form = $this->createForm(new $this->formTypeClass, $entity);
+        $formType = new $this->formTypeClass;
+        if(method_exists($formType, 'setUser')) {
+            $formType->setUser($this->getUser());
+        }
+        if(method_exists($formType, 'setTranslator')) {
+            $formType->setTranslator($this->translator);
+        }
+
+        $form = $this->createForm($formType, $entity);
 
         if ('POST' == $request->getMethod()) {
             $form->submit($request);
