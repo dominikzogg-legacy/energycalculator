@@ -5,11 +5,14 @@ namespace Dominikzogg\EnergyCalculator\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="day")
+ * @ORM\Table(name="day", uniqueConstraints={
+ *      @ORM\UniqueConstraint(name="day_per_user_idx", columns={"date", "user_id"})
+ * })
  */
 class Day implements UserReferenceInterface
 {
@@ -175,6 +178,9 @@ class Day implements UserReferenceInterface
      */
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-
+        $metadata->addConstraint(new UniqueEntity(array(
+            'fields'  => array('date', 'user'),
+            'message' => 'This date for this user allready exist.',
+        )));
     }
 }
