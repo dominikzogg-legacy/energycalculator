@@ -27,7 +27,7 @@ class ComestibleWithinDay
 
     /**
      * @var Comestible
-     * @ORM\OneToOne(targetEntity="Comestible")
+     * @ORM\ManyToOne(targetEntity="Comestible")
      * @ORM\JoinColumn(name="comestible_id", referencedColumnName="id")
      */
     protected $comestible;
