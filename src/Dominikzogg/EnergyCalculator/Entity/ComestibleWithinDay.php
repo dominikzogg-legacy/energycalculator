@@ -115,4 +115,44 @@ class ComestibleWithinDay
         $this->amount = $amount;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->getComestible()->getName();
+    }
+
+    /**
+     * @return float
+     */
+    public function getCalorie()
+    {
+        return $this->getComestible()->getCalorie() * $this->getAmount() / 100;
+    }
+
+    /**
+     * @return float
+     */
+    public function getProtein()
+    {
+        return $this->getComestible()->getProtein() * $this->getAmount() / 100;
+    }
+
+    /**
+     * @return float
+     */
+    public function getCarbohydrate()
+    {
+        return $this->getComestible()->getCarbohydrate() * $this->getAmount() / 100;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFat()
+    {
+        return $this->getComestible()->getFat() * $this->getAmount() / 100;
+    }
 }

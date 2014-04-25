@@ -1,0 +1,47 @@
+{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+
+{% block pagetitle %}{{ (transprefix~".show.title")|trans() }}{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{{ (transprefix~".show.name")|trans() }}</th>
+                <th>{{ (transprefix~".show.amount")|trans() }}</th>
+                <th>{{ (transprefix~".show.calorie")|trans() }}</th>
+                <th>{{ (transprefix~".show.protein")|trans() }}</th>
+                <th>{{ (transprefix~".show.carbohydrate")|trans() }}</th>
+                <th>{{ (transprefix~".show.fat")|trans() }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set calorie = 0 %}
+            {% set protein = 0 %}
+            {% set carbohydrate = 0 %}
+            {% set fat = 0 %}
+            {% for comestibleWithinDay in entity.comestiblesWithinDay %}
+                {% set calorie = calorie + comestibleWithinDay.calorie %}
+                {% set protein = protein + comestibleWithinDay.protein %}
+                {% set carbohydrate = carbohydrate + comestibleWithinDay.carbohydrate %}
+                {% set fat = fat + comestibleWithinDay.fat %}
+                <tr>
+                    <td>{{ comestibleWithinDay.name }}</td>
+                    <td>{{ comestibleWithinDay.amount }}</td>
+                    <td>{{ comestibleWithinDay.calorie }}</td>
+                    <td>{{ comestibleWithinDay.protein }}</td>
+                    <td>{{ comestibleWithinDay.carbohydrate }}</td>
+                    <td>{{ comestibleWithinDay.fat }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>{{ (transprefix~".show.total")|trans() }}</td>
+                <td></td>
+                <td>{{ calorie }}</td>
+                <td>{{ protein }}</td>
+                <td>{{ carbohydrate }}</td>
+                <td>{{ fat }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-danger" href="{{ url(listroute) }}">{{ (transprefix~".edit.back")|trans() }}</a>
+{% endblock %}

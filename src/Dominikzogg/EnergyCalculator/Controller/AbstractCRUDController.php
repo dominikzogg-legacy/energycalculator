@@ -21,9 +21,11 @@ abstract class AbstractCRUDController
     protected $formTypeClass;
     protected $listRoute;
     protected $editRoute;
+    protected $showRoute;
     protected $deleteRoute;
     protected $listTemplate;
     protected $editTemplate;
+    protected $showTemplate;
     protected $transPrefix;
 
     /**
@@ -119,8 +121,9 @@ abstract class AbstractCRUDController
 
         return $this->renderView($this->listTemplate, array(
             'entities' => $entities,
-            'editroute' => $this->editRoute,
             'listroute' => $this->listRoute,
+            'editroute' => $this->editRoute,
+            'showroute' => $this->showRoute,
             'deleteroute' => $this->deleteRoute,
             'transprefix' => $this->transPrefix,
         ));
@@ -178,6 +181,25 @@ abstract class AbstractCRUDController
             'entity' => $entity,
             'form' => $form->createView(),
             'editroute' => $this->editRoute,
+            'listroute' => $this->listRoute,
+            'transprefix' => $this->transPrefix,
+        ));
+    }
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public function showAction($id)
+    {
+        $entity = $this->doctrine->getManager()->getRepository($this->entityClass)->find($id);
+        if (is_null($entity)) {
+            throw new NotFoundHttpException("entity with id {$id} not found!");
+        }
+
+        return $this->renderView($this->showTemplate, array(
+            'entity' => $entity,
+            'editroute' => $this->showRoute,
             'listroute' => $this->listRoute,
             'transprefix' => $this->transPrefix,
         ));

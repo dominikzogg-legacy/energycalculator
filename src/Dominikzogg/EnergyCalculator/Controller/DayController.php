@@ -2,9 +2,11 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
+use Dominikzogg\EnergyCalculator\Entity\Day;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/{_locale}/day")
@@ -23,9 +25,11 @@ class DayController extends AbstractCRUDController
     protected $formTypeClass = 'Dominikzogg\\EnergyCalculator\\Form\\DayType';
     protected $listRoute = 'day_list';
     protected $editRoute = 'day_edit';
+    protected $showRoute = 'day_show';
     protected $deleteRoute = 'day_delete';
     protected $listTemplate = '@DominikzoggEnergyCalculator/BaseCRUD/list.html.twig';
     protected $editTemplate = '@DominikzoggEnergyCalculator/BaseCRUD/edit.html.twig';
+    protected $showTemplate = '@DominikzoggEnergyCalculator/Day/show.html.twig';
     protected $transPrefix = 'day';
 
     /**
@@ -45,6 +49,16 @@ class DayController extends AbstractCRUDController
     public function editAction(Request $request, $id)
     {
         return parent::editAction($request, $id);
+    }
+
+    /**
+     * @Route("/show/{id}", bind="day_show", values={"id"=null}, asserts={"id"="\d+"}, method="GET")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showAction($id)
+    {
+        return parent::showAction($id);
     }
 
     /**

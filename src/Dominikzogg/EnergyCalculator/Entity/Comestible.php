@@ -41,15 +41,15 @@ class Comestible implements UserReferenceInterface
 
     /**
      * @var float
-     * @ORM\Column(name="fat", type="decimal", precision=10, scale=4, nullable=false)
-     */
-    protected $fat = 0;
-
-    /**
-     * @var float
      * @ORM\Column(name="carbohydrate", type="decimal", precision=10, scale=4, nullable=false)
      */
     protected $carbohydrate = 0;
+
+    /**
+     * @var float
+     * @ORM\Column(name="fat", type="decimal", precision=10, scale=4, nullable=false)
+     */
+    protected $fat = 0;
 
     /**
      * @return string
@@ -126,24 +126,6 @@ class Comestible implements UserReferenceInterface
     /**
      * @return float
      */
-    public function getFat()
-    {
-        return $this->fat;
-    }
-
-    /**
-     * @param float $fat
-     * @return $this
-     */
-    public function setFat($fat)
-    {
-        $this->fat = $fat;
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
     public function getCarbohydrate()
     {
         return $this->carbohydrate;
@@ -156,6 +138,24 @@ class Comestible implements UserReferenceInterface
     public function setCarbohydrate($carbohydrate)
     {
         $this->carbohydrate = $carbohydrate;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFat()
+    {
+        return $this->fat;
+    }
+
+    /**
+     * @param float $fat
+     * @return $this
+     */
+    public function setFat($fat)
+    {
+        $this->fat = $fat;
         return $this;
     }
 
