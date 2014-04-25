@@ -180,8 +180,10 @@ abstract class AbstractCRUDController
         return $this->renderView($this->editTemplate, array(
             'entity' => $entity,
             'form' => $form->createView(),
-            'editroute' => $this->editRoute,
             'listroute' => $this->listRoute,
+            'editroute' => $this->editRoute,
+            'showroute' => $this->showRoute,
+            'deleteroute' => $this->deleteRoute,
             'transprefix' => $this->transPrefix,
         ));
     }
@@ -199,8 +201,10 @@ abstract class AbstractCRUDController
 
         return $this->renderView($this->showTemplate, array(
             'entity' => $entity,
-            'editroute' => $this->showRoute,
             'listroute' => $this->listRoute,
+            'editroute' => $this->editRoute,
+            'showroute' => $this->showRoute,
+            'deleteroute' => $this->deleteRoute,
             'transprefix' => $this->transPrefix,
         ));
     }
