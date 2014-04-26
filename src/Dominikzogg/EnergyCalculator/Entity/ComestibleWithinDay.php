@@ -41,26 +41,6 @@ class ComestibleWithinDay
     protected $amount = 0;
 
     /**
-     * @var float
-     */
-    protected $calorie;
-
-    /**
-     * @var float
-     */
-    protected $protein;
-
-    /**
-     * @var float
-     */
-    protected $carbohydrate;
-
-    /**
-     * @var float
-     */
-    protected $fat;
-
-    /**
      * @return string
      */
     public function __toString()
