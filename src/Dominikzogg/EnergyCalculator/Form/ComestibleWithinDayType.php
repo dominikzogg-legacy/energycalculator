@@ -40,6 +40,7 @@ class ComestibleWithinDayType extends AbstractType
                     $qb = $er->createQueryBuilder('c');
                     $qb->where('c.user = :user');
                     $qb->setParameter('user', $user->getId());
+                    $qb->orderBy('c.name');
 
                     return $qb;
                 },
