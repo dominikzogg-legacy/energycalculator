@@ -73,7 +73,6 @@ class Day implements UserReferenceInterface
     public function __construct()
     {
         $this->comestiblesWithinDay = new ArrayCollection();
-        $this->resetValues();
     }
 
     /**
@@ -201,7 +200,8 @@ class Day implements UserReferenceInterface
      */
     public function getCalorie()
     {
-        if($this->calorie === 0) {
+        if($this->calorie === null) {
+            $this->calorie = 0;
             foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
                 $this->calorie += $comestiblesWithinDay->getCalorie();
             }
@@ -215,7 +215,8 @@ class Day implements UserReferenceInterface
      */
     public function getProtein()
     {
-        if($this->protein === 0) {
+        if($this->protein === null) {
+            $this->protein = 0;
             foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
                 $this->protein += $comestiblesWithinDay->getProtein();
             }
@@ -229,7 +230,8 @@ class Day implements UserReferenceInterface
      */
     public function getCarbohydrate()
     {
-        if($this->carbohydrate === 0) {
+        if($this->carbohydrate === null) {
+            $this->carbohydrate = 0;
             foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
                 $this->carbohydrate += $comestiblesWithinDay->getCarbohydrate();
             }
@@ -243,7 +245,8 @@ class Day implements UserReferenceInterface
      */
     public function getFat()
     {
-        if($this->fat === 0) {
+        if($this->fat === null) {
+            $this->fat = 0;
             foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
                 $this->fat += $comestiblesWithinDay->getFat();
             }
@@ -254,10 +257,10 @@ class Day implements UserReferenceInterface
 
     protected function resetValues()
     {
-        $this->calorie = 0;
-        $this->protein = 0;
-        $this->carbohydrate = 0;
-        $this->fat = 0;
+        $this->calorie = null;
+        $this->protein = null;
+        $this->carbohydrate = null;
+        $this->fat = null;
     }
 
     /**
