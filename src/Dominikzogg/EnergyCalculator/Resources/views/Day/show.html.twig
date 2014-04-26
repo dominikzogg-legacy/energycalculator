@@ -15,15 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            {% set calorie = 0 %}
-            {% set protein = 0 %}
-            {% set carbohydrate = 0 %}
-            {% set fat = 0 %}
             {% for comestibleWithinDay in entity.comestiblesWithinDay %}
-                {% set calorie = calorie + comestibleWithinDay.calorie %}
-                {% set protein = protein + comestibleWithinDay.protein %}
-                {% set carbohydrate = carbohydrate + comestibleWithinDay.carbohydrate %}
-                {% set fat = fat + comestibleWithinDay.fat %}
                 <tr>
                     <td>{{ comestibleWithinDay.name }}</td>
                     <td>{{ comestibleWithinDay.amount }}</td>
@@ -36,10 +28,10 @@
             <tr>
                 <td><strong>{{ (transprefix~".show.total")|trans() }}</strong></td>
                 <td></td>
-                <td><strong>{{ calorie }}</strong></td>
-                <td><strong>{{ protein }}</strong></td>
-                <td><strong>{{ carbohydrate }}</strong></td>
-                <td><strong>{{ fat }}</strong></td>
+                <td><strong>{{ entity.calorie }}</strong></td>
+                <td><strong>{{ entity.protein }}</strong></td>
+                <td><strong>{{ entity.carbohydrate }}</strong></td>
+                <td><strong>{{ entity.fat }}</strong></td>
             </tr>
         </tbody>
     </table>

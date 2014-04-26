@@ -50,9 +50,30 @@ class Day implements UserReferenceInterface
      */
     protected $comestiblesWithinDay;
 
+    /**
+     * @var float
+     */
+    protected $calorie;
+
+    /**
+     * @var float
+     */
+    protected $protein;
+
+    /**
+     * @var float
+     */
+    protected $carbohydrate;
+
+    /**
+     * @var float
+     */
+    protected $fat;
+
     public function __construct()
     {
         $this->comestiblesWithinDay = new ArrayCollection();
+        $this->resetValues();
     }
 
     /**
@@ -133,6 +154,7 @@ class Day implements UserReferenceInterface
     public function addComestibleWithinDay(ComestibleWithinDay $comestibleWithinDay, $stopPropagation = false)
     {
         $this->comestiblesWithinDay->add($comestibleWithinDay);
+        $this->resetValues();
         if(!$stopPropagation) {
             $comestibleWithinDay->setDay($this, true);
         }
@@ -146,6 +168,7 @@ class Day implements UserReferenceInterface
     public function removeComestibleWithinDay(ComestibleWithinDay $comestibleWithinDay, $stopPropagation = false)
     {
         $this->comestiblesWithinDay->removeElement($comestibleWithinDay);
+        $this->resetValues();
         if(!$stopPropagation) {
             $comestibleWithinDay->setDay(null, true);
         }
@@ -171,6 +194,70 @@ class Day implements UserReferenceInterface
     public function getComestiblesWithinDay()
     {
         return $this->comestiblesWithinDay;
+    }
+
+    /**
+     * @return float
+     */
+    public function getCalorie()
+    {
+        if($this->calorie === 0) {
+            foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+                $this->calorie += $comestiblesWithinDay->getCalorie();
+            }
+        }
+
+        return $this->calorie;
+    }
+
+    /**
+     * @return float
+     */
+    public function getProtein()
+    {
+        if($this->protein === 0) {
+            foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+                $this->protein += $comestiblesWithinDay->getProtein();
+            }
+        }
+
+        return $this->protein;
+    }
+
+    /**
+     * @return float
+     */
+    public function getCarbohydrate()
+    {
+        if($this->carbohydrate === 0) {
+            foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+                $this->carbohydrate += $comestiblesWithinDay->getCarbohydrate();
+            }
+        }
+
+        return $this->carbohydrate;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFat()
+    {
+        if($this->fat === 0) {
+            foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+                $this->fat += $comestiblesWithinDay->getFat();
+            }
+        }
+
+        return $this->fat;
+    }
+
+    protected function resetValues()
+    {
+        $this->calorie = 0;
+        $this->protein = 0;
+        $this->carbohydrate = 0;
+        $this->fat = 0;
     }
 
     /**
