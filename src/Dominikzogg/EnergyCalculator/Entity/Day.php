@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 class Day implements UserReferenceInterface
 {
     use UserReferenceTrait;
+    use AttributeTrait;
 
     /**
      * @var int
@@ -49,26 +50,6 @@ class Day implements UserReferenceInterface
      * @ORM\OneToMany(targetEntity="ComestibleWithinDay", mappedBy="day", cascade={"persist"})
      */
     protected $comestiblesWithinDay;
-
-    /**
-     * @var float
-     */
-    protected $calorie;
-
-    /**
-     * @var float
-     */
-    protected $protein;
-
-    /**
-     * @var float
-     */
-    protected $carbohydrate;
-
-    /**
-     * @var float
-     */
-    protected $fat;
 
     public function __construct()
     {
@@ -253,14 +234,6 @@ class Day implements UserReferenceInterface
         }
 
         return $this->fat;
-    }
-
-    protected function resetValues()
-    {
-        $this->calorie = null;
-        $this->protein = null;
-        $this->carbohydrate = null;
-        $this->fat = null;
     }
 
     /**
