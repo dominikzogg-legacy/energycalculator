@@ -105,19 +105,24 @@ abstract class AbstractCRUDController
     }
 
     /**
+     * @param array $criteria
+     * @param array $orderBy
      * @return string
      */
-    protected function listAction()
+    protected function listAction(array $criteria = array(), array $orderBy = array())
     {
         $entity = new $this->entityClass;
 
-        if($entity instanceof UserReferenceInterface) {
-            $entities = $this->doctrine->getManager()->getRepository($this->entityClass)->findBy(array(
-                'user' => $this->getUser()->getId()
-            ));
-        } else {
-            $entities = $this->doctrine->getManager()->getRepository($this->entityClass)->findAll();
+        if($entity instanceof UserReferenceInterface && !array_key_exists('user', $criteria)) {
+            $criteria['user'] = $this->getUser()->getId();
         }
+
+        $entities = $this
+            ->doctrine
+            ->getManager()
+            ->getRepository($this->entityClass)
+            ->findBy($criteria, $orderBy)
+        ;
 
         return $this->renderView($this->listTemplate, array(
             'entities' => $entities,

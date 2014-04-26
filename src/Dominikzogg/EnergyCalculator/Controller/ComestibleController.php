@@ -33,7 +33,7 @@ class ComestibleController extends AbstractCRUDController
      */
     public function listAction()
     {
-        return parent::listAction();
+        return parent::listAction(array(), array('name' => 'ASC'));
     }
 
     /**
