@@ -37,7 +37,7 @@ class DayController extends AbstractCRUDController
      */
     public function listAction()
     {
-        return parent::listAction(array(), array('date' => 'ASC'));
+        return parent::listEntities(array(), array('date' => 'ASC'));
     }
 
     /**
@@ -48,7 +48,7 @@ class DayController extends AbstractCRUDController
      */
     public function editAction(Request $request, $id)
     {
-        return parent::editAction($request, $id);
+        return parent::editEntity($request, $id);
     }
 
     /**
@@ -58,7 +58,7 @@ class DayController extends AbstractCRUDController
      */
     public function showAction($id)
     {
-        return parent::showAction($id);
+        return parent::showEntity($id);
     }
 
     /**
@@ -68,6 +68,6 @@ class DayController extends AbstractCRUDController
      */
     public function deleteAction($id)
     {
-        return parent::deleteAction($id);
+        return parent::deleteEntity($id);
     }
 }

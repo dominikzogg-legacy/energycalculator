@@ -109,7 +109,7 @@ abstract class AbstractCRUDController
      * @param array $orderBy
      * @return string
      */
-    protected function listAction(array $criteria = array(), array $orderBy = array())
+    protected function listEntities(array $criteria = array(), array $orderBy = array())
     {
         $entity = new $this->entityClass;
 
@@ -140,7 +140,7 @@ abstract class AbstractCRUDController
      * @return string|RedirectResponse
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    protected function editAction(Request $request, $id)
+    protected function editEntity(Request $request, $id)
     {
         if (!is_null($id)) {
             $entity = $this->doctrine->getManager()->getRepository($this->entityClass)->find($id);
@@ -197,7 +197,7 @@ abstract class AbstractCRUDController
      * @param $id
      * @return string
      */
-    public function showAction($id)
+    protected function showEntity($id)
     {
         $entity = $this->doctrine->getManager()->getRepository($this->entityClass)->find($id);
         if (is_null($entity)) {
@@ -219,7 +219,7 @@ abstract class AbstractCRUDController
      * @return RedirectResponse
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    protected function deleteAction($id)
+    protected function deleteEntity($id)
     {
         $entity = $this->doctrine->getManager()->getRepository($this->entityClass)->find($id);
 

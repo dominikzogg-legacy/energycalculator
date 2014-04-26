@@ -33,7 +33,7 @@ class ComestibleController extends AbstractCRUDController
      */
     public function listAction()
     {
-        return parent::listAction(array(), array('name' => 'ASC'));
+        return parent::listEntities(array(), array('name' => 'ASC'));
     }
 
     /**
@@ -44,7 +44,7 @@ class ComestibleController extends AbstractCRUDController
      */
     public function editAction(Request $request, $id)
     {
-        return parent::editAction($request, $id);
+        return parent::editEntity($request, $id);
     }
 
     /**
@@ -54,6 +54,6 @@ class ComestibleController extends AbstractCRUDController
      */
     public function deleteAction($id)
     {
-        return parent::deleteAction($id);
+        return parent::deleteEntity($id);
     }
 }

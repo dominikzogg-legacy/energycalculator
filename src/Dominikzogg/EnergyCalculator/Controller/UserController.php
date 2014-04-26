@@ -52,7 +52,7 @@ class UserController extends AbstractCRUDController
      */
     public function listAction()
     {
-        return parent::listAction();
+        return parent::listEntities();
     }
 
     /**
