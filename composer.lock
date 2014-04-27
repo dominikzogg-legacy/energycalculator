@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6eab59b2643f73b44c3c01948fce18ce",
+    "hash": "3f1642f1a8647e86d93906961756e418",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -1036,31 +1036,32 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v0.9.4",
+            "version": "v1.0.0beta1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "1e5e280ae88a27effa2ae4aa2bd088494ed8594f"
+                "reference": "a6d46c17b10d89f35a92fa4b8fb5071615bfb36c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1e5e280ae88a27effa2ae4aa2bd088494ed8594f",
-                "reference": "1e5e280ae88a27effa2ae4aa2bd088494ed8594f",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a6d46c17b10d89f35a92fa4b8fb5071615bfb36c",
+                "reference": "a6d46c17b10d89f35a92fa4b8fb5071615bfb36c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2"
+                "ext-tokenizer": "*",
+                "php": ">=5.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.9-dev"
+                    "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "PHPParser": "lib/"
-                }
+                "files": [
+                    "lib/bootstrap.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1076,7 +1077,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2013-08-25 17:11:40"
+            "time": "2014-03-27 13:12:13"
         },
         {
             "name": "pimple/pimple",
@@ -1600,21 +1601,21 @@
         },
         {
             "name": "saxulum/saxulum-route-controller-provider",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-route-controller-provider.git",
-                "reference": "a9a19a0f0ad057db1ece32ef9000718342c6abfb"
+                "reference": "2345d70eca86c31e078b482274d02fcef2cf1e40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-route-controller-provider/zipball/a9a19a0f0ad057db1ece32ef9000718342c6abfb",
-                "reference": "a9a19a0f0ad057db1ece32ef9000718342c6abfb",
+                "url": "https://api.github.com/repos/saxulum/saxulum-route-controller-provider/zipball/2345d70eca86c31e078b482274d02fcef2cf1e40",
+                "reference": "2345d70eca86c31e078b482274d02fcef2cf1e40",
                 "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "~1.1",
-                "nikic/php-parser": "~0.9.4",
+                "nikic/php-parser": "v1.0.0beta1",
                 "php": ">=5.3.3",
                 "saxulum/saxulum-annotation-manager": "~1.0.2",
                 "saxulum/saxulum-classfinder": "~1.0.1",
@@ -1648,7 +1649,7 @@
                 "saxulum",
                 "silex"
             ],
-            "time": "2014-03-19 20:41:48"
+            "time": "2014-04-27 19:54:28"
         },
         {
             "name": "saxulum/saxulum-translation-provider",
