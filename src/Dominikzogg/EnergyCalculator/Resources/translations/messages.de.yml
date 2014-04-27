@@ -14,11 +14,13 @@ create: &create erstellen
 date: &date Datum
 delete: &delete löschen
 edit: &edit bearbeiten
+key: &key Schüssel
 name: &name Name
 save: &save speichern
 saveandclose: &saveandclose speichern und schliessen
 saveandnew: &saveandnew speichern und neu
 show: &show anzeigen
+value: &value Wert
 
 day:
   edit:
@@ -26,11 +28,12 @@ day:
     save: *save
     saveandclose: *saveandclose
     saveandnew: *saveandnew
+    show: *show
     back: *back
   label:
     date: *date
-    weightMorning: Gewicht am Morgen
-    weightEvening: Gewicht am Abend
+    weightMorning: &weightMorning Gewicht am Morgen
+    weightEvening: &weightEvening Gewicht am Abend
     comestiblesWithinDay: Nahrungsmittel
     comestiblesWithinDay_collection:
       add: Nahrungsmittel hinzufügen
@@ -55,6 +58,10 @@ day:
     total: Total
     edit: *edit
     back: *back
+    key: *key
+    value: *value
+    weightMorning: *weightMorning
+    weightEvening: *weightEvening
 
 comestible:
   edit:

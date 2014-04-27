@@ -35,6 +35,24 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{{ (transprefix~".show.key")|trans() }}</th>
+                <th>{{ (transprefix~".show.value")|trans() }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ (transprefix~".show.weightMorning")|trans() }}</td>
+                <td>{{ entity.weightMorning }}</td>
+            </tr>
+            <tr>
+                <td>{{ (transprefix~".show.weightEvening")|trans() }}</td>
+                <td>{{ entity.weightEvening }}</td>
+            </tr>
+        </tbody>
+    </table>
     <a class="btn" href="{{ url(editroute, {'id': entity.id}) }}">{{ (transprefix~".show.edit")|trans() }}</a>
     <a class="btn" href="{{ url(listroute) }}">{{ (transprefix~".show.back")|trans() }}</a>
 {% endblock %}
