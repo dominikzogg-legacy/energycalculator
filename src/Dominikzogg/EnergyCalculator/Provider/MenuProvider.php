@@ -17,7 +17,7 @@ class MenuProvider implements ServiceProviderInterface
         $app['main_menu'] = function(Application $app) {
             $menuBuilder = $app['menu_builder'];
             /** @var MenuBuilder $menuBuilder */
-            return $menuBuilder->buildAdminMenu($app['request']);
+            return $menuBuilder->buildMenu($app['request']);
         };
 
         $knpMenuMenus = $app['knp_menu.menus'];

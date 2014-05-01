@@ -1,0 +1,31 @@
+{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+
+{% block pagetitle %}{{ (transprefix~".edit.title")|trans() }}{% endblock %}
+
+{% block body %}
+    <h1>{{ (transprefix~".show.title")|trans() }}</h1>
+    <table class="table table-striped">
+        <tr>
+            <td>{{ (transprefix~".show.id")|trans() }}</td>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <td>{{ (transprefix~".show.username")|trans() }}</td>
+            <td>{{ entity.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ (transprefix~".show.email")|trans() }}</td>
+            <td>{{ entity.email }}</td>
+        </tr>
+        <tr>
+            <td>{{ (transprefix~".show.roles")|trans() }}</td>
+            <td>{{ entity.roles|join(', ') }}</td>
+        </tr>
+        <tr>
+            <td>{{ (transprefix~".show.enabled")|trans() }}</td>
+            <td>{% if entity.enabled %}{{ (transprefix~".show.istrue")|trans() }}{% else %}{{ (transprefix~".show.isfalse")|trans() }}{% endif %}</td>
+        </tr>
+    </table>
+    <a class="btn" href="{{ url(editroute, {'id': entity.id}) }}">{{ (transprefix~".show.edit")|trans() }}</a>
+    <a class="btn" href="{{ url(listroute) }}">{{ (transprefix~".show.back")|trans() }}</a>
+{% endblock %}

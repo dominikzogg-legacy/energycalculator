@@ -33,16 +33,18 @@ class MenuBuilder
         $this->translator = $translator;
     }
 
-    public function buildAdminMenu(Request $request)
+    public function buildMenu(Request $request)
     {
         $menu = $this->menuFactory->createItem('root');
 
-        if (!is_null($this->getUser())) {
+        if ($this->getUser() instanceof User) {
             $this->createManageMenu($menu, $request);
 
             if ($this->securityContext->isGranted('ROLE_ADMIN')) {
                 $this->createAdminMenu($menu, $request);
             }
+
+            $this->createUserMenu($menu, $request);
         }
 
         return $menu;
@@ -69,9 +71,21 @@ class MenuBuilder
      */
     protected function createAdminMenu(ItemInterface $menu, Request $request)
     {
-        $userMenu = $menu->addChild($this->translator->trans('nav.administration.title'));
-        $userMenu->addChild($this->translator->trans('nav.administration.user'), array(
+        $adminMenu = $menu->addChild($this->translator->trans('nav.administration.title'));
+        $adminMenu->addChild($this->translator->trans('nav.administration.user'), array(
             'route' => 'user_list'
+        ));
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @param Request $request
+     */
+    protected function createUserMenu(ItemInterface $menu, Request $request)
+    {
+        $userMenu = $menu->addChild($this->translator->trans('nav.user.title'));
+        $userMenu->addChild($this->translator->trans('nav.user.logout'), array(
+            'route' => 'logout'
         ));
     }
 

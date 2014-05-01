@@ -44,6 +44,6 @@ class IndexController
      */
     public function indexAction()
     {
-        return $this->twig->render('@DominikzoggEnergyCalculator/Index/index.html.twig');
+        return new RedirectResponse($this->urlGenerator->generate('day_list'), 301);
     }
 }

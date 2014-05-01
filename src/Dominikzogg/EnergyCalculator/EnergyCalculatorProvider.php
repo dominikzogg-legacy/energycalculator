@@ -2,11 +2,12 @@
 
 namespace Dominikzogg\EnergyCalculator;
 
+use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
-use Dominikzogg\EnergyCalculator\Provider\UserProvider;
 use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
 use Saxulum\BundleProvider\Provider\AbstractBundleProvider;
 use Saxulum\SaxulumBootstrapProvider\SaxulumBootstrapProvider;
+use Saxulum\UserProvider\SaxulumUserProvider;
 use Silex\Application;
 
 class EnergyCalculatorProvider extends AbstractBundleProvider
@@ -19,6 +20,7 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
         $this->addTranslatorRessources($app);
         $this->addTwigLoaderFilesystemPath($app);
 
+        $app->register(new SaxulumUserProvider());
         $app->register(new SaxulumBootstrapProvider());
         $app->register(new MenuProvider());
 
@@ -28,32 +30,13 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
             return $twig;
         }));
 
-        $app['security.firewalls'] = array(
-            'default' => array(
-                'pattern' => '/',
-                'form' => array(
-                    'login_path' => 'login',
-                    'check_path' => 'login_check'
-                ),
-                'logout' => array(
-                    'logout_path' => 'logout'
-                ),
-                'users' => $app->share(function () use ($app) {
-                    return new UserProvider($app['orm.em']);
-                }),
-                'anonymous' => true,
-            ),
-        );
+        $app['saxulum.userprovider.userclass'] = get_class(new User());
 
-        $app['security.access_rules'] = array(
-            array('^/[^/]*/admin', 'ROLE_ADMIN'),
-            array('^/[^/]*/login', 'IS_AUTHENTICATED_ANONYMOUSLY'),
-            array('^/[^/]*', 'ROLE_USER'),
-        );
-
-        $app['security.role_hierarchy'] = array(
-            'ROLE_ADMIN' => array('ROLE_USER'),
-        );
+        $rules = $app['security.access_rules'];
+        $rules[] = array('^/_profiler*', 'IS_AUTHENTICATED_ANONYMOUSLY');
+        $rules[] = array('^/[^/]*/admin', 'ROLE_ADMIN');
+        $rules[] = array('^/[^/]*', 'ROLE_USER');
+        $app['security.access_rules'] = $rules;
     }
 
     public function boot(Application $app) {}

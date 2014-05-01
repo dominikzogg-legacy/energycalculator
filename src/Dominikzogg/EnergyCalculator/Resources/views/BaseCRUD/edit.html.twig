@@ -11,7 +11,7 @@
                 <input class="btn btn-success" type="submit" name="save" value="{{ (transprefix~".edit.save")|trans() }}" />
                 <input class="btn" type="submit" name="saveandclose" value="{{ (transprefix~".edit.saveandclose")|trans() }}" />
                 <input class="btn" type="submit" name="saveandnew" value="{{ (transprefix~".edit.saveandnew")|trans() }}" />
-                {% if showroute|default(false) %}
+                {% if entity.id and showroute|default(false) %}
                     <a class="btn" href="{{ url(showroute, {'id': entity.id }) }}">{{ (transprefix~".edit.show")|trans() }}</a>
                 {% endif %}
                 <a class="btn" href="{{ url(listroute) }}">{{ (transprefix~".edit.back")|trans() }}</a>

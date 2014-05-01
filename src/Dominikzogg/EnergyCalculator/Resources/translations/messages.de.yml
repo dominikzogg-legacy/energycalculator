@@ -6,6 +6,9 @@ nav:
   administration:
     title: Administration
     user: Benutzer verwalten
+  user:
+    title: Benutzer
+    logout: Benutzer abmelden
 
 actions: &actions Aktionen
 amount: &amount Menge in g/ml
@@ -14,13 +17,25 @@ create: &create erstellen
 date: &date Datum
 delete: &delete löschen
 edit: &edit bearbeiten
+id: &id Id
+isfalse: &isfalse nein
+istrue: &istrue ja
 key: &key Schüssel
 name: &name Name
+password: &password Passwort
 save: &save speichern
 saveandclose: &saveandclose speichern und schliessen
 saveandnew: &saveandnew speichern und neu
 show: &show anzeigen
+username: &username Benutzername
 value: &value Wert
+
+login:
+  title: Login
+  label:
+    username: *username
+    password: *password
+    submit: anmelden
 
 day:
   edit:
@@ -49,6 +64,7 @@ day:
     delete: *delete
     create: *create
   show:
+    title: Tag anzeigen
     name: *name
     amount: *amount
     calorie: Kalorien
@@ -92,18 +108,31 @@ user:
     saveandnew: *saveandnew
     back: *back
   label:
-    username: Benutzername
-    plainpassword: Passwort
+    username: *username
+    plainpassword: *password
     repeatedpassword: Passwort wiederholen
-    email: E-Mail
-    roles: Rolen
+    email: &email E-Mail
+    roles: &roles Rolen
   list:
     title: Benutzer Liste
     name: *name
     actions: *actions
     edit: *edit
+    show: *show
     delete: *delete
     create: *create
+  show:
+    title: Benutzer anzeigen
+    id: *id
+    username: *username
+    email: *email
+    roles: *roles
+    enabled: aktiv
+    istrue: *istrue
+    isfalse: *isfalse
+    edit: *edit
+    back: *back
+
 
 ROLE_ADMIN: Administrator
 ROLE_USER: Benutzer
