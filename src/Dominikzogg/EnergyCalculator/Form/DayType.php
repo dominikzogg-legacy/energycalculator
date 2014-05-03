@@ -51,8 +51,8 @@ class DayType extends AbstractType
 
         $builder
             ->add('date', 'date')
-            ->add('weightMorning', 'number', array('required' => false))
-            ->add('weightEvening', 'number', array('required' => false))
+            ->add('weight', 'number', array('required' => false))
+            ->add('abdominalCircumference', 'number', array('required' => false))
             ->add('comestiblesWithinDay', 'bootstrap_collection', array(
                 'type' => new ComestibleWithinDayType($this->user),
                 'allow_add' => true,

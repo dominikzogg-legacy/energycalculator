@@ -35,15 +35,15 @@ class Day implements UserReferenceInterface
 
     /**
      * @var float
-     * @ORM\Column(name="weight_morning", type="decimal", precision=10, scale=4, nullable=true)
+     * @ORM\Column(name="weight", type="decimal", precision=10, scale=4, nullable=true)
      */
-    protected $weightMorning;
+    protected $weight;
 
     /**
      * @var float
-     * @ORM\Column(name="weight_evening", type="decimal", precision=10, scale=4, nullable=true)
+     * @ORM\Column(name="abdominal_circumference", type="decimal", precision=10, scale=4, nullable=true)
      */
-    protected $weightEvening;
+    protected $abdominalCircumference;
 
     /**
      * @var ComestibleWithinDay[]|Collection
@@ -93,36 +93,36 @@ class Day implements UserReferenceInterface
     /**
      * @return float
      */
-    public function getWeightMorning()
+    public function getWeight()
     {
-        return $this->weightMorning;
+        return $this->weight;
     }
 
     /**
-     * @param float $weightMorning
+     * @param float $weight
      * @return $this
      */
-    public function setWeightMorning($weightMorning)
+    public function setWeight($weight)
     {
-        $this->weightMorning = $weightMorning;
+        $this->weight = $weight;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getWeightEvening()
+    public function getAbdominalCircumference()
     {
-        return $this->weightEvening;
+        return $this->abdominalCircumference;
     }
 
     /**
-     * @param float $weightEvening
+     * @param float $abdominalCircumference
      * @return $this
      */
-    public function setWeightEvening($weightEvening)
+    public function setAbdominalCircumference($abdominalCircumference)
     {
-        $this->weightEvening = $weightEvening;
+        $this->abdominalCircumference = $abdominalCircumference;
         return $this;
     }
 
@@ -140,6 +140,7 @@ class Day implements UserReferenceInterface
         }
         return $this;
     }
+
     /**
      * @param ComestibleWithinDay $comestibleWithinDay
      * @param bool $stopPropagation
@@ -154,6 +155,7 @@ class Day implements UserReferenceInterface
         }
         return $this;
     }
+
     /**
      * @param ComestibleWithinDay[] $comestiblesWithinDay
      * @return $this
@@ -168,6 +170,7 @@ class Day implements UserReferenceInterface
         }
         return $this;
     }
+
     /**
      * @return ComestibleWithinDay[]|Collection
      */

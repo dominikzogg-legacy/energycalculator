@@ -47,8 +47,8 @@ day:
     back: *back
   label:
     date: *date
-    weightMorning: &weightMorning Gewicht am Morgen
-    weightEvening: &weightEvening Gewicht am Abend
+    weight: &weight Gewicht
+    abdominalCircumference: &abdominalCircumference Bauchumfang
     comestiblesWithinDay: Nahrungsmittel
     comestiblesWithinDay_collection:
       add: Nahrungsmittel hinzufügen
@@ -76,8 +76,8 @@ day:
     back: *back
     key: *key
     value: *value
-    weightMorning: *weightMorning
-    weightEvening: *weightEvening
+    weight: *weight
+    abdominalCircumference: *abdominalCircumference
 
 comestible:
   edit:
