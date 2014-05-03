@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "65676a654591247c04ea21ed747cd17b",
+    "hash": "2b56930b3af1d63753c8fec9a4edf402",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -190,7 +190,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -795,6 +795,67 @@
                 "shasum": null
             },
             "type": "library"
+        },
+        {
+            "name": "knplabs/knp-components",
+            "version": "1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/knp-components.git",
+                "reference": "8803fdaa18bd24bd158143e3d9099f4b243a31dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/knp-components/zipball/8803fdaa18bd24bd158143e3d9099f4b243a31dd",
+                "reference": "8803fdaa18bd24bd158143e3d9099f4b243a31dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "suggest": {
+                "doctrine/common": "to allow usage pagination with Doctrine ArrayCollection",
+                "doctrine/mongodb-odm": "to allow usage pagination with Doctrine ODM MongoDB",
+                "doctrine/orm": "to allow usage pagination with Doctrine ORM",
+                "propel/propel1": "to allow usage pagination with Propel ORM",
+                "ruflin/Elastica": "to allow usage pagination with ElasticSearch Client",
+                "solarium/solarium": "to allow usage pagination with Solarium Client"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Component": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://github.com/KnpLabs/knp-components/contributors"
+                }
+            ],
+            "description": "Knplabs component library",
+            "homepage": "http://github.com/KnpLabs/knp-components",
+            "keywords": [
+                "components",
+                "knp",
+                "knplabs",
+                "pager",
+                "paginator"
+            ],
+            "time": "2014-01-09 16:23:31"
         },
         {
             "name": "knplabs/knp-menu",
@@ -1602,6 +1663,61 @@
             "time": "2014-05-01 10:35:43"
         },
         {
+            "name": "saxulum/saxulum-pagination-provider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saxulum/saxulum-pagination-provider.git",
+                "reference": "2b662de7bb77e84656f043de843ff0894f84bc5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saxulum/saxulum-pagination-provider/zipball/2b662de7bb77e84656f043de843ff0894f84bc5b",
+                "reference": "2b662de7bb77e84656f043de843ff0894f84bc5b",
+                "shasum": ""
+            },
+            "require": {
+                "knplabs/knp-components": "~1.2,>=1.2.5",
+                "php": ">=5.3.3",
+                "pimple/pimple": "~1.1",
+                "symfony/http-kernel": "~2.3",
+                "symfony/translation": "~2.3",
+                "twig/twig": "~1.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "silex/silex": "~1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Saxulum\\PaginationProvider": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dominik Zogg",
+                    "email": "dominik.zogg@gmail.com"
+                }
+            ],
+            "description": "Saxulum Pagination Provider",
+            "keywords": [
+                "cilex",
+                "knplabs",
+                "pagination",
+                "pimple",
+                "saxulum",
+                "silex"
+            ],
+            "time": "2014-05-03 10:48:22"
+        },
+        {
             "name": "saxulum/saxulum-route-controller-provider",
             "version": "1.2.0",
             "source": {
@@ -1711,12 +1827,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-user-provider.git",
-                "reference": "68d155891dad658d4c49ac2055f911d08e951cda"
+                "reference": "88d536436c3aba9541d9143685b033243ba6f7e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-user-provider/zipball/68d155891dad658d4c49ac2055f911d08e951cda",
-                "reference": "68d155891dad658d4c49ac2055f911d08e951cda",
+                "url": "https://api.github.com/repos/saxulum/saxulum-user-provider/zipball/88d536436c3aba9541d9143685b033243ba6f7e4",
+                "reference": "88d536436c3aba9541d9143685b033243ba6f7e4",
                 "shasum": ""
             },
             "require": {
@@ -1761,7 +1877,7 @@
                 "user",
                 "userprovider"
             ],
-            "time": "2014-05-01 16:38:51"
+            "time": "2014-05-03 09:32:41"
         },
         {
             "name": "saxulum/saxulum-webprofiler-provider",
@@ -3453,7 +3569,8 @@
     "stability-flags": {
         "knplabs/knp-menu": 15,
         "saxulum/saxulum-user-provider": 20,
-        "saxulum/saxulum-bootstrap-provider": 20
+        "saxulum/saxulum-bootstrap-provider": 20,
+        "saxulum/saxulum-pagination-provider": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -13,24 +13,25 @@
             </tr>
             </thead>
             <tbody>
-            {% for entity in entities %}
-                <tr>
-                    <td>{{ entity }}</td>
-                    <td>
-                        {% if editroute|default(false) %}
-                            <a class="btn" href="{{ url(editroute, {'id': entity.id }) }}">{{ (transprefix~".list.edit")|trans() }}</a>
-                        {% endif %}
-                        {% if showroute|default(false) %}
-                            <a class="btn" href="{{ url(showroute, {'id': entity.id }) }}">{{ (transprefix~".list.show")|trans() }}</a>
-                        {% endif %}
-                        {% if deleteroute|default(false) %}
-                            <a class="btn btn-danger" href="{{ url(deleteroute, {'id': entity.id }) }}">{{ (transprefix~".list.delete")|trans() }}</a>
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
+                {% for entity in entities %}
+                    <tr>
+                        <td>{{ entity }}</td>
+                        <td>
+                            {% if editroute|default(false) %}
+                                <a class="btn" href="{{ url(editroute, {'id': entity.id }) }}">{{ (transprefix~".list.edit")|trans() }}</a>
+                            {% endif %}
+                            {% if showroute|default(false) %}
+                                <a class="btn" href="{{ url(showroute, {'id': entity.id }) }}">{{ (transprefix~".list.show")|trans() }}</a>
+                            {% endif %}
+                            {% if deleteroute|default(false) %}
+                                <a class="btn btn-danger" href="{{ url(deleteroute, {'id': entity.id }) }}">{{ (transprefix~".list.delete")|trans() }}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
+        {{ knp_pagination_render(entities) }}
     {% endif %}
     <a class="btn" href="{{ url(editroute) }}">{{ (transprefix~".list.create")|trans() }}</a>
 {% endblock %}

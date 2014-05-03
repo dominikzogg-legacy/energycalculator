@@ -2,17 +2,18 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
-use Dominikzogg\EnergyCalculator\Entity\Day;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/{_locale}/day")
  * @DI(serviceIds={
  *      "doctrine",
  *      "form.factory",
+ *      "knp_paginator",
  *      "security",
  *      "translator",
  *      "twig",
@@ -34,17 +35,19 @@ class DayController extends AbstractCRUDController
 
     /**
      * @Route("/", bind="day_list", method="GET")
+     * @param Request $request
+     * @return Response
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        return parent::listEntities(array(), array('date' => 'ASC'));
+        return parent::listEntities($request, array(), array('date' => 'ASC'));
     }
 
     /**
      * @Route("/edit/{id}", bind="day_edit", values={"id"=null}, asserts={"id"="\d+"})
      * @param Request $request
      * @param $id
-     * @return string|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response|RedirectResponse
      */
     public function editAction(Request $request, $id)
     {
@@ -52,9 +55,9 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/show/{id}", bind="day_show", values={"id"=null}, asserts={"id"="\d+"}, method="GET")
+     * @Route("/show/{id}", bind="day_show", asserts={"id"="\d+"}, method="GET")
      * @param $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function showAction($id)
     {
@@ -62,9 +65,9 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/delete/{id}", bind="day_delete", values={"id"=null}, asserts={"id"="\d+"}, method="GET")
+     * @Route("/delete/{id}", bind="day_delete", asserts={"id"="\d+"}, method="GET")
      * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function deleteAction($id)
     {

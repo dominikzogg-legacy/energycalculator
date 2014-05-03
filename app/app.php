@@ -79,14 +79,14 @@ if ($app['debug']) {
     $app->register(new SaxulumWebProfilerProvider());
 }
 
+// load all project providers
+$app->register(new \Dominikzogg\EnergyCalculator\EnergyCalculatorProvider());
+
 // config overrides
 $environment = getenv('APP_ENV') ?: 'prod';
 $app->register(new ConfigServiceProvider("{$rootDir}/app/config/config.yml", array('root_dir' => $rootDir, 'env' => $environment)));
 $app->register(new ConfigServiceProvider("{$rootDir}/app/config/config_{$environment}.yml", array('root_dir' => $rootDir)));
 $app->register(new ConfigServiceProvider("{$rootDir}/app/config/parameters.yml"));
-
-// load all project providers
-$app->register(new \Dominikzogg\EnergyCalculator\EnergyCalculatorProvider());
 
 // return the app
 return $app;

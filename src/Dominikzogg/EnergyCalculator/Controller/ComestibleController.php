@@ -4,13 +4,16 @@ namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/{_locale}/comestible")
  * @DI(serviceIds={
  *      "doctrine",
  *      "form.factory",
+ *      "knp_paginator",
  *      "security",
  *      "translator",
  *      "twig",
@@ -30,17 +33,19 @@ class ComestibleController extends AbstractCRUDController
 
     /**
      * @Route("/", bind="comestible_list", method="GET")
+     * @param Request $request
+     * @return Response
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        return parent::listEntities(array(), array('name' => 'ASC'));
+        return parent::listEntities($request, array(), array('name' => 'ASC'));
     }
 
     /**
      * @Route("/edit/{id}", bind="comestible_edit", values={"id"=null}, asserts={"id"="\d+"})
      * @param Request $request
      * @param $id
-     * @return string|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response|RedirectResponse
      */
     public function editAction(Request $request, $id)
     {
@@ -48,9 +53,9 @@ class ComestibleController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/delete/{id}", bind="comestible_delete", values={"id"=null}, asserts={"id"="\d+"}, method="GET")
+     * @Route("/delete/{id}", bind="comestible_delete", asserts={"id"="\d+"}, method="GET")
      * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function deleteAction($id)
     {

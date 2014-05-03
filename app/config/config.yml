@@ -28,3 +28,6 @@ route_controller_cache: %root_dir%/app/cache/%env%/controller
 console.cache: %root_dir%/app/cache/%env%/console
 
 translation_cache: %root_dir%/app/cache/%env%/translation
+
+knp_paginator.options:
+  defaultPaginationTemplate: @SaxulumPaginationProvider/twitter_bootstrap_pagination.html.twig

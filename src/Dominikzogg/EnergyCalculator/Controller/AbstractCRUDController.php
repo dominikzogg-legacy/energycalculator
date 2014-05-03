@@ -3,13 +3,16 @@
 namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
 use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Entity\UserReferenceInterface;
+use Knp\Component\Pager\Paginator;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -39,6 +42,11 @@ abstract class AbstractCRUDController
     protected $formFactory;
 
     /**
+     * @var Paginator
+     */
+    protected $paginator;
+
+    /**
      * @var SecurityContext
      */
     protected $security;
@@ -61,6 +69,7 @@ abstract class AbstractCRUDController
     /**
      * @param ManagerRegistry $doctrine
      * @param FormFactory $formFactory
+     * @param Paginator $paginator
      * @param SecurityContext $security
      * @param Translator $translator
      * @param \Twig_Environment $twig
@@ -69,6 +78,7 @@ abstract class AbstractCRUDController
     public function __construct(
         ManagerRegistry $doctrine,
         FormFactory $formFactory,
+        Paginator $paginator,
         SecurityContext $security,
         Translator $translator,
         \Twig_Environment $twig,
@@ -76,6 +86,7 @@ abstract class AbstractCRUDController
     ) {
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
+        $this->paginator = $paginator;
         $this->security = $security;
         $this->translator = $translator;
         $this->twig = $twig;
@@ -99,17 +110,18 @@ abstract class AbstractCRUDController
      * @param  array  $parameters
      * @return string
      */
-    protected function renderView($view, array $parameters = array())
+    protected function render($view, array $parameters = array())
     {
-        return $this->twig->render($view, $parameters);
+        return new Response($this->twig->render($view, $parameters));
     }
 
     /**
+     * @param Request $request
      * @param array $criteria
      * @param array $orderBy
-     * @return string
+     * @return Response
      */
-    protected function listEntities(array $criteria = array(), array $orderBy = array())
+    protected function listEntities(Request $request, array $criteria = array(), array $orderBy = array())
     {
         $entity = new $this->entityClass;
 
@@ -117,14 +129,25 @@ abstract class AbstractCRUDController
             $criteria['user'] = $this->getUser()->getId();
         }
 
-        $entities = $this
+        /** @var EntityRepository $repo */
+        $repo = $this
             ->doctrine
-            ->getManager()
+            ->getManagerForClass($this->entityClass)
             ->getRepository($this->entityClass)
-            ->findBy($criteria, $orderBy)
         ;
 
-        return $this->renderView($this->listTemplate, array(
+        $qb = $repo->createQueryBuilder('e');
+        foreach($criteria as $field => $value) {
+            $qb->andWhere("e.{$field} = :{$field}");
+            $qb->setParameter($field, $value);
+        }
+        foreach($orderBy as $field => $direction) {
+            $qb->addOrderBy("e.{$field}", $direction);
+        }
+
+        $entities = $this->paginator->paginate($qb, $request->query->get('page', 1), 10);
+
+        return $this->render($this->listTemplate, array(
             'entities' => $entities,
             'listroute' => $this->listRoute,
             'editroute' => $this->editRoute,
@@ -137,8 +160,8 @@ abstract class AbstractCRUDController
     /**
      * @param Request $request
      * @param $id
-     * @return string|RedirectResponse
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return Response|RedirectResponse
+     * @throws NotFoundHttpException
      */
     protected function editEntity(Request $request, $id)
     {
@@ -182,7 +205,7 @@ abstract class AbstractCRUDController
             }
         }
 
-        return $this->renderView($this->editTemplate, array(
+        return $this->render($this->editTemplate, array(
             'entity' => $entity,
             'form' => $form->createView(),
             'listroute' => $this->listRoute,
@@ -195,7 +218,7 @@ abstract class AbstractCRUDController
 
     /**
      * @param $id
-     * @return string
+     * @return Response
      */
     protected function showEntity($id)
     {
@@ -204,7 +227,7 @@ abstract class AbstractCRUDController
             throw new NotFoundHttpException("entity with id {$id} not found!");
         }
 
-        return $this->renderView($this->showTemplate, array(
+        return $this->render($this->showTemplate, array(
             'entity' => $entity,
             'listroute' => $this->listRoute,
             'editroute' => $this->editRoute,
@@ -217,7 +240,7 @@ abstract class AbstractCRUDController
     /**
      * @param $id
      * @return RedirectResponse
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
      */
     protected function deleteEntity($id)
     {

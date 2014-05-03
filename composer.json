@@ -40,8 +40,9 @@
         "symfony/yaml": "~2.4",
         "twig/twig": "~1.2",
 
-        "saxulum/saxulum-bootstrap-provider": "dev-master@dev",
         "jquery/jquery": "~1.9.1",
+        "saxulum/saxulum-bootstrap-provider": "dev-master@dev",
+        "saxulum/saxulum-pagination-provider": "dev-master@dev",
         "twbs/bootstrap": "~2.3.2"
     },
     "repositories": [
