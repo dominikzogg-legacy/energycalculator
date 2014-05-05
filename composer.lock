@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "2b56930b3af1d63753c8fec9a4edf402",
+    "hash": "113f074ecc25f8678d079862556f7076",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -1476,16 +1476,16 @@
         },
         {
             "name": "saxulum/saxulum-console",
-            "version": "2.1.0",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-console.git",
-                "reference": "277e438f9ded4a5cec76aa628b1b0d1d6a0c135e"
+                "reference": "1302c2a8ecb9a8a01aeb77a4e0673fbc9aaf7377"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-console/zipball/277e438f9ded4a5cec76aa628b1b0d1d6a0c135e",
-                "reference": "277e438f9ded4a5cec76aa628b1b0d1d6a0c135e",
+                "url": "https://api.github.com/repos/saxulum/saxulum-console/zipball/1302c2a8ecb9a8a01aeb77a4e0673fbc9aaf7377",
+                "reference": "1302c2a8ecb9a8a01aeb77a4e0673fbc9aaf7377",
                 "shasum": ""
             },
             "require": {
@@ -1523,7 +1523,7 @@
                 "saxulum",
                 "silex"
             ],
-            "time": "2014-05-05 21:55:57"
+            "time": "2014-05-05 22:31:50"
         },
         {
             "name": "saxulum/saxulum-doctrine-orm-commands",

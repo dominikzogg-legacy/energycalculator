@@ -34,7 +34,7 @@ AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 $app = new Application();
 
 $app['root'] = dirname(__DIR__);
-$app['debug'] = isset($debug) ? (int) $debug : false;
+$app['debug'] = isset($debug) ? $debug : false;
 $app['env'] = isset($env) ? $env : 'prod';
 
 $app->register(new TranslationServiceProvider());

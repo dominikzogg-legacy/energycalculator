@@ -11,7 +11,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 $loader = require_once __DIR__ . '/app/autoload.php';
 
 $env = 'dev';
-$debug = 1;
+$debug = true;
 
 /** @var Silex\Application $app */
 $app = require_once __DIR__.'/app/app.php';
