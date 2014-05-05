@@ -27,20 +27,15 @@ use Saxulum\RouteController\Provider\RouteControllerProvider;
 use Saxulum\Translation\Silex\Provider\TranslationProvider;
 use Saxulum\SaxulumWebProfiler\Provider\SaxulumWebProfilerProvider;
 
-// define the root dir
-$rootDir = dirname(__DIR__);
-
-// load composer
-if (!$loader = @include $rootDir . '/vendor/autoload.php') {
-    die("curl -s http://getcomposer.org/installer | php; php composer.phar install");
-}
-
 // annotation registry
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 // create new silex app
 $app = new Application();
-$app['debug'] = getenv('APP_DEBUG') ? true : false;
+
+$app['root'] = dirname(__DIR__);
+$app['debug'] = isset($debug) ? (int) $debug : false;
+$app['env'] = isset($env) ? $env : 'prod';
 
 $app->register(new TranslationServiceProvider());
 $app->register(new TwigServiceProvider());
@@ -83,10 +78,9 @@ if ($app['debug']) {
 $app->register(new \Dominikzogg\EnergyCalculator\EnergyCalculatorProvider());
 
 // config overrides
-$environment = getenv('APP_ENV') ?: 'prod';
-$app->register(new ConfigServiceProvider("{$rootDir}/app/config/config.yml", array('root_dir' => $rootDir, 'env' => $environment)));
-$app->register(new ConfigServiceProvider("{$rootDir}/app/config/config_{$environment}.yml", array('root_dir' => $rootDir)));
-$app->register(new ConfigServiceProvider("{$rootDir}/app/config/parameters.yml"));
+$app->register(new ConfigServiceProvider("{$app['root']}/app/config/config.yml", array('root_dir' => $app['root'], 'env' => $app['env'])));
+$app->register(new ConfigServiceProvider("{$app['root']}/app/config/config_{$app['env']}.yml", array('root_dir' => $app['root'])));
+$app->register(new ConfigServiceProvider("{$app['root']}/app/config/parameters.yml"));
 
 // return the app
 return $app;

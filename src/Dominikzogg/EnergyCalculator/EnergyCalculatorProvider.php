@@ -2,6 +2,7 @@
 
 namespace Dominikzogg\EnergyCalculator;
 
+use Dominikzogg\EnergyCalculator\Command\UserCreateCommand;
 use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
 use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
@@ -34,7 +35,15 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
         $rules[] = array('^/[^/]*', 'ROLE_USER');
         $app['security.access_rules'] = $rules;
 
-        $this->addCommands($app);
+        $app['console.commands'] = $app->share(
+            $app->extend('console.commands', function (array $commands) use ($app) {
+                $commands[] = new UserCreateCommand(null, $app['saxulum.userprovider.userclass']);
+
+                return $commands;
+            })
+        );
+
+        //$this->addCommands($app);
         $this->addControllers($app);
         $this->addDoctrineOrmMappings($app);
         $this->addTranslatorRessources($app);
