@@ -38,7 +38,7 @@ class ComestibleController extends AbstractCRUDController
      */
     public function listAction(Request $request)
     {
-        return parent::listEntities($request, array(), array('name' => 'ASC'));
+        return parent::listEntities($request, array(), array('name' => 'ASC'), 20);
     }
 
     /**

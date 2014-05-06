@@ -40,7 +40,7 @@ class DayController extends AbstractCRUDController
      */
     public function listAction(Request $request)
     {
-        return parent::listEntities($request, array(), array('date' => 'ASC'));
+        return parent::listEntities($request, array(), array('date' => 'DESC'), 7);
     }
 
     /**

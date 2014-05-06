@@ -119,9 +119,10 @@ abstract class AbstractCRUDController
      * @param Request $request
      * @param array $criteria
      * @param array $orderBy
+     * @param int $perPage
      * @return Response
      */
-    protected function listEntities(Request $request, array $criteria = array(), array $orderBy = array())
+    protected function listEntities(Request $request, array $criteria = array(), array $orderBy = array(), $perPage = 10)
     {
         $entity = new $this->entityClass;
 
@@ -145,7 +146,7 @@ abstract class AbstractCRUDController
             $qb->addOrderBy("e.{$field}", $direction);
         }
 
-        $entities = $this->paginator->paginate($qb, $request->query->get('page', 1), 10);
+        $entities = $this->paginator->paginate($qb, $request->query->get('page', 1), $perPage);
 
         return $this->render($this->listTemplate, array(
             'entities' => $entities,
