@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\ArgvInput;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('APP_ENV') ?: 'dev');
-$debug = ($input->hasParameterOption('--no-debug') || $env === 'prod' || getenv('APP_DEBUG') === '1') ? false : true;
+$debug = getenv('APP_DEBUG') !== '0' && !$input->hasParameterOption(array('--no-debug', '')) && $env !== 'prod';
 
 $app = require(__DIR__ . '/app.php');
 /** @var Silex\Application $app */
