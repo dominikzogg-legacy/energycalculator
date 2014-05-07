@@ -14,7 +14,7 @@ class FormHelperExtension extends \Twig_Extension
                 $collection = false;
                 do {
                     $name = $formView->vars['name'];
-                    if(is_numeric($name)) {
+                    if(is_numeric($name) || $name === '__name__') {
                         $collection = true;
                     } else {
                         if($collection) {
