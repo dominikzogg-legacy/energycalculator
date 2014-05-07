@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "113f074ecc25f8678d079862556f7076",
+    "hash": "d1be96a36607125e8cf3f47edcb57475",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -64,6 +64,22 @@
                 "bootstrap"
             ],
             "time": "2013-11-11 12:56:41"
+        },
+        {
+            "name": "cssmin/cssmin",
+            "version": "3.0.1",
+            "dist": {
+                "type": "file",
+                "url": "http://cssmin.googlecode.com/files/cssmin-v3.0.1.php",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "cssmin-v3.0.1.php"
+                ]
+            }
         },
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -797,6 +813,22 @@
             "type": "library"
         },
         {
+            "name": "jsmin/jsmin",
+            "version": "2.1.7",
+            "dist": {
+                "type": "file",
+                "url": "https://raw.github.com/mrclay/minify/2.1.7/min/lib/JSMin.php",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "JSMin.php"
+                ]
+            }
+        },
+        {
             "name": "knplabs/knp-components",
             "version": "1.2.5",
             "source": {
@@ -1475,17 +1507,51 @@
             "time": "2014-03-20 22:30:19"
         },
         {
-            "name": "saxulum/saxulum-console",
-            "version": "2.1.2",
+            "name": "saxulum/saxulum-collection-js",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/saxulum/saxulum-console.git",
-                "reference": "1302c2a8ecb9a8a01aeb77a4e0673fbc9aaf7377"
+                "url": "https://github.com/saxulum/saxulum-collection-js.git",
+                "reference": "493dc6b4e3c395e6c6decebe958c408eaf93ddf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-console/zipball/1302c2a8ecb9a8a01aeb77a4e0673fbc9aaf7377",
-                "reference": "1302c2a8ecb9a8a01aeb77a4e0673fbc9aaf7377",
+                "url": "https://api.github.com/repos/saxulum/saxulum-collection-js/zipball/493dc6b4e3c395e6c6decebe958c408eaf93ddf9",
+                "reference": "493dc6b4e3c395e6c6decebe958c408eaf93ddf9",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dominik Zogg",
+                    "email": "dominik.zogg@gmail.com"
+                }
+            ],
+            "description": "A simple javascript manage symfony form collections",
+            "keywords": [
+                "collection",
+                "saxulum",
+                "symfony",
+                "symfony form"
+            ],
+            "time": "2014-05-07 21:23:34"
+        },
+        {
+            "name": "saxulum/saxulum-console",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saxulum/saxulum-console.git",
+                "reference": "db457caadf3d61b380c89b661f7cc08b039ced68"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saxulum/saxulum-console/zipball/db457caadf3d61b380c89b661f7cc08b039ced68",
+                "reference": "db457caadf3d61b380c89b661f7cc08b039ced68",
                 "shasum": ""
             },
             "require": {
@@ -1523,7 +1589,7 @@
                 "saxulum",
                 "silex"
             ],
-            "time": "2014-05-05 22:31:50"
+            "time": "2014-05-07 20:59:24"
         },
         {
             "name": "saxulum/saxulum-doctrine-orm-commands",
@@ -3570,6 +3636,7 @@
         "knplabs/knp-menu": 15,
         "saxulum/saxulum-user-provider": 20,
         "saxulum/saxulum-bootstrap-provider": 20,
+        "saxulum/saxulum-collection-js": 20,
         "saxulum/saxulum-pagination-provider": 20
     },
     "platform": {
