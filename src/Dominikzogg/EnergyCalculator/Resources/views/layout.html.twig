@@ -6,7 +6,6 @@
     {% block stylesheet %}
         {% stylesheets filter='lessphp,csscopyfile,?cssmin' output='css/libraries.css'
         'vendor/twbs/bootstrap/less/bootstrap.less'
-        'vendor/twbs/bootstrap/less/responsive.less'
         'vendor/braincrafted/bootstrap-bundle/Bc/Bundle/BootstrapBundle/Resources/less/form.less'
         %}
         <link rel="stylesheet" href="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}" />
@@ -36,14 +35,21 @@
                 });
             })(jQuery);
         </script>
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
     {% endblock scripts %}
 </head>
 <body>
-<div class="row-fluid">
-    <div class="span3">
+<div class="container-fluid">
+    <div class="row">
+
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         {{ knp_menu_render('main', {'nav_type': 'list'}) }}
     </div>
-    <div class="span9">
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
         {% block body %}{% endblock body %}
     </div>
 </div>

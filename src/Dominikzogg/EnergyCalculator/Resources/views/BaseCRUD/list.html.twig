@@ -4,6 +4,9 @@
 
 {% block body %}
     <h1>{{ (transprefix~".list.title")|trans() }}</h1>
+    <br />
+    <a class="btn btn-default" href="{{ url(editroute) }}">{{ (transprefix~".list.create")|trans() }}</a><br />
+    <br />
     {% if entities|length > 0 %}
         <table class="table table-striped">
             <thead>
@@ -18,10 +21,10 @@
                         <td>{{ entity }}</td>
                         <td>
                             {% if editroute|default(false) %}
-                                <a class="btn" href="{{ url(editroute, {'id': entity.id }) }}">{{ (transprefix~".list.edit")|trans() }}</a>
+                                <a class="btn btn-default" href="{{ url(editroute, {'id': entity.id }) }}">{{ (transprefix~".list.edit")|trans() }}</a>
                             {% endif %}
                             {% if showroute|default(false) %}
-                                <a class="btn" href="{{ url(showroute, {'id': entity.id }) }}">{{ (transprefix~".list.show")|trans() }}</a>
+                                <a class="btn btn-default" href="{{ url(showroute, {'id': entity.id }) }}">{{ (transprefix~".list.show")|trans() }}</a>
                             {% endif %}
                             {% if deleteroute|default(false) %}
                                 <a class="btn btn-danger" href="{{ url(deleteroute, {'id': entity.id }) }}">{{ (transprefix~".list.delete")|trans() }}</a>
@@ -33,5 +36,4 @@
         </table>
         {{ knp_pagination_render(entities) }}
     {% endif %}
-    <a class="btn" href="{{ url(editroute) }}">{{ (transprefix~".list.create")|trans() }}</a>
 {% endblock %}
