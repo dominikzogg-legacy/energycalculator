@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>{{ (transprefix~".list.title")|trans() }}</h1>
+    <a class="btn" href="{{ url(editroute) }}">{{ (transprefix~".list.create")|trans() }}</a>
     {% if entities|length > 0 %}
         <table class="table table-striped">
             <thead>
