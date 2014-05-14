@@ -53,6 +53,7 @@ class Day implements UserReferenceInterface
 
     public function __construct()
     {
+        $this->date = new \DateTime();
         $this->comestiblesWithinDay = new ArrayCollection();
     }
 

@@ -50,7 +50,11 @@ class DayType extends AbstractType
         }
 
         $builder
-            ->add('date', 'date')
+            ->add('date', 'date', array(
+                'widget' => 'single_text',
+                'input' => 'datetime',
+                'format' => 'dd.MM.yyyy',
+            ))
             ->add('weight', 'number', array('required' => false))
             ->add('abdominalCircumference', 'number', array('required' => false))
             ->add('comestiblesWithinDay', 'bootstrap_collection', array(
