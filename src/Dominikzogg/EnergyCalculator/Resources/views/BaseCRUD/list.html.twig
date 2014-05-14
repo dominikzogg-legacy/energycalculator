@@ -5,7 +5,9 @@
 {% block body %}
     <h1>{{ (transprefix~".list.title")|trans() }}</h1>
     <br />
-    <a class="btn btn-default" href="{{ url(editroute) }}">{{ (transprefix~".list.create")|trans() }}</a><br />
+    <a class="btn btn-default" href="{{ url(editroute) }}" title="{{ (transprefix~".list.create")|trans() }}">
+        <i class="glyphicon glyphicon-plus"></i>
+    </a><br />
     <br />
     {% if entities|length > 0 %}
         <table class="table table-striped">
@@ -21,13 +23,19 @@
                         <td>{{ entity }}</td>
                         <td>
                             {% if editroute|default(false) %}
-                                <a class="btn btn-default" href="{{ url(editroute, {'id': entity.id }) }}">{{ (transprefix~".list.edit")|trans() }}</a>
+                                <a class="btn btn-default" href="{{ url(editroute, {'id': entity.id }) }}" title="{{ (transprefix~".list.edit")|trans() }}">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
                             {% endif %}
                             {% if showroute|default(false) %}
-                                <a class="btn btn-default" href="{{ url(showroute, {'id': entity.id }) }}">{{ (transprefix~".list.show")|trans() }}</a>
+                                <a class="btn btn-default" href="{{ url(showroute, {'id': entity.id }) }}" title="{{ (transprefix~".list.show")|trans() }}">
+                                    <i class="glyphicon glyphicon-eye-open"></i>
+                                </a>
                             {% endif %}
                             {% if deleteroute|default(false) %}
-                                <a class="btn btn-danger" href="{{ url(deleteroute, {'id': entity.id }) }}">{{ (transprefix~".list.delete")|trans() }}</a>
+                                <a class="btn btn-danger" href="{{ url(deleteroute, {'id': entity.id }) }}" title="{{ (transprefix~".list.delete")|trans() }}">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </a>
                             {% endif %}
                         </td>
                     </tr>

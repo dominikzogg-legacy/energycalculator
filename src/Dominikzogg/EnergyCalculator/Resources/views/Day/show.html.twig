@@ -19,20 +19,20 @@
             {% for comestibleWithinDay in entity.comestiblesWithinDay %}
                 <tr>
                     <td>{{ comestibleWithinDay.name }}</td>
-                    <td>{{ comestibleWithinDay.amount }}</td>
-                    <td>{{ comestibleWithinDay.calorie }}</td>
-                    <td>{{ comestibleWithinDay.protein }}</td>
-                    <td>{{ comestibleWithinDay.carbohydrate }}</td>
-                    <td>{{ comestibleWithinDay.fat }}</td>
+                    <td>{{ comestibleWithinDay.amount|round(1) }}</td>
+                    <td>{{ comestibleWithinDay.calorie|round(1) }}</td>
+                    <td>{{ comestibleWithinDay.protein|round(1) }}</td>
+                    <td>{{ comestibleWithinDay.carbohydrate|round(1) }}</td>
+                    <td>{{ comestibleWithinDay.fat|round(1) }}</td>
                 </tr>
             {% endfor %}
             <tr>
                 <td><strong>{{ (transprefix~".show.total")|trans() }}</strong></td>
                 <td></td>
-                <td><strong>{{ entity.calorie }}</strong></td>
-                <td><strong>{{ entity.protein }}</strong></td>
-                <td><strong>{{ entity.carbohydrate }}</strong></td>
-                <td><strong>{{ entity.fat }}</strong></td>
+                <td><strong>{{ entity.calorie|round(1) }}</strong></td>
+                <td><strong>{{ entity.protein|round(1) }}</strong></td>
+                <td><strong>{{ entity.carbohydrate|round(1) }}</strong></td>
+                <td><strong>{{ entity.fat|round(1) }}</strong></td>
             </tr>
         </tbody>
     </table>
@@ -46,14 +46,18 @@
         <tbody>
             <tr>
                 <td>{{ (transprefix~".show.weight")|trans() }}</td>
-                <td>{{ entity.weight }}</td>
+                <td>{{ entity.weight|round(1) }}</td>
             </tr>
             <tr>
                 <td>{{ (transprefix~".show.abdominalCircumference")|trans() }}</td>
-                <td>{{ entity.abdominalCircumference }}</td>
+                <td>{{ entity.abdominalCircumference|round(1) }}</td>
             </tr>
         </tbody>
     </table>
-    <a class="btn btn-default" href="{{ url(editroute, {'id': entity.id}) }}">{{ (transprefix~".show.edit")|trans() }}</a>
-    <a class="btn btn-default" href="{{ url(listroute) }}">{{ (transprefix~".show.back")|trans() }}</a>
+    <a class="btn btn-default" href="{{ url(editroute, {'id': entity.id }) }}" title="{{ (transprefix~".show.edit")|trans() }}">
+        <i class="glyphicon glyphicon-pencil"></i>
+    </a>
+    <a class="btn btn-default" href="{{ url(listroute) }}" title="{{ (transprefix~".show.back")|trans() }}">
+        <i class="glyphicon glyphicon-list-alt"></i>
+    </a>
 {% endblock %}

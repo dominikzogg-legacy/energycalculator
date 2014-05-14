@@ -66,11 +66,11 @@ day:
   show:
     title: Tag anzeigen
     name: *name
-    amount: *amount
-    calorie: Kalorien
-    protein: Eiweiss in g
-    carbohydrate: Kohlenhydrat in g
-    fat: Fett in g
+    amount: Menge
+    calorie: Kcal
+    protein: Eiweiss
+    carbohydrate: Kohl.
+    fat: Fett
     total: Total
     edit: *edit
     back: *back

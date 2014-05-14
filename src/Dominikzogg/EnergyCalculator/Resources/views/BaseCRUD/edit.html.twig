@@ -7,13 +7,17 @@
         <h1>{{ (transprefix~".edit.title")|trans() }}</h1>
         {{ form_widget(form, {'form_type': 'horizontal'}) }}
         <div class="form-group">
-            <input class="btn btn-success" type="submit" name="save" value="{{ (transprefix~".edit.save")|trans() }}" />
-            <input class="btn btn-default" type="submit" name="saveandclose" value="{{ (transprefix~".edit.saveandclose")|trans() }}" />
-            <input class="btn btn-default" type="submit" name="saveandnew" value="{{ (transprefix~".edit.saveandnew")|trans() }}" />
+            <button type="submit" class="btn btn-success" name="save" value="{{ (transprefix~".edit.save")|trans() }}">
+                <i class="glyphicon glyphicon-save"></i>
+            </button>
             {% if entity.id and showroute|default(false) %}
-                <a class="btn btn-default" href="{{ url(showroute, {'id': entity.id }) }}">{{ (transprefix~".edit.show")|trans() }}</a>
+                <a class="btn btn-default" href="{{ url(showroute, {'id': entity.id }) }}" title="{{ (transprefix~".edit.show")|trans() }}">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                </a>
             {% endif %}
-            <a class="btn btn-default" href="{{ url(listroute) }}">{{ (transprefix~".edit.back")|trans() }}</a>
+            <a class="btn btn-default" href="{{ url(listroute) }}" title="{{ (transprefix~".edit.back")|trans() }}">
+                <i class="glyphicon glyphicon-list-alt"></i>
+            </a>
         </div>
     </form>
 {% endblock %}
