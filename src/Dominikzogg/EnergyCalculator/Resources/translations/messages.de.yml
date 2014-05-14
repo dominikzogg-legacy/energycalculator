@@ -68,9 +68,9 @@ day:
     name: *name
     amount: Menge
     calorie: Kcal
-    protein: Eiweiss
-    carbohydrate: Kohl.
-    fat: Fett
+    protein: E
+    carbohydrate: K
+    fat: F
     total: Total
     edit: *edit
     back: *back
