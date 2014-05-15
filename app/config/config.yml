@@ -5,7 +5,7 @@ cache_dir: %root_dir%/app/cache/%env%
 twig.options:
   cache: %root_dir%/app/cache/%env%/twig
 twig.form.templates:
-  - @DominikzoggEnergyCalculator/Form/fields.html.twig
+  - @DominikzoggEnergyCalculator/form.html.twig
 
 http_cache.cache_dir: %root_dir%/app/cache/%env%/httpcache
 
@@ -28,6 +28,9 @@ route_controller_cache: %root_dir%/app/cache/%env%/controller
 console.cache: %root_dir%/app/cache/%env%/console
 
 translation_cache: %root_dir%/app/cache/%env%/translation
+
+knp_menu.default_renderer: twig
+#knp_menu.template: @DominikzoggEnergyCalculator/menu.html.twig
 
 knp_paginator.options:
   subscriberOptions:
