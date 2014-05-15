@@ -6,66 +6,6 @@
     "hash": "ea3eed43dea4df3ae1e117e7b05d57e2",
     "packages": [
         {
-            "name": "braincrafted/bootstrap-bundle",
-            "version": "v1.5",
-            "target-dir": "Bc/Bundle/BootstrapBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/braincrafted/bootstrap-bundle.git",
-                "reference": "0f9d9c5546f69ff6cde6a06f8546a6c59d0223b2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/braincrafted/bootstrap-bundle/zipball/0f9d9c5546f69ff6cde6a06f8546a6c59d0223b2",
-                "reference": "0f9d9c5546f69ff6cde6a06f8546a6c59d0223b2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "instaclick/php-code-sniffer": "dev-master",
-                "instaclick/symfony2-coding-standard": "dev-master",
-                "knplabs/knp-markdown-bundle": "dev-master",
-                "knplabs/knp-menu": "dev-master",
-                "knplabs/knp-menu-bundle": "dev-master",
-                "knplabs/knp-paginator-bundle": "dev-master",
-                "mockery/mockery": "dev-master@dev",
-                "nikic/php-parser": "dev-master",
-                "phpmd/phpmd": "1.4.*",
-                "phpunit/phpunit": "3.7.*"
-            },
-            "suggest": {
-                "knplabs/knp-menu": "Required to use KnpMenuBundle.",
-                "knplabs/knp-menu-bundle": "BraincraftedBootstrapBundle styles the menus provided by KnpMenuBundle.",
-                "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
-                "twbs/bootstrap": "Twitter Bootstrap provides the assets (images, CSS and JS)"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "Bc\\Bundle\\BootstrapBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Florian Eckerstorfer",
-                    "email": "florian@eckerstorfer.co",
-                    "homepage": "http://florian.ec",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Twitter Bootstrap for Symfony2",
-            "keywords": [
-                "bootstrap"
-            ],
-            "time": "2013-11-11 12:56:41"
-        },
-        {
             "name": "cssmin/cssmin",
             "version": "3.0.1",
             "dist": {
@@ -891,16 +831,16 @@
         },
         {
             "name": "knplabs/knp-menu",
-            "version": "v2.0.0-alpha1",
+            "version": "v2.0.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "323c0e6c3471208ab86e1cac561febd5c63cef52"
+                "reference": "de645e813ddca4a1243db48bce5eaee8adb346a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/323c0e6c3471208ab86e1cac561febd5c63cef52",
-                "reference": "323c0e6c3471208ab86e1cac561febd5c63cef52",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/de645e813ddca4a1243db48bce5eaee8adb346a2",
+                "reference": "de645e813ddca4a1243db48bce5eaee8adb346a2",
                 "shasum": ""
             },
             "require": {
@@ -951,7 +891,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2013-06-23 19:58:17"
+            "time": "2014-05-01 19:50:28"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1394,19 +1334,30 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-bootstrap-provider.git",
-                "reference": "cf78ac0578d3087f1aa45961f7399b5202e78106"
+                "reference": "c8f9c36915f34f33f81837c783306b85a7c35cc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/cf78ac0578d3087f1aa45961f7399b5202e78106",
-                "reference": "cf78ac0578d3087f1aa45961f7399b5202e78106",
+                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/c8f9c36915f34f33f81837c783306b85a7c35cc7",
+                "reference": "c8f9c36915f34f33f81837c783306b85a7c35cc7",
                 "shasum": ""
             },
             "require": {
-                "braincrafted/bootstrap-bundle": "v1.5",
                 "php": ">=5.3",
-                "silex/silex": "~1.1",
-                "symfony/form": "~2.3"
+                "pimple/pimple": "~1.1",
+                "symfony/form": "~2.3",
+                "twig/twig": "~1.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.8.*",
+                "phpunit/phpunit": "3.7.*",
+                "silex/silex": "~1.1"
+            },
+            "suggest": {
+                "knplabs/knp-components": "~1.2,>=1.2.5",
+                "knplabs/knp-menu": "2.0.*@alpha",
+                "silex/silex": "~1.2",
+                "twbs/bootstrap": "~3.1.1"
             },
             "type": "library",
             "autoload": {
@@ -1429,7 +1380,7 @@
                 "bootstrap",
                 "silex"
             ],
-            "time": "2013-11-30 14:55:32"
+            "time": "2014-05-15 21:32:45"
         },
         {
             "name": "saxulum/saxulum-bundle-provider",
@@ -1752,12 +1703,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-pagination-provider.git",
-                "reference": "2b662de7bb77e84656f043de843ff0894f84bc5b"
+                "reference": "fd2946389ced96d54129f2ac2fe733f0f15a71e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-pagination-provider/zipball/2b662de7bb77e84656f043de843ff0894f84bc5b",
-                "reference": "2b662de7bb77e84656f043de843ff0894f84bc5b",
+                "url": "https://api.github.com/repos/saxulum/saxulum-pagination-provider/zipball/fd2946389ced96d54129f2ac2fe733f0f15a71e1",
+                "reference": "fd2946389ced96d54129f2ac2fe733f0f15a71e1",
                 "shasum": ""
             },
             "require": {
@@ -1799,7 +1750,7 @@
                 "saxulum",
                 "silex"
             ],
-            "time": "2014-05-03 10:48:22"
+            "time": "2014-05-15 20:09:49"
         },
         {
             "name": "saxulum/saxulum-route-controller-provider",
@@ -3661,12 +3612,8 @@
             "time": "2014-02-13 10:19:29"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "knplabs/knp-menu": 15,
@@ -3678,7 +3625,5 @@
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

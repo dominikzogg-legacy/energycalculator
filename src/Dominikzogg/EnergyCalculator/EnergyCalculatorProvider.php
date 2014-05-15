@@ -8,7 +8,7 @@ use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
 use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
 use Saxulum\BundleProvider\Provider\AbstractBundleProvider;
 use Saxulum\PaginationProvider\Silex\Provider\SaxulumPaginationProvider;
-use Saxulum\SaxulumBootstrapProvider\SaxulumBootstrapProvider;
+use Saxulum\SaxulumBootstrapProvider\Silex\Provider\SaxulumBootstrapProvider;
 use Saxulum\UserProvider\Silex\Provider\SaxulumUserProvider;
 use Silex\Application;
 
