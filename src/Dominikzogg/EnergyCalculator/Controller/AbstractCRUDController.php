@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Translation\Translator;
 
@@ -171,6 +172,10 @@ abstract class AbstractCRUDController
             if (is_null($entity)) {
                 throw new NotFoundHttpException("entity with id {$id} not found!");
             }
+            if(!$this->security->isGranted('ROLE_ADMIN') &&
+                $entity->getUser()->getId() !== $this->getUser()->getId()) {
+                throw new AccessDeniedException("permission denied to edit entity with {$id}");
+            }
         } else {
             $entity = new $this->entityClass;
             if($entity instanceof UserReferenceInterface) {
@@ -224,8 +229,14 @@ abstract class AbstractCRUDController
     protected function showEntity($id)
     {
         $entity = $this->doctrine->getManager()->getRepository($this->entityClass)->find($id);
+
         if (is_null($entity)) {
             throw new NotFoundHttpException("entity with id {$id} not found!");
+        }
+
+        if(!$this->security->isGranted('ROLE_ADMIN') &&
+            $entity->getUser()->getId() !== $this->getUser()->getId()) {
+            throw new AccessDeniedException("permission denied to show entity with {$id}");
         }
 
         return $this->render($this->showTemplate, array(
@@ -249,6 +260,11 @@ abstract class AbstractCRUDController
 
         if (is_null($entity)) {
             throw new NotFoundHttpException("entity with id {$id} not found!");
+        }
+
+        if(!$this->security->isGranted('ROLE_ADMIN') &&
+            $entity->getUser()->getId() !== $this->getUser()->getId()) {
+            throw new AccessDeniedException("permission denied to delete entity with {$id}");
         }
 
         $this->doctrine->getManager()->remove($entity);
