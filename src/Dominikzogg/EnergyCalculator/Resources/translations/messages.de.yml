@@ -1,8 +1,8 @@
 nav:
   day: Tag
   comestible: Nahrungsmittel
-  user: Benutzer verwalten
-  logout: Benutzer abmelden
+  user: Benutzer
+  logout: Abmelden
 
 actions: &actions Aktionen
 amount: &amount Menge in g/ml
