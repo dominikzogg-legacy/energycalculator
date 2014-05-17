@@ -33,7 +33,7 @@
                                 </a>
                             {% endif %}
                             {% if deleteroute|default(false) %}
-                                <a class="btn btn-danger" href="{{ url(deleteroute, {'id': entity.id }) }}" title="{{ (transprefix~".list.delete")|trans() }}">
+                                <a class="btn btn-danger" data-delete-link href="{{ url(deleteroute, {'id': entity.id }) }}" title="{{ (transprefix~".list.delete")|trans() }}">
                                     <i class="glyphicon glyphicon-remove"></i>
                                 </a>
                             {% endif %}

@@ -9,9 +9,11 @@ nav:
 actions: &actions Aktionen
 amount: &amount Menge in g/ml
 back: &back zurück
+cancel: &cancel abbrechen
 create: &create erstellen
 date: &date Datum
 delete: &delete löschen
+deleteconfirmation: Wollen Sie die Daten wirklich löschen?
 edit: &edit bearbeiten
 id: &id Id
 isfalse: &isfalse nein
