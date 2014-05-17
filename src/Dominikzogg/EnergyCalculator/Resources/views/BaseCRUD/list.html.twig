@@ -42,6 +42,8 @@
                 {% endfor %}
             </tbody>
         </table>
-        {{ knp_pagination_render(entities) }}
+        {% if entities.template|default(false) %}
+            {{ knp_pagination_render(entities) }}
+        {% endif %}
     {% endif %}
 {% endblock %}
