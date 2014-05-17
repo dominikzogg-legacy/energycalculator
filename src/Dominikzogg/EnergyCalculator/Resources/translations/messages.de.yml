@@ -26,6 +26,9 @@ show: &show anzeigen
 username: &username Benutzername
 value: &value Wert
 
+Previous: zurück
+Next: weiter
+
 login:
   title: Login
   label:
