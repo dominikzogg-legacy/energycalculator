@@ -43,7 +43,7 @@ day:
     date: *date
     weight: &weight Gewicht
     abdominalCircumference: &abdominalCircumference Bauchumfang
-    comestiblesWithinDay: Nahrungsmittel
+    comestiblesWithinDay: Konsum
     comestiblesWithinDay_collection:
       add: Nahrungsmittel hinzufügen
       remove: Nahrungsmittel entfernen
