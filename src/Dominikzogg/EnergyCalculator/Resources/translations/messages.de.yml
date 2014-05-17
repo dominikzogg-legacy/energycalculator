@@ -1,14 +1,8 @@
 nav:
-  manage:
-    title: Daten verwalten
-    day: Tag
-    comestible: Nahrungsmittel
-  administration:
-    title: Administration
-    user: Benutzer verwalten
-  user:
-    title: Benutzer
-    logout: Benutzer abmelden
+  day: Tag
+  comestible: Nahrungsmittel
+  user: Benutzer verwalten
+  logout: Benutzer abmelden
 
 actions: &actions Aktionen
 amount: &amount Menge in g/ml

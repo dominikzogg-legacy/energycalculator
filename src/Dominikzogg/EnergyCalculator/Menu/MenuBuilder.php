@@ -56,11 +56,10 @@ class MenuBuilder
      */
     protected function createManageMenu(ItemInterface $menu, Request $request)
     {
-        $manageMenu = $menu->addChild($this->translator->trans('nav.manage.title'));
-        $manageMenu->addChild($this->translator->trans('nav.manage.day'), array(
+        $menu->addChild($this->translator->trans('nav.day'), array(
             'route' => 'day_list'
         ));
-        $manageMenu->addChild($this->translator->trans('nav.manage.comestible'), array(
+        $menu->addChild($this->translator->trans('nav.comestible'), array(
             'route' => 'comestible_list'
         ));
     }
@@ -71,8 +70,7 @@ class MenuBuilder
      */
     protected function createAdminMenu(ItemInterface $menu, Request $request)
     {
-        $adminMenu = $menu->addChild($this->translator->trans('nav.administration.title'));
-        $adminMenu->addChild($this->translator->trans('nav.administration.user'), array(
+        $menu->addChild($this->translator->trans('nav.user'), array(
             'route' => 'user_list'
         ));
     }
@@ -83,8 +81,7 @@ class MenuBuilder
      */
     protected function createUserMenu(ItemInterface $menu, Request $request)
     {
-        $userMenu = $menu->addChild($this->translator->trans('nav.user.title'));
-        $userMenu->addChild($this->translator->trans('nav.user.logout'), array(
+        $menu->addChild($this->translator->trans('nav.logout'), array(
             'route' => 'logout'
         ));
     }
