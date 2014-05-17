@@ -63,7 +63,9 @@ class DayType extends AbstractType
                 'add_button_text' => $addButtonText,
                 'allow_delete' => true,
                 'delete_button_text' => $deleteButtonText,
-                'by_reference' => false
+                'sub_widget_col' => 12,
+                'button_col' => '12 col-lg-offset-2',
+                'by_reference' => false,
             ))
         ;
     }
