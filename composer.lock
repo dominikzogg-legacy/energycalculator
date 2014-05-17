@@ -1334,12 +1334,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-bootstrap-provider.git",
-                "reference": "1badb5fc932e3e843cae2372bcb9ff5ed6c4b9fd"
+                "reference": "ee7de956eca6c04024c1ce4a5ac754212b890663"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/1badb5fc932e3e843cae2372bcb9ff5ed6c4b9fd",
-                "reference": "1badb5fc932e3e843cae2372bcb9ff5ed6c4b9fd",
+                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/ee7de956eca6c04024c1ce4a5ac754212b890663",
+                "reference": "ee7de956eca6c04024c1ce4a5ac754212b890663",
                 "shasum": ""
             },
             "require": {
@@ -1380,7 +1380,7 @@
                 "bootstrap",
                 "silex"
             ],
-            "time": "2014-05-15 21:45:14"
+            "time": "2014-05-17 07:00:13"
         },
         {
             "name": "saxulum/saxulum-bundle-provider",
