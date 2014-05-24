@@ -3,8 +3,46 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ea3eed43dea4df3ae1e117e7b05d57e2",
+    "hash": "506906456dd55f7fafa0235732b0cd65",
     "packages": [
+        {
+            "name": "bootstrap-select/bootstrap-select",
+            "version": "1.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silviomoreto/bootstrap-select.git",
+                "reference": "ad009c8bf42ce74fdedba97fb7ec5ac1856c800a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silviomoreto/bootstrap-select/zipball/ad009c8bf42ce74fdedba97fb7ec5ac1856c800a",
+                "reference": "ad009c8bf42ce74fdedba97fb7ec5ac1856c800a",
+                "shasum": ""
+            },
+            "suggest": {
+                "components/jquery": "1.8.*"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Silvio Moreto",
+                    "homepage": "https://github.com/silviomoreto/"
+                }
+            ],
+            "description": "A custom <select> for Bootstrap using button dropdown as replacement",
+            "homepage": "https://github.com/silviomoreto/bootstrap-select",
+            "keywords": [
+                "bootstrap",
+                "form",
+                "replacement",
+                "select"
+            ],
+            "time": "2014-03-08 01:58:24"
+        },
         {
             "name": "cssmin/cssmin",
             "version": "3.0.1",
@@ -1484,12 +1522,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-collection-js.git",
-                "reference": "dc203d16a8d0e17bf27bedb8283eac56b5476280"
+                "reference": "db260b23ac022b8282e3451120b21eccb82f2365"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-collection-js/zipball/dc203d16a8d0e17bf27bedb8283eac56b5476280",
-                "reference": "dc203d16a8d0e17bf27bedb8283eac56b5476280",
+                "url": "https://api.github.com/repos/saxulum/saxulum-collection-js/zipball/db260b23ac022b8282e3451120b21eccb82f2365",
+                "reference": "db260b23ac022b8282e3451120b21eccb82f2365",
                 "shasum": ""
             },
             "type": "library",
@@ -1510,7 +1548,7 @@
                 "symfony",
                 "symfony form"
             ],
-            "time": "2014-05-07 22:05:27"
+            "time": "2014-05-24 20:43:34"
         },
         {
             "name": "saxulum/saxulum-console",

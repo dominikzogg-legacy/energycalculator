@@ -5,50 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>{% block pagetitle %}{% endblock pagetitle %}</title>
     {% block stylesheet %}
-        {% stylesheets filter='lessphp,csscopyfile,?cssmin' output='css/libraries.css'
+        {% stylesheets filter='lessphp,csscopyfile,?cssmin'
         'vendor/twbs/bootstrap/less/bootstrap.less'
         'vendor/saxulum/saxulum-bootstrap-provider/src/Saxulum/SaxulumBootstrapProvider/Resources/less/form.less'
+        'vendor/bootstrap-select/bootstrap-select/bootstrap-select.css'
         %}
         <link rel="stylesheet" href="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}" />
         {% endstylesheets %}
-        {% stylesheets filter='csscopyfile' output='css/base.css'
+        {% stylesheets filter='csscopyfile,?cssmin'
         'src/Dominikzogg/EnergyCalculator/Resources/public/css/*.css'
         %}
         <link rel="stylesheet" href="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}" />
         {% endstylesheets %}
     {% endblock stylesheet %}
     {% block scripts %}
-        {% javascripts filter='?jsmin' output='js/libraries.js'
+        {% javascripts filter='?jsmin'
         'vendor/jquery/jquery/jquery-*.js'
         'vendor/twbs/bootstrap/js/collapse.js'
         'vendor/twbs/bootstrap/js/dropdown.js'
         'vendor/twbs/bootstrap/js/modal.js'
+        'vendor/bootstrap-select/bootstrap-select/bootstrap-select.js'
         'vendor/saxulum/saxulum-collection-js/saxulum-collection.js'
         %}
         <script type="text/javascript" src="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}"></script>
         {% endjavascripts %}
-        {% javascripts filter='?jsmin' output='js/base.js'
+        {% javascripts filter='?jsmin'
         'src/Dominikzogg/EnergyCalculator/Resources/public/js/*.js'
         %}
         <script type="text/javascript" src="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}"></script>
         {% endjavascripts %}
-        <script type="text/javascript">
-            (function($){
-                $(document).ready(function(){
-                    $('form').saxulumCollection('init', {});
-                    $('a[data-delete-link]').on('click', function(e){
-                        e.preventDefault();
-                        e.stopPropagation();
-                        var $deleteLink = $(this);
-                        var $confirmDeleteModal = $('#confirm-delete');
-                        $confirmDeleteModal.modal();
-                        $('[data-delete-confirm-button]', $confirmDeleteModal).click(function(e){
-                            document.location.href = $deleteLink.attr('href');
-                        });
-                    });
-                });
-            })(jQuery);
-        </script>
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>

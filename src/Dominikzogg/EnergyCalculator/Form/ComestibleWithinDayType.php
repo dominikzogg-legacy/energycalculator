@@ -44,6 +44,9 @@ class ComestibleWithinDayType extends AbstractType
 
                     return $qb;
                 },
+                'attr' => array(
+                    'data-live-search' => true
+                )
             ))
             ->add('amount', 'number')
         ;
