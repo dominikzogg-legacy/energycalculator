@@ -2,6 +2,8 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
+use Doctrine\ORM\EntityRepository;
+use Knp\Component\Pager\Paginator;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Saxulum\UserProvider\Controller\AbstractUserController;
@@ -9,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/{_locale}/admin/user")
@@ -24,6 +27,20 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class UserController extends AbstractUserController
 {
+    /**
+     * @var Paginator
+     */
+    protected $paginator;
+
+    /**
+     * @DI(serviceIds={"knp_paginator"})
+     * @param Paginator $paginator
+     */
+    public function setPaginator(Paginator $paginator)
+    {
+        $this->paginator = $paginator;
+    }
+
     protected $entityClass = 'Dominikzogg\\EnergyCalculator\\Entity\\User';
     protected $formTypeClass = 'Dominikzogg\\EnergyCalculator\\Form\\UserType';
     protected $listRoute = 'user_list';
@@ -42,7 +59,30 @@ class UserController extends AbstractUserController
      */
     public function listAction(Request $request)
     {
-        return parent::listAction($request);
+        if (!$this->security->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException("permission denied to show users");
+        }
+
+        /** @var EntityRepository $repo */
+        $repo = $this
+            ->doctrine
+            ->getManagerForClass($this->entityClass)
+            ->getRepository($this->entityClass)
+        ;
+
+        $qb = $repo->createQueryBuilder('e');
+        $qb->addOrderBy("e.username", 'ASC');
+
+        $entities = $this->paginator->paginate($qb, $request->query->get('page', 1), 20);
+
+        return $this->render($this->listTemplate, array(
+            'entities' => $entities,
+            'listroute' => $this->listRoute,
+            'editroute' => $this->editRoute,
+            'showroute' => $this->showRoute,
+            'deleteroute' => $this->deleteRoute,
+            'transprefix' => $this->transPrefix,
+        ));
     }
 
     /**
