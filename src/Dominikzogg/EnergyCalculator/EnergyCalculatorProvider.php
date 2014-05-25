@@ -4,6 +4,7 @@ namespace Dominikzogg\EnergyCalculator;
 
 use Dominikzogg\EnergyCalculator\Command\UserCreateCommand;
 use Dominikzogg\EnergyCalculator\Entity\User;
+use Dominikzogg\EnergyCalculator\Form\SimpleDateTypeExtension;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
 use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
 use Saxulum\BundleProvider\Provider\AbstractBundleProvider;
@@ -25,6 +26,12 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
             $twig->addExtension(new FormHelperExtension());
 
             return $twig;
+        }));
+
+        $app['form.extensions'] = $app->share($app->extend('form.extensions', function ($extensions) use ($app) {
+            $extensions[] = new SimpleDateTypeExtension();
+
+            return $extensions;
         }));
 
         $app['saxulum.userprovider.userclass'] = get_class(new User());

@@ -141,6 +141,11 @@ user:
     edit: *edit
     back: *back
 
+daterange:
+  label:
+    from: von
+    to: bis
+    update: aktualisieren
 
 ROLE_ADMIN: Administrator
 ROLE_USER: Benutzer

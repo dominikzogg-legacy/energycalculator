@@ -8,3 +8,17 @@
         {{ parent() }}
     {% endspaceless %}
 {% endblock form_label %}
+
+{% block button_widget %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = prepareFormLabel(form) %}
+        {% endif %}
+        {% if type is defined and type == 'submit' %}
+            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-primary')|trim }) %}
+        {% else %}
+            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-default')|trim }) %}
+        {% endif %}
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+    {% endspaceless %}
+{% endblock button_widget %}

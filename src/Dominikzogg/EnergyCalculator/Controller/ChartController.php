@@ -6,9 +6,13 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Dominikzogg\EnergyCalculator\Entity\Day;
+use Dominikzogg\EnergyCalculator\Form\DateRangeType;
 use Dominikzogg\EnergyCalculator\Repository\DayRepository;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @Route("/{_locale}/chart")
  * @DI(serviceIds={
  *      "doctrine",
+ *      "form.factory",
  *      "twig"
  * })
  */
@@ -27,15 +32,22 @@ class ChartController
     protected $doctrine;
 
     /**
+     * @var FormFactory
+     */
+    protected $formFactory;
+
+    /**
      * @var \Twig_Environment
      */
     protected $twig;
 
     public function __construct(
         ManagerRegistry $doctrine,
+        FormFactory $formFactory,
         \Twig_Environment $twig
     ) {
         $this->doctrine = $doctrine;
+        $this->formFactory = $formFactory;
         $this->twig = $twig;
     }
 
@@ -46,8 +58,18 @@ class ChartController
      */
     public function weightAction(Request $request)
     {
-        $from = $this->getFrom($request->query->get('from', null), '-1 month');
-        $to = $this->getTo($request->query->get('to', null));
+        $dateRangeType = new DateRangeType();
+
+        $dateRangeForm = $this->createForm($dateRangeType, array(
+            'from' => $this->getDefaultFrom('-1 week'),
+            'to' => $this->getDefaultTo()
+        ));
+
+        $dateRangeForm->handleRequest($request);
+        $dateRangeFormData = $dateRangeForm->getData();
+
+        $from = $dateRangeFormData['from'];
+        $to = $dateRangeFormData['to'];
 
         /** @var DayRepository $repo */
         $repo = $this->getRepository(get_class(new Day()));
@@ -59,6 +81,7 @@ class ChartController
         $maxWeight = $this->getMaxWeight($days);
 
         return $this->render('@DominikzoggEnergyCalculator/Chart/weight.html.twig', array(
+            'daterangeform' => $dateRangeForm->createView(),
             'alldays' => $allDays,
             'minweight' => $minWeight,
             'maxweight' => $maxWeight
@@ -66,42 +89,30 @@ class ChartController
     }
 
     /**
-     * @param null|string $from
-     * @param null|string $defaultModifier
+     * @param null $modifier
      * @return \DateTime
      */
-    protected function getFrom($from, $defaultModifier = null)
+    protected function getDefaultFrom($modifier = null)
     {
-        if(null !== $from) {
-            $from = new \DateTime($from);
-        } else {
-            $from = new \DateTime();
-            if(null !== $defaultModifier) {
-                $from->modify($defaultModifier);
-            }
+        $from = new \DateTime();
+        if(null !== $modifier) {
+            $from->modify($modifier);
         }
-
         $from->setTime(0,0,0);
 
         return $from;
     }
 
     /**
-     * @param null|string $to
-     * @param null|string $defaultModifier
+     * @param null $modifier
      * @return \DateTime
      */
-    protected function getTo($to, $defaultModifier = null)
+    protected function getDefaultTo($modifier = null)
     {
-        if(null !== $to) {
-            $to = new \DateTime($to);
-        } else {
-            $to = new \DateTime();
-            if(null !== $defaultModifier) {
-                $to->modify($defaultModifier);
-            }
+        $to = new \DateTime();
+        if(null !== $modifier) {
+            $to->modify($modifier);
         }
-
         $to->setTime(23,59,59);
 
         return $to;
@@ -192,4 +203,17 @@ class ChartController
     {
         return $this->getManager($class)->getRepository($class);
     }
+
+    /**
+     * @param  string               $type
+     * @param  null                 $data
+     * @param  array                $options
+     * @param  FormBuilderInterface $parent
+     * @return Form
+     */
+    protected function createForm($type = 'form', $data = null, array $options = array(), FormBuilderInterface $parent = null)
+    {
+        return $this->formFactory->createBuilder($type, $data, $options, $parent)->getForm();
+    }
+
 }
