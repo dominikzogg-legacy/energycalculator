@@ -39,6 +39,7 @@ class MenuBuilder
 
         if ($this->getUser() instanceof User) {
             $this->createManageMenu($menu, $request);
+            $this->createChartMenu($menu, $request);
 
             if ($this->securityContext->isGranted('ROLE_ADMIN')) {
                 $this->createAdminMenu($menu, $request);
@@ -61,6 +62,20 @@ class MenuBuilder
         ));
         $menu->addChild($this->translator->trans('nav.comestible'), array(
             'route' => 'comestible_list'
+        ));
+    }
+
+
+    /**
+     * @param ItemInterface $menu
+     * @param Request $request
+     */
+    protected function createChartMenu(ItemInterface $menu, Request $request)
+    {
+        $chartMenu = $menu->addChild($this->translator->trans('nav.chart.title'));
+
+        $chartMenu->addChild($this->translator->trans('nav.chart.weight'), array(
+            'route' => 'chart_weight'
         ));
     }
 

@@ -43,6 +43,7 @@
         "jquery/jquery": "1.11.1",
         "twbs/bootstrap": "~3.1.1",
         "bootstrap-select/bootstrap-select": "~1.5,>=1.5.2",
+        "nnnick/chartjs": "0.2",
         "cssmin/cssmin": "~3.0.1",
         "jsmin/jsmin": "~2.2.0",
         "saxulum/saxulum-bootstrap-provider": "dev-master@dev",
@@ -57,6 +58,17 @@
                 "version": "1.11.1",
                 "dist": {
                     "url": "http://code.jquery.com/jquery-1.11.1.js",
+                    "type": "file"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "nnnick/chartjs",
+                "version": "0.2",
+                "dist": {
+                    "url": "https://raw.githubusercontent.com/nnnick/Chart.js/master/Chart.js",
                     "type": "file"
                 }
             }

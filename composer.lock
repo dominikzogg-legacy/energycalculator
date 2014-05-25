@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "506906456dd55f7fafa0235732b0cd65",
+    "hash": "fa0fc79027642c280abf246872df84a1",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -1111,6 +1111,17 @@
                 "php"
             ],
             "time": "2014-03-27 13:12:13"
+        },
+        {
+            "name": "nnnick/chartjs",
+            "version": "0.2",
+            "dist": {
+                "type": "file",
+                "url": "https://raw.githubusercontent.com/nnnick/Chart.js/master/Chart.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "oyejorge/less.php",

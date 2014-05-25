@@ -1,0 +1,65 @@
+{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+
+{% block pagetitle %}{{ ("chart.weight.title")|trans() }}{% endblock %}
+
+{% block body %}
+    <h1>{{ ("chart.weight.title")|trans() }}</h1>
+
+    <div id="weightChartWrapper">
+        <canvas id="weightChart" width="100" height="100"></canvas>
+    </div>
+
+
+    {% set stepsize = 0.5 %}
+    {% set startValue = minweight|round - 1 %}
+    {% set stopValue = maxweight|round + 1 %}
+    {% set steps = (stopValue - startValue) / stepsize %}
+
+
+    <script type="text/javascript">
+
+        var $chart = $("#weightChart");
+        var $chartWrapper = $chart.parent();
+
+        var sizeChart = function(){
+            $chart.attr('width', $chartWrapper.width());
+            $chart.attr('height', $chartWrapper.height());
+        };
+
+        var drawChart = function(){
+            var ctx = $chart.get(0).getContext("2d");
+            new Chart(ctx).Line({
+                labels : [{% for key, day in alldays %}'{{ key }}'{% if not loop.last %},{% endif %}{% endfor %}],
+                datasets : [
+                    {
+                        fillColor : '#F8F8F8',
+                        strokeColor : '#BBB',
+                        pointColor : '#777',
+                        pointStrokeColor : '#FFF',
+                        data : [{% for day in alldays %}{{ day.weight|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
+                    }
+                ]
+            }, {
+                scaleOverride: true,
+                scaleSteps: {{ steps }},
+                scaleStepWidth: {{ stepsize }},
+                scaleStartValue: {{ startValue }},
+                scaleFontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+                scaleFontSize: 13,
+                scaleFontColor: '#333',
+                scaleGridLineColor: '#E7E7E7',
+                animation: false
+            });
+        };
+
+        sizeChart();
+        drawChart();
+
+        $(window).resize(function () {
+            sizeChart();
+            drawChart();
+        });
+
+    </script>
+
+{% endblock %}

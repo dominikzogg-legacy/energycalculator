@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Dominikzogg\EnergyCalculator\Repository\DayRepository")
  * @ORM\Table(name="day", uniqueConstraints={
  *      @ORM\UniqueConstraint(name="day_per_user_idx", columns={"date", "user_id"})
  * })

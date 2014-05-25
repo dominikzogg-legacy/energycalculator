@@ -3,6 +3,9 @@ projectname: energycalculator
 nav:
   day: Tag
   comestible: Nahrungsmittel
+  chart:
+    title: Statistiken
+    weight: Gewichtsverlauf
   user: Benutzer
   logout: Abmelden
 
@@ -37,6 +40,10 @@ login:
     username: *username
     password: *password
     submit: anmelden
+
+chart:
+  weight:
+    title: Gewichtsverlauf
 
 day:
   edit:
