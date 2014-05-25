@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Dominikzogg\EnergyCalculator\Entity\Day;
+use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Form\DateRangeType;
 use Dominikzogg\EnergyCalculator\Repository\DayRepository;
 use Saxulum\RouteController\Annotation\DI;
@@ -15,12 +16,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\SecurityContext;
 
 /**
  * @Route("/{_locale}/chart")
  * @DI(serviceIds={
  *      "doctrine",
  *      "form.factory",
+ *      "security",
  *      "twig"
  * })
  */
@@ -37,6 +40,11 @@ class ChartController
     protected $formFactory;
 
     /**
+     * @var SecurityContext
+     */
+    protected $security;
+
+    /**
      * @var \Twig_Environment
      */
     protected $twig;
@@ -44,10 +52,12 @@ class ChartController
     public function __construct(
         ManagerRegistry $doctrine,
         FormFactory $formFactory,
+        SecurityContext $security,
         \Twig_Environment $twig
     ) {
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
+        $this->security = $security;
         $this->twig = $twig;
     }
 
@@ -74,7 +84,15 @@ class ChartController
         /** @var DayRepository $repo */
         $repo = $this->getRepository(get_class(new Day()));
 
-        $days = $repo->getInRange($from, $to);
+        $days = $repo->getInRange($from, $to, $this->getUser());
+
+        foreach($days as $day) {
+            if($day->getWeight() === null) {
+                var_dump($day->getDate());
+            }
+
+        }
+
         $allDays = $this->getDaysOrNull($days, $from, $to);
 
         $minWeight = $this->getMinWeight($days);
@@ -216,4 +234,21 @@ class ChartController
         return $this->formFactory->createBuilder($type, $data, $options, $parent)->getForm();
     }
 
+    /**
+     * @return User|Null|string
+     */
+    protected function getUser()
+    {
+        if (is_null($this->security->getToken())) {
+            return null;
+        }
+
+        $user = $this->security->getToken()->getUser();
+
+        if ($user instanceof User) {
+            $user = $this->doctrine->getManager()->getRepository(get_class($user))->find($user->getId());
+        }
+
+        return $user;
+    }
 }
