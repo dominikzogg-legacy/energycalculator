@@ -3,16 +3,15 @@
 namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
+use Dominikzogg\EnergyCalculator\Controller\Traits\FormTrait;
+use Dominikzogg\EnergyCalculator\Controller\Traits\DoctrineTrait;
+use Dominikzogg\EnergyCalculator\Controller\Traits\SecurityTrait;
+use Dominikzogg\EnergyCalculator\Controller\Traits\TwigTrait;
 use Dominikzogg\EnergyCalculator\Entity\Day;
-use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Form\DateRangeType;
 use Dominikzogg\EnergyCalculator\Repository\DayRepository;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
-use Symfony\Component\Form\Form;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,25 +28,10 @@ use Symfony\Component\Security\Core\SecurityContext;
  */
 class ChartController
 {
-    /**
-     * @var ManagerRegistry
-     */
-    protected $doctrine;
-
-    /**
-     * @var FormFactory
-     */
-    protected $formFactory;
-
-    /**
-     * @var SecurityContext
-     */
-    protected $security;
-
-    /**
-     * @var \Twig_Environment
-     */
-    protected $twig;
+    use DoctrineTrait;
+    use SecurityTrait;
+    use TwigTrait;
+    use FormTrait;
 
     public function __construct(
         ManagerRegistry $doctrine,
@@ -82,7 +66,7 @@ class ChartController
         $to = $dateRangeFormData['to'];
 
         /** @var DayRepository $repo */
-        $repo = $this->getRepository(get_class(new Day()));
+        $repo = $this->getRepositoryForClass(get_class(new Day()));
 
         $days = $repo->getInRange($from, $to, $this->getUser());
 
@@ -192,63 +176,5 @@ class ChartController
         }
 
         return null !== $maxWeight ? $maxWeight : 500;
-    }
-
-    /**
-     * @param string $view
-     * @param  array  $parameters
-     * @return string
-     */
-    protected function render($view, array $parameters = array())
-    {
-        return new Response($this->twig->render($view, $parameters));
-    }
-
-    /**
-     * @param string $class
-     * @return EntityManager|null
-     */
-    protected function getManager($class)
-    {
-        return $this->doctrine->getManagerForClass($class);
-    }
-
-    /**
-     * @param string $class
-     * @return EntityRepository
-     */
-    protected function getRepository($class)
-    {
-        return $this->getManager($class)->getRepository($class);
-    }
-
-    /**
-     * @param  string               $type
-     * @param  null                 $data
-     * @param  array                $options
-     * @param  FormBuilderInterface $parent
-     * @return Form
-     */
-    protected function createForm($type = 'form', $data = null, array $options = array(), FormBuilderInterface $parent = null)
-    {
-        return $this->formFactory->createBuilder($type, $data, $options, $parent)->getForm();
-    }
-
-    /**
-     * @return User|Null|string
-     */
-    protected function getUser()
-    {
-        if (is_null($this->security->getToken())) {
-            return null;
-        }
-
-        $user = $this->security->getToken()->getUser();
-
-        if ($user instanceof User) {
-            $user = $this->doctrine->getManager()->getRepository(get_class($user))->find($user->getId());
-        }
-
-        return $user;
     }
 }

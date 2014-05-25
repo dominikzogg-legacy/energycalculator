@@ -2,6 +2,7 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
+use Dominikzogg\EnergyCalculator\Controller\Traits\TwigTrait;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,15 +16,12 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class LoginController
 {
+    use TwigTrait;
+
     /**
      * @var callback
      */
     protected $securityLastError;
-
-    /**
-     * @var \Twig_Environment
-     */
-    protected $twig;
 
     public function __construct($securityLastError, \Twig_Environment $twig)
     {
@@ -39,7 +37,7 @@ class LoginController
         $securityLastError = $this->securityLastError;
 
         // return the rendered template
-        return $this->twig->render('@DominikzoggEnergyCalculator/Login/login.html.twig', array(
+        return $this->render('@DominikzoggEnergyCalculator/Login/login.html.twig', array(
             'error'         => $securityLastError($request),
             'last_username' => $request->getSession()->get('_security.last_username'),
         ));

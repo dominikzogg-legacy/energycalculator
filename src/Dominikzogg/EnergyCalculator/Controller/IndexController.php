@@ -9,25 +9,18 @@ use Symfony\Component\Routing\Generator\UrlGenerator;
 
 /**
  * @DI(serviceIds={
- *      "twig",
  *      "url_generator"
  * })
  */
 class IndexController
 {
     /**
-     * @var \Twig_Environment
-     */
-    protected $twig;
-
-    /**
      * @var UrlGenerator
      */
     protected $urlGenerator;
 
-    public function __construct(\Twig_Environment $twig, UrlGenerator $urlGenerator)
+    public function __construct(UrlGenerator $urlGenerator)
     {
-        $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;
     }
 

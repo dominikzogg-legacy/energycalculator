@@ -4,11 +4,12 @@ namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityRepository;
-use Dominikzogg\EnergyCalculator\Entity\User;
+use Dominikzogg\EnergyCalculator\Controller\Traits\FormTrait;
+use Dominikzogg\EnergyCalculator\Controller\Traits\DoctrineTrait;
+use Dominikzogg\EnergyCalculator\Controller\Traits\SecurityTrait;
+use Dominikzogg\EnergyCalculator\Controller\Traits\TwigTrait;
 use Dominikzogg\EnergyCalculator\Entity\UserReferenceInterface;
 use Knp\Component\Pager\Paginator;
-use Symfony\Component\Form\Form;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +22,11 @@ use Symfony\Component\Translation\Translator;
 
 abstract class AbstractCRUDController
 {
+    use DoctrineTrait;
+    use FormTrait;
+    use SecurityTrait;
+    use TwigTrait;
+
     protected $entityClass;
     protected $formTypeClass;
     protected $listRoute;
@@ -33,34 +39,14 @@ abstract class AbstractCRUDController
     protected $transPrefix;
 
     /**
-     * @var ManagerRegistry
-     */
-    protected $doctrine;
-
-    /**
-     * @var FormFactory
-     */
-    protected $formFactory;
-
-    /**
      * @var Paginator
      */
     protected $paginator;
 
     /**
-     * @var SecurityContext
-     */
-    protected $security;
-
-    /**
      * @var Translator
      */
     protected $translator;
-
-    /**
-     * @var \Twig_Environment
-     */
-    protected $twig;
 
     /**
      * @var UrlGenerator
@@ -95,28 +81,6 @@ abstract class AbstractCRUDController
     }
 
     /**
-     * @param  string               $type
-     * @param  null                 $data
-     * @param  array                $options
-     * @param  FormBuilderInterface $parent
-     * @return Form
-     */
-    protected function createForm($type = 'form', $data = null, array $options = array(), FormBuilderInterface $parent = null)
-    {
-        return $this->formFactory->createBuilder($type, $data, $options, $parent)->getForm();
-    }
-
-    /**
-     * @param $view
-     * @param  array  $parameters
-     * @return string
-     */
-    protected function render($view, array $parameters = array())
-    {
-        return new Response($this->twig->render($view, $parameters));
-    }
-
-    /**
      * @param Request $request
      * @param array $criteria
      * @param array $orderBy
@@ -132,11 +96,7 @@ abstract class AbstractCRUDController
         }
 
         /** @var EntityRepository $repo */
-        $repo = $this
-            ->doctrine
-            ->getManagerForClass($this->entityClass)
-            ->getRepository($this->entityClass)
-        ;
+        $repo = $this->getRepositoryForClass($this->entityClass);
 
         $qb = $repo->createQueryBuilder('e');
         foreach($criteria as $field => $value) {
@@ -168,7 +128,7 @@ abstract class AbstractCRUDController
     protected function editEntity(Request $request, $id)
     {
         if (!is_null($id)) {
-            $entity = $this->doctrine->getManager()->getRepository($this->entityClass)->find($id);
+            $entity = $this->getRepositoryForClass($this->entityClass)->find($id);
             if (is_null($entity)) {
                 throw new NotFoundHttpException("entity with id {$id} not found!");
             }
@@ -196,8 +156,10 @@ abstract class AbstractCRUDController
         if ('POST' == $request->getMethod()) {
             $form->submit($request);
             if ($form->isValid()) {
-                $this->doctrine->getManager()->persist($entity);
-                $this->doctrine->getManager()->flush();
+                $em = $this->getManagerForClass($this->entityClass);
+
+                $em->persist($entity);
+                $em->flush();
 
                 if($request->request->get('saveandclose', false)) {
                     return new RedirectResponse($this->urlGenerator->generate($this->listRoute, array(), true), 302);
@@ -228,7 +190,7 @@ abstract class AbstractCRUDController
      */
     protected function showEntity($id)
     {
-        $entity = $this->doctrine->getManager()->getRepository($this->entityClass)->find($id);
+        $entity = $this->getRepositoryForClass($this->entityClass)->find($id);
 
         if (is_null($entity)) {
             throw new NotFoundHttpException("entity with id {$id} not found!");
@@ -256,7 +218,7 @@ abstract class AbstractCRUDController
      */
     protected function deleteEntity($id)
     {
-        $entity = $this->doctrine->getManager()->getRepository($this->entityClass)->find($id);
+        $entity = $this->getRepositoryForClass($this->entityClass)->find($id);
 
         if (is_null($entity)) {
             throw new NotFoundHttpException("entity with id {$id} not found!");
@@ -267,27 +229,11 @@ abstract class AbstractCRUDController
             throw new AccessDeniedException("permission denied to delete entity with {$id}");
         }
 
-        $this->doctrine->getManager()->remove($entity);
-        $this->doctrine->getManager()->flush();
+        $em = $this->getManagerForClass($this->entityClass);
+
+        $em->remove($entity);
+        $em->flush();
 
         return new RedirectResponse($this->urlGenerator->generate($this->listRoute), 302);
-    }
-
-    /**
-     * @return User|Null|string
-     */
-    protected function getUser()
-    {
-        if (is_null($this->security->getToken())) {
-            return null;
-        }
-
-        $user = $this->security->getToken()->getUser();
-
-        if ($user instanceof User) {
-            $user = $this->doctrine->getManager()->getRepository(get_class($user))->find($user->getId());
-        }
-
-        return $user;
     }
 }
