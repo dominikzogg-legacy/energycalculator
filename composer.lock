@@ -1386,12 +1386,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-bootstrap-provider.git",
-                "reference": "ee7de956eca6c04024c1ce4a5ac754212b890663"
+                "reference": "b9109b807232240511c10bab838ae096450e860d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/ee7de956eca6c04024c1ce4a5ac754212b890663",
-                "reference": "ee7de956eca6c04024c1ce4a5ac754212b890663",
+                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/b9109b807232240511c10bab838ae096450e860d",
+                "reference": "b9109b807232240511c10bab838ae096450e860d",
                 "shasum": ""
             },
             "require": {
@@ -1432,7 +1432,7 @@
                 "bootstrap",
                 "silex"
             ],
-            "time": "2014-05-17 07:00:13"
+            "time": "2014-05-26 20:33:09"
         },
         {
             "name": "saxulum/saxulum-bundle-provider",
@@ -1533,12 +1533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-collection-js.git",
-                "reference": "db260b23ac022b8282e3451120b21eccb82f2365"
+                "reference": "db7827221964a9422b774b5697b15646161ef348"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-collection-js/zipball/db260b23ac022b8282e3451120b21eccb82f2365",
-                "reference": "db260b23ac022b8282e3451120b21eccb82f2365",
+                "url": "https://api.github.com/repos/saxulum/saxulum-collection-js/zipball/db7827221964a9422b774b5697b15646161ef348",
+                "reference": "db7827221964a9422b774b5697b15646161ef348",
                 "shasum": ""
             },
             "type": "library",
@@ -1559,7 +1559,7 @@
                 "symfony",
                 "symfony form"
             ],
-            "time": "2014-05-24 20:43:34"
+            "time": "2014-05-26 20:42:38"
         },
         {
             "name": "saxulum/saxulum-console",
