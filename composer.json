@@ -44,6 +44,7 @@
         "twbs/bootstrap": "~3.1.1",
         "bootstrap-select/bootstrap-select": "~1.5,>=1.5.2",
         "nnnick/chartjs": "0.2",
+        "excanvas/excanvas": "3.0",
         "cssmin/cssmin": "~3.0.1",
         "jsmin/jsmin": "~2.2.0",
         "saxulum/saxulum-bootstrap-provider": "dev-master@dev",
@@ -70,6 +71,17 @@
                 "dist": {
                     "url": "https://raw.githubusercontent.com/nnnick/Chart.js/master/Chart.js",
                     "type": "file"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "excanvas/excanvas",
+                "version": "3.0",
+                "dist": {
+                    "url": "https://explorercanvas.googlecode.com/archive/m3.zip",
+                    "type": "zip"
                 }
             }
         },

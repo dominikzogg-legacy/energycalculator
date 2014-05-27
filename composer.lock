@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "fa0fc79027642c280abf246872df84a1",
+    "hash": "cdb7c63a4540ce8db331a8325d77ceb8",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -674,6 +674,17 @@
                 "orm"
             ],
             "time": "2014-02-08 16:35:09"
+        },
+        {
+            "name": "excanvas/excanvas",
+            "version": "3.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://explorercanvas.googlecode.com/archive/m3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "igorw/config-service-provider",
