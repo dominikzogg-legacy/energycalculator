@@ -1,0 +1,96 @@
+{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+
+{% block pagetitle %}{{ ("chart.energymix.title")|trans() }}{% endblock %}
+
+{% block body %}
+    <h1>{{ ("chart.energymix.title")|trans() }}</h1>
+
+    {{  form(daterangeform, { 'style': 'inline' }) }}
+
+    <div id="energymixChartWrapper" class="chartwrapper">
+        <canvas id="energymixChart" width="100" height="100"></canvas>
+        <ul class="chartdescription list-unstyled">
+            <li>
+                <span class="square" style="background-color: rgba(200,200,0,1);"></span>
+                <span>{{ ("chart.energymix.protein")|trans() }}</span>
+            </li>
+            <li>
+                <span class="square" style="background-color: rgba(200,50,0,1);"></span>
+                <span>{{ ("chart.energymix.carbohydrate")|trans() }}</span>
+            </li>
+            <li>
+                <span class="square" style="background-color: rgba(0,100,200,1);"></span>
+                <span>{{ ("chart.energymix.fat")|trans() }}</span>
+            </li>
+        </ul>
+    </div>
+
+
+
+    {% set stepsize = 10 %}
+    {% set startValue = minenergymix|round - 20 %}
+    {% set stopValue = maxenergymix|round + 20 %}
+    {% set steps = (stopValue - startValue) / stepsize %}
+
+
+    <script type="text/javascript">
+
+        var $chart = $("#energymixChart");
+        var $chartWrapper = $chart.parent();
+
+        var sizeChart = function(){
+            $chart.attr('width', $chartWrapper.width());
+            $chart.attr('height', $chartWrapper.height());
+        };
+
+        var drawChart = function(){
+            var ctx = $chart.get(0).getContext("2d");
+            new Chart(ctx).Line({
+                labels : [{% for key, day in alldays %}'{{ key }}'{% if not loop.last %},{% endif %}{% endfor %}],
+                datasets : [
+                    {
+                        fillColor : "rgba(200,200,0,0.5)",
+                        strokeColor : "rgba(200,200,0,1)",
+                        pointColor : "rgba(200,200,0,1)",
+                        pointStrokeColor : '#fff',
+                        data : [{% for day in alldays %}{{ day.protein|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
+                    },
+                    {
+                        fillColor : "rgba(200,50,0,0.5)",
+                        strokeColor : "rgba(200,50,0,1)",
+                        pointColor : "rgba(200,50,0,1)",
+                        pointStrokeColor : '#fff',
+                        data : [{% for day in alldays %}{{ day.carbohydrate|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
+                    },
+                    {
+                        fillColor : "rgba(0,100,200,0.5)",
+                        strokeColor : "rgba(0,100,200,1)",
+                        pointColor : "rgba(0,100,200,1)",
+                        pointStrokeColor : "#fff",
+                        data : [{% for day in alldays %}{{ day.fat|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
+                    }
+                ]
+            }, {
+                scaleOverride: true,
+                scaleSteps: {{ steps }},
+                scaleStepWidth: {{ stepsize }},
+                scaleStartValue: {{ startValue }},
+                scaleFontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+                scaleFontSize: 13,
+                scaleFontColor: '#333',
+                scaleGridLineColor: '#E7E7E7',
+                animation: false
+            });
+        };
+
+        sizeChart();
+        drawChart();
+
+        $(window).resize(function () {
+            sizeChart();
+            drawChart();
+        });
+
+    </script>
+
+{% endblock %}

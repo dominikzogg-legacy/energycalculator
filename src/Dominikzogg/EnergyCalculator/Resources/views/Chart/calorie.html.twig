@@ -1,26 +1,26 @@
 {% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
 
-{% block pagetitle %}{{ ("chart.weight.title")|trans() }}{% endblock %}
+{% block pagetitle %}{{ ("chart.calorie.title")|trans() }}{% endblock %}
 
 {% block body %}
-    <h1>{{ ("chart.weight.title")|trans() }}</h1>
+    <h1>{{ ("chart.calorie.title")|trans() }}</h1>
 
     {{  form(daterangeform, { 'style': 'inline' }) }}
 
-    <div id="weightChartWrapper" class="chartwrapper">
-        <canvas id="weightChart" width="100" height="100"></canvas>
+    <div id="calorieChartWrapper" class="chartwrapper">
+        <canvas id="calorieChart" width="100" height="100"></canvas>
     </div>
 
 
-    {% set stepsize = 0.5 %}
-    {% set startValue = minweight|round - 1 %}
-    {% set stopValue = maxweight|round + 1 %}
+    {% set stepsize = 50 %}
+    {% set startValue = mincalorie|round - 100 %}
+    {% set stopValue = maxcalorie|round + 100 %}
     {% set steps = (stopValue - startValue) / stepsize %}
 
 
     <script type="text/javascript">
 
-        var $chart = $("#weightChart");
+        var $chart = $("#calorieChart");
         var $chartWrapper = $chart.parent();
 
         var sizeChart = function(){
@@ -38,7 +38,7 @@
                         strokeColor : '#BBB',
                         pointColor : '#777',
                         pointStrokeColor : '#FFF',
-                        data : [{% for day in alldays %}{{ day.weight|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
+                        data : [{% for day in alldays %}{{ day.calorie|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
                     }
                 ]
             }, {

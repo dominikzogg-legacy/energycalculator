@@ -6,6 +6,8 @@ nav:
   chart:
     title: Statistiken
     weight: Gewichtsverlauf
+    calorie: Kalorien
+    energymix: Energiemix
   user: Benutzer
   logout: Abmelden
 
@@ -44,6 +46,13 @@ login:
 chart:
   weight:
     title: Gewichtsverlauf
+  calorie:
+    title: Kalorien
+  energymix:
+    title: Energiemix
+    protein: Eiweiss
+    carbohydrate: Kohlenhydrat
+    fat: Fett
 
 day:
   edit:

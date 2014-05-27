@@ -77,6 +77,14 @@ class MenuBuilder
         $chartMenu->addChild($this->translator->trans('nav.chart.weight'), array(
             'route' => 'chart_weight'
         ));
+
+        $chartMenu->addChild($this->translator->trans('nav.chart.calorie'), array(
+            'route' => 'chart_calorie'
+        ));
+
+        $chartMenu->addChild($this->translator->trans('nav.chart.energymix'), array(
+            'route' => 'chart_energymix'
+        ));
     }
 
     /**
