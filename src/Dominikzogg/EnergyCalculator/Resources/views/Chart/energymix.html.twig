@@ -11,15 +11,15 @@
         <canvas id="energymixChart" width="100" height="100"></canvas>
         <ul class="chartdescription list-unstyled">
             <li>
-                <span class="square" style="border-color: rgba(200,200,0,1); background-color: rgba(200,200,0,0.5);"></span>
+                <span class="square" style="border-color: rgba(240,173,78,1); background-color: rgba(240,173,78,0.5);"></span>
                 <span>{{ ("chart.energymix.protein")|trans() }}</span>
             </li>
             <li>
-                <span class="square" style="border-color: rgba(200,50,0,1); background-color: rgba(200,50,0,0.5);"></span>
+                <span class="square" style="border-color: rgba(217,83,79,1); background-color: rgba(217,83,79,0.5);"></span>
                 <span>{{ ("chart.energymix.carbohydrate")|trans() }}</span>
             </li>
             <li>
-                <span class="square" style="border-color: rgba(0,100,200,1); background-color: rgba(0,100,200,0.5);"></span>
+                <span class="square" style="border-color: rgba(66,139,202,1); background-color: rgba(66,139,202,0.5);"></span>
                 <span>{{ ("chart.energymix.fat")|trans() }}</span>
             </li>
         </ul>
@@ -49,23 +49,23 @@
                 labels : [{% for key, day in alldays %}'{{ key }}'{% if not loop.last %},{% endif %}{% endfor %}],
                 datasets : [
                     {
-                        fillColor : "rgba(200,200,0,0.5)",
-                        strokeColor : "rgba(200,200,0,1)",
-                        pointColor : "rgba(200,200,0,1)",
+                        fillColor : "rgba(240,173,78,0.5)",
+                        strokeColor : "rgba(240,173,78,1)",
+                        pointColor : "rgba(240,173,78,1)",
                         pointStrokeColor : '#fff',
                         data : [{% for day in alldays %}{{ day.protein|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
                     },
                     {
-                        fillColor : "rgba(200,50,0,0.5)",
-                        strokeColor : "rgba(200,50,0,1)",
-                        pointColor : "rgba(200,50,0,1)",
+                        fillColor : "rgba(217,83,79,0.5)",
+                        strokeColor : "rgba(217,83,79,1)",
+                        pointColor : "rgba(217,83,79,1)",
                         pointStrokeColor : '#fff',
                         data : [{% for day in alldays %}{{ day.carbohydrate|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
                     },
                     {
-                        fillColor : "rgba(0,100,200,0.5)",
-                        strokeColor : "rgba(0,100,200,1)",
-                        pointColor : "rgba(0,100,200,1)",
+                        fillColor : "rgba(66,139,202,0.5)",
+                        strokeColor : "rgba(66,139,202,1)",
+                        pointColor : "rgba(66,139,202,1)",
                         pointStrokeColor : "#fff",
                         data : [{% for day in alldays %}{{ day.fat|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
                     }

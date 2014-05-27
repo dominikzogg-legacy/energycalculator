@@ -46,8 +46,10 @@ login:
 chart:
   weight:
     title: Gewichtsverlauf
+    weight: Gewicht
   calorie:
     title: Kalorien
+    calorie: Kalorien
   energymix:
     title: Energiemix
     protein: Eiweiss

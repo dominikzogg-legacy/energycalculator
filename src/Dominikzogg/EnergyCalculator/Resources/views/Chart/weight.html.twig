@@ -9,6 +9,12 @@
 
     <div id="weightChartWrapper" class="chartwrapper">
         <canvas id="weightChart" width="100" height="100"></canvas>
+        <ul class="chartdescription list-unstyled">
+            <li>
+                <span class="square" style="border-color: rgba(66,139,202,1); background-color: rgba(66,139,202,0.5);"></span>
+                <span>{{ ("chart.weight.weight")|trans() }}</span>
+            </li>
+        </ul>
     </div>
 
 
@@ -34,10 +40,10 @@
                 labels : [{% for key, day in alldays %}'{{ key }}'{% if not loop.last %},{% endif %}{% endfor %}],
                 datasets : [
                     {
-                        fillColor : '#F8F8F8',
-                        strokeColor : '#BBB',
-                        pointColor : '#777',
-                        pointStrokeColor : '#FFF',
+                        fillColor : "rgba(66,139,202,0.5)",
+                        strokeColor : "rgba(66,139,202,1)",
+                        pointColor : "rgba(66,139,202,1)",
+                        pointStrokeColor : "#fff",
                         data : [{% for day in alldays %}{{ day.weight|default(0)|round(1) }}{% if not loop.last %},{% endif %}{% endfor %}]
                     }
                 ]
