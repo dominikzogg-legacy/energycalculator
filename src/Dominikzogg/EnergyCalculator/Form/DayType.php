@@ -55,10 +55,10 @@ class DayType extends AbstractType
                 'input' => 'datetime',
                 'format' => 'dd.MM.yyyy',
             ))
-            ->add('weight', 'number', array('required' => false))
-            ->add('abdominalCircumference', 'number', array('required' => false))
+            ->add('weight', 'text', array('required' => false))
+            ->add('abdominalCircumference', 'text', array('required' => false))
             ->add('comestiblesWithinDay', 'bootstrap_collection', array(
-                'type' => new ComestibleWithinDayType($this->user),
+                'type' => new ComestibleWithinDayType($this->user, $this->translator),
                 'allow_add' => true,
                 'add_button_text' => $addButtonText,
                 'allow_delete' => true,
@@ -66,6 +66,7 @@ class DayType extends AbstractType
                 'sub_widget_col' => 12,
                 'button_col' => '12 col-lg-offset-2',
                 'by_reference' => false,
+                'error_bubbling' => false
             ))
         ;
     }

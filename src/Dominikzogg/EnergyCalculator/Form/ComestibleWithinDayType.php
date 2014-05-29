@@ -8,6 +8,7 @@ use Dominikzogg\EnergyCalculator\Entity\ComestibleWithinDay;
 use Dominikzogg\EnergyCalculator\Entity\User;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Translation\Translator;
 
 class ComestibleWithinDayType extends AbstractType
 {
@@ -17,11 +18,17 @@ class ComestibleWithinDayType extends AbstractType
     protected $user;
 
     /**
+     * @var Translator
+     */
+    protected $translator;
+
+    /**
      * @param User $user
      */
-    public function __construct(User $user)
+    public function __construct(User $user, Translator $translator)
     {
         $this->user = $user;
+        $this->translator = $translator;
     }
 
     /**
@@ -44,11 +51,15 @@ class ComestibleWithinDayType extends AbstractType
 
                     return $qb;
                 },
+                'required' => false,
                 'attr' => array(
-                    'data-live-search' => true
+                    'data-live-search' => true,
+                    'data-style' => 'btn-default form-control',
+                    'class' => 'show-tick',
+                    'title' => $this->translator->trans('day.label.comestiblesWithinDay_collection.comestible_default')
                 )
             ))
-            ->add('amount', 'number')
+            ->add('amount', 'number', array('required' => false))
         ;
     }
 

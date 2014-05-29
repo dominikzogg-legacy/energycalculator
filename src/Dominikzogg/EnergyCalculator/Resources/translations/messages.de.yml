@@ -73,6 +73,7 @@ day:
       add: Nahrungsmittel hinzufügen
       remove: Nahrungsmittel entfernen
       comestible: Nahrungsmittel
+      comestible_default: Bitte wählen Sie ein Nahrungsmittel
       amount: *amount
   list:
     title: Tages Liste

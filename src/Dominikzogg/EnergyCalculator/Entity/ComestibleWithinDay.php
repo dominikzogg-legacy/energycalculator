@@ -3,6 +3,8 @@
 namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity()
@@ -174,5 +176,23 @@ class ComestibleWithinDay
         }
 
         return $this->fat;
+    }
+
+    /**
+     * @param ClassMetadata $metadata
+     */
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('comestible', new Assert\NotNull(array(
+            'message' => 'day.comestibleWithinDay.comestible.notnull'
+        )));
+
+        $metadata->addPropertyConstraint('amount', new Assert\NotNull(array(
+            'message' => 'day.comestibleWithinDay.amount.notnull'
+        )));
+        $metadata->addPropertyConstraint('amount', new Assert\GreaterThanOrEqual(array(
+            'value' => 0,
+            'message' => 'day.comestibleWithinDay.amount.greaterthanorequal'
+        )));
     }
 }

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
@@ -249,5 +250,29 @@ class Day implements UserReferenceInterface
             'fields'  => array('date', 'user'),
             'message' => 'This date for this user allready exist.',
         )));
+
+//        $metadata->addPropertyConstraint('weight', new Assert\NotNull(array(
+//            'message' => 'day.weight.notnull'
+//        )));
+        $metadata->addPropertyConstraint('weight', new Assert\Range(array(
+            'min' => 0,
+            'max' => 500,
+            'minMessage' => 'day.weight.range.minmessage',
+            'maxMessage' => 'day.weight.range.maxmessage',
+            'invalidMessage' => 'day.weight.range.invalidmessage',
+        )));
+
+//        $metadata->addPropertyConstraint('abdominalCircumference', new Assert\NotNull(array(
+//            'message' => 'day.abdominalCircumference.notnull'
+//        )));
+        $metadata->addPropertyConstraint('abdominalCircumference', new Assert\Range(array(
+            'min'        => 0,
+            'max'        => 500,
+            'minMessage' => 'day.abdominalCircumference.range.minmessage',
+            'maxMessage' => 'day.abdominalCircumference.range.maxmessage',
+            'invalidMessage' => 'day.abdominalCircumference.range.invalidmessage',
+        )));
+
+        $metadata->addPropertyConstraint('comestiblesWithinDay', new Assert\Valid());
     }
 }

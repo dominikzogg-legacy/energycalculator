@@ -1,0 +1,17 @@
+day:
+  weight:
+    range:
+      minmessage: Das Gewicht muss mindestens {{ limit }} kg betragen!
+      maxmessage: Das Gewicht darf maximal {{ limit }} kg betragen!
+      invalidmessage: Das angegebene Gewicht ist ungültig
+  abdominalCircumference:
+    range:
+      minmessage: Der Bauchumfang muss mindestens {{ limit }} cm betragen!
+      maxmessage: Der Bauchumfang darf maximal {{ limit }} cm betragen!
+      invalidmessage: Der angegebene Bauchumfang ist ungültig
+  comestibleWithinDay:
+    comestible:
+      notnull: Es muss ein Nahrungsmittel ausgewählt werden!
+    amount:
+      notnull: Die Menge des Nahrungsmittels muss angegeben werden!
+      greaterthanorequal: Die Menge des Nahrungsmittels darf nicht kleiner {{ value }} sein!
