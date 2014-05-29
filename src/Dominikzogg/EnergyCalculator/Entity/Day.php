@@ -251,9 +251,6 @@ class Day implements UserReferenceInterface
             'message' => 'This date for this user allready exist.',
         )));
 
-//        $metadata->addPropertyConstraint('weight', new Assert\NotNull(array(
-//            'message' => 'day.weight.notnull'
-//        )));
         $metadata->addPropertyConstraint('weight', new Assert\Range(array(
             'min' => 0,
             'max' => 500,
@@ -262,9 +259,6 @@ class Day implements UserReferenceInterface
             'invalidMessage' => 'day.weight.range.invalidmessage',
         )));
 
-//        $metadata->addPropertyConstraint('abdominalCircumference', new Assert\NotNull(array(
-//            'message' => 'day.abdominalCircumference.notnull'
-//        )));
         $metadata->addPropertyConstraint('abdominalCircumference', new Assert\Range(array(
             'min'        => 0,
             'max'        => 500,
