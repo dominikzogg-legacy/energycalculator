@@ -12,5 +12,11 @@ swiftmailer.options:
   auth_mode: ~
 
 db.options:
-  driver: pdo_sqlite
-  path: saxulum.db
+  driver: pdo_mysql
+  dbname: energycalculator
+  host: localhost
+  user: root
+  password: root
+  charset: UTF8
+  path: ~
+  port: ~

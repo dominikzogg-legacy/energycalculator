@@ -3,9 +3,7 @@
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Igorw\Silex\ConfigServiceProvider;
-use Knp\Menu\Matcher\Matcher;
 use Knp\Menu\Silex\KnpMenuServiceProvider;
-use Knp\Menu\Silex\Voter\RouteVoter;
 use Silex\Application;
 use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\TwigServiceProvider;
@@ -23,9 +21,12 @@ use Silex\Provider\WebProfilerServiceProvider;
 use Saxulum\AsseticTwig\Silex\Provider\AsseticTwigProvider;
 use Saxulum\Console\Silex\Provider\ConsoleProvider;
 use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\MenuProvider\Silex\Provider\SaxulumMenuProvider;
+use Saxulum\PaginationProvider\Silex\Provider\SaxulumPaginationProvider;
 use Saxulum\RouteController\Provider\RouteControllerProvider;
-use Saxulum\Translation\Silex\Provider\TranslationProvider;
+use Saxulum\SaxulumBootstrapProvider\Silex\Provider\SaxulumBootstrapProvider;
 use Saxulum\SaxulumWebProfiler\Provider\SaxulumWebProfilerProvider;
+use Saxulum\Translation\Silex\Provider\TranslationProvider;
 
 // annotation registry
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
@@ -54,20 +55,12 @@ $app->register(new ConsoleProvider());
 $app->register(new DoctrineOrmServiceProvider());
 $app->register(new DoctrineOrmManagerRegistryProvider());
 $app->register(new KnpMenuServiceProvider());
+$app->register(new SaxulumMenuProvider());
 $app->register(new AsseticTwigProvider());
 $app->register(new RouteControllerProvider());
+$app->register(new SaxulumPaginationProvider());
 $app->register(new TranslationProvider());
-
-$app['knp_menu.route.voter'] = $app->share(function (Application $app) {
-    $voter = new RouteVoter();
-    $voter->setRequest($app['request']);
-
-    return $voter;
-});
-
-$app['knp_menu.matcher.configure'] = $app->protect(function (Matcher $matcher) use ($app) {
-    $matcher->addVoter($app['knp_menu.route.voter']);
-});
+$app->register(new SaxulumBootstrapProvider());
 
 if ($app['debug']) {
     $app->register(new WebProfilerServiceProvider());

@@ -8,8 +8,6 @@ use Dominikzogg\EnergyCalculator\Form\SimpleDateTypeExtension;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
 use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
 use Saxulum\BundleProvider\Provider\AbstractBundleProvider;
-use Saxulum\PaginationProvider\Silex\Provider\SaxulumPaginationProvider;
-use Saxulum\SaxulumBootstrapProvider\Silex\Provider\SaxulumBootstrapProvider;
 use Saxulum\UserProvider\Silex\Provider\SaxulumUserProvider;
 use Silex\Application;
 
@@ -18,9 +16,7 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
     public function register(Application $app)
     {
         $app->register(new SaxulumUserProvider());
-        $app->register(new SaxulumBootstrapProvider());
         $app->register(new MenuProvider());
-        $app->register(new SaxulumPaginationProvider());
 
         $app['twig'] = $app->share($app->extend('twig', function(\Twig_Environment $twig) {
             $twig->addExtension(new FormHelperExtension());
@@ -50,7 +46,6 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
             })
         );
 
-        //$this->addCommands($app);
         $this->addControllers($app);
         $this->addDoctrineOrmMappings($app);
         $this->addTranslatorRessources($app);
