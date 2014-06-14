@@ -10,6 +10,8 @@ class UserType extends AbstractUserType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
+
         $builder->remove('enabled');
         $builder->add('enabled', 'checkbox', array(
             'required' => false,
