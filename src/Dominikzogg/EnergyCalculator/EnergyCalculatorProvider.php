@@ -15,9 +15,12 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
 {
     public function register(Application $app)
     {
-        $app->register(new SaxulumUserProvider());
         $app->register(new MenuProvider());
-
+        
+        $app->register(new SaxulumUserProvider(), array(
+            'saxulum.userprovider.userclass' => get_class(new User())
+        ));
+        
         $app['twig'] = $app->share($app->extend('twig', function(\Twig_Environment $twig) {
             $twig->addExtension(new FormHelperExtension());
 
@@ -29,8 +32,6 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
 
             return $extensions;
         }));
-
-        $app['saxulum.userprovider.userclass'] = get_class(new User());
 
         $rules = $app['security.access_rules'];
         $rules[] = array('^/_profiler*', 'IS_AUTHENTICATED_ANONYMOUSLY');
