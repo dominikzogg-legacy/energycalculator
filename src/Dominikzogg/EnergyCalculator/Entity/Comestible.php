@@ -53,6 +53,12 @@ class Comestible implements UserReferenceInterface
     protected $fat = 0;
 
     /**
+     * @var float
+     * @ORM\Column(name="default_value", type="decimal", precision=10, scale=4, nullable=true)
+     */
+    protected $defaultValue = 0;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -157,6 +163,24 @@ class Comestible implements UserReferenceInterface
     public function setFat($fat)
     {
         $this->fat = $fat;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getDefaultValue()
+    {
+        return $this->defaultValue;
+    }
+
+    /**
+     * @param float $defaultValue
+     * @return $this
+     */
+    public function setDefaultValue($defaultValue)
+    {
+        $this->defaultValue = $defaultValue;
         return $this;
     }
 

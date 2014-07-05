@@ -20,6 +20,7 @@ class ComestibleType extends AbstractType
             ->add('protein', 'number')
             ->add('carbohydrate', 'number')
             ->add('fat', 'number')
+            ->add('defaultValue', 'number')
         ;
     }
 

@@ -112,6 +112,7 @@ comestible:
     protein: Eiweiss (100g/ml)
     carbohydrate: Kohlenhydrat (100g/ml)
     fat: Fett (100g/ml)
+    defaultValue: Portionsgrösse
   list:
     title: Nahrungsmittel Liste
     name: *name
