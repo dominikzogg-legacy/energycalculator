@@ -7,6 +7,22 @@
     <form action="{{ url(editroute, {'id': entity.id}) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
         {{ bootstrap_set_style('horizontal') }}
 
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-success" name="save" value="{{ (transprefix~".edit.save")|trans() }}">
+                    <i class="glyphicon glyphicon-save"></i>
+                </button>
+                {% if entity.id and showroute|default(false) %}
+                    <a class="btn btn-default" href="{{ url(showroute, {'id': entity.id }) }}" title="{{ (transprefix~".edit.show")|trans() }}">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </a>
+                {% endif %}
+                <a class="btn btn-default" href="{{ url(listroute) }}" title="{{ (transprefix~".edit.back")|trans() }}">
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                </a>
+            </div>
+        </div>
+
         {{ form_widget(form) }}
 
         <div class="form-group">
