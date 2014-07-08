@@ -35,3 +35,4 @@ knp_menu.template: @DominikzoggEnergyCalculator/menu.html.twig
 knp_paginator.options:
   subscriberOptions:
     defaultPaginationTemplate: @SaxulumPaginationProvider/twitter_bootstrap_v3_pagination.html.twig
+    defaultPageRange: 3
