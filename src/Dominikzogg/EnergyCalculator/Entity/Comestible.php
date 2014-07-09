@@ -56,7 +56,7 @@ class Comestible implements UserReferenceInterface
      * @var float
      * @ORM\Column(name="default_value", type="decimal", precision=10, scale=4, nullable=true)
      */
-    protected $defaultValue = 0;
+    protected $defaultValue;
 
     /**
      * @return string
