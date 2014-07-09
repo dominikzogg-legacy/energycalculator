@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "45edfa4c20b9d9dc658c22204cd336f5",
+    "hash": "07508806c345cf1ac7df56db3c11a1b5",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -1759,20 +1759,20 @@
         },
         {
             "name": "saxulum/saxulum-menu-provider",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-menu-provider.git",
-                "reference": "5485d676b3562e03e5c3d4fcc72f67e439f667dd"
+                "reference": "034e32ccebd4bfdff53bd423e6d05bbd12a4ede9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-menu-provider/zipball/5485d676b3562e03e5c3d4fcc72f67e439f667dd",
-                "reference": "5485d676b3562e03e5c3d4fcc72f67e439f667dd",
+                "url": "https://api.github.com/repos/saxulum/saxulum-menu-provider/zipball/034e32ccebd4bfdff53bd423e6d05bbd12a4ede9",
+                "reference": "034e32ccebd4bfdff53bd423e6d05bbd12a4ede9",
                 "shasum": ""
             },
             "require": {
-                "knplabs/knp-menu": "2.0.*@alpha",
+                "knplabs/knp-menu": "2.0.*@beta",
                 "php": ">=5.3.3",
                 "symfony/http-foundation": "~2.3"
             },
@@ -1803,7 +1803,7 @@
                 "request-voter",
                 "saxulum"
             ],
-            "time": "2014-07-09 09:44:03"
+            "time": "2014-07-09 09:56:02"
         },
         {
             "name": "saxulum/saxulum-pagination-provider",
