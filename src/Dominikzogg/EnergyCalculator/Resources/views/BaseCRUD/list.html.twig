@@ -4,11 +4,13 @@
 
 {% block body %}
     <h1>{{ (transprefix~".list.title")|trans() }}</h1>
-    <br />
     <a class="btn btn-default" href="{{ url(editroute) }}" title="{{ (transprefix~".list.create")|trans() }}">
         <i class="glyphicon glyphicon-plus"></i>
     </a><br />
     <br />
+    {% if entities.template|default(false) %}
+        {{ knp_pagination_render(entities) }}
+    {% endif %}
     {% if entities|length > 0 %}
         <table class="table table-striped">
             <thead>
