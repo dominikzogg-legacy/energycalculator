@@ -62,6 +62,15 @@ $app->register(new SaxulumPaginationProvider());
 $app->register(new TranslationProvider());
 $app->register(new SaxulumBootstrapProvider());
 
+$app['validator.mapping.class_metadata_factory'] = $app->share(function () {
+    return new \Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory(
+        new \Symfony\Component\Validator\Mapping\Loader\LoaderChain(array(
+            new \Symfony\Component\Validator\Mapping\Loader\AnnotationLoader(new \Doctrine\Common\Annotations\AnnotationReader()),
+            new \Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader()
+        ))
+    );
+});
+
 if ($app['debug']) {
     $app->register(new WebProfilerServiceProvider());
     $app->register(new SaxulumWebProfilerProvider());

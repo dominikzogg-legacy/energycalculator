@@ -33,11 +33,13 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
             return $extensions;
         }));
 
-        $rules = $app['security.access_rules'];
-        $rules[] = array('^/_profiler*', 'IS_AUTHENTICATED_ANONYMOUSLY');
-        $rules[] = array('^/[^/]*/admin', 'ROLE_ADMIN');
-        $rules[] = array('^/[^/]*', 'ROLE_USER');
-        $app['security.access_rules'] = $rules;
+        $app['security.access_rules'] = $app->share($app->extend('security.access_rules', function ($rules) use ($app) {
+            $rules[] = array('^/_profiler*', 'IS_AUTHENTICATED_ANONYMOUSLY');
+            $rules[] = array('^/[^/]*/admin', 'ROLE_ADMIN');
+            $rules[] = array('^/[^/]*', 'ROLE_USER');
+
+            return $rules;
+        }));
 
         $app['console.commands'] = $app->share(
             $app->extend('console.commands', function (array $commands) use ($app) {

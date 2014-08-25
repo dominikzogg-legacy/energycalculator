@@ -4,6 +4,7 @@ namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Saxulum\UserProvider\Model\AbstractUser;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity()
@@ -13,6 +14,7 @@ use Saxulum\UserProvider\Model\AbstractUser;
  *         @ORM\UniqueConstraint(name="username_idx", columns={"username"})
  *     }
  * )
+ * @UniqueEntity("username")
  */
 class User extends AbstractUser
 {
