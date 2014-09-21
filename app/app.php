@@ -1,6 +1,7 @@
 <?php
 
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Igorw\Silex\ConfigServiceProvider;
 use Knp\Menu\Integration\Silex\KnpMenuServiceProvider;
@@ -18,6 +19,10 @@ use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
+use Saxulum\Accessor\AccessorTrait;
+use Saxulum\Accessor\Accessors\Get;
+use Saxulum\Accessor\Accessors\Is;
+use Saxulum\Accessor\Accessors\Set;
 use Saxulum\AsseticTwig\Silex\Provider\AsseticTwigProvider;
 use Saxulum\Console\Silex\Provider\ConsoleProvider;
 use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
@@ -27,9 +32,18 @@ use Saxulum\RouteController\Provider\RouteControllerProvider;
 use Saxulum\SaxulumBootstrapProvider\Silex\Provider\SaxulumBootstrapProvider;
 use Saxulum\SaxulumWebProfiler\Provider\SaxulumWebProfilerProvider;
 use Saxulum\Translation\Silex\Provider\TranslationProvider;
+use Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory;
+use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
+use Symfony\Component\Validator\Mapping\Loader\LoaderChain;
+use Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader;
 
 // annotation registry
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+
+// accessor registry
+AccessorTrait::registerAccessor(new Get());
+AccessorTrait::registerAccessor(new Is());
+AccessorTrait::registerAccessor(new Set());
 
 // create new silex app
 $app = new Application();
@@ -63,10 +77,10 @@ $app->register(new TranslationProvider());
 $app->register(new SaxulumBootstrapProvider());
 
 $app['validator.mapping.class_metadata_factory'] = $app->share(function () {
-    return new \Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory(
-        new \Symfony\Component\Validator\Mapping\Loader\LoaderChain(array(
-            new \Symfony\Component\Validator\Mapping\Loader\AnnotationLoader(new \Doctrine\Common\Annotations\AnnotationReader()),
-            new \Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader()
+    return new LazyLoadingMetadataFactory(
+        new LoaderChain(array(
+            new AnnotationLoader(new AnnotationReader),
+            new StaticMethodLoader
         ))
     );
 });
