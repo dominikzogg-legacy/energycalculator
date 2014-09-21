@@ -3,7 +3,6 @@
 namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -183,12 +182,6 @@ class Comestible implements UserReferenceInterface
         $this->defaultValue = $defaultValue;
         return $this;
     }
-
-    /**
-     * @param ClassMetadata $metadata
-     */
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
 
     }
 }

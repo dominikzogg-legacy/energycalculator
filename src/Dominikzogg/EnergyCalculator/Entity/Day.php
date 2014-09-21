@@ -7,13 +7,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass="Dominikzogg\EnergyCalculator\Repository\DayRepository")
  * @ORM\Table(name="day", uniqueConstraints={
  *      @ORM\UniqueConstraint(name="day_per_user_idx", columns={"date", "user_id"})
  * })
+ * @UniqueEntity(fields={"date", "user"}, message="day.unique")
  */
 class Day implements UserReferenceInterface
 {
@@ -37,18 +37,33 @@ class Day implements UserReferenceInterface
     /**
      * @var float
      * @ORM\Column(name="weight", type="decimal", precision=10, scale=4, nullable=true)
+     * @Assert\Range(
+     *      min=0,
+     *      max=500,
+     *      minMessage="day.weight.range.minmessage",
+     *      maxMessage="day.weight.range.maxmessage",
+     *      invalidMessage="day.weight.range.invalidmessage"
+     * )
      */
     protected $weight;
 
     /**
      * @var float
      * @ORM\Column(name="abdominal_circumference", type="decimal", precision=10, scale=4, nullable=true)
+     * @Assert\Range(
+     *      min=0,
+     *      max=500,
+     *      minMessage="day.abdominalCircumference.range.minmessage",
+     *      maxMessage="day.abdominalCircumference.range.maxmessage",
+     *      invalidMessage="day.abdominalCircumference.range.invalidmessage"
+     * )
      */
     protected $abdominalCircumference;
 
     /**
      * @var ComestibleWithinDay[]|Collection
      * @ORM\OneToMany(targetEntity="ComestibleWithinDay", mappedBy="day", cascade={"persist"})
+     * @Assert\Valid()
      */
     protected $comestiblesWithinDay;
 
@@ -239,34 +254,5 @@ class Day implements UserReferenceInterface
         }
 
         return $this->fat;
-    }
-
-    /**
-     * @param ClassMetadata $metadata
-     */
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-        $metadata->addConstraint(new UniqueEntity(array(
-            'fields'  => array('date', 'user'),
-            'message' => 'This date for this user allready exist.',
-        )));
-
-        $metadata->addPropertyConstraint('weight', new Assert\Range(array(
-            'min' => 0,
-            'max' => 500,
-            'minMessage' => 'day.weight.range.minmessage',
-            'maxMessage' => 'day.weight.range.maxmessage',
-            'invalidMessage' => 'day.weight.range.invalidmessage',
-        )));
-
-        $metadata->addPropertyConstraint('abdominalCircumference', new Assert\Range(array(
-            'min'        => 0,
-            'max'        => 500,
-            'minMessage' => 'day.abdominalCircumference.range.minmessage',
-            'maxMessage' => 'day.abdominalCircumference.range.maxmessage',
-            'invalidMessage' => 'day.abdominalCircumference.range.invalidmessage',
-        )));
-
-        $metadata->addPropertyConstraint('comestiblesWithinDay', new Assert\Valid());
     }
 }
