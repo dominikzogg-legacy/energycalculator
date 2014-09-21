@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cc19962714bf3f050df8e163be72fe78",
+    "hash": "e2251f3d6cb3f3a9f68e62c46402e576",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -1274,22 +1274,23 @@
         },
         {
             "name": "saxulum/saxulum-accessor",
-            "version": "1.0.3",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-accessor.git",
-                "reference": "fc1e8e3ca162a6432c0605780406a72f8a3eebb2"
+                "reference": "337b0d0c6bf4287b06e61a89801668b05fba0ed6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-accessor/zipball/fc1e8e3ca162a6432c0605780406a72f8a3eebb2",
-                "reference": "fc1e8e3ca162a6432c0605780406a72f8a3eebb2",
+                "url": "https://api.github.com/repos/saxulum/saxulum-accessor/zipball/337b0d0c6bf4287b06e61a89801668b05fba0ed6",
+                "reference": "337b0d0c6bf4287b06e61a89801668b05fba0ed6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4"
             },
             "require-dev": {
+                "doctrine/orm": "~2.4",
                 "phpunit/phpunit": "4.0.*",
                 "twig/twig": "~1.12"
             },
@@ -1315,7 +1316,7 @@
                 "class",
                 "saxulum"
             ],
-            "time": "2014-09-21 01:37:18"
+            "time": "2014-09-21 10:59:05"
         },
         {
             "name": "saxulum/saxulum-annotation-manager",
