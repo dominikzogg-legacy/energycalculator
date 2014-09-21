@@ -17,7 +17,7 @@
         "igorw/config-service-provider": "~1.2",
         "jquery/jquery": "1.11.1",
         "jsmin/jsmin": "~2.2.0",
-        "knplabs/knp-menu": "2.0.*@beta",
+        "knplabs/knp-menu": "~2.0",
         "monolog/monolog": "1.5.*",
         "oyejorge/less.php": "~1.7",
         "saxulum/saxulum-accessor": "~1.0,>=1.0.2",

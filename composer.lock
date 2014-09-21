@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0fbcead049e364905406928eaa2618a9",
+    "hash": "71821863f7eac7b670682f6fc3176269",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -3759,7 +3759,6 @@
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": {
-        "knplabs/knp-menu": 10,
         "saxulum/saxulum-bootstrap-provider": 20,
         "saxulum/saxulum-pagination-provider": 20,
         "saxulum/saxulum-collection-js": 20,
