@@ -182,6 +182,4 @@ class Comestible implements UserReferenceInterface
         $this->defaultValue = $defaultValue;
         return $this;
     }
-
-    }
 }
