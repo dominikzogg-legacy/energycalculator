@@ -5,10 +5,6 @@ namespace Dominikzogg\EnergyCalculator\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Saxulum\Accessor\Accessors\Get;
-use Saxulum\Accessor\Accessors\Set;
-use Saxulum\Accessor\AccessorTrait;
-use Saxulum\Accessor\Prop;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -18,20 +14,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      @ORM\UniqueConstraint(name="day_per_user_idx", columns={"date", "user_id"})
  * })
  * @UniqueEntity(fields={"date", "user"}, message="day.unique")
- * @method int getId()
- * @method $this setDate(\DateTime $date = null)
- * @method \DateTime|null getDate()
- * @method $this setWeight($weight)
- * @method float getWeight()
- * @method $this setAbdominalCircumference($abdominalCircumference)
- * @method float getAbdominalCircumference()
- * @method ComestibleWithinDay[] getComestiblesWithinDay()
  */
 class Day implements UserReferenceInterface
 {
-    use AccessorTrait;
-    use AttributeTrait;
     use UserReferenceTrait;
+    use AttributeTrait;
 
     /**
      * @var int
@@ -86,21 +73,74 @@ class Day implements UserReferenceInterface
         $this->comestiblesWithinDay = new ArrayCollection();
     }
 
-    protected function initializeProperties()
-    {
-        $this->prop((new Prop('id'))->method(Get::PREFIX));
-        $this->prop((new Prop('date', '\DateTime', true))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('weight'))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('abdominalCircumference'))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('comestiblesWithinDay'))->method(Get::PREFIX));
-    }
-
     /**
      * @return string
      */
     public function __toString()
     {
         return (string) $this->getDate()->format('d.m.Y');
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return $this
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @param float $weight
+     * @return $this
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAbdominalCircumference()
+    {
+        return $this->abdominalCircumference;
+    }
+
+    /**
+     * @param float $abdominalCircumference
+     * @return $this
+     */
+    public function setAbdominalCircumference($abdominalCircumference)
+    {
+        $this->abdominalCircumference = $abdominalCircumference;
+        return $this;
     }
 
     /**
@@ -146,6 +186,14 @@ class Day implements UserReferenceInterface
             $this->addComestibleWithinDay($comestibleWithinDay);
         }
         return $this;
+    }
+
+    /**
+     * @return ComestibleWithinDay[]|Collection
+     */
+    public function getComestiblesWithinDay()
+    {
+        return $this->comestiblesWithinDay;
     }
 
     /**

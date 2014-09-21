@@ -3,22 +3,14 @@
 namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Saxulum\Accessor\Accessors\Get;
-use Saxulum\Accessor\AccessorTrait;
-use Saxulum\Accessor\Prop;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="comestible_within_day")
- * @method int getId()
- * @method Day getDay()
- * @method Comestible getComestible()
- * @method float getAmount()
  */
 class ComestibleWithinDay
 {
-    use AccessorTrait;
     use AttributeTrait;
 
     /**
@@ -60,12 +52,12 @@ class ComestibleWithinDay
         return (string) $this->getComestible()->getName();
     }
 
-    protected function initializeProperties()
+    /**
+     * @return int
+     */
+    public function getId()
     {
-        $this->prop((new Prop('id'))->method(Get::PREFIX));
-        $this->prop((new Prop('day'))->method(Get::PREFIX));
-        $this->prop((new Prop('comestible'))->method(Get::PREFIX));
-        $this->prop((new Prop('amount'))->method(Get::PREFIX));
+        return $this->id;
     }
 
     /**
@@ -86,6 +78,21 @@ class ComestibleWithinDay
         $this->day = $day;
         return $this;
     }
+    /**
+     * @return Day
+     */
+    public function getDay()
+    {
+        return $this->day;
+    }
+
+    /**
+     * @return Comestible
+     */
+    public function getComestible()
+    {
+        return $this->comestible;
+    }
 
     /**
      * @param Comestible $comestible
@@ -96,6 +103,14 @@ class ComestibleWithinDay
         $this->comestible = $comestible;
         $this->resetValues();
         return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->amount;
     }
 
     /**
