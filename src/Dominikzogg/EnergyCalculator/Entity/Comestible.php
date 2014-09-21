@@ -3,14 +3,32 @@
 namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Saxulum\Accessor\Accessors\Get;
+use Saxulum\Accessor\Accessors\Set;
+use Saxulum\Accessor\AccessorTrait;
+use Saxulum\Accessor\Prop;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="comestible")
+ * @method int getId()
+ * @method $this setName($name)
+ * @method string getName()
+ * @method $this setCalorie($calorie)
+ * @method float getCalorie()
+ * @method $this setProtein($protein)
+ * @method float getProtein()
+ * @method $this setCarbohydrate($carbohydrate)
+ * @method float getCarbohydrate()
+ * @method $this setFat($fat)
+ * @method float getFat()
+ * @method $this setDefaultValue($defaultValue)
+ * @method string getDefaultValue()
  */
 class Comestible implements UserReferenceInterface
 {
+    use AccessorTrait;
     use UserReferenceTrait;
 
     /**
@@ -65,123 +83,14 @@ class Comestible implements UserReferenceInterface
         return (string) $this->getName();
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    protected function initializeProperties()
     {
-        return $this->id;
-    }
-
-    /**
-     * @param  string   $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return float
-     */
-    public function getCalorie()
-    {
-        return $this->calorie;
-    }
-
-    /**
-     * @param float $calorie
-     * @return $this
-     */
-    public function setCalorie($calorie)
-    {
-        $this->calorie = $calorie;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getProtein()
-    {
-        return $this->protein;
-    }
-
-    /**
-     * @param float $protein
-     * @return $this
-     */
-    public function setProtein($protein)
-    {
-        $this->protein = $protein;
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getCarbohydrate()
-    {
-        return $this->carbohydrate;
-    }
-
-    /**
-     * @param float $carbohydrate
-     * @return $this
-     */
-    public function setCarbohydrate($carbohydrate)
-    {
-        $this->carbohydrate = $carbohydrate;
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getFat()
-    {
-        return $this->fat;
-    }
-
-    /**
-     * @param float $fat
-     * @return $this
-     */
-    public function setFat($fat)
-    {
-        $this->fat = $fat;
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getDefaultValue()
-    {
-        return $this->defaultValue;
-    }
-
-    /**
-     * @param float $defaultValue
-     * @return $this
-     */
-    public function setDefaultValue($defaultValue)
-    {
-        $this->defaultValue = $defaultValue;
-        return $this;
-    }
-
+        $this->prop((new Prop('id'))->method(Get::PREFIX));
+        $this->prop((new Prop('name'))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('calorie'))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('protein'))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('carbohydrate'))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('fat'))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('defaultValue'))->method(Get::PREFIX)->method(Set::PREFIX));
     }
 }
