@@ -19,9 +19,11 @@ use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
-use Saxulum\Accessor\AccessorTrait;
+use Saxulum\Accessor\AccessorRegistry;
+use Saxulum\Accessor\Accessors\Add;
 use Saxulum\Accessor\Accessors\Get;
 use Saxulum\Accessor\Accessors\Is;
+use Saxulum\Accessor\Accessors\Remove;
 use Saxulum\Accessor\Accessors\Set;
 use Saxulum\AsseticTwig\Silex\Provider\AsseticTwigProvider;
 use Saxulum\Console\Silex\Provider\ConsoleProvider;
@@ -41,9 +43,11 @@ use Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader;
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 // accessor registry
-AccessorTrait::registerAccessor(new Get());
-AccessorTrait::registerAccessor(new Is());
-AccessorTrait::registerAccessor(new Set());
+AccessorRegistry::registerAccessor(new Add());
+AccessorRegistry::registerAccessor(new Get());
+AccessorRegistry::registerAccessor(new Is());
+AccessorRegistry::registerAccessor(new Remove());
+AccessorRegistry::registerAccessor(new Set());
 
 // create new silex app
 $app = new Application();

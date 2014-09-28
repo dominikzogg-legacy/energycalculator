@@ -20,7 +20,7 @@
         "knplabs/knp-menu": "~2.0",
         "monolog/monolog": "1.5.*",
         "oyejorge/less.php": "~1.7",
-        "saxulum/saxulum-accessor": "~1.0,>=1.0.5",
+        "saxulum/saxulum-accessor": "~2.0@beta",
         "saxulum/saxulum-assetic-twig-provider": "~1.3",
         "saxulum/saxulum-bootstrap-provider": "dev-master@dev",
         "saxulum/saxulum-bundle-provider": "~1.1",
