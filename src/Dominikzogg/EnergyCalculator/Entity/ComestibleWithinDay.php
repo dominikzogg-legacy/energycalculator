@@ -15,16 +15,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="comestible_within_day")
  * @method int getId()
  * @method Day getDay()
- * @method $this setDay(Day $day, $stopPropagation = false)
+ * @method $this setDay(Day $day)
  * @method Comestible getComestible()
  * @method float getAmount()
  */
 class ComestibleWithinDay
 {
-    use AccessorTrait {
-        __call as __traitCall;
-    }
-    use AttributeTrait;
+    use AccessorTrait;
 
     /**
      * @var int
@@ -65,27 +62,6 @@ class ComestibleWithinDay
         return (string) $this->getComestible()->getName();
     }
 
-    /**
-     * @param $name
-     * @param array $arguments
-     * @return mixed
-     */
-    public function __call($name, array $arguments)
-    {
-        $resetValueCalls = array(
-            'setComestible',
-            'setAmount',
-        );
-
-        $returnValue = $this->__traitCall($name, $arguments);
-
-        if(in_array($name, $resetValueCalls)) {
-            $this->resetValues();
-        }
-
-        return $returnValue;
-    }
-
     protected function initializeProperties()
     {
         $this->prop((new Prop('id'))->method(Get::PREFIX));
@@ -115,11 +91,7 @@ class ComestibleWithinDay
      */
     public function getCalorie()
     {
-        if($this->calorie === null) {
-            $this->calorie = $this->getComestible()->getCalorie() * $this->getAmount() / 100;
-        }
-
-        return $this->calorie;
+        return $this->getComestible()->getCalorie() * $this->getAmount() / 100;
     }
 
     /**
@@ -127,11 +99,7 @@ class ComestibleWithinDay
      */
     public function getProtein()
     {
-        if($this->protein === null) {
-            $this->protein = $this->getComestible()->getProtein() * $this->getAmount() / 100;
-        }
-
-        return $this->protein;
+        return $this->getComestible()->getProtein() * $this->getAmount() / 100;
     }
 
     /**
@@ -139,11 +107,7 @@ class ComestibleWithinDay
      */
     public function getCarbohydrate()
     {
-        if($this->carbohydrate === null) {
-            $this->carbohydrate = $this->getComestible()->getCarbohydrate() * $this->getAmount() / 100;
-        }
-
-        return $this->carbohydrate;
+        return $this->getComestible()->getCarbohydrate() * $this->getAmount() / 100;
     }
 
     /**
@@ -151,10 +115,6 @@ class ComestibleWithinDay
      */
     public function getFat()
     {
-        if($this->fat === null) {
-            $this->fat = $this->getComestible()->getFat() * $this->getAmount() / 100;
-        }
-
-        return $this->fat;
+        return $this->getComestible()->getFat() * $this->getAmount() / 100;
     }
 }

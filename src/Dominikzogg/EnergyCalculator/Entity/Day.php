@@ -32,10 +32,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Day implements UserReferenceInterface
 {
-    use AccessorTrait {
-        __call as __traitCall;
-    }
-    use AttributeTrait;
+    use AccessorTrait;
     use UserReferenceTrait;
 
     /**
@@ -91,27 +88,6 @@ class Day implements UserReferenceInterface
         $this->comestiblesWithinDay = new ArrayCollection();
     }
 
-    /**
-     * @param $name
-     * @param array $arguments
-     * @return mixed
-     */
-    public function __call($name, array $arguments)
-    {
-        $resetValueCalls = array(
-            'addComestiblesWithinDay',
-            'removeComestiblesWithinDay',
-        );
-
-        $returnValue = $this->__traitCall($name, $arguments);
-
-        if(in_array($name, $resetValueCalls)) {
-            $this->resetValues();
-        }
-
-        return $returnValue;
-    }
-
     protected function initializeProperties()
     {
         $this->prop((new Prop('id'))->method(Get::PREFIX));
@@ -140,14 +116,12 @@ class Day implements UserReferenceInterface
      */
     public function getCalorie()
     {
-        if($this->calorie === null) {
-            $this->calorie = 0;
-            foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
-                $this->calorie += $comestiblesWithinDay->getCalorie();
-            }
+        $calorie = 0;
+        foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+            $calorie += $comestiblesWithinDay->getCalorie();
         }
 
-        return $this->calorie;
+        return $calorie;
     }
 
     /**
@@ -155,14 +129,12 @@ class Day implements UserReferenceInterface
      */
     public function getProtein()
     {
-        if($this->protein === null) {
-            $this->protein = 0;
-            foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
-                $this->protein += $comestiblesWithinDay->getProtein();
-            }
+        $protein = 0;
+        foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+            $protein += $comestiblesWithinDay->getProtein();
         }
 
-        return $this->protein;
+        return $protein;
     }
 
     /**
@@ -170,14 +142,12 @@ class Day implements UserReferenceInterface
      */
     public function getCarbohydrate()
     {
-        if($this->carbohydrate === null) {
-            $this->carbohydrate = 0;
-            foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
-                $this->carbohydrate += $comestiblesWithinDay->getCarbohydrate();
-            }
+        $carbohydrate = 0;
+        foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+            $carbohydrate += $comestiblesWithinDay->getCarbohydrate();
         }
 
-        return $this->carbohydrate;
+        return $carbohydrate;
     }
 
     /**
@@ -185,13 +155,11 @@ class Day implements UserReferenceInterface
      */
     public function getFat()
     {
-        if($this->fat === null) {
-            $this->fat = 0;
-            foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
-                $this->fat += $comestiblesWithinDay->getFat();
-            }
+        $fat = 0;
+        foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+            $fat += $comestiblesWithinDay->getFat();
         }
 
-        return $this->fat;
+        return $fat;
     }
 }
