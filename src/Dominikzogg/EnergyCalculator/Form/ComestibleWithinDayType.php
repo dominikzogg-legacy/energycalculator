@@ -59,7 +59,7 @@ class ComestibleWithinDayType extends AbstractType
                     'title' => $this->translator->trans('day.label.comestiblesWithinDay_collection.comestible_default')
                 )
             ))
-            ->add('amount', 'number', array('required' => false))
+            ->add('amount', 'number', array('required' => true))
         ;
     }
 

@@ -55,8 +55,8 @@ class DayType extends AbstractType
                 'input' => 'datetime',
                 'format' => 'dd.MM.yyyy',
             ))
-            ->add('weight', 'text', array('required' => false))
-            ->add('abdominalCircumference', 'text', array('required' => false))
+            ->add('weight', 'number', array('required' => false))
+            ->add('abdominalCircumference', 'number', array('required' => false))
             ->add('comestiblesWithinDay', 'bootstrap_collection', array(
                 'type' => new ComestibleWithinDayType($this->user, $this->translator),
                 'allow_add' => true,
