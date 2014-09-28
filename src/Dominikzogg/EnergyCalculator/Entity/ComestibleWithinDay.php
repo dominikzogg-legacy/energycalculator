@@ -4,7 +4,9 @@ namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Saxulum\Accessor\Accessors\Get;
+use Saxulum\Accessor\Accessors\Set;
 use Saxulum\Accessor\AccessorTrait;
+use Saxulum\Accessor\Hint;
 use Saxulum\Accessor\Prop;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -13,12 +15,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="comestible_within_day")
  * @method int getId()
  * @method Day getDay()
+ * @method $this setDay(Day $day, $stopPropagation = false)
  * @method Comestible getComestible()
  * @method float getAmount()
  */
 class ComestibleWithinDay
 {
-    use AccessorTrait;
+    use AccessorTrait {
+        __call as __traitCall;
+    }
     use AttributeTrait;
 
     /**
@@ -60,53 +65,41 @@ class ComestibleWithinDay
         return (string) $this->getComestible()->getName();
     }
 
+    /**
+     * @param $name
+     * @param array $arguments
+     * @return mixed
+     */
+    public function __call($name, array $arguments)
+    {
+        $resetValueCalls = array(
+            'setComestible',
+            'setAmount',
+        );
+
+        $returnValue = $this->__traitCall($name, $arguments);
+
+        if(in_array($name, $resetValueCalls)) {
+            $this->resetValues();
+        }
+
+        return $returnValue;
+    }
+
     protected function initializeProperties()
     {
         $this->prop((new Prop('id'))->method(Get::PREFIX));
-        $this->prop((new Prop('day'))->method(Get::PREFIX));
-        $this->prop((new Prop('comestible'))->method(Get::PREFIX));
-        $this->prop((new Prop('amount'))->method(Get::PREFIX));
-    }
-
-    /**
-     * @param Day $day
-     * @param bool $stopPropagation
-     * @return $this
-     */
-    public function setDay(Day $day = null, $stopPropagation = false)
-    {
-        if(!$stopPropagation) {
-            if(!is_null($this->day)) {
-                $this->day->removeComestibleWithinDay($this, true);
-            }
-            if(!is_null($day)) {
-                $day->addComestibleWithinDay($this, true);
-            }
-        }
-        $this->day = $day;
-        return $this;
-    }
-
-    /**
-     * @param Comestible $comestible
-     * @return $this
-     */
-    public function setComestible(Comestible $comestible)
-    {
-        $this->comestible = $comestible;
-        $this->resetValues();
-        return $this;
-    }
-
-    /**
-     * @param float $amount
-     * @return $this
-     */
-    public function setAmount($amount)
-    {
-        $this->amount = $amount;
-        $this->resetValues();
-        return $this;
+        $this->prop(
+            (new Prop('day', 'Dominikzogg\EnergyCalculator\Entity\Day', true, 'comestiblesWithinDay', Prop::REMOTE_MANY))
+                ->method(Get::PREFIX)
+                ->method(Set::PREFIX)
+        );
+        $this->prop(
+            (new Prop('comestible', 'Dominikzogg\EnergyCalculator\Entity\Comestible'))
+                ->method(Get::PREFIX)
+                ->method(Set::PREFIX)
+        );
+        $this->prop((new Prop('amount', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
     }
 
     /**

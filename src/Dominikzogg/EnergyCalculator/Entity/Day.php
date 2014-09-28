@@ -5,9 +5,12 @@ namespace Dominikzogg\EnergyCalculator\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Saxulum\Accessor\Accessors\Add;
 use Saxulum\Accessor\Accessors\Get;
+use Saxulum\Accessor\Accessors\Remove;
 use Saxulum\Accessor\Accessors\Set;
 use Saxulum\Accessor\AccessorTrait;
+use Saxulum\Accessor\Hint;
 use Saxulum\Accessor\Prop;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -29,7 +32,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Day implements UserReferenceInterface
 {
-    use AccessorTrait;
+    use AccessorTrait {
+        __call as __traitCall;
+    }
     use AttributeTrait;
     use UserReferenceTrait;
 
@@ -86,13 +91,40 @@ class Day implements UserReferenceInterface
         $this->comestiblesWithinDay = new ArrayCollection();
     }
 
+    /**
+     * @param $name
+     * @param array $arguments
+     * @return mixed
+     */
+    public function __call($name, array $arguments)
+    {
+        $resetValueCalls = array(
+            'addComestiblesWithinDay',
+            'removeComestiblesWithinDay',
+        );
+
+        $returnValue = $this->__traitCall($name, $arguments);
+
+        if(in_array($name, $resetValueCalls)) {
+            $this->resetValues();
+        }
+
+        return $returnValue;
+    }
+
     protected function initializeProperties()
     {
         $this->prop((new Prop('id'))->method(Get::PREFIX));
         $this->prop((new Prop('date', '\DateTime', true))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('weight'))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('abdominalCircumference'))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('comestiblesWithinDay'))->method(Get::PREFIX));
+        $this->prop((new Prop('weight', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('abdominalCircumference', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop(
+            (new Prop('comestiblesWithinDay', 'Dominikzogg\EnergyCalculator\Entity\ComestibleWithinDay[]', true, 'day', Prop::REMOTE_ONE))
+                ->method(Add::PREFIX)
+                ->method(Get::PREFIX)
+                ->method(Remove::PREFIX)
+                ->method(Set::PREFIX)
+        );
     }
 
     /**
@@ -101,51 +133,6 @@ class Day implements UserReferenceInterface
     public function __toString()
     {
         return (string) $this->getDate()->format('d.m.Y');
-    }
-
-    /**
-     * @param ComestibleWithinDay $comestibleWithinDay
-     * @param bool $stopPropagation
-     * @return $this
-     */
-    public function addComestibleWithinDay(ComestibleWithinDay $comestibleWithinDay, $stopPropagation = false)
-    {
-        $this->comestiblesWithinDay->add($comestibleWithinDay);
-        $this->resetValues();
-        if(!$stopPropagation) {
-            $comestibleWithinDay->setDay($this, true);
-        }
-        return $this;
-    }
-
-    /**
-     * @param ComestibleWithinDay $comestibleWithinDay
-     * @param bool $stopPropagation
-     * @return $this
-     */
-    public function removeComestibleWithinDay(ComestibleWithinDay $comestibleWithinDay, $stopPropagation = false)
-    {
-        $this->comestiblesWithinDay->removeElement($comestibleWithinDay);
-        $this->resetValues();
-        if(!$stopPropagation) {
-            $comestibleWithinDay->setDay(null, true);
-        }
-        return $this;
-    }
-
-    /**
-     * @param ComestibleWithinDay[] $comestiblesWithinDay
-     * @return $this
-     */
-    public function setComestiblesWithinDay($comestiblesWithinDay)
-    {
-        foreach($this->comestiblesWithinDay as $comestibleWithinDay) {
-            $this->removeComestibleWithinDay($comestibleWithinDay);
-        }
-        foreach($comestiblesWithinDay as $comestibleWithinDay) {
-            $this->addComestibleWithinDay($comestibleWithinDay);
-        }
-        return $this;
     }
 
     /**

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Saxulum\Accessor\Accessors\Get;
 use Saxulum\Accessor\Accessors\Set;
 use Saxulum\Accessor\AccessorTrait;
+use Saxulum\Accessor\Hint;
 use Saxulum\Accessor\Prop;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -86,11 +87,11 @@ class Comestible implements UserReferenceInterface
     protected function initializeProperties()
     {
         $this->prop((new Prop('id'))->method(Get::PREFIX));
-        $this->prop((new Prop('name'))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('calorie'))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('protein'))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('carbohydrate'))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('fat'))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('defaultValue'))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('name', Hint::HINT_STRING))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('calorie', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('protein', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('carbohydrate', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('fat', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->prop((new Prop('defaultValue', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
     }
 }
