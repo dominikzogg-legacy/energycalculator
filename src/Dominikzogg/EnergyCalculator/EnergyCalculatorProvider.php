@@ -35,8 +35,10 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
 
         $app['security.access_rules'] = $app->share($app->extend('security.access_rules', function ($rules) use ($app) {
             $rules[] = array('^/_profiler*', 'IS_AUTHENTICATED_ANONYMOUSLY');
-            $rules[] = array('^/[^/]*/admin', 'ROLE_ADMIN');
-            $rules[] = array('^/[^/]*', 'ROLE_USER');
+            $rules[] = array('^/[^/]+/login*', 'IS_AUTHENTICATED_ANONYMOUSLY');
+            $rules[] = array('^/[^/]+/logout*', 'IS_AUTHENTICATED_ANONYMOUSLY');
+            $rules[] = array('^/[^/]+/admin', 'ROLE_ADMIN');
+            $rules[] = array('^/[^/]+', 'ROLE_USER');
 
             return $rules;
         }));
