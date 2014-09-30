@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Saxulum\Accessor\Accessors\Get;
 use Saxulum\Accessor\Accessors\Set;
 use Saxulum\Accessor\AccessorTrait;
-use Saxulum\Accessor\Hint;
+use Saxulum\Hint\Hint;
 use Saxulum\Accessor\Prop;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,7 +17,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @method Day getDay()
  * @method $this setDay(Day $day)
  * @method Comestible getComestible()
+ * @method $this setComestible(Comestible $comestible)
  * @method float getAmount()
+ * @method $this setAmount(float $amount)
  */
 class ComestibleWithinDay
 {
@@ -62,20 +64,20 @@ class ComestibleWithinDay
         return (string) $this->getComestible()->getName();
     }
 
-    protected function initializeProperties()
+    protected function _initProps()
     {
-        $this->prop((new Prop('id'))->method(Get::PREFIX));
-        $this->prop(
+        $this->_prop((new Prop('id', Hint::INT))->method(Get::PREFIX));
+        $this->_prop(
             (new Prop('day', 'Dominikzogg\EnergyCalculator\Entity\Day', true, 'comestiblesWithinDay', Prop::REMOTE_MANY))
                 ->method(Get::PREFIX)
                 ->method(Set::PREFIX)
         );
-        $this->prop(
+        $this->_prop(
             (new Prop('comestible', 'Dominikzogg\EnergyCalculator\Entity\Comestible'))
                 ->method(Get::PREFIX)
                 ->method(Set::PREFIX)
         );
-        $this->prop((new Prop('amount', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('amount', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
     }
 
     /**

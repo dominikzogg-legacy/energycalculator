@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Saxulum\Accessor\Accessors\Get;
 use Saxulum\Accessor\Accessors\Set;
 use Saxulum\Accessor\AccessorTrait;
-use Saxulum\Accessor\Hint;
+use Saxulum\Hint\Hint;
 use Saxulum\Accessor\Prop;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -14,18 +14,18 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity()
  * @ORM\Table(name="comestible")
  * @method int getId()
- * @method $this setName($name)
  * @method string getName()
- * @method $this setCalorie($calorie)
+ * @method $this setName(string $name)
  * @method float getCalorie()
- * @method $this setProtein($protein)
+ * @method $this setCalorie(float $calorie)
  * @method float getProtein()
- * @method $this setCarbohydrate($carbohydrate)
+ * @method $this setProtein(float $protein)
  * @method float getCarbohydrate()
- * @method $this setFat($fat)
+ * @method $this setCarbohydrate(float $carbohydrate)
  * @method float getFat()
- * @method $this setDefaultValue($defaultValue)
- * @method string getDefaultValue()
+ * @method $this setFat(float $fat)
+ * @method float getDefaultValue()
+ * @method $this setDefaultValue(float $defaultValue)
  */
 class Comestible implements UserReferenceInterface
 {
@@ -84,14 +84,14 @@ class Comestible implements UserReferenceInterface
         return (string) $this->getName();
     }
 
-    protected function initializeProperties()
+    protected function _initProps()
     {
-        $this->prop((new Prop('id'))->method(Get::PREFIX));
-        $this->prop((new Prop('name', Hint::HINT_STRING))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('calorie', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('protein', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('carbohydrate', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('fat', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('defaultValue', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('id', Hint::INT))->method(Get::PREFIX));
+        $this->_prop((new Prop('name', Hint::STRING))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('calorie', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('protein', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('carbohydrate', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('fat', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('defaultValue', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
     }
 }

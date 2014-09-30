@@ -10,7 +10,7 @@ use Saxulum\Accessor\Accessors\Get;
 use Saxulum\Accessor\Accessors\Remove;
 use Saxulum\Accessor\Accessors\Set;
 use Saxulum\Accessor\AccessorTrait;
-use Saxulum\Accessor\Hint;
+use Saxulum\Hint\Hint;
 use Saxulum\Accessor\Prop;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,14 +21,17 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      @ORM\UniqueConstraint(name="day_per_user_idx", columns={"date", "user_id"})
  * })
  * @UniqueEntity(fields={"date", "user"}, message="day.unique")
- * @method int getId()
- * @method $this setDate(\DateTime $date = null)
- * @method \DateTime|null getDate()
- * @method $this setWeight($weight)
+ * @method float getId()
+ * @method \DateTime getDate()
+ * @method $this setDate(\DateTime $date)
  * @method float getWeight()
- * @method $this setAbdominalCircumference($abdominalCircumference)
+ * @method $this setWeight(float $weight)
  * @method float getAbdominalCircumference()
+ * @method $this setAbdominalCircumference(float $abdominalCircumference)
+ * @method $this addComestiblesWithinDay(ComestibleWithinDay $comestiblesWithinDay)
  * @method ComestibleWithinDay[] getComestiblesWithinDay()
+ * @method $this removeComestiblesWithinDay(ComestibleWithinDay $comestiblesWithinDay)
+ * @method $this setComestiblesWithinDay(array $comestiblesWithinDay)
  */
 class Day implements UserReferenceInterface
 {
@@ -88,13 +91,13 @@ class Day implements UserReferenceInterface
         $this->comestiblesWithinDay = new ArrayCollection();
     }
 
-    protected function initializeProperties()
+    protected function _initProps()
     {
-        $this->prop((new Prop('id'))->method(Get::PREFIX));
-        $this->prop((new Prop('date', '\DateTime', true))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('weight', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop((new Prop('abdominalCircumference', Hint::HINT_NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->prop(
+        $this->_prop((new Prop('id', Hint::NUMERIC))->method(Get::PREFIX));
+        $this->_prop((new Prop('date', '\DateTime', true))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('weight', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('abdominalCircumference', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop(
             (new Prop('comestiblesWithinDay', 'Dominikzogg\EnergyCalculator\Entity\ComestibleWithinDay[]', true, 'day', Prop::REMOTE_ONE))
                 ->method(Add::PREFIX)
                 ->method(Get::PREFIX)
