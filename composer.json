@@ -1,8 +1,8 @@
 {
-    "name": "saxulum/saxulum",
+    "name": "dominikzogg/energycalculator",
     "license": "MIT",
     "type": "project",
-    "description": "saxulum a silex skeleton, very symfony2 like",
+    "description": "A simple tool to track the energy consumption",
     "autoload":
     {
         "psr-0":
