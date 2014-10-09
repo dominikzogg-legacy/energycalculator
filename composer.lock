@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "65fcd1efb51d72c9617ab565913c1c8e",
+    "hash": "a49ab65241b77f1d817e07b42cc90b01",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -1575,16 +1575,16 @@
         },
         {
             "name": "saxulum/saxulum-collection-js",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-collection-js.git",
-                "reference": "db7827221964a9422b774b5697b15646161ef348"
+                "reference": "93166543284bb0edc436adb6af5c019796de3adb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-collection-js/zipball/db7827221964a9422b774b5697b15646161ef348",
-                "reference": "db7827221964a9422b774b5697b15646161ef348",
+                "url": "https://api.github.com/repos/saxulum/saxulum-collection-js/zipball/93166543284bb0edc436adb6af5c019796de3adb",
+                "reference": "93166543284bb0edc436adb6af5c019796de3adb",
                 "shasum": ""
             },
             "type": "library",
@@ -1605,7 +1605,7 @@
                 "symfony",
                 "symfony form"
             ],
-            "time": "2014-05-26 20:42:38"
+            "time": "2014-10-09 20:50:01"
         },
         {
             "name": "saxulum/saxulum-console",
