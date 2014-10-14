@@ -12,7 +12,7 @@
         %}
         <link rel="stylesheet" href="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}" />
         {% endstylesheets %}
-        {% stylesheets filter='csscopyfile,?csscopyfile'
+        {% stylesheets filter='csscopyfile,?csscompress'
         'src/Dominikzogg/EnergyCalculator/Resources/public/css/*.css'
         %}
         <link rel="stylesheet" href="{{ app.request.basepath }}/{{ app.assetic_asset_path }}/{{ asset_url }}" />
