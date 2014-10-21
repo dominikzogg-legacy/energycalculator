@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bfde35f73fca86aff43fd5e365000f87",
+    "hash": "a0cd0c30e174fb8a4c805ae4ed455d2e",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -2119,6 +2119,58 @@
                 "userprovider"
             ],
             "time": "2014-08-25 12:14:38"
+        },
+        {
+            "name": "saxulum/saxulum-validator-provider",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saxulum/saxulum-validator-provider.git",
+                "reference": "57ed3931e7f389b3c9d2d606ff2f930792630d01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saxulum/saxulum-validator-provider/zipball/57ed3931e7f389b3c9d2d606ff2f930792630d01",
+                "reference": "57ed3931e7f389b3c9d2d606ff2f930792630d01",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "~1.0",
+                "php": ">=5.3.3",
+                "pimple/pimple": "~1.0",
+                "symfony/validator": "~2.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "silex/silex": "~1.2",
+                "symfony/config": "~2.3",
+                "symfony/yaml": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Saxulum\\Validator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dominik Zogg",
+                    "email": "dominik.zogg@gmail.com"
+                }
+            ],
+            "description": "Saxulum Validator Provider (yaml)",
+            "keywords": [
+                "cilex",
+                "pimple",
+                "saxulum",
+                "silex",
+                "validator"
+            ],
+            "time": "2014-10-21 20:04:20"
         },
         {
             "name": "saxulum/saxulum-webprofiler-provider",

@@ -34,10 +34,7 @@ use Saxulum\RouteController\Provider\RouteControllerProvider;
 use Saxulum\SaxulumBootstrapProvider\Silex\Provider\SaxulumBootstrapProvider;
 use Saxulum\SaxulumWebProfiler\Provider\SaxulumWebProfilerProvider;
 use Saxulum\Translation\Silex\Provider\TranslationProvider;
-use Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory;
-use Symfony\Component\Validator\Mapping\Loader\AnnotationLoader;
-use Symfony\Component\Validator\Mapping\Loader\LoaderChain;
-use Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader;
+use Saxulum\Validator\Silex\Provider\SaxulumValidatorProvider;
 
 // annotation registry
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
@@ -79,15 +76,7 @@ $app->register(new RouteControllerProvider());
 $app->register(new SaxulumPaginationProvider());
 $app->register(new TranslationProvider());
 $app->register(new SaxulumBootstrapProvider());
-
-$app['validator.mapping.class_metadata_factory'] = $app->share(function () {
-    return new LazyLoadingMetadataFactory(
-        new LoaderChain(array(
-            new AnnotationLoader(new AnnotationReader),
-            new StaticMethodLoader
-        ))
-    );
-});
+$app->register(new SaxulumValidatorProvider());
 
 if ($app['debug']) {
     $app->register(new WebProfilerServiceProvider());
