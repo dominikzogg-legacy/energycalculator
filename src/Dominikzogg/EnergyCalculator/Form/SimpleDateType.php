@@ -49,6 +49,10 @@ class SimpleDateType extends BaseDateTimeType
         $resolver->replaceDefaults(array(
             'widget' => 'single_text',
             'format' => 'dd.MM.yyyy',
+            'attr' => array(
+                'data-provide' => 'datepicker',
+                'data-date-format' => 'dd.mm.yyyy',
+            )
         ));
     }
 
