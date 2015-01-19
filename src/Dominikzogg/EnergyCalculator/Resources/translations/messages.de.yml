@@ -67,7 +67,6 @@ day:
   label:
     date: *date
     weight: &weight Gewicht
-    abdominalCircumference: &abdominalCircumference Bauchumfang
     comestiblesWithinDay: Konsum
     comestiblesWithinDay_collection:
       add: Nahrungsmittel hinzufügen
@@ -97,7 +96,6 @@ day:
     key: *key
     value: *value
     weight: *weight
-    abdominalCircumference: *abdominalCircumference
 
 comestible:
   edit:

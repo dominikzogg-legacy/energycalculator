@@ -26,8 +26,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @method $this setDate(\DateTime $date)
  * @method float getWeight()
  * @method $this setWeight(float $weight)
- * @method float getAbdominalCircumference()
- * @method $this setAbdominalCircumference(float $abdominalCircumference)
  * @method $this addComestiblesWithinDay(ComestibleWithinDay $comestiblesWithinDay)
  * @method ComestibleWithinDay[] getComestiblesWithinDay()
  * @method $this removeComestiblesWithinDay(ComestibleWithinDay $comestiblesWithinDay)
@@ -66,19 +64,6 @@ class Day implements UserReferenceInterface
     protected $weight;
 
     /**
-     * @var float
-     * @ORM\Column(name="abdominal_circumference", type="decimal", precision=10, scale=4, nullable=true)
-     * @Assert\Range(
-     *      min=0,
-     *      max=500,
-     *      minMessage="day.abdominalCircumference.range.minmessage",
-     *      maxMessage="day.abdominalCircumference.range.maxmessage",
-     *      invalidMessage="day.abdominalCircumference.range.invalidmessage"
-     * )
-     */
-    protected $abdominalCircumference;
-
-    /**
      * @var ComestibleWithinDay[]|Collection
      * @ORM\OneToMany(targetEntity="ComestibleWithinDay", mappedBy="day", cascade={"persist"})
      * @Assert\Valid()
@@ -96,7 +81,6 @@ class Day implements UserReferenceInterface
         $this->_prop((new Prop('id', Hint::NUMERIC))->method(Get::PREFIX));
         $this->_prop((new Prop('date', '\DateTime', true))->method(Get::PREFIX)->method(Set::PREFIX));
         $this->_prop((new Prop('weight', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
-        $this->_prop((new Prop('abdominalCircumference', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
         $this->_prop(
             (new Prop('comestiblesWithinDay', 'Dominikzogg\EnergyCalculator\Entity\ComestibleWithinDay[]', true, 'day', Prop::REMOTE_ONE))
                 ->method(Add::PREFIX)
