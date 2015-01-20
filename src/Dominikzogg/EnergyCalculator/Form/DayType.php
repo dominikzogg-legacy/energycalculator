@@ -50,11 +50,7 @@ class DayType extends AbstractType
         }
 
         $builder
-            ->add('date', 'date', array(
-                'widget' => 'single_text',
-                'input' => 'datetime',
-                'format' => 'dd.MM.yyyy',
-            ))
+            ->add('date', 'simpledate')
             ->add('weight', 'number', array('required' => false))
             ->add('comestiblesWithinDay', 'bootstrap_collection', array(
                 'type' => new ComestibleWithinDayType($this->user, $this->translator),
