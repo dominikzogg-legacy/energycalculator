@@ -14,7 +14,7 @@ trait TwigTrait
     /**
      * @param $view
      * @param  array  $parameters
-     * @return string
+     * @return Response
      */
     protected function render($view, array $parameters = array())
     {

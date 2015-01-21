@@ -3,8 +3,8 @@
 namespace Dominikzogg\EnergyCalculator\Controller\Traits;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
 
 trait DoctrineTrait
 {
@@ -15,7 +15,7 @@ trait DoctrineTrait
 
     /**
      * @param string $class
-     * @return EntityManager|null
+     * @return ObjectManager|null
      */
     protected function getManagerForClass($class)
     {
@@ -24,7 +24,7 @@ trait DoctrineTrait
 
     /**
      * @param string $class
-     * @return EntityRepository
+     * @return ObjectRepository
      */
     protected function getRepositoryForClass($class)
     {

@@ -20,19 +20,9 @@ class DayType extends AbstractType
      */
     protected $translator;
 
-    /**
-     * @param User $user
-     */
-    public function setUser(User $user)
+    public function __construct(User $user, Translator $translator)
     {
         $this->user = $user;
-    }
-
-    /**
-     * @param Translator $translator
-     */
-    public function setTranslator(Translator $translator)
-    {
         $this->translator = $translator;
     }
 
@@ -42,12 +32,8 @@ class DayType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $addButtonText = 'add';
-        $deleteButtonText = 'remove';
-        if($this->translator !== null) {
-            $addButtonText = $this->translator->trans('day.label.comestiblesWithinDay_collection.add', array(), 'messages');
-            $deleteButtonText = $this->translator->trans('day.label.comestiblesWithinDay_collection.remove', array(), 'messages');
-        }
+        $addButtonText = $this->translator->trans('day.label.comestiblesWithinDay_collection.add', array(), 'messages');
+        $deleteButtonText = $this->translator->trans('day.label.comestiblesWithinDay_collection.remove', array(), 'messages');
 
         $builder
             ->add('date', 'simpledate')
@@ -73,7 +59,7 @@ class DayType extends AbstractType
     {
         parent::setDefaultOptions($resolver);
         $resolver->setDefaults(array(
-            'data_class' => get_class(new Day()),
+            'data_class' => Day::class,
         ));
     }
 

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>{{ (transprefix~".edit.title")|trans() }}</h1>
-    <form action="{{ url(editroute, {'id': entity.id}) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+    <form action="{{ url(editRoute, {'id': entity.id}) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
         {{ bootstrap_set_style('horizontal') }}
 
         <div class="form-group">
@@ -12,8 +12,8 @@
                 <button type="submit" class="btn btn-success" name="save" value="{{ (transprefix~".edit.save")|trans() }}">
                     <i class="glyphicon glyphicon-save"></i>
                 </button>
-                {% if entity.id and showroute|default(false) %}
-                    <a class="btn btn-default" href="{{ url(showroute, {'id': entity.id }) }}" title="{{ (transprefix~".edit.show")|trans() }}">
+                {% if entity.id and viewRoute|default(false) %}
+                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transprefix~".edit.show")|trans() }}">
                         <i class="glyphicon glyphicon-eye-open"></i>
                     </a>
                 {% endif %}
@@ -30,8 +30,8 @@
                 <button type="submit" class="btn btn-success" name="save" value="{{ (transprefix~".edit.save")|trans() }}">
                     <i class="glyphicon glyphicon-save"></i>
                 </button>
-                {% if entity.id and showroute|default(false) %}
-                    <a class="btn btn-default" href="{{ url(showroute, {'id': entity.id }) }}" title="{{ (transprefix~".edit.show")|trans() }}">
+                {% if entity.id and viewRoute|default(false) %}
+                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transprefix~".edit.show")|trans() }}">
                         <i class="glyphicon glyphicon-eye-open"></i>
                     </a>
                 {% endif %}

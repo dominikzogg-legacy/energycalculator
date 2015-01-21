@@ -11,7 +11,7 @@ use Saxulum\Accessor\Prop;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Dominikzogg\EnergyCalculator\Repository\ComestibleRepository")
  * @ORM\Table(name="comestible")
  * @method int getId()
  * @method string getName()

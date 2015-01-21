@@ -1,0 +1,55 @@
+{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+
+{% block pagetitle %}{{ (transPrefix~".list.title")|trans() }}{% endblock %}
+
+{% block body %}
+    <h1>{{ (transPrefix~".list.title")|trans() }}</h1>
+    <a class="btn btn-default" href="{{ url(createRoute) }}" title="{{ (transPrefix~".list.create")|trans() }}">
+        <i class="glyphicon glyphicon-plus"></i>
+    </a><br />
+    <br />
+    {% if form|default(false) %}
+        {{ form(form, {'action': url(listRoute, app.request.query.all|merge({'page': 1})), 'style': 'inline'}) }}
+        <br />
+    {% endif %}
+    {% if pagination.template|default(false) %}
+        {{ knp_pagination_render(pagination) }}
+    {% endif %}
+    {% if pagination|length > 0 %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ (transPrefix~".list.name")|trans() }}</th>
+                <th>{{ (transPrefix~".list.actions")|trans() }}</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for entity in pagination %}
+                    <tr>
+                        <td>{{ entity }}</td>
+                        <td>
+                            {% if editRoute|default(false) %}
+                                <a class="btn btn-default" href="{{ url(editRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.edit")|trans() }}">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            {% endif %}
+                            {% if viewRoute|default(false) %}
+                                <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.show")|trans() }}">
+                                    <i class="glyphicon glyphicon-eye-open"></i>
+                                </a>
+                            {% endif %}
+                            {% if deleteRoute|default(false) %}
+                                <a class="btn btn-danger" data-delete-link href="{{ url(deleteRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.delete")|trans() }}">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if pagination.template|default(false) %}
+            {{ knp_pagination_render(pagination) }}
+        {% endif %}
+    {% endif %}
+{% endblock %}

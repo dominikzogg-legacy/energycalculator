@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>{{ (transprefix~".list.title")|trans() }}</h1>
-    <a class="btn btn-default" href="{{ url(editroute) }}" title="{{ (transprefix~".list.create")|trans() }}">
+    <a class="btn btn-default" href="{{ url(editRoute) }}" title="{{ (transprefix~".list.create")|trans() }}">
         <i class="glyphicon glyphicon-plus"></i>
     </a><br />
     <br />
@@ -15,27 +15,29 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ (transprefix~".list.name")|trans() }}</th>
+                <th>{{ (transprefix~".list.date")|trans() }}</th>
+                <th>{{ (transprefix~".list.weight")|trans() }}</th>
                 <th>{{ (transprefix~".list.actions")|trans() }}</th>
             </tr>
             </thead>
             <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td>{{ entity }}</td>
+                        <td>{{ entity.date|date('d.m.Y') }}</td>
+                        <td>{{ entity.weight|round(1) }}</td>
                         <td>
-                            {% if editroute|default(false) %}
-                                <a class="btn btn-default" href="{{ url(editroute, {'id': entity.id }) }}" title="{{ (transprefix~".list.edit")|trans() }}">
+                            {% if editRoute|default(false) %}
+                                <a class="btn btn-default" href="{{ url(editRoute, {'id': entity.id }) }}" title="{{ (transprefix~".list.edit")|trans() }}">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
                             {% endif %}
-                            {% if showroute|default(false) %}
-                                <a class="btn btn-default" href="{{ url(showroute, {'id': entity.id }) }}" title="{{ (transprefix~".list.show")|trans() }}">
+                            {% if viewRoute|default(false) %}
+                                <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transprefix~".list.show")|trans() }}">
                                     <i class="glyphicon glyphicon-eye-open"></i>
                                 </a>
                             {% endif %}
-                            {% if deleteroute|default(false) %}
-                                <a class="btn btn-danger" data-delete-link href="{{ url(deleteroute, {'id': entity.id }) }}" title="{{ (transprefix~".list.delete")|trans() }}">
+                            {% if deleteRoute|default(false) %}
+                                <a class="btn btn-danger" data-delete-link href="{{ url(deleteRoute, {'id': entity.id }) }}" title="{{ (transprefix~".list.delete")|trans() }}">
                                     <i class="glyphicon glyphicon-remove"></i>
                                 </a>
                             {% endif %}

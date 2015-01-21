@@ -2,8 +2,11 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
+use Dominikzogg\EnergyCalculator\Entity\Day;
+use Dominikzogg\EnergyCalculator\Form\DayType;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,17 +25,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class DayController extends AbstractCRUDController
 {
-    protected $entityClass = 'Dominikzogg\\EnergyCalculator\\Entity\\Day';
-    protected $formTypeClass = 'Dominikzogg\\EnergyCalculator\\Form\\DayType';
-    protected $listRoute = 'day_list';
-    protected $editRoute = 'day_edit';
-    protected $showRoute = 'day_show';
-    protected $deleteRoute = 'day_delete';
-    protected $listTemplate = '@DominikzoggEnergyCalculator/BaseCRUD/list.html.twig';
-    protected $editTemplate = '@DominikzoggEnergyCalculator/BaseCRUD/edit.html.twig';
-    protected $showTemplate = '@DominikzoggEnergyCalculator/Day/show.html.twig';
-    protected $transPrefix = 'day';
-
     /**
      * @Route("/", bind="day_list", method="GET")
      * @param Request $request
@@ -40,28 +32,39 @@ class DayController extends AbstractCRUDController
      */
     public function listAction(Request $request)
     {
-        return parent::listEntities($request, array(), array('date' => 'DESC'), 7);
+        return parent::listObjects($request);
     }
 
     /**
-     * @Route("/edit/{id}", bind="day_edit", values={"id"=null}, asserts={"id"="\d+"})
+     * @Route("/create", bind="day_create")
+     * @param Request $request
+     * @return Response|RedirectResponse
+     */
+    public function createAction(Request $request)
+    {
+        return parent::createObject($request);
+    }
+
+    /**
+     * @Route("/edit/{id}", bind="day_edit", asserts={"id"="\d+"})
      * @param Request $request
      * @param $id
      * @return Response|RedirectResponse
      */
     public function editAction(Request $request, $id)
     {
-        return parent::editEntity($request, $id);
+        return parent::editObject($request, $id);
     }
 
     /**
-     * @Route("/show/{id}", bind="day_show", asserts={"id"="\d+"}, method="GET")
+     * @Route("/view/{id}", bind="day_view", asserts={"id"="\d+"}, method="GET")
+     * @param Request $request
      * @param $id
      * @return Response
      */
-    public function showAction($id)
+    public function viewAction(Request $request, $id)
     {
-        return parent::showEntity($id);
+        return parent::viewObject($request, $id);
     }
 
     /**
@@ -71,6 +74,121 @@ class DayController extends AbstractCRUDController
      */
     public function deleteAction($id)
     {
-        return parent::deleteEntity($id);
+        return parent::deleteObject($id);
+    }
+
+    /**
+     * @return int
+     */
+    protected function getPerPage()
+    {
+        return 7;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getListDefaultData()
+    {
+        return array(
+            'user' => $this->getUser()->getId()
+        );
+    }
+
+    /**
+     * @return Day
+     */
+    protected function getCreateObject()
+    {
+        $objectClass = $this->getObjectClass();
+
+        /** @var Day $object */
+        $object = new $objectClass;
+        $object->setUser($this->getUser());
+
+        return $object;
+    }
+
+    /**
+     * @return FormTypeInterface
+     */
+    protected function getCreateFormType()
+    {
+        return new DayType($this->getUser(), $this->translator);
+    }
+
+    /**
+     * @param Day $object
+     * @return bool
+     */
+    protected function getEditIsGranted($object)
+    {
+        if(!$this->security->isGranted($this->getEditRole(), $object)) {
+            return false;
+        }
+
+        if($object->getUser() != $this->getUser()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @return FormTypeInterface
+     */
+    protected function getEditFormType()
+    {
+        return new DayType($this->getUser(), $this->translator);
+    }
+
+    /**
+     * @param Day $object
+     * @return bool
+     */
+    protected function getViewIsGranted($object)
+    {
+        if(!$this->security->isGranted($this->getViewRole(), $object)) {
+            return false;
+        }
+
+        if($object->getUser() != $this->getUser()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param Day $object
+     * @return bool
+     */
+    protected function getDeleteIsGranted($object)
+    {
+        if(!$this->security->isGranted($this->getDeleteRole(), $object)) {
+            return false;
+        }
+
+        if($object->getUser() != $this->getUser()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getName()
+    {
+        return 'day';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getObjectClass()
+    {
+        return Day::class;
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
+use Dominikzogg\EnergyCalculator\Entity\Comestible;
+use Dominikzogg\EnergyCalculator\Form\ComestibleListType;
+use Dominikzogg\EnergyCalculator\Form\ComestibleType;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,15 +26,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ComestibleController extends AbstractCRUDController
 {
-    protected $entityClass = 'Dominikzogg\\EnergyCalculator\\Entity\\Comestible';
-    protected $formTypeClass = 'Dominikzogg\\EnergyCalculator\\Form\\ComestibleType';
-    protected $listRoute = 'comestible_list';
-    protected $editRoute = 'comestible_edit';
-    protected $deleteRoute = 'comestible_delete';
-    protected $listTemplate = '@DominikzoggEnergyCalculator/BaseCRUD/list.html.twig';
-    protected $editTemplate = '@DominikzoggEnergyCalculator/BaseCRUD/edit.html.twig';
-    protected $transPrefix = 'comestible';
-
     /**
      * @Route("/", bind="comestible_list", method="GET")
      * @param Request $request
@@ -38,18 +33,28 @@ class ComestibleController extends AbstractCRUDController
      */
     public function listAction(Request $request)
     {
-        return parent::listEntities($request, array(), array('name' => 'ASC'), 20);
+        return parent::listObjects($request);
     }
 
     /**
-     * @Route("/edit/{id}", bind="comestible_edit", values={"id"=null}, asserts={"id"="\d+"})
+     * @Route("/create", bind="comestible_create")
+     * @param Request $request
+     * @return Response|RedirectResponse
+     */
+    public function createAction(Request $request)
+    {
+        return parent::createObject($request);
+    }
+
+    /**
+     * @Route("/edit/{id}", bind="comestible_edit", asserts={"id"="\d+"})
      * @param Request $request
      * @param $id
      * @return Response|RedirectResponse
      */
     public function editAction(Request $request, $id)
     {
-        return parent::editEntity($request, $id);
+        return parent::editObject($request, $id);
     }
 
     /**
@@ -59,6 +64,120 @@ class ComestibleController extends AbstractCRUDController
      */
     public function deleteAction($id)
     {
-        return parent::deleteEntity($id);
+        return parent::deleteObject($id);
+    }
+
+    /**
+     * @return int
+     */
+    protected function getPerPage()
+    {
+        return 20;
+    }
+
+    /**
+     * @return FormTypeInterface|null
+     */
+    protected function getListFormType()
+    {
+        return new ComestibleListType();
+    }
+
+    /**
+     * @return array
+     */
+    protected function getListDefaultData()
+    {
+        return array(
+            'user' => $this->getUser()->getId()
+        );
+    }
+
+    /**
+     * @return Comestible
+     */
+    protected function getCreateObject()
+    {
+        $objectClass = $this->getObjectClass();
+
+        /** @var Comestible $object */
+        $object = new $objectClass;
+        $object->setUser($this->getUser());
+
+        return $object;
+    }
+
+    /**
+     * @return FormTypeInterface
+     */
+    protected function getCreateFormType()
+    {
+        return new ComestibleType();
+    }
+
+    /**
+     * @param Comestible $object
+     * @return bool
+     */
+    protected function getEditIsGranted($object)
+    {
+        if(!$this->security->isGranted($this->getEditRole(), $object)) {
+            return false;
+        }
+
+        if($object->getUser() != $this->getUser()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @return FormTypeInterface
+     */
+    protected function getEditFormType()
+    {
+        return new ComestibleType();
+    }
+
+    /**
+     * @return string
+     */
+    protected function getViewRoute()
+    {
+        return '';
+    }
+
+    /**
+     * @param Comestible $object
+     * @return bool
+     */
+    protected function getDeleteIsGranted($object)
+    {
+        if(!$this->security->isGranted($this->getDeleteRole(), $object)) {
+            return false;
+        }
+
+        if($object->getUser() != $this->getUser()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getName()
+    {
+        return 'comestible';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getObjectClass()
+    {
+        return Comestible::class;
     }
 }

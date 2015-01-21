@@ -2,12 +2,25 @@
 
 namespace Dominikzogg\EnergyCalculator\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Dominikzogg\EnergyCalculator\Entity\Day;
 use Dominikzogg\EnergyCalculator\Entity\User;
 
-class DayRepository extends EntityRepository
+class DayRepository extends AbstractRepository
 {
+    /**
+     * @param array $filterData
+     * @return QueryBuilder
+     */
+    public function getQueryBuilderForFilterForm(array $filterData = null)
+    {
+        $qb = $this->createQueryBuilder('d');
+
+        $this->addEqualFilter($filterData, $qb, 'd', 'date');
+
+        return $qb;
+    }
+
     /**
      * @param \DateTime $from
      * @param \DateTime $to

@@ -9,6 +9,7 @@ use Dominikzogg\EnergyCalculator\Form\SimpleDateType;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
 use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
 use Saxulum\BundleProvider\Provider\AbstractBundleProvider;
+use Saxulum\UserProvider\Model\AbstractUser;
 use Saxulum\UserProvider\Silex\Provider\SaxulumUserProvider;
 use Silex\Application;
 
@@ -32,6 +33,37 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
             $types[] = new SimpleDateType();
 
             return $types;
+        }));
+
+        $app['security.role_hierarchy'] = $app->share($app->extend('security.role_hierarchy', function ($roleHierarchy) use ($app) {
+
+            // comestible
+            $roleHierarchy['ROLE_COMESTIBLE_LIST'] = array();
+            $roleHierarchy['ROLE_COMESTIBLE_CREATE'] = array('ROLE_COMESTIBLE_LIST');
+            $roleHierarchy['ROLE_COMESTIBLE_EDIT'] = array('ROLE_COMESTIBLE_LIST');
+            $roleHierarchy['ROLE_COMESTIBLE_VIEW'] = array('ROLE_COMESTIBLE_LIST');
+            $roleHierarchy['ROLE_COMESTIBLE_DELETE'] = array('ROLE_COMESTIBLE_LIST');
+            
+            // day
+            $roleHierarchy['ROLE_DAY_LIST'] = array();
+            $roleHierarchy['ROLE_DAY_CREATE'] = array('ROLE_DAY_LIST');
+            $roleHierarchy['ROLE_DAY_EDIT'] = array('ROLE_DAY_LIST');
+            $roleHierarchy['ROLE_DAY_VIEW'] = array('ROLE_DAY_LIST');
+            $roleHierarchy['ROLE_DAY_DELETE'] = array('ROLE_DAY_LIST');
+
+            // user
+            $roleHierarchy['ROLE_USER_LIST'] = array();
+            $roleHierarchy['ROLE_USER_CREATE'] = array('ROLE_USER_LIST');
+            $roleHierarchy['ROLE_USER_EDIT'] = array('ROLE_USER_LIST');
+            $roleHierarchy['ROLE_USER_VIEW'] = array('ROLE_USER_LIST');
+            $roleHierarchy['ROLE_USER_DELETE'] = array('ROLE_USER_LIST');
+
+            $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_COMESTIBLE_DELETE';
+            $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_DAY_DELETE';
+
+            $roleHierarchy[AbstractUser::ROLE_ADMIN][] = 'ROLE_USER_DELETE';
+
+            return $roleHierarchy;
         }));
 
         $app['security.access_rules'] = $app->share($app->extend('security.access_rules', function ($rules) use ($app) {

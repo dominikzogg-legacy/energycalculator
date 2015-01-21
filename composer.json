@@ -11,7 +11,7 @@
         }
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": "~5.5",
         "dflydev/doctrine-orm-service-provider": "~1.0,>=1.0.4",
         "igorw/config-service-provider": "~1.2",
         "jquery/jquery": "1.11.1",
@@ -29,7 +29,7 @@
         "saxulum/saxulum-doctrine-orm-commands": "~1.2",
         "saxulum/saxulum-menu-provider": "~1.0,>=1.0.2",
         "saxulum/saxulum-pagination-provider": "dev-master@dev",
-        "saxulum/saxulum-route-controller-provider": "~1.2",
+        "saxulum/saxulum-route-controller-provider": "~1.2,>=1.2.1",
         "saxulum/saxulum-translation-provider": "~1.0,>=1.0.3",
         "saxulum/saxulum-validator-provider": "~1.0",
         "saxulum/saxulum-webprofiler-provider": "~1.1,>=1.1.1",

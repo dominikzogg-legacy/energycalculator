@@ -76,7 +76,8 @@ day:
       amount: *amount
   list:
     title: Tages Liste
-    name: *name
+    date: *date
+    weight: *weight
     actions: *actions
     edit: *edit
     show: *show
