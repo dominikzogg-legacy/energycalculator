@@ -7,5 +7,5 @@
     Options -MultiViews
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [QSA,L]
+    RewriteRule ^ index_dev.php [QSA,L]
 </IfModule>

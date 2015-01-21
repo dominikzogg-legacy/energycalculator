@@ -2,14 +2,13 @@
 
 namespace Dominikzogg\EnergyCalculator\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType as BaseDateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SimpleDateType extends BaseDateTimeType
+class SimpleDateType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -46,7 +45,7 @@ class SimpleDateType extends BaseDateTimeType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
-        $resolver->replaceDefaults(array(
+        $resolver->setDefaults(array(
             'widget' => 'single_text',
             'format' => 'dd.MM.yyyy',
             'attr' => array(
@@ -71,6 +70,14 @@ class SimpleDateType extends BaseDateTimeType
     protected function getDateFormat()
     {
         return 'd.m.Y';
+    }
+
+    /**
+     * @return string
+     */
+    public function getParent()
+    {
+        return 'date';
     }
     
     /**
