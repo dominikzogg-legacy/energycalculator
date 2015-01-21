@@ -18,32 +18,38 @@
     {% if pagination|length > 0 %}
         <table class="table table-striped">
             <thead>
-            <tr>
-                <th>{{ (transPrefix~".list.name")|trans() }}</th>
-                <th>{{ (transPrefix~".list.actions")|trans() }}</th>
-            </tr>
+                <tr>
+                    {% block table_labels %}
+                        <th>{{ (transPrefix~".list.name")|trans() }}</th>
+                    {% endblock %}
+                    <th>{{ (transPrefix~".list.actions")|trans() }}</th>
+                </tr>
             </thead>
             <tbody>
                 {% for entity in pagination %}
                     <tr>
-                        <td>{{ entity }}</td>
-                        <td>
-                            {% if editRoute|default(false) %}
-                                <a class="btn btn-default" href="{{ url(editRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.edit")|trans() }}">
-                                    <i class="glyphicon glyphicon-pencil"></i>
-                                </a>
-                            {% endif %}
-                            {% if viewRoute|default(false) %}
-                                <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.show")|trans() }}">
-                                    <i class="glyphicon glyphicon-eye-open"></i>
-                                </a>
-                            {% endif %}
-                            {% if deleteRoute|default(false) %}
-                                <a class="btn btn-danger" data-delete-link href="{{ url(deleteRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.delete")|trans() }}">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                </a>
-                            {% endif %}
-                        </td>
+                        {% block entity_values %}
+                            <td>{{ entity }}</td>
+                        {% endblock %}
+                        {% block entity_actions %}
+                            <td>
+                                {% if editRoute|default(false) %}
+                                    <a class="btn btn-default" href="{{ url(editRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.edit")|trans() }}">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                {% endif %}
+                                {% if viewRoute|default(false) %}
+                                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.show")|trans() }}">
+                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                    </a>
+                                {% endif %}
+                                {% if deleteRoute|default(false) %}
+                                    <a class="btn btn-danger" data-delete-link href="{{ url(deleteRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.delete")|trans() }}">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        {% endblock %}
                     </tr>
                 {% endfor %}
             </tbody>

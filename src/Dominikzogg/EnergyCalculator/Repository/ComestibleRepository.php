@@ -10,11 +10,19 @@ class ComestibleRepository extends AbstractRepository
      * @param array $filterData
      * @return QueryBuilder
      */
-    public function getQueryBuilderForFilterForm(array $filterData = null)
+    public function getQueryBuilderForFilterForm(array $filterData = array())
     {
         $qb = $this->createQueryBuilder('c');
 
-        $this->addLikeFilter($filterData, $qb, 'c', 'name');
+        if(isset($filterData['user'])) {
+            $this->addEqualFilter($qb, 'c', 'user', $filterData['user']);
+        }
+
+        if(isset($filterData['name'])) {
+            $this->addLikeFilter($qb, 'c', 'name', $filterData['name']);
+        }
+
+        $qb->addOrderBy('c.name', 'ASC');
 
         return $qb;
     }

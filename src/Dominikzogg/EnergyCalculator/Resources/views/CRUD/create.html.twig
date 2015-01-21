@@ -1,0 +1,5 @@
+{% extends "@DominikzoggEnergyCalculator/CRUD/edit.html.twig" %}
+
+{% block pagetitle %}{{ (transPrefix~".create.title")|trans() }}{% endblock %}
+
+{% block form_action %}{{ url(createRoute) }}{% endblock %}

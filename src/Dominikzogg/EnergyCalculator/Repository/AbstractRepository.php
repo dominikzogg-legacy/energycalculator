@@ -8,38 +8,26 @@ use Doctrine\ORM\QueryBuilder;
 abstract class AbstractRepository extends EntityRepository implements QueryBuilderForFilterFormInterface
 {
     /**
-     * @param array $filterData
      * @param QueryBuilder $qb
      * @param string $alias
      * @param string $property
+     * @param mixed $value
      */
-    protected function addEqualFilter(array $filterData = null, QueryBuilder $qb, $alias, $property)
+    protected function addEqualFilter(QueryBuilder $qb, $alias, $property, $value)
     {
-        if(null === $filterData) {
-            return;
-        }
-
-        if(isset($filterData[$property])) {
-            $qb->andWhere($qb->expr()->eq($alias . '.' . $property, ':' . $property));
-            $qb->setParameter($property, $filterData[$property]);
-        }
+        $qb->andWhere($qb->expr()->eq($alias . '.' . $property, ':' . $property));
+        $qb->setParameter($property, $value);
     }
 
     /**
-     * @param array $filterData
      * @param QueryBuilder $qb
      * @param string $alias
      * @param string $property
+     * @param mixed $value
      */
-    protected function addLikeFilter(array $filterData = null, QueryBuilder $qb, $alias, $property)
+    protected function addLikeFilter(QueryBuilder $qb, $alias, $property, $value)
     {
-        if(null === $filterData) {
-            return;
-        }
-
-        if(isset($filterData[$property])) {
-            $qb->andWhere($qb->expr()->like($alias . '.' . $property, ':' . $property));
-            $qb->setParameter($property, '%' . $filterData[$property] . '%');
-        }
+        $qb->andWhere($qb->expr()->like($alias . '.' . $property, ':' . $property));
+        $qb->setParameter($property, '%' . $value . '%');
     }
 }

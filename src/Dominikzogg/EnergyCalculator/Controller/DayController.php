@@ -3,6 +3,7 @@
 namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Dominikzogg\EnergyCalculator\Entity\Day;
+use Dominikzogg\EnergyCalculator\Form\DayListType;
 use Dominikzogg\EnergyCalculator\Form\DayType;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
@@ -69,12 +70,13 @@ class DayController extends AbstractCRUDController
 
     /**
      * @Route("/delete/{id}", bind="day_delete", asserts={"id"="\d+"}, method="GET")
+     * @param Request $request
      * @param $id
      * @return RedirectResponse
      */
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
-        return parent::deleteObject($id);
+        return parent::deleteObject($request, $id);
     }
 
     /**
@@ -83,6 +85,14 @@ class DayController extends AbstractCRUDController
     protected function getPerPage()
     {
         return 7;
+    }
+
+    /**
+     * @return FormTypeInterface|null
+     */
+    protected function getListFormType()
+    {
+        return new DayListType();
     }
 
     /**

@@ -16,7 +16,15 @@ class DayRepository extends AbstractRepository
     {
         $qb = $this->createQueryBuilder('d');
 
-        $this->addEqualFilter($filterData, $qb, 'd', 'date');
+        if(isset($filterData['date'])) {
+            $this->addEqualFilter($qb, 'd', 'date', $filterData['date']);
+        }
+
+        if(isset($filterData['user'])) {
+            $this->addEqualFilter($qb, 'd', 'user', $filterData['user']);
+        }
+
+        $qb->addOrderBy('d.date', 'DESC');
 
         return $qb;
     }

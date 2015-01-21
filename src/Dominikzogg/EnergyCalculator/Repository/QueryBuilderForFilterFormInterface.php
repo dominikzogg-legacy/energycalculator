@@ -11,5 +11,5 @@ interface QueryBuilderForFilterFormInterface extends ObjectRepository
      * @param array $filterData
      * @return QueryBuilder
      */
-    public function getQueryBuilderForFilterForm(array $filterData = null);
+    public function getQueryBuilderForFilterForm(array $filterData = array());
 }

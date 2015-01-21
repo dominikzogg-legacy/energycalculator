@@ -1,53 +1,19 @@
-{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+{% extends "@DominikzoggEnergyCalculator/CRUD/list.html.twig" %}
 
-{% block pagetitle %}{{ (transprefix~".list.title")|trans() }}{% endblock %}
+{% block table_labels %}
+    <th>{{ (transPrefix~".list.date")|trans() }}</th>
+    <th>{{ (transPrefix~".list.weight")|trans() }}</th>
+    <th>{{ (transPrefix~".list.calorie")|trans() }}</th>
+    <th>{{ (transPrefix~".list.protein")|trans() }}</th>
+    <th>{{ (transPrefix~".list.carbohydrate")|trans() }}</th>
+    <th>{{ (transPrefix~".list.fat")|trans() }}</th>
+{% endblock %}
 
-{% block body %}
-    <h1>{{ (transprefix~".list.title")|trans() }}</h1>
-    <a class="btn btn-default" href="{{ url(editRoute) }}" title="{{ (transprefix~".list.create")|trans() }}">
-        <i class="glyphicon glyphicon-plus"></i>
-    </a><br />
-    <br />
-    {% if entities.template|default(false) %}
-        {{ knp_pagination_render(entities) }}
-    {% endif %}
-    {% if entities|length > 0 %}
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>{{ (transprefix~".list.date")|trans() }}</th>
-                <th>{{ (transprefix~".list.weight")|trans() }}</th>
-                <th>{{ (transprefix~".list.actions")|trans() }}</th>
-            </tr>
-            </thead>
-            <tbody>
-                {% for entity in entities %}
-                    <tr>
-                        <td>{{ entity.date|date('d.m.Y') }}</td>
-                        <td>{{ entity.weight|round(1) }}</td>
-                        <td>
-                            {% if editRoute|default(false) %}
-                                <a class="btn btn-default" href="{{ url(editRoute, {'id': entity.id }) }}" title="{{ (transprefix~".list.edit")|trans() }}">
-                                    <i class="glyphicon glyphicon-pencil"></i>
-                                </a>
-                            {% endif %}
-                            {% if viewRoute|default(false) %}
-                                <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transprefix~".list.show")|trans() }}">
-                                    <i class="glyphicon glyphicon-eye-open"></i>
-                                </a>
-                            {% endif %}
-                            {% if deleteRoute|default(false) %}
-                                <a class="btn btn-danger" data-delete-link href="{{ url(deleteRoute, {'id': entity.id }) }}" title="{{ (transprefix~".list.delete")|trans() }}">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                </a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% if entities.template|default(false) %}
-            {{ knp_pagination_render(entities) }}
-        {% endif %}
-    {% endif %}
+{% block entity_values %}
+    <td>{{ entity.date|date('d.m.Y') }}</td>
+    <td>{{ entity.weight|round(1) }}</td>
+    <td>{{ entity.calorie|round(1) }}</td>
+    <td>{{ entity.protein|round(1) }}</td>
+    <td>{{ entity.carbohydrate|round(1) }}</td>
+    <td>{{ entity.fat|round(1) }}</td>
 {% endblock %}

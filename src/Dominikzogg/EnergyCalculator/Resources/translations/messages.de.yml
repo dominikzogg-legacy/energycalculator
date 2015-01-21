@@ -27,11 +27,14 @@ key: &key Schüssel
 name: &name Name
 password: &password Passwort
 save: &save speichern
-saveandclose: &saveandclose speichern und schliessen
-saveandnew: &saveandnew speichern und neu
 show: &show anzeigen
 username: &username Benutzername
 value: &value Wert
+
+calorie: &calorie Kalorien
+protein: &protein Eiweiss
+carbohydrate: &carbohydrate Kohlenhydrate
+fat: &fat Fett
 
 Previous: zurück
 Next: weiter
@@ -60,8 +63,6 @@ day:
   edit:
     title: Tag bearbeiten
     save: *save
-    saveandclose: *saveandclose
-    saveandnew: *saveandnew
     show: *show
     back: *back
   label:
@@ -99,22 +100,35 @@ day:
     weight: *weight
 
 comestible:
+  create:
+    title: Nahrungsmittel erstellen
+    flash:
+      error: 'Das Nahrungsmittel konnte nicht gespeichert werden.'
+      success: 'Das Nahrungsmittel wurde erfolgreich gespeichert.'
   edit:
     title: Nahrungsmittel bearbeiten
-    save: *save
-    saveandclose: *saveandclose
-    saveandnew: *saveandnew
-    back: *back
-  label:
-    name: *name
-    calorie: Kalorien (100g/ml)
-    protein: Eiweiss (100g/ml)
-    carbohydrate: Kohlenhydrat (100g/ml)
-    fat: Fett (100g/ml)
-    defaultValue: Portionsgrösse
+    flash:
+      error: 'Das Nahrungsmittel konnte nicht gespeichert werden.'
+      success: 'Das Nahrungsmittel wurde erfolgreich gespeichert.'
+    label:
+      name: *name
+      calorie: Kalorien (100g/ml)
+      protein: Eiweiss (100g/ml)
+      carbohydrate: Kohlenhydrat (100g/ml)
+      fat: Fett (100g/ml)
+      defaultValue: Portionsgrösse
+      save: *save
+      back: *back
+  delete:
+    flash:
+      success: 'Das Nahrungsmittel wurde erfolgreich gelöscht.'
   list:
     title: Nahrungsmittel Liste
     name: *name
+    calorie: *calorie
+    protein: *protein
+    carbohydrate: *carbohydrate
+    fat: *fat
     actions: *actions
     edit: *edit
     delete: *delete
@@ -124,8 +138,6 @@ user:
   edit:
     title: Benutzer bearbeiten
     save: *save
-    saveandclose: *saveandclose
-    saveandnew: *saveandnew
     back: *back
   label:
     username: *username

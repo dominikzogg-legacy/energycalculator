@@ -58,7 +58,14 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
             $roleHierarchy['ROLE_USER_VIEW'] = array('ROLE_USER_LIST');
             $roleHierarchy['ROLE_USER_DELETE'] = array('ROLE_USER_LIST');
 
+            $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_COMESTIBLE_CREATE';
+            $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_COMESTIBLE_EDIT';
+            $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_COMESTIBLE_VIEW';
             $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_COMESTIBLE_DELETE';
+
+            $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_DAY_CREATE';
+            $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_DAY_EDIT';
+            $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_DAY_VIEW';
             $roleHierarchy[AbstractUser::ROLE_USER][] = 'ROLE_DAY_DELETE';
 
             $roleHierarchy[AbstractUser::ROLE_ADMIN][] = 'ROLE_USER_DELETE';

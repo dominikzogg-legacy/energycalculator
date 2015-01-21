@@ -59,12 +59,13 @@ class ComestibleController extends AbstractCRUDController
 
     /**
      * @Route("/delete/{id}", bind="comestible_delete", asserts={"id"="\d+"}, method="GET")
+     * @param Request $request
      * @param $id
      * @return RedirectResponse
      */
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
-        return parent::deleteObject($id);
+        return parent::deleteObject($request, $id);
     }
 
     /**

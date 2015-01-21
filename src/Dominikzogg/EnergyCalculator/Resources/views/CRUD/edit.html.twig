@@ -1,23 +1,23 @@
 {% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
 
-{% block pagetitle %}{{ (transprefix~".edit.title")|trans() }}{% endblock %}
+{% block pagetitle %}{{ (transPrefix~".edit.title")|trans() }}{% endblock %}
 
 {% block body %}
-    <h1>{{ (transprefix~".edit.title")|trans() }}</h1>
-    <form action="{{ url(editRoute, {'id': entity.id}) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+    <h1>{{ (transPrefix~".edit.title")|trans() }}</h1>
+    <form action="{% block form_action %}{{ url(editRoute, {'id': object.id}) }}{% endblock %}" method="post" {{ form_enctype(form) }} class="form-horizontal">
         {{ bootstrap_set_style('horizontal') }}
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-success" name="save" value="{{ (transprefix~".edit.save")|trans() }}">
+                <button type="submit" class="btn btn-success" name="save" value="{{ (transPrefix~".edit.save")|trans() }}">
                     <i class="glyphicon glyphicon-save"></i>
                 </button>
-                {% if entity.id and viewRoute|default(false) %}
-                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transprefix~".edit.show")|trans() }}">
+                {% if object.id and viewRoute|default(false) %}
+                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': object.id }) }}" title="{{ (transPrefix~".edit.show")|trans() }}">
                         <i class="glyphicon glyphicon-eye-open"></i>
                     </a>
                 {% endif %}
-                <a class="btn btn-default" href="{{ url(listroute) }}" title="{{ (transprefix~".edit.back")|trans() }}">
+                <a class="btn btn-default" href="{{ url(listRoute) }}" title="{{ (transPrefix~".edit.back")|trans() }}">
                     <i class="glyphicon glyphicon-list-alt"></i>
                 </a>
             </div>
@@ -27,15 +27,15 @@
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-success" name="save" value="{{ (transprefix~".edit.save")|trans() }}">
+                <button type="submit" class="btn btn-success" name="save" value="{{ (transPrefix~".edit.save")|trans() }}">
                     <i class="glyphicon glyphicon-save"></i>
                 </button>
-                {% if entity.id and viewRoute|default(false) %}
-                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transprefix~".edit.show")|trans() }}">
+                {% if viewRoute|default(false) and object.id %}
+                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': object.id }) }}" title="{{ (transPrefix~".edit.show")|trans() }}">
                         <i class="glyphicon glyphicon-eye-open"></i>
                     </a>
                 {% endif %}
-                <a class="btn btn-default" href="{{ url(listroute) }}" title="{{ (transprefix~".edit.back")|trans() }}">
+                <a class="btn btn-default" href="{{ url(listRoute) }}" title="{{ (transPrefix~".edit.back")|trans() }}">
                     <i class="glyphicon glyphicon-list-alt"></i>
                 </a>
             </div>

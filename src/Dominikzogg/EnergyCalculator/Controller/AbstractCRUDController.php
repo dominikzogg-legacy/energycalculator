@@ -109,20 +109,23 @@ abstract class AbstractCRUDController
             $request->query->get('perPage', $this->getPerPage())
         );
 
-        return $this->render($this->getListTemplate(), array_replace_recursive(
-            array(
-                'request' => $request,
-                'form' => isset($form) ? $form->createView() : null,
-                'pagination' => $pagination,
-                'listRoute' => $this->getListRoute(),
-                'createRoute' => $this->getCreateRoute(),
-                'editRoute' => $this->getEditRoute(),
-                'viewRoute' => $this->getViewRoute(),
-                'deleteRoute' => $this->getDeleteRoute(),
-                'identifier' => $this->getIdentifier(),
-                'transPrefix' => $this->getName(),
-            ), $templateVars
-        ));
+        $baseTemplateVars = array(
+            'request' => $request,
+            'form' => isset($form) ? $form->createView() : null,
+            'pagination' => $pagination,
+            'listRoute' => $this->getListRoute(),
+            'createRoute' => $this->getCreateRoute(),
+            'editRoute' => $this->getEditRoute(),
+            'viewRoute' => $this->getViewRoute(),
+            'deleteRoute' => $this->getDeleteRoute(),
+            'identifier' => $this->getIdentifier(),
+            'transPrefix' => $this->getName(),
+        );
+
+        return $this->render(
+            $this->getListTemplate(),
+            array_replace_recursive($baseTemplateVars, $templateVars)
+        );
     }
 
     /**
@@ -158,20 +161,23 @@ abstract class AbstractCRUDController
             }
         }
 
-        return $this->render($this->getCreateTemplate(), array_replace_recursive(
-            array(
-                'request' => $request,
-                'object' => $object,
-                'form' => $form->createView(),
-                'createRoute' => $this->getCreateRoute(),
-                'listRoute' => $this->getListRoute(),
-                'editRoute' => $this->getEditRoute(),
-                'viewRoute' => $this->getViewRoute(),
-                'deleteRoute' => $this->getDeleteRoute(),
-                'identifier' => $this->getIdentifier(),
-                'transPrefix' => $this->getName(),
-            ), $templateVars
-        ));
+        $baseTemplateVars = array(
+            'request' => $request,
+            'object' => $object,
+            'form' => $form->createView(),
+            'createRoute' => $this->getCreateRoute(),
+            'listRoute' => $this->getListRoute(),
+            'editRoute' => $this->getEditRoute(),
+            'viewRoute' => $this->getViewRoute(),
+            'deleteRoute' => $this->getDeleteRoute(),
+            'identifier' => $this->getIdentifier(),
+            'transPrefix' => $this->getName(),
+        );
+
+        return $this->render(
+            $this->getCreateTemplate(),
+            array_replace_recursive($baseTemplateVars, $templateVars)
+        );
     }
 
     /**
@@ -213,20 +219,23 @@ abstract class AbstractCRUDController
             }
         }
 
-        return $this->render($this->getEditTemplate(), array_replace_recursive(
-            array(
-                'request' => $request,
-                'object' => $object,
-                'form' => $form->createView(),
-                'createRoute' => $this->getCreateRoute(),
-                'listRoute' => $this->getListRoute(),
-                'editRoute' => $this->getEditRoute(),
-                'viewRoute' => $this->getViewRoute(),
-                'deleteRoute' => $this->getDeleteRoute(),
-                'identifier' => $this->getIdentifier(),
-                'transPrefix' => $this->getName(),
-            ), $templateVars
-        ));
+        $baseTemplateVars = array(
+            'request' => $request,
+            'object' => $object,
+            'form' => $form->createView(),
+            'createRoute' => $this->getCreateRoute(),
+            'listRoute' => $this->getListRoute(),
+            'editRoute' => $this->getEditRoute(),
+            'viewRoute' => $this->getViewRoute(),
+            'deleteRoute' => $this->getDeleteRoute(),
+            'identifier' => $this->getIdentifier(),
+            'transPrefix' => $this->getName(),
+        );
+
+        return $this->render(
+            $this->getEditTemplate(),
+            array_replace_recursive($baseTemplateVars, $templateVars)
+        );
     }
 
     /**
@@ -249,26 +258,30 @@ abstract class AbstractCRUDController
             throw new AccessDeniedException("You need the permission to view this object!");
         }
 
-        return $this->render($this->getViewTemplate(), array_replace_recursive(
-            array(
-                'request' => $request,
-                'object' => $object,
-                'listRoute' => $this->getListRoute(),
-                'createRoute' => $this->getCreateRoute(),
-                'editRoute' => $this->getEditRoute(),
-                'viewRoute' => $this->getViewRoute(),
-                'deleteRoute' => $this->getDeleteRoute(),
-                'identifier' => $this->getIdentifier(),
-                'transPrefix' => $this->getName(),
-            ), $templateVars
-        ));
+        $baseTemplateVars = array(
+            'request' => $request,
+            'object' => $object,
+            'createRoute' => $this->getCreateRoute(),
+            'listRoute' => $this->getListRoute(),
+            'editRoute' => $this->getEditRoute(),
+            'viewRoute' => $this->getViewRoute(),
+            'deleteRoute' => $this->getDeleteRoute(),
+            'identifier' => $this->getIdentifier(),
+            'transPrefix' => $this->getName(),
+        );
+
+        return $this->render(
+            $this->getViewTemplate(),
+            array_replace_recursive($baseTemplateVars, $templateVars)
+        );
     }
 
     /**
+     * @param Request $request
      * @param int $id
      * @return Response|RedirectResponse
      */
-    protected function deleteObject($id)
+    protected function deleteObject(Request $request, $id)
     {
         /** @var ObjectRepository $repo */
         $repo = $this->getRepositoryForClass($this->getObjectClass());
@@ -289,6 +302,8 @@ abstract class AbstractCRUDController
         $em->flush();
 
         $this->postRemove($object);
+
+        $this->addFlashMessage($request, 'success', $this->getName() . '.delete.flash.success');
 
         return new RedirectResponse($this->getListRedirectUrl(), 302);
     }
@@ -405,7 +420,7 @@ abstract class AbstractCRUDController
      */
     protected function getListRedirectUrl()
     {
-        return $this->generateRoute($this->getEditRoute());
+        return $this->generateRoute($this->getListRoute());
     }
 
     /**
