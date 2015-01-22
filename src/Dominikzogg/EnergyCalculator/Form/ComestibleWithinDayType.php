@@ -43,7 +43,7 @@ class ComestibleWithinDayType extends AbstractType
             ->add('comestible', 'entity', array(
                 'class' => get_class(new Comestible()),
                 'property' => 'name',
-                'query_builder' => function(EntityRepository $er) use ($user) {
+                'query_builder' => function (EntityRepository $er) use ($user) {
                     $qb = $er->createQueryBuilder('c');
                     $qb->where('c.user = :user');
                     $qb->setParameter('user', $user->getId());
@@ -56,7 +56,7 @@ class ComestibleWithinDayType extends AbstractType
                     'data-live-search' => true,
                     'data-style' => 'btn-default form-control',
                     'class' => 'show-tick',
-                    'title' => $this->translator->trans('day.label.comestiblesWithinDay_collection.comestible_default')
+                    'title' => $this->translator->trans('day.edit.label.comestiblesWithinDay_collection.comestible_default')
                 )
             ))
             ->add('amount', 'number', array('required' => true))

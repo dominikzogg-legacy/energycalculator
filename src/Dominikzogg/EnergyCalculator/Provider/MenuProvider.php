@@ -10,11 +10,11 @@ class MenuProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['menu_builder'] = $app->share(function(Application $app){
+        $app['menu_builder'] = $app->share(function (Application $app) {
             return new MenuBuilder($app['knp_menu.factory'], $app['security'], $app['translator']);
         });
 
-        $app['main_menu'] = function(Application $app) {
+        $app['main_menu'] = function (Application $app) {
             $menuBuilder = $app['menu_builder'];
             /** @var MenuBuilder $menuBuilder */
             return $menuBuilder->buildMenu($app['request']);
@@ -25,5 +25,7 @@ class MenuProvider implements ServiceProviderInterface
         $app['knp_menu.menus'] = $knpMenuMenus;
     }
 
-    public function boot(Application $app) {}
+    public function boot(Application $app)
+    {
+    }
 }

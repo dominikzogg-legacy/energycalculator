@@ -2,28 +2,31 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Form\UserType;
+use Knp\Component\Pager\Paginator;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Saxulum\UserProvider\Manager\UserManager;
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @Route("/{_locale}/user")
  * @DI(serviceIds={
- *      "doctrine",
  *      "form.factory",
+ *      "doctrine",
  *      "knp_paginator",
- *      "security",
- *      "translator",
  *      "twig",
- *      "url_generator"
+ *      "url_generator",
+ *      "security",
+ *      "saxulum.userprovider.manager"
  * })
  */
 class UserController extends AbstractCRUDController
@@ -34,11 +37,28 @@ class UserController extends AbstractCRUDController
     protected $userManager;
 
     /**
-     * @DI(serviceIds={"saxulum.userprovider.manager"})
-     * @param UserManager $userManager
+     * @param FormFactory $formFactory
+     * @param ManagerRegistry $doctrine
+     * @param Paginator $paginator
+     * @param \Twig_Environment $twig
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param SecurityContextInterface $security
      */
-    public function setUserManager(UserManager $userManager)
-    {
+    public function __construct(
+        FormFactory $formFactory,
+        ManagerRegistry $doctrine,
+        Paginator $paginator,
+        \Twig_Environment $twig,
+        UrlGeneratorInterface $urlGenerator,
+        SecurityContextInterface $security,
+        UserManager $userManager
+    ) {
+        $this->formFactory = $formFactory;
+        $this->doctrine = $doctrine;
+        $this->paginator = $paginator;
+        $this->twig = $twig;
+        $this->urlGenerator = $urlGenerator;
+        $this->security = $security;
         $this->userManager = $userManager;
     }
 
@@ -49,7 +69,7 @@ class UserController extends AbstractCRUDController
      */
     public function listAction(Request $request)
     {
-        return parent::listObjects($request);
+        return parent::crudListObjects($request);
     }
 
     /**
@@ -59,7 +79,7 @@ class UserController extends AbstractCRUDController
      */
     public function createAction(Request $request)
     {
-        return self::createObject($request);
+        return self::crudCreateObject($request);
     }
 
     /**
@@ -70,7 +90,7 @@ class UserController extends AbstractCRUDController
      */
     public function editAction(Request $request, $id)
     {
-        return self::editObject($request, $id);
+        return self::crudEditObject($request, $id);
     }
 
     /**
@@ -81,14 +101,14 @@ class UserController extends AbstractCRUDController
      */
     public function viewAction(Request $request, $id)
     {
-        return self::viewObject($request, $id);
+        return self::crudViewObject($request, $id);
     }
 
     /**
      * @param User $object
      * @return void
      */
-    protected function prePersist($object)
+    protected function crudPrePersist($object)
     {
         $this->userManager->update($object);
     }
@@ -97,7 +117,7 @@ class UserController extends AbstractCRUDController
      * @param User $object
      * @return void
      */
-    protected function preUpdate($object)
+    protected function crudPreUpdate($object)
     {
         $this->userManager->update($object);
     }
@@ -110,29 +130,29 @@ class UserController extends AbstractCRUDController
      */
     public function deleteAction(Request $request, $id)
     {
-        return parent::deleteObject($request, $id);
+        return parent::crudDeleteObject($request, $id);
     }
 
     /**
      * @return FormTypeInterface
      */
-    protected function getCreateFormType()
+    protected function crudCreateFormType()
     {
-        return new UserType($this->getObjectClass());
+        return new UserType($this->crudObjectClass());
     }
 
     /**
      * @return FormTypeInterface
      */
-    protected function getEditFormType()
+    protected function crudEditFormType()
     {
-        return new UserType($this->getObjectClass());
+        return new UserType($this->crudObjectClass());
     }
 
     /**
      * @return string
      */
-    protected function getName()
+    protected function crudName()
     {
         return 'user';
     }
@@ -140,7 +160,7 @@ class UserController extends AbstractCRUDController
     /**
      * @return string
      */
-    protected function getObjectClass()
+    protected function crudObjectClass()
     {
         return User::class;
     }

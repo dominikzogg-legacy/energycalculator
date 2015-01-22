@@ -14,11 +14,11 @@ class ComestibleRepository extends AbstractRepository
     {
         $qb = $this->createQueryBuilder('c');
 
-        if(isset($filterData['user'])) {
+        if (isset($filterData['user'])) {
             $this->addEqualFilter($qb, 'c', 'user', $filterData['user']);
         }
 
-        if(isset($filterData['name'])) {
+        if (isset($filterData['name'])) {
             $this->addLikeFilter($qb, 'c', 'name', $filterData['name']);
         }
 

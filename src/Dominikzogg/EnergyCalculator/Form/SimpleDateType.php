@@ -18,13 +18,13 @@ class SimpleDateType extends AbstractType
     {
         parent::buildForm($builder, $options);
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $formData = $event->getData();
-            if(is_string($data)) {
-                if($data) {
+            if (is_string($data)) {
+                if ($data) {
                     try {
                         $data = $this->getData(new \DateTime($data));
-                    } catch (\Exception $e){
+                    } catch (\Exception $e) {
                         $event->getForm()->addError(
                             new FormError('This value is not a valid date.', null, array(
                                 '%dateformat%' => $this->getDateFormat()

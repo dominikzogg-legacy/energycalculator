@@ -2,30 +2,67 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Dominikzogg\EnergyCalculator\Entity\Day;
 use Dominikzogg\EnergyCalculator\Form\DayListType;
 use Dominikzogg\EnergyCalculator\Form\DayType;
+use Knp\Component\Pager\Paginator;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @Route("/{_locale}/day")
  * @DI(serviceIds={
- *      "doctrine",
  *      "form.factory",
+ *      "doctrine",
  *      "knp_paginator",
- *      "security",
- *      "translator",
  *      "twig",
- *      "url_generator"
+ *      "url_generator",
+ *      "security",
+ *      "translator"
  * })
  */
 class DayController extends AbstractCRUDController
 {
+    /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
+
+    /**
+     * @param FormFactory $formFactory
+     * @param ManagerRegistry $doctrine
+     * @param Paginator $paginator
+     * @param \Twig_Environment $twig
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param SecurityContextInterface $security
+     */
+    public function __construct(
+        FormFactory $formFactory,
+        ManagerRegistry $doctrine,
+        Paginator $paginator,
+        \Twig_Environment $twig,
+        UrlGeneratorInterface $urlGenerator,
+        SecurityContextInterface $security,
+        TranslatorInterface $translator
+    ) {
+        $this->formFactory = $formFactory;
+        $this->doctrine = $doctrine;
+        $this->paginator = $paginator;
+        $this->twig = $twig;
+        $this->urlGenerator = $urlGenerator;
+        $this->security = $security;
+        $this->translator = $translator;
+    }
+
     /**
      * @Route("/", bind="day_list", method="GET")
      * @param Request $request
@@ -33,7 +70,7 @@ class DayController extends AbstractCRUDController
      */
     public function listAction(Request $request)
     {
-        return parent::listObjects($request);
+        return parent::crudListObjects($request);
     }
 
     /**
@@ -43,7 +80,7 @@ class DayController extends AbstractCRUDController
      */
     public function createAction(Request $request)
     {
-        return parent::createObject($request);
+        return parent::crudCreateObject($request);
     }
 
     /**
@@ -54,7 +91,7 @@ class DayController extends AbstractCRUDController
      */
     public function editAction(Request $request, $id)
     {
-        return parent::editObject($request, $id);
+        return parent::crudEditObject($request, $id);
     }
 
     /**
@@ -65,7 +102,7 @@ class DayController extends AbstractCRUDController
      */
     public function viewAction(Request $request, $id)
     {
-        return parent::viewObject($request, $id);
+        return parent::crudViewObject($request, $id);
     }
 
     /**
@@ -76,13 +113,13 @@ class DayController extends AbstractCRUDController
      */
     public function deleteAction(Request $request, $id)
     {
-        return parent::deleteObject($request, $id);
+        return parent::crudDeleteObject($request, $id);
     }
 
     /**
      * @return int
      */
-    protected function getPerPage()
+    protected function crudPerPage()
     {
         return 7;
     }
@@ -90,7 +127,7 @@ class DayController extends AbstractCRUDController
     /**
      * @return FormTypeInterface|null
      */
-    protected function getListFormType()
+    protected function crudListFormType()
     {
         return new DayListType();
     }
@@ -98,7 +135,7 @@ class DayController extends AbstractCRUDController
     /**
      * @return array
      */
-    protected function getListDefaultData()
+    protected function crudListDefaultData()
     {
         return array(
             'user' => $this->getUser()->getId()
@@ -108,9 +145,9 @@ class DayController extends AbstractCRUDController
     /**
      * @return Day
      */
-    protected function getCreateObject()
+    protected function crudCreateFactory()
     {
-        $objectClass = $this->getObjectClass();
+        $objectClass = $this->crudObjectClass();
 
         /** @var Day $object */
         $object = new $objectClass;
@@ -122,7 +159,7 @@ class DayController extends AbstractCRUDController
     /**
      * @return FormTypeInterface
      */
-    protected function getCreateFormType()
+    protected function crudCreateFormType()
     {
         return new DayType($this->getUser(), $this->translator);
     }
@@ -131,13 +168,13 @@ class DayController extends AbstractCRUDController
      * @param Day $object
      * @return bool
      */
-    protected function getEditIsGranted($object)
+    protected function crudEditIsGranted($object)
     {
-        if(!$this->security->isGranted($this->getEditRole(), $object)) {
+        if (!$this->security->isGranted($this->crudEditRole(), $object)) {
             return false;
         }
 
-        if($object->getUser() != $this->getUser()) {
+        if ($object->getUser() != $this->getUser()) {
             return false;
         }
 
@@ -147,7 +184,7 @@ class DayController extends AbstractCRUDController
     /**
      * @return FormTypeInterface
      */
-    protected function getEditFormType()
+    protected function crudEditFormType()
     {
         return new DayType($this->getUser(), $this->translator);
     }
@@ -156,13 +193,13 @@ class DayController extends AbstractCRUDController
      * @param Day $object
      * @return bool
      */
-    protected function getViewIsGranted($object)
+    protected function crudViewIsGranted($object)
     {
-        if(!$this->security->isGranted($this->getViewRole(), $object)) {
+        if (!$this->security->isGranted($this->crudViewRole(), $object)) {
             return false;
         }
 
-        if($object->getUser() != $this->getUser()) {
+        if ($object->getUser() != $this->getUser()) {
             return false;
         }
 
@@ -173,13 +210,13 @@ class DayController extends AbstractCRUDController
      * @param Day $object
      * @return bool
      */
-    protected function getDeleteIsGranted($object)
+    protected function crudDeleteIsGranted($object)
     {
-        if(!$this->security->isGranted($this->getDeleteRole(), $object)) {
+        if (!$this->security->isGranted($this->crudDeleteRole(), $object)) {
             return false;
         }
 
-        if($object->getUser() != $this->getUser()) {
+        if ($object->getUser() != $this->getUser()) {
             return false;
         }
 
@@ -189,7 +226,7 @@ class DayController extends AbstractCRUDController
     /**
      * @return string
      */
-    protected function getName()
+    protected function crudName()
     {
         return 'day';
     }
@@ -197,7 +234,7 @@ class DayController extends AbstractCRUDController
     /**
      * @return string
      */
-    protected function getObjectClass()
+    protected function crudObjectClass()
     {
         return Day::class;
     }

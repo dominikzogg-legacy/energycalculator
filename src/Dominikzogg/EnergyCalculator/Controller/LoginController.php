@@ -2,10 +2,10 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
-use Dominikzogg\EnergyCalculator\Controller\Traits\TwigTrait;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/{_locale}")
@@ -16,7 +16,10 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class LoginController
 {
-    use TwigTrait;
+    /**
+     * @var \Twig_Environment
+     */
+    protected $twig;
 
     /**
      * @var callback
@@ -46,10 +49,24 @@ class LoginController
     /**
      * @Route("/logout", bind="logout", method="GET")
      */
-    public function logoutAction() {}
+    public function logoutAction()
+    {
+    }
 
     /**
      * @Route("/login_check", bind="login_check", method="POST")
      */
-    public function logincheckAction() {}
+    public function logincheckAction()
+    {
+    }
+
+    /**
+     * @param $view
+     * @param  array  $parameters
+     * @return Response
+     */
+    protected function render($view, array $parameters = array())
+    {
+        return new Response($this->twig->render($view, $parameters));
+    }
 }

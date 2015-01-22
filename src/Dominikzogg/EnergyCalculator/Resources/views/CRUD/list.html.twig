@@ -39,7 +39,7 @@
                                     </a>
                                 {% endif %}
                                 {% if viewRoute|default(false) %}
-                                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.show")|trans() }}">
+                                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.view")|trans() }}">
                                         <i class="glyphicon glyphicon-eye-open"></i>
                                     </a>
                                 {% endif %}

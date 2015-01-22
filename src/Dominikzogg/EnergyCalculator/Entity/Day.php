@@ -104,7 +104,7 @@ class Day implements UserReferenceInterface
     public function getCalorie()
     {
         $calorie = 0;
-        foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+        foreach ($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
             $calorie += $comestiblesWithinDay->getCalorie();
         }
 
@@ -117,7 +117,7 @@ class Day implements UserReferenceInterface
     public function getProtein()
     {
         $protein = 0;
-        foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+        foreach ($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
             $protein += $comestiblesWithinDay->getProtein();
         }
 
@@ -130,7 +130,7 @@ class Day implements UserReferenceInterface
     public function getCarbohydrate()
     {
         $carbohydrate = 0;
-        foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+        foreach ($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
             $carbohydrate += $comestiblesWithinDay->getCarbohydrate();
         }
 
@@ -143,7 +143,7 @@ class Day implements UserReferenceInterface
     public function getFat()
     {
         $fat = 0;
-        foreach($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
+        foreach ($this->getComestiblesWithinDay() as $comestiblesWithinDay) {
             $fat += $comestiblesWithinDay->getFat();
         }
 

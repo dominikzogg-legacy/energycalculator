@@ -16,11 +16,11 @@ class DayRepository extends AbstractRepository
     {
         $qb = $this->createQueryBuilder('d');
 
-        if(isset($filterData['date'])) {
+        if (isset($filterData['date'])) {
             $this->addEqualFilter($qb, 'd', 'date', $filterData['date']);
         }
 
-        if(isset($filterData['user'])) {
+        if (isset($filterData['user'])) {
             $this->addEqualFilter($qb, 'd', 'user', $filterData['user']);
         }
 
@@ -58,7 +58,7 @@ class DayRepository extends AbstractRepository
         $qb->setParameter('to', $to);
         $qb->orderBy($alias . '.date', 'ASC');
 
-        if(null !== $user) {
+        if (null !== $user) {
             $qb->andWhere($alias . '.user = :user');
             $qb->setParameter('user', $user->getId());
         }

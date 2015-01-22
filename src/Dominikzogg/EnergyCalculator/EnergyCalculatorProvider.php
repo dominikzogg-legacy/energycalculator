@@ -23,7 +23,7 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
             'saxulum.userprovider.userclass' => get_class(new User())
         ));
         
-        $app['twig'] = $app->share($app->extend('twig', function(\Twig_Environment $twig) {
+        $app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twig) {
             $twig->addExtension(new FormHelperExtension());
 
             return $twig;
@@ -100,5 +100,7 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
         $this->addTwigLoaderFilesystemPath($app);
     }
 
-    public function boot(Application $app) {}
+    public function boot(Application $app)
+    {
+    }
 }

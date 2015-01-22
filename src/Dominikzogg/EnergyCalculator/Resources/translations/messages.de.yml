@@ -89,7 +89,6 @@ day:
   list:
     title: Tages Liste
     date: *date
-    weight: *weight
     calorie: *calorie
     protein: *protein
     carbohydrate: *carbohydrate

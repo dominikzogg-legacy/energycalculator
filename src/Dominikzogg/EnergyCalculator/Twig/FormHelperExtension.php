@@ -23,17 +23,17 @@ class FormHelperExtension extends \Twig_Extension
         $collection = false;
         do {
             $name = $formView->vars['name'];
-            if(is_numeric($name) || $name === '__name__') {
+            if (is_numeric($name) || $name === '__name__') {
                 $collection = true;
             } else {
-                if($collection) {
+                if ($collection) {
                     $labelParts[] = $name . '_collection';
                 } else {
                     $labelParts[] = str_replace('_', '.', $name);
                 }
                 $collection = false;
             }
-        } while($formView = $formView->parent);
+        } while ($formView = $formView->parent);
         $length = count($labelParts);
         $labelParts[$length] = $labelParts[$length-1];
         $labelParts[$length-1] = 'label';

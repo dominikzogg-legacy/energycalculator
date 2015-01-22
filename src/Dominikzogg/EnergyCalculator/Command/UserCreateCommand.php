@@ -6,5 +6,4 @@ use Saxulum\UserProvider\Command\AbstractUserCreateCommand;
 
 class UserCreateCommand extends AbstractUserCreateCommand
 {
-
 }

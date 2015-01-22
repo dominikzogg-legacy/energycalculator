@@ -2,30 +2,58 @@
 
 namespace Dominikzogg\EnergyCalculator\Controller;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Dominikzogg\EnergyCalculator\Entity\Comestible;
 use Dominikzogg\EnergyCalculator\Form\ComestibleListType;
 use Dominikzogg\EnergyCalculator\Form\ComestibleType;
+use Knp\Component\Pager\Paginator;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @Route("/{_locale}/comestible")
  * @DI(serviceIds={
- *      "doctrine",
  *      "form.factory",
+ *      "doctrine",
  *      "knp_paginator",
- *      "security",
- *      "translator",
  *      "twig",
- *      "url_generator"
+ *      "url_generator",
+ *      "security"
  * })
  */
 class ComestibleController extends AbstractCRUDController
 {
+    /**
+     * @param FormFactory $formFactory
+     * @param ManagerRegistry $doctrine
+     * @param Paginator $paginator
+     * @param \Twig_Environment $twig
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param SecurityContextInterface $security
+     */
+    public function __construct(
+        FormFactory $formFactory,
+        ManagerRegistry $doctrine,
+        Paginator $paginator,
+        \Twig_Environment $twig,
+        UrlGeneratorInterface $urlGenerator,
+        SecurityContextInterface $security
+    ) {
+        $this->formFactory = $formFactory;
+        $this->doctrine = $doctrine;
+        $this->paginator = $paginator;
+        $this->twig = $twig;
+        $this->urlGenerator = $urlGenerator;
+        $this->security = $security;
+    }
+
     /**
      * @Route("/", bind="comestible_list", method="GET")
      * @param Request $request
@@ -33,7 +61,7 @@ class ComestibleController extends AbstractCRUDController
      */
     public function listAction(Request $request)
     {
-        return parent::listObjects($request);
+        return parent::crudListObjects($request);
     }
 
     /**
@@ -43,7 +71,7 @@ class ComestibleController extends AbstractCRUDController
      */
     public function createAction(Request $request)
     {
-        return parent::createObject($request);
+        return parent::crudCreateObject($request);
     }
 
     /**
@@ -54,7 +82,7 @@ class ComestibleController extends AbstractCRUDController
      */
     public function editAction(Request $request, $id)
     {
-        return parent::editObject($request, $id);
+        return parent::crudEditObject($request, $id);
     }
 
     /**
@@ -65,13 +93,13 @@ class ComestibleController extends AbstractCRUDController
      */
     public function deleteAction(Request $request, $id)
     {
-        return parent::deleteObject($request, $id);
+        return parent::crudDeleteObject($request, $id);
     }
 
     /**
      * @return int
      */
-    protected function getPerPage()
+    protected function crudPerPage()
     {
         return 20;
     }
@@ -79,7 +107,7 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return FormTypeInterface|null
      */
-    protected function getListFormType()
+    protected function crudListFormType()
     {
         return new ComestibleListType();
     }
@@ -87,7 +115,7 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return array
      */
-    protected function getListDefaultData()
+    protected function crudListDefaultData()
     {
         return array(
             'user' => $this->getUser()->getId()
@@ -97,9 +125,9 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return Comestible
      */
-    protected function getCreateObject()
+    protected function crudCreateFactory()
     {
-        $objectClass = $this->getObjectClass();
+        $objectClass = $this->crudObjectClass();
 
         /** @var Comestible $object */
         $object = new $objectClass;
@@ -111,7 +139,7 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return FormTypeInterface
      */
-    protected function getCreateFormType()
+    protected function crudCreateFormType()
     {
         return new ComestibleType();
     }
@@ -120,13 +148,13 @@ class ComestibleController extends AbstractCRUDController
      * @param Comestible $object
      * @return bool
      */
-    protected function getEditIsGranted($object)
+    protected function crudEditIsGranted($object)
     {
-        if(!$this->security->isGranted($this->getEditRole(), $object)) {
+        if (!$this->security->isGranted($this->crudEditRole(), $object)) {
             return false;
         }
 
-        if($object->getUser() != $this->getUser()) {
+        if ($object->getUser() != $this->getUser()) {
             return false;
         }
 
@@ -136,7 +164,7 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return FormTypeInterface
      */
-    protected function getEditFormType()
+    protected function crudEditFormType()
     {
         return new ComestibleType();
     }
@@ -144,7 +172,7 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return string
      */
-    protected function getViewRoute()
+    protected function crudViewRoute()
     {
         return '';
     }
@@ -153,13 +181,13 @@ class ComestibleController extends AbstractCRUDController
      * @param Comestible $object
      * @return bool
      */
-    protected function getDeleteIsGranted($object)
+    protected function crudDeleteIsGranted($object)
     {
-        if(!$this->security->isGranted($this->getDeleteRole(), $object)) {
+        if (!$this->security->isGranted($this->crudDeleteRole(), $object)) {
             return false;
         }
 
-        if($object->getUser() != $this->getUser()) {
+        if ($object->getUser() != $this->getUser()) {
             return false;
         }
 
@@ -169,7 +197,7 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return string
      */
-    protected function getName()
+    protected function crudName()
     {
         return 'comestible';
     }
@@ -177,7 +205,7 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return string
      */
-    protected function getObjectClass()
+    protected function crudObjectClass()
     {
         return Comestible::class;
     }
