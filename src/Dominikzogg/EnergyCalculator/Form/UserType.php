@@ -28,4 +28,12 @@ class UserType extends AbstractUserType
             'translation_domain' => 'messages'
         ));
     }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'user_edit';
+    }
 }

@@ -72,6 +72,7 @@
     <div id="content" class="container">
         <div class="row">
             <div class="col-xs-12">
+                <h1>{% block title %}{% endblock %}</h1>
                 {% block flashmessages %}
                     {% for type, flashBag in app.session.flashbag.all %}
                         {% for flashMessage in flashBag %}

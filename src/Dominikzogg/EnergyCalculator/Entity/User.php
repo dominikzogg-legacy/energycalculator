@@ -7,7 +7,7 @@ use Saxulum\UserProvider\Model\AbstractUser;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Dominikzogg\EnergyCalculator\Repository\UserRepository")
  * @ORM\Table(
  *     name="user",
  *     uniqueConstraints={

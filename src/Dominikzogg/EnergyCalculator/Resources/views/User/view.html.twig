@@ -1,0 +1,39 @@
+{% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
+
+{% block pagetitle %}{{ (transPrefix~".view.title")|trans() }}{% endblock %}
+{% block title %}{{ (transPrefix~".view.title")|trans() }}{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <tr>
+            <td>{{ (transPrefix~".view.id")|trans() }}</td>
+            <td>{{ object.id }}</td>
+        </tr>
+        <tr>
+            <td>{{ (transPrefix~".view.username")|trans() }}</td>
+            <td>{{ object.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ (transPrefix~".view.email")|trans() }}</td>
+            <td>{{ object.email }}</td>
+        </tr>
+        <tr>
+            <td>{{ (transPrefix~".view.roles")|trans() }}</td>
+            <td>{{ object.roles|join(', ') }}</td>
+        </tr>
+        <tr>
+            <td>{{ (transPrefix~".view.enabled")|trans() }}</td>
+            <td>{% if object.enabled %}{{ (transPrefix~".view.istrue")|trans() }}{% else %}{{ (transPrefix~".view.isfalse")|trans() }}{% endif %}</td>
+        </tr>
+    </table>
+    <div class="form-group">
+        {% if editRoute|default(false) %}
+            <a class="btn btn-default" href="{{ url(editRoute, {'id': object.id }) }}" title="{{ (transPrefix~".view.edit")|trans() }}">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </a>
+        {% endif %}
+        <a class="btn btn-default" href="{{ url(listRoute) }}" title="{{ (transPrefix~".view.back")|trans() }}">
+            <i class="glyphicon glyphicon-list-alt"></i>
+        </a>
+    </div>
+{% endblock %}

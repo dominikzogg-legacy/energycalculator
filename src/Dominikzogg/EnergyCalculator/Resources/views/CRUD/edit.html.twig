@@ -1,9 +1,9 @@
 {% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
 
 {% block pagetitle %}{{ (transPrefix~".edit.title")|trans() }}{% endblock %}
+{% block title %}{{ (transPrefix~".edit.title")|trans() }}{% endblock %}
 
 {% block body %}
-    <h1>{{ (transPrefix~".edit.title")|trans() }}</h1>
     <form action="{% block form_action %}{{ url(editRoute, {'id': object.id}) }}{% endblock %}" method="post" {{ form_enctype(form) }} class="form-horizontal">
         {{ bootstrap_set_style('horizontal') }}
 

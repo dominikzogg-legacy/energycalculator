@@ -74,6 +74,17 @@ class UserController extends AbstractCRUDController
     }
 
     /**
+     * @Route("/view/{id}", bind="user_view", asserts={"id"="\d+"})
+     * @param Request $request
+     * @param $id
+     * @return Response|RedirectResponse
+     */
+    public function viewAction(Request $request, $id)
+    {
+        return self::viewObject($request, $id);
+    }
+
+    /**
      * @param User $object
      * @return void
      */

@@ -541,7 +541,7 @@ abstract class AbstractCRUDController
      */
     protected function getViewRole()
     {
-        return 'ROLE_' . $this->getName() . '_VIEW';
+        return 'ROLE_' . strtoupper($this->getName()) . '_VIEW';
     }
 
     /**

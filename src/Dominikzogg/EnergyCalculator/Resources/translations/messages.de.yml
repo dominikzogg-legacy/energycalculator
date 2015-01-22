@@ -27,14 +27,14 @@ key: &key Schüssel
 name: &name Name
 password: &password Passwort
 save: &save speichern
-show: &show anzeigen
+view: &view anzeigen
 username: &username Benutzername
 value: &value Wert
 
-calorie: &calorie Kalorien
-protein: &protein Eiweiss
-carbohydrate: &carbohydrate Kohlenhydrate
-fat: &fat Fett
+calorie: &calorie Kcal
+protein: &protein E
+carbohydrate: &carbohydrate K
+fat: &fat F
 
 Previous: zurück
 Next: weiter
@@ -60,38 +60,56 @@ chart:
     fat: Fett
 
 day:
+  create:
+    title: Tag erstellen
+    flash:
+      error: 'Der Tag konnte nicht gespeichert werden.'
+      success: 'Der Tag wurde erfolgreich gespeichert.'
   edit:
     title: Tag bearbeiten
     save: *save
-    show: *show
+    view: *view
     back: *back
-  label:
-    date: *date
-    weight: &weight Gewicht
-    comestiblesWithinDay: Konsum
-    comestiblesWithinDay_collection:
-      add: Nahrungsmittel hinzufügen
-      remove: Nahrungsmittel entfernen
-      comestible: Nahrungsmittel
-      comestible_default: Bitte wählen Sie ein Nahrungsmittel
-      amount: *amount
+    flash:
+      error: 'Der Tag konnte nicht gespeichert werden.'
+      success: 'Der Tag wurde erfolgreich gespeichert.'
+    label:
+      date: *date
+      weight: &weight Gewicht
+      comestiblesWithinDay: Konsum
+      comestiblesWithinDay_collection:
+        add: Nahrungsmittel hinzufügen
+        remove: Nahrungsmittel entfernen
+        comestible: Nahrungsmittel
+        comestible_default: Bitte wählen Sie ein Nahrungsmittel
+        amount: *amount
+  delete:
+    flash:
+      success: 'Der Tag wurde erfolgreich gelöscht.'
   list:
     title: Tages Liste
     date: *date
     weight: *weight
+    calorie: *calorie
+    protein: *protein
+    carbohydrate: *carbohydrate
+    fat: *fat
     actions: *actions
     edit: *edit
-    show: *show
+    view: *view
     delete: *delete
     create: *create
-  show:
+    label:
+      submit: Suchen
+      name: *name
+  view:
     title: Tag anzeigen
     name: *name
     amount: M
     calorie: Kcal
-    protein: E
-    carbohydrate: K
-    fat: F
+    protein: *protein
+    carbohydrate: *carbohydrate
+    fat: *fat
     total: Total
     edit: *edit
     back: *back
@@ -133,27 +151,41 @@ comestible:
     edit: *edit
     delete: *delete
     create: *create
+    label:
+      submit: Suchen
+      name: *name
 
 user:
+  create:
+    title: Benutzer erstellen
+    flash:
+      error: 'Der Benutzer konnte nicht gespeichert werden.'
+      success: 'Der Benutzer wurde erfolgreich gespeichert.'
   edit:
     title: Benutzer bearbeiten
     save: *save
     back: *back
-  label:
-    username: *username
-    plainpassword: *password
-    repeatedpassword: Passwort wiederholen
-    email: &email E-Mail
-    roles: &roles Rolen
+    flash:
+      error: 'Der Benutzer konnte nicht gespeichert werden.'
+      success: 'Der Benutzer wurde erfolgreich gespeichert.'
+    label:
+      username: *username
+      plainpassword: *password
+      repeatedpassword: Passwort wiederholen
+      email: &email E-Mail
+      roles: &roles Rolen
+  delete:
+    flash:
+      success: 'Der Benutzer wurde erfolgreich gelöscht.'
   list:
     title: Benutzer Liste
     name: *name
     actions: *actions
     edit: *edit
-    show: *show
+    view: *view
     delete: *delete
     create: *create
-  show:
+  view:
     title: Benutzer anzeigen
     id: *id
     username: *username

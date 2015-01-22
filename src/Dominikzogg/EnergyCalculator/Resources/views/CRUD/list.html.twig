@@ -1,9 +1,9 @@
 {% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
 
 {% block pagetitle %}{{ (transPrefix~".list.title")|trans() }}{% endblock %}
+{% block title %}{{ (transPrefix~".list.title")|trans() }}{% endblock %}
 
 {% block body %}
-    <h1>{{ (transPrefix~".list.title")|trans() }}</h1>
     <a class="btn btn-default" href="{{ url(createRoute) }}" title="{{ (transPrefix~".list.create")|trans() }}">
         <i class="glyphicon glyphicon-plus"></i>
     </a><br />

@@ -32,8 +32,8 @@ class DayType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $addButtonText = $this->translator->trans('day.label.comestiblesWithinDay_collection.add', array(), 'messages');
-        $deleteButtonText = $this->translator->trans('day.label.comestiblesWithinDay_collection.remove', array(), 'messages');
+        $addButtonText = $this->translator->trans('day.edit.label.comestiblesWithinDay_collection.add', array(), 'messages');
+        $deleteButtonText = $this->translator->trans('day.edit.label.comestiblesWithinDay_collection.remove', array(), 'messages');
 
         $builder
             ->add('date', 'simpledate')
@@ -65,6 +65,6 @@ class DayType extends AbstractType
 
     public function getName()
     {
-        return 'day';
+        return 'day_edit';
     }
 }
