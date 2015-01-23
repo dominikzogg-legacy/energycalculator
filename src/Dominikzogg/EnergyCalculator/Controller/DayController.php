@@ -119,7 +119,7 @@ class DayController extends AbstractCRUDController
     /**
      * @return int
      */
-    protected function crudPerPage()
+    protected function crudPaginatePerPage()
     {
         return 7;
     }
