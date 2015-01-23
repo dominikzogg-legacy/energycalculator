@@ -8,7 +8,6 @@
             if(comestibleDefaultAmount !== '') {
                 var $formGroup = $comestibleSelect.closest('div[id*="comestiblesWithinDay"]');
                 var $comestibleAmount = $formGroup.find('input[id*="amount"]');
-                console.log($comestibleAmount);
                 $comestibleAmount.val(comestibleDefaultAmount);
             }
         });
