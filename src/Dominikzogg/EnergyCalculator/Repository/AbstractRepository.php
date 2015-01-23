@@ -4,6 +4,7 @@ namespace Dominikzogg\EnergyCalculator\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Saxulum\Crud\Repository\QueryBuilderForFilterFormInterface;
 
 abstract class AbstractRepository extends EntityRepository implements QueryBuilderForFilterFormInterface
 {
