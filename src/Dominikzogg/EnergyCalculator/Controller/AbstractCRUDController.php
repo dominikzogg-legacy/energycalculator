@@ -113,7 +113,7 @@ abstract class AbstractCRUDController
     /**
      * @return string
      */
-    protected function crudTwigTemplatePattern()
+    protected function crudTemplatePattern()
     {
         return '@DominikzoggEnergyCalculator/%s/%s.html.twig';
     }

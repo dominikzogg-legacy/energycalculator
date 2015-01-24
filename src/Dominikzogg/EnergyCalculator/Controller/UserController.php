@@ -105,24 +105,6 @@ class UserController extends AbstractCRUDController
     }
 
     /**
-     * @param User $object
-     * @return void
-     */
-    protected function crudPrePersist($object)
-    {
-        $this->userManager->update($object);
-    }
-
-    /**
-     * @param User $object
-     * @return void
-     */
-    protected function crudPreUpdate($object)
-    {
-        $this->userManager->update($object);
-    }
-
-    /**
      * @Route("/delete/{id}", bind="user_delete", asserts={"id"="\d+"}, method="GET")
      * @param Request $request
      * @param $id
@@ -142,11 +124,29 @@ class UserController extends AbstractCRUDController
     }
 
     /**
+     * @param User $object
+     * @return void
+     */
+    protected function crudCreatePrePersist($object)
+    {
+        $this->userManager->update($object);
+    }
+
+    /**
      * @return FormTypeInterface
      */
     protected function crudEditFormType()
     {
         return new UserType($this->crudObjectClass());
+    }
+
+    /**
+     * @param User $object
+     * @return void
+     */
+    protected function crudEditPrePersist($object)
+    {
+        $this->userManager->update($object);
     }
 
     /**

@@ -99,13 +99,13 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return int
      */
-    protected function crudPaginatePerPage()
+    protected function crudListPerPage()
     {
         return 20;
     }
 
     /**
-     * @return FormTypeInterface|null
+     * @return FormTypeInterface
      */
     protected function crudListFormType()
     {
@@ -115,7 +115,7 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @return array
      */
-    protected function crudListDefaultData()
+    protected function crudListFormDataEnrich()
     {
         return array(
             'user' => $this->getUser()->getId()

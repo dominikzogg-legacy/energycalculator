@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b664db34a648be0e3ed9fbe48338fc04",
+    "hash": "61a27646cdb4c2d7aea40ac005fa1a40",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -1700,16 +1700,16 @@
         },
         {
             "name": "saxulum/saxulum-crud",
-            "version": "dev-master",
+            "version": "1.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-crud.git",
-                "reference": "67101058b03b965179e34230bac784f90d4166c0"
+                "reference": "0ce5da9e4c41a0538a6dd37c82014fc7969bc1dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/67101058b03b965179e34230bac784f90d4166c0",
-                "reference": "67101058b03b965179e34230bac784f90d4166c0",
+                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/0ce5da9e4c41a0538a6dd37c82014fc7969bc1dc",
+                "reference": "0ce5da9e4c41a0538a6dd37c82014fc7969bc1dc",
                 "shasum": ""
             },
             "require": {
@@ -1719,7 +1719,8 @@
                 "symfony/form": "~2.3",
                 "symfony/http-kernel": "~2.3",
                 "symfony/routing": "~2.3",
-                "symfony/security": "~2.3"
+                "symfony/security": "~2.3",
+                "twig/twig": "~1.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
@@ -1747,7 +1748,7 @@
                 "silex",
                 "symfony"
             ],
-            "time": "2015-01-23 08:21:21"
+            "time": "2015-01-24 15:56:10"
         },
         {
             "name": "saxulum/saxulum-doctrine-orm-commands",
@@ -3889,8 +3890,8 @@
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": {
-        "saxulum/saxulum-crud": 20,
         "saxulum/saxulum-pagination-provider": 20,
+        "saxulum/saxulum-crud": 10,
         "saxulum/saxulum-user-provider": 20
     },
     "prefer-stable": true,
