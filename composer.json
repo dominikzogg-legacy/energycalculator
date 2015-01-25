@@ -28,7 +28,7 @@
         "saxulum/saxulum-doctrine-orm-manager-registry-provider": "~2.2",
         "saxulum/saxulum-doctrine-orm-commands": "~1.2",
         "saxulum/saxulum-menu-provider": "~1.0,>=1.0.2",
-        "saxulum/saxulum-pagination-provider": "dev-master@dev",
+        "saxulum/saxulum-pagination-provider": "~1.0,>=1.0.3",
         "saxulum/saxulum-route-controller-provider": "~1.2,>=1.2.1",
         "saxulum/saxulum-translation-provider": "~1.0,>=1.0.3",
         "saxulum/saxulum-validator-provider": "~1.0",
