@@ -20,38 +20,38 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 /**
  * @Route("/{_locale}/comestible")
  * @DI(serviceIds={
- *      "form.factory",
+ *      "security",
  *      "doctrine",
+ *      "form.factory",
  *      "knp_paginator",
- *      "twig",
  *      "url_generator",
- *      "security"
+ *      "twig"
  * })
  */
 class ComestibleController extends AbstractCRUDController
 {
     /**
-     * @param FormFactory $formFactory
-     * @param ManagerRegistry $doctrine
-     * @param Paginator $paginator
-     * @param \Twig_Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
      * @param SecurityContextInterface $security
+     * @param ManagerRegistry $doctrine
+     * @param FormFactory $formFactory
+     * @param Paginator $paginator
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param \Twig_Environment $twig
      */
     public function __construct(
-        FormFactory $formFactory,
+        SecurityContextInterface $security,
         ManagerRegistry $doctrine,
+        FormFactory $formFactory,
         Paginator $paginator,
-        \Twig_Environment $twig,
         UrlGeneratorInterface $urlGenerator,
-        SecurityContextInterface $security
+        \Twig_Environment $twig
     ) {
-        $this->formFactory = $formFactory;
-        $this->doctrine = $doctrine;
-        $this->paginator = $paginator;
-        $this->twig = $twig;
-        $this->urlGenerator = $urlGenerator;
         $this->security = $security;
+        $this->doctrine = $doctrine;
+        $this->formFactory = $formFactory;
+        $this->paginator = $paginator;
+        $this->urlGenerator = $urlGenerator;
+        $this->twig = $twig;
     }
 
     /**

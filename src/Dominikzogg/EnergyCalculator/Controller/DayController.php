@@ -21,12 +21,12 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * @Route("/{_locale}/day")
  * @DI(serviceIds={
- *      "form.factory",
- *      "doctrine",
- *      "knp_paginator",
- *      "twig",
- *      "url_generator",
  *      "security",
+ *      "doctrine",
+ *      "form.factory",
+ *      "knp_paginator",
+ *      "url_generator",
+ *      "twig",
  *      "translator"
  * })
  */
@@ -38,28 +38,29 @@ class DayController extends AbstractCRUDController
     protected $translator;
 
     /**
-     * @param FormFactory $formFactory
-     * @param ManagerRegistry $doctrine
-     * @param Paginator $paginator
-     * @param \Twig_Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
      * @param SecurityContextInterface $security
+     * @param ManagerRegistry $doctrine
+     * @param FormFactory $formFactory
+     * @param Paginator $paginator
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param \Twig_Environment $twig
+     * @param TranslatorInterface $translator
      */
     public function __construct(
-        FormFactory $formFactory,
-        ManagerRegistry $doctrine,
-        Paginator $paginator,
-        \Twig_Environment $twig,
-        UrlGeneratorInterface $urlGenerator,
         SecurityContextInterface $security,
+        ManagerRegistry $doctrine,
+        FormFactory $formFactory,
+        Paginator $paginator,
+        UrlGeneratorInterface $urlGenerator,
+        \Twig_Environment $twig,
         TranslatorInterface $translator
     ) {
-        $this->formFactory = $formFactory;
-        $this->doctrine = $doctrine;
-        $this->paginator = $paginator;
-        $this->twig = $twig;
-        $this->urlGenerator = $urlGenerator;
         $this->security = $security;
+        $this->doctrine = $doctrine;
+        $this->formFactory = $formFactory;
+        $this->paginator = $paginator;
+        $this->urlGenerator = $urlGenerator;
+        $this->twig = $twig;
         $this->translator = $translator;
     }
 

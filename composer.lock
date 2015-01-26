@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61a27646cdb4c2d7aea40ac005fa1a40",
+    "hash": "c137604a7a9712d7fb554cf8ce22c69f",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -1700,16 +1700,16 @@
         },
         {
             "name": "saxulum/saxulum-crud",
-            "version": "1.0-beta1",
+            "version": "1.0-beta5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-crud.git",
-                "reference": "0ce5da9e4c41a0538a6dd37c82014fc7969bc1dc"
+                "reference": "eec86b91d0fbcc89acb997030b73263112006a2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/0ce5da9e4c41a0538a6dd37c82014fc7969bc1dc",
-                "reference": "0ce5da9e4c41a0538a6dd37c82014fc7969bc1dc",
+                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/eec86b91d0fbcc89acb997030b73263112006a2c",
+                "reference": "eec86b91d0fbcc89acb997030b73263112006a2c",
                 "shasum": ""
             },
             "require": {
@@ -1748,7 +1748,7 @@
                 "silex",
                 "symfony"
             ],
-            "time": "2015-01-24 15:56:10"
+            "time": "2015-01-26 23:01:39"
         },
         {
             "name": "saxulum/saxulum-doctrine-orm-commands",
@@ -1980,16 +1980,16 @@
         },
         {
             "name": "saxulum/saxulum-pagination-provider",
-            "version": "dev-master",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-pagination-provider.git",
-                "reference": "fd2946389ced96d54129f2ac2fe733f0f15a71e1"
+                "reference": "f7a256c1216096b8edf7931ca1fb62e988755383"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-pagination-provider/zipball/fd2946389ced96d54129f2ac2fe733f0f15a71e1",
-                "reference": "fd2946389ced96d54129f2ac2fe733f0f15a71e1",
+                "url": "https://api.github.com/repos/saxulum/saxulum-pagination-provider/zipball/f7a256c1216096b8edf7931ca1fb62e988755383",
+                "reference": "f7a256c1216096b8edf7931ca1fb62e988755383",
                 "shasum": ""
             },
             "require": {
@@ -2001,15 +2001,16 @@
                 "twig/twig": "~1.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "~4.0",
+                "silex/silex": "~1.2"
             },
             "suggest": {
                 "silex/silex": "~1.2"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Saxulum\\PaginationProvider": "src/"
+                "psr-4": {
+                    "Saxulum\\PaginationProvider\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2031,7 +2032,7 @@
                 "saxulum",
                 "silex"
             ],
-            "time": "2014-05-15 20:09:49"
+            "time": "2015-01-25 22:05:37"
         },
         {
             "name": "saxulum/saxulum-route-controller-provider",
@@ -2139,16 +2140,16 @@
         },
         {
             "name": "saxulum/saxulum-user-provider",
-            "version": "dev-master",
+            "version": "1.0-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-user-provider.git",
-                "reference": "10cd033bb9a4a18ce5324c7d702eb4723272d97f"
+                "reference": "fcd256ab4c8748a9c4f1ee8a9504f13078815fcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-user-provider/zipball/10cd033bb9a4a18ce5324c7d702eb4723272d97f",
-                "reference": "10cd033bb9a4a18ce5324c7d702eb4723272d97f",
+                "url": "https://api.github.com/repos/saxulum/saxulum-user-provider/zipball/fcd256ab4c8748a9c4f1ee8a9504f13078815fcd",
+                "reference": "fcd256ab4c8748a9c4f1ee8a9504f13078815fcd",
                 "shasum": ""
             },
             "require": {
@@ -2158,7 +2159,7 @@
                 "symfony/security": "~2.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "~4.0"
             },
             "suggest": {
                 "saxulum/saxulum-console": "~2.0",
@@ -2193,7 +2194,7 @@
                 "user",
                 "userprovider"
             ],
-            "time": "2015-01-21 20:40:24"
+            "time": "2015-01-26 23:07:45"
         },
         {
             "name": "saxulum/saxulum-validator-provider",
@@ -3830,16 +3831,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.17.0",
+            "version": "v1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608"
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
-                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4cf7464348e7f9893a93f7096a90b73722be99cf",
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf",
                 "shasum": ""
             },
             "require": {
@@ -3848,7 +3849,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17-dev"
+                    "dev-master": "1.18-dev"
                 }
             },
             "autoload": {
@@ -3883,16 +3884,15 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-01-14 10:15:49"
+            "time": "2015-01-25 17:32:08"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": {
-        "saxulum/saxulum-pagination-provider": 20,
         "saxulum/saxulum-crud": 10,
-        "saxulum/saxulum-user-provider": 20
+        "saxulum/saxulum-user-provider": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,

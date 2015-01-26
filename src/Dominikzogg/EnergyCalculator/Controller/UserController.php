@@ -20,12 +20,12 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 /**
  * @Route("/{_locale}/user")
  * @DI(serviceIds={
- *      "form.factory",
- *      "doctrine",
- *      "knp_paginator",
- *      "twig",
- *      "url_generator",
  *      "security",
+ *      "doctrine",
+ *      "form.factory",
+ *      "knp_paginator",
+ *      "url_generator",
+ *      "twig",
  *      "saxulum.userprovider.manager"
  * })
  */
@@ -37,28 +37,29 @@ class UserController extends AbstractCRUDController
     protected $userManager;
 
     /**
-     * @param FormFactory $formFactory
-     * @param ManagerRegistry $doctrine
-     * @param Paginator $paginator
-     * @param \Twig_Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
      * @param SecurityContextInterface $security
+     * @param ManagerRegistry $doctrine
+     * @param FormFactory $formFactory
+     * @param Paginator $paginator
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param \Twig_Environment $twig
+     * @param UserManager $userManager
      */
     public function __construct(
-        FormFactory $formFactory,
-        ManagerRegistry $doctrine,
-        Paginator $paginator,
-        \Twig_Environment $twig,
-        UrlGeneratorInterface $urlGenerator,
         SecurityContextInterface $security,
+        ManagerRegistry $doctrine,
+        FormFactory $formFactory,
+        Paginator $paginator,
+        UrlGeneratorInterface $urlGenerator,
+        \Twig_Environment $twig,
         UserManager $userManager
     ) {
-        $this->formFactory = $formFactory;
-        $this->doctrine = $doctrine;
-        $this->paginator = $paginator;
-        $this->twig = $twig;
-        $this->urlGenerator = $urlGenerator;
         $this->security = $security;
+        $this->doctrine = $doctrine;
+        $this->formFactory = $formFactory;
+        $this->paginator = $paginator;
+        $this->urlGenerator = $urlGenerator;
+        $this->twig = $twig;
         $this->userManager = $userManager;
     }
 
