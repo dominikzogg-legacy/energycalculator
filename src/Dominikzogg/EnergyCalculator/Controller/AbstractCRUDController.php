@@ -47,7 +47,7 @@ abstract class AbstractCRUDController
     /**
      * @return FormFactory
      */
-    protected function getFormFactory()
+    protected function crudFormFactory()
     {
         return $this->formFactory;
     }
@@ -55,7 +55,7 @@ abstract class AbstractCRUDController
     /**
      * @return ManagerRegistry
      */
-    protected function getDoctrine()
+    protected function crudDoctrine()
     {
         return $this->doctrine;
     }
@@ -63,7 +63,7 @@ abstract class AbstractCRUDController
     /**
      * @return Paginator
      */
-    protected function getPaginator()
+    protected function crudPaginator()
     {
         return $this->paginator;
     }
@@ -71,7 +71,7 @@ abstract class AbstractCRUDController
     /**
      * @return \Twig_Environment
      */
-    protected function getTwig()
+    protected function crudTwig()
     {
         return $this->twig;
     }
@@ -79,7 +79,7 @@ abstract class AbstractCRUDController
     /**
      * @return UrlGeneratorInterface
      */
-    protected function getUrlGenerator()
+    protected function crudUrlGenerator()
     {
         return $this->urlGenerator;
     }
@@ -87,7 +87,7 @@ abstract class AbstractCRUDController
     /**
      * @return SecurityContextInterface
      */
-    protected function getSecurity()
+    protected function crudSecurity()
     {
         return $this->security;
     }
