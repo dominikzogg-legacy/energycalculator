@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dfd1f7c62c1984223353f7dcbaf13019",
+    "hash": "a1cf4552949e6b4ff461bdfcaae07c58",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -1402,16 +1402,16 @@
         },
         {
             "name": "saxulum/saxulum-assetic-twig-provider",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-assetic-twig-provider.git",
-                "reference": "01608a7e9b096a9f3323e3eb53276b073e6d5d3a"
+                "reference": "2b7769c2296e8b1846f43969b1aff7ebe95691b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-assetic-twig-provider/zipball/01608a7e9b096a9f3323e3eb53276b073e6d5d3a",
-                "reference": "01608a7e9b096a9f3323e3eb53276b073e6d5d3a",
+                "url": "https://api.github.com/repos/saxulum/saxulum-assetic-twig-provider/zipball/2b7769c2296e8b1846f43969b1aff7ebe95691b4",
+                "reference": "2b7769c2296e8b1846f43969b1aff7ebe95691b4",
                 "shasum": ""
             },
             "require": {
@@ -1463,7 +1463,7 @@
                 "silex",
                 "twig"
             ],
-            "time": "2014-10-14 20:38:13"
+            "time": "2015-01-28 21:38:15"
         },
         {
             "name": "saxulum/saxulum-bootstrap-provider",
