@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c137604a7a9712d7fb554cf8ce22c69f",
+    "hash": "dfd1f7c62c1984223353f7dcbaf13019",
     "packages": [
         {
             "name": "bootstrap-select/bootstrap-select",
@@ -1700,7 +1700,7 @@
         },
         {
             "name": "saxulum/saxulum-crud",
-            "version": "1.0-beta7",
+            "version": "1.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-crud.git",
@@ -3891,7 +3891,7 @@
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": {
-        "saxulum/saxulum-crud": 10,
+        "saxulum/saxulum-crud": 5,
         "saxulum/saxulum-user-provider": 15
     },
     "prefer-stable": true,
