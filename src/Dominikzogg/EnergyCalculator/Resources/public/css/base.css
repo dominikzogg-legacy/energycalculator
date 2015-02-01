@@ -43,6 +43,10 @@ h1 {
     text-align: right;
 }
 
+.select2-container {
+    font-size: 14px;
+}
+
 .select2-container .select2-selection--single {
     height: 34px;
 }
