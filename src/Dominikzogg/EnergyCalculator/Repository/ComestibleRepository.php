@@ -31,18 +31,36 @@ class ComestibleRepository extends AbstractRepository
 
     /**
      * @param User $user
-     * @param string $search
+     * @param string|null $search
      * @return Comestible[]
      */
-    public function searchComestibleOfUser(User $user, $search)
+    public function searchComestibleOfUser(User $user, $search = null)
+    {
+        return $this
+            ->searchComestibleOfUserQb($user, $search)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @param User $user
+     * @param string|null $search
+     * @return QueryBuilder
+     */
+    public function searchComestibleOfUserQb(User $user, $search = null)
     {
         $qb = $this->createQueryBuilder('c');
         $qb->where($qb->expr()->eq('c.user', ':user'));
         $qb->setParameter('user', $user->getId());
-        $qb->andWhere($qb->expr()->like('c.name', ':name'));
-        $qb->setParameter('name', '%' . $search . '%');
+
+        if(null !== $search) {
+            $qb->andWhere($qb->expr()->like('c.name', ':name'));
+            $qb->setParameter('name', '%' . $search . '%');
+        }
+
         $qb->orderBy('c.name');
 
-        return $qb->getQuery()->getResult();
+        return $qb;
     }
 }

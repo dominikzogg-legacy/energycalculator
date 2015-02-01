@@ -47,6 +47,8 @@ class Day implements UserReferenceInterface
     /**
      * @var \DateTime
      * @ORM\Column(name="date", type="date", nullable=false)
+     * @Assert\NotNull()
+     * @Assert\Date()
      */
     protected $date;
 

@@ -4,6 +4,8 @@ namespace Dominikzogg\EnergyCalculator\Form;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Dominikzogg\EnergyCalculator\Form\Transformer\EntityIdTransformer;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -13,40 +15,18 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * Class AjaxChoiceType
  * @package Dominikzogg\EnergyCalculator\Form
  */
-class AjaxChoiceType extends AbstractType
+class AjaxEntityType extends EntityType
 {
-    protected $registry;
-
-    public function __construct(ManagerRegistry $registry)
-    {
-        $this->registry = $registry;
-    }
-
-
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->resetViewTransformers();
-        parent::buildForm($builder, $options);
-        $transformer = new EntityIdTransformer($this->registry->getManagerForClass($options['class']), $options['class'], $options['property'], $options['multiple']);
-        $builder->addModelTransformer($transformer);
-    }
-
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
-        $resolver->setDefaults(array(
-            'multiple' => false
+        $resolver->setRequired(array(
+            'route',
+            'property'
         ));
-        $resolver->setRequired(
-            array(
-                'class',
-                'route',
-                'property'
-            )
-        );
     }
 
     /**
@@ -67,14 +47,6 @@ class AjaxChoiceType extends AbstractType
      */
     public function getName()
     {
-        return 'ajax_choice';
-    }
-
-    /**
-     * @return string
-     */
-    public function getParent()
-    {
-        return 'text';
+        return 'ajax_entity';
     }
 }
