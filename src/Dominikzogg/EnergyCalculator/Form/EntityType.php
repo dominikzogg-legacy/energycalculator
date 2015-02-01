@@ -43,10 +43,13 @@ class EntityType extends DoctrineType
 
         if ($queryBuilder instanceof \Closure) {
             $reflection = new \ReflectionFunction($queryBuilder);
-            $queryBuilderHashParts = array(
-                'export' => (string) $reflection,
-                'this' => spl_object_hash($reflection->getClosureThis()),
-            );
+            $queryBuilderHashParts = $this->replaceObjectWithHash(array(
+                'filename' => $reflection->getFileName(),
+                'startLine' => $reflection->getStartLine(),
+                'stopFile' => $reflection->getEndLine(),
+                'uses' => $reflection->getStaticVariables(),
+                'this' => is_callable(array($reflection, 'getClosureThis')) ? $reflection->getClosureThis() : null
+            ));
             $queryBuilderHash = hash('sha256', json_encode($queryBuilderHashParts));
         } else {
             $queryBuilderHash = spl_object_hash($queryBuilder);
@@ -67,6 +70,23 @@ class EntityType extends DoctrineType
         }
 
         return $this->loaderCache[$loaderHash];
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    protected function replaceObjectWithHash(array $data)
+    {
+        foreach($data as $key => $value) {
+            if(is_array($value)) {
+                $data[$key] = $this->replaceObjectWithHash($value);
+            } else if(is_object($value)) {
+                $data[$key] = spl_object_hash($value);
+            }
+        }
+
+        return $data;
     }
 
     public function getName()
