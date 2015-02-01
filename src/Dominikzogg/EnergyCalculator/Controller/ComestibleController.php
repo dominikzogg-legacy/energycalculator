@@ -6,14 +6,17 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Dominikzogg\EnergyCalculator\Entity\Comestible;
 use Dominikzogg\EnergyCalculator\Form\ComestibleListType;
 use Dominikzogg\EnergyCalculator\Form\ComestibleType;
+use Dominikzogg\EnergyCalculator\Repository\ComestibleRepository;
 use Knp\Component\Pager\Paginator;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
@@ -94,6 +97,31 @@ class ComestibleController extends AbstractCRUDController
     public function deleteAction(Request $request, $id)
     {
         return parent::crudDeleteObject($request, $id);
+    }
+
+    /**
+     * @Route("/choice", bind="comestible_choice", method="GET")
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function choiceAction(Request $request)
+    {
+        $property = $request->query->get('property', 'name');
+        $search = urldecode($request->query->get('q', ''));
+
+        /** @var ComestibleRepository $repo */
+        $repo = $this->crudRepositoryForClass($this->crudObjectClass());
+        $propertyAccessor = new PropertyAccessor();
+        $data = array();
+        foreach($repo->searchComestibleOfUser($this->getUser(), $search) as $comestible) {
+            $data[] = array(
+                'id' => $comestible->getId(),
+                'text' => $propertyAccessor->getValue($comestible, $property),
+                'default' => $comestible->getDefaultValue(),
+            );
+        }
+
+        return new JsonResponse($data);
     }
 
     /**

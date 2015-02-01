@@ -38,3 +38,21 @@
     {% endspaceless %}
 {% endblock choice_widget_options %}
 
+{% block ajax_choice_widget %}
+    {{ form_errors(form) }}
+    {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
+    {% set values = form.vars.value|split(',') %}
+    <select data-select2-rendering="true"
+            data-route="{{ url(options.route) }}"
+            data-property="{{ options.property }}"
+            data-placeholder=""
+            {{ block('widget_attributes') }}
+            value="{{ form.vars.value }}">
+        {% for value in values %}
+            {% set valueParts = value|split(':') %}
+            {% if valueParts|length == 2 %}
+                <option value="{{ valueParts[0] }}">{{ valueParts[1] }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+{% endblock %}

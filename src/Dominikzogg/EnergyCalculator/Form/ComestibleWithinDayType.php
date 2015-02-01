@@ -2,10 +2,8 @@
 
 namespace Dominikzogg\EnergyCalculator\Form;
 
-use Doctrine\ORM\EntityRepository;
 use Dominikzogg\EnergyCalculator\Entity\Comestible;
 use Dominikzogg\EnergyCalculator\Entity\ComestibleWithinDay;
-use Dominikzogg\EnergyCalculator\Entity\User;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
@@ -13,21 +11,15 @@ use Symfony\Component\Translation\Translator;
 class ComestibleWithinDayType extends AbstractType
 {
     /**
-     * @var User
-     */
-    protected $user;
-
-    /**
      * @var Translator
      */
     protected $translator;
 
     /**
-     * @param User $user
+     * @param Translator $translator
      */
-    public function __construct(User $user, Translator $translator)
+    public function __construct(Translator $translator)
     {
-        $this->user = $user;
         $this->translator = $translator;
     }
 
@@ -37,25 +29,13 @@ class ComestibleWithinDayType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $user = $this->user;
-
         $builder
-            ->add('comestible', 'entity', array(
+            ->add('comestible', 'ajax_choice', array(
                 'class' => get_class(new Comestible()),
+                'route' => 'comestible_choice',
                 'property' => 'name',
-                'query_builder' => function (EntityRepository $er) use ($user) {
-                    $qb = $er->createQueryBuilder('c');
-                    $qb->where('c.user = :user');
-                    $qb->setParameter('user', $user->getId());
-                    $qb->orderBy('c.name');
-
-                    return $qb;
-                },
                 'required' => false,
                 'attr' => array(
-                    'data-live-search' => true,
-                    'data-style' => 'btn-default form-control',
-                    'class' => 'show-tick',
                     'title' => $this->translator->trans('day.edit.label.comestiblesWithinDay_collection.comestible_default')
                 )
             ))

@@ -162,7 +162,7 @@ class DayController extends AbstractCRUDController
      */
     protected function crudCreateFormType()
     {
-        return new DayType($this->getUser(), $this->translator);
+        return new DayType($this->translator);
     }
 
     /**
@@ -187,7 +187,7 @@ class DayController extends AbstractCRUDController
      */
     protected function crudEditFormType()
     {
-        return new DayType($this->getUser(), $this->translator);
+        return new DayType($this->translator);
     }
 
     /**

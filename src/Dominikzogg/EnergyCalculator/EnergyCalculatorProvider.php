@@ -4,6 +4,7 @@ namespace Dominikzogg\EnergyCalculator;
 
 use Dominikzogg\EnergyCalculator\Command\UserCreateCommand;
 use Dominikzogg\EnergyCalculator\Entity\User;
+use Dominikzogg\EnergyCalculator\Form\AjaxChoiceType;
 use Dominikzogg\EnergyCalculator\Form\FormTypeExtension;
 use Dominikzogg\EnergyCalculator\Form\SimpleDateType;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
@@ -31,6 +32,7 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
 
         $app['form.types'] = $app->share($app->extend('form.types', function ($types) use ($app) {
             $types[] = new SimpleDateType();
+            $types[] = new AjaxChoiceType($app['doctrine']);
 
             return $types;
         }));

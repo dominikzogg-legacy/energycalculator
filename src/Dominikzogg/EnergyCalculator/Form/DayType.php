@@ -3,7 +3,6 @@
 namespace Dominikzogg\EnergyCalculator\Form;
 
 use Dominikzogg\EnergyCalculator\Entity\Day;
-use Dominikzogg\EnergyCalculator\Entity\User;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
@@ -11,18 +10,12 @@ use Symfony\Component\Translation\Translator;
 class DayType extends AbstractType
 {
     /**
-     * @var User
-     */
-    protected $user;
-
-    /**
      * @var Translator
      */
     protected $translator;
 
-    public function __construct(User $user, Translator $translator)
+    public function __construct(Translator $translator)
     {
-        $this->user = $user;
         $this->translator = $translator;
     }
 
@@ -39,7 +32,7 @@ class DayType extends AbstractType
             ->add('date', 'simpledate')
             ->add('weight', 'number', array('required' => false))
             ->add('comestiblesWithinDay', 'bootstrap_collection', array(
-                'type' => new ComestibleWithinDayType($this->user, $this->translator),
+                'type' => new ComestibleWithinDayType($this->translator),
                 'allow_add' => true,
                 'add_button_text' => $addButtonText,
                 'allow_delete' => true,
