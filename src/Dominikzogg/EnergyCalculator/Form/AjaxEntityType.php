@@ -2,11 +2,6 @@
 
 namespace Dominikzogg\EnergyCalculator\Form;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Dominikzogg\EnergyCalculator\Form\Transformer\EntityIdTransformer;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
