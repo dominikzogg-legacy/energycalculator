@@ -45,7 +45,7 @@
     <select data-select2-rendering="true"
             data-route="{{ url(options.route) }}"
             data-property="{{ options.property }}"
-            data-placeholder=""
+            data-placeholder="{{ attribute(form.vars.attr, 'placeholder')|default('') }}"
             {{ block('widget_attributes') }}
             value="{{ form.vars.value }}">
         {% for value in values %}
