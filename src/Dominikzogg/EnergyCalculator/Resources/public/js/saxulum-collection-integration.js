@@ -1,10 +1,6 @@
 (function($){
     var addSelectPicker = function($selector){
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-            $selector.selectpicker('mobile');
-        } else {
-            $selector.selectpicker();
-        }
+        $selector.select2();
     };
     $(document).ready(function(){
         $('form').saxulumCollection('init', {});
