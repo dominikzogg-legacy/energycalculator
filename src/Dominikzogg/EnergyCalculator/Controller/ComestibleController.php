@@ -35,11 +35,11 @@ class ComestibleController extends AbstractCRUDController
 {
     /**
      * @param SecurityContextInterface $security
-     * @param ManagerRegistry $doctrine
-     * @param FormFactory $formFactory
-     * @param Paginator $paginator
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param \Twig_Environment $twig
+     * @param ManagerRegistry          $doctrine
+     * @param FormFactory              $formFactory
+     * @param Paginator                $paginator
+     * @param UrlGeneratorInterface    $urlGenerator
+     * @param \Twig_Environment        $twig
      */
     public function __construct(
         SecurityContextInterface $security,
@@ -59,7 +59,7 @@ class ComestibleController extends AbstractCRUDController
 
     /**
      * @Route("/", bind="comestible_list", method="GET")
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function listAction(Request $request)
@@ -69,7 +69,7 @@ class ComestibleController extends AbstractCRUDController
 
     /**
      * @Route("/create", bind="comestible_create")
-     * @param Request $request
+     * @param  Request                   $request
      * @return Response|RedirectResponse
      */
     public function createAction(Request $request)
@@ -79,7 +79,7 @@ class ComestibleController extends AbstractCRUDController
 
     /**
      * @Route("/edit/{id}", bind="comestible_edit", asserts={"id"="\d+"})
-     * @param Request $request
+     * @param  Request                   $request
      * @param $id
      * @return Response|RedirectResponse
      */
@@ -90,7 +90,7 @@ class ComestibleController extends AbstractCRUDController
 
     /**
      * @Route("/delete/{id}", bind="comestible_delete", asserts={"id"="\d+"}, method="GET")
-     * @param Request $request
+     * @param  Request          $request
      * @param $id
      * @return RedirectResponse
      */
@@ -101,7 +101,7 @@ class ComestibleController extends AbstractCRUDController
 
     /**
      * @Route("/choice", bind="comestible_choice", method="GET")
-     * @param Request $request
+     * @param  Request          $request
      * @return RedirectResponse
      */
     public function choiceAction(Request $request)
@@ -113,7 +113,7 @@ class ComestibleController extends AbstractCRUDController
         $repo = $this->crudRepositoryForClass($this->crudObjectClass());
         $propertyAccessor = new PropertyAccessor();
         $data = array();
-        foreach($repo->searchComestibleOfUser($this->getUser(), $search) as $comestible) {
+        foreach ($repo->searchComestibleOfUser($this->getUser(), $search) as $comestible) {
             $data[] = array(
                 'id' => $comestible->getId(),
                 'text' => $propertyAccessor->getValue($comestible, $property),
@@ -148,12 +148,12 @@ class ComestibleController extends AbstractCRUDController
     protected function crudListFormDataEnrich(Request $request, array $formData)
     {
         return array_replace_recursive($formData, array(
-            'user' => $this->getUser()->getId()
+            'user' => $this->getUser()->getId(),
         ));
     }
 
     /**
-     * @param Request $request
+     * @param  Request    $request
      * @return Comestible
      */
     protected function crudCreateFactory(Request $request)
@@ -161,7 +161,7 @@ class ComestibleController extends AbstractCRUDController
         $objectClass = $this->crudObjectClass();
 
         /** @var Comestible $object */
-        $object = new $objectClass;
+        $object = new $objectClass();
         $object->setUser($this->getUser());
 
         return $object;
@@ -176,8 +176,8 @@ class ComestibleController extends AbstractCRUDController
     }
 
     /**
-     * @param Comestible $object
-     * @param Request $request
+     * @param  Comestible $object
+     * @param  Request    $request
      * @return bool
      */
     protected function crudEditIsGranted($object, Request $request)
@@ -210,8 +210,8 @@ class ComestibleController extends AbstractCRUDController
     }
 
     /**
-     * @param Comestible $object
-     * @param Request $request
+     * @param  Comestible $object
+     * @param  Request    $request
      * @return bool
      */
     protected function crudDeleteIsGranted($object, Request $request)

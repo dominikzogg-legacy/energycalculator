@@ -8,7 +8,6 @@ use Saxulum\Accessor\Accessors\Set;
 use Saxulum\Accessor\AccessorTrait;
 use Saxulum\Hint\Hint;
 use Saxulum\Accessor\Prop;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Dominikzogg\EnergyCalculator\Repository\ComestibleRepository")

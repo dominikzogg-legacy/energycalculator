@@ -39,12 +39,12 @@ class DayController extends AbstractCRUDController
 
     /**
      * @param SecurityContextInterface $security
-     * @param ManagerRegistry $doctrine
-     * @param FormFactory $formFactory
-     * @param Paginator $paginator
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param \Twig_Environment $twig
-     * @param TranslatorInterface $translator
+     * @param ManagerRegistry          $doctrine
+     * @param FormFactory              $formFactory
+     * @param Paginator                $paginator
+     * @param UrlGeneratorInterface    $urlGenerator
+     * @param \Twig_Environment        $twig
+     * @param TranslatorInterface      $translator
      */
     public function __construct(
         SecurityContextInterface $security,
@@ -66,7 +66,7 @@ class DayController extends AbstractCRUDController
 
     /**
      * @Route("/", bind="day_list", method="GET")
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function listAction(Request $request)
@@ -76,7 +76,7 @@ class DayController extends AbstractCRUDController
 
     /**
      * @Route("/create", bind="day_create")
-     * @param Request $request
+     * @param  Request                   $request
      * @return Response|RedirectResponse
      */
     public function createAction(Request $request)
@@ -86,7 +86,7 @@ class DayController extends AbstractCRUDController
 
     /**
      * @Route("/edit/{id}", bind="day_edit", asserts={"id"="\d+"})
-     * @param Request $request
+     * @param  Request                   $request
      * @param $id
      * @return Response|RedirectResponse
      */
@@ -97,7 +97,7 @@ class DayController extends AbstractCRUDController
 
     /**
      * @Route("/view/{id}", bind="day_view", asserts={"id"="\d+"}, method="GET")
-     * @param Request $request
+     * @param  Request  $request
      * @param $id
      * @return Response
      */
@@ -108,7 +108,7 @@ class DayController extends AbstractCRUDController
 
     /**
      * @Route("/delete/{id}", bind="day_delete", asserts={"id"="\d+"}, method="GET")
-     * @param Request $request
+     * @param  Request          $request
      * @param $id
      * @return RedirectResponse
      */
@@ -141,12 +141,12 @@ class DayController extends AbstractCRUDController
     protected function crudListFormDataEnrich(Request $request, array $formData)
     {
         return array_replace_recursive($formData, array(
-            'user' => $this->getUser()->getId()
+            'user' => $this->getUser()->getId(),
         ));
     }
 
     /**
-     * @param Request $request
+     * @param  Request $request
      * @return Day
      */
     protected function crudCreateFactory(Request $request)
@@ -154,7 +154,7 @@ class DayController extends AbstractCRUDController
         $objectClass = $this->crudObjectClass();
 
         /** @var Day $object */
-        $object = new $objectClass;
+        $object = new $objectClass();
         $object->setUser($this->getUser());
 
         return $object;
@@ -169,8 +169,8 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @param Day $object
-     * @param Request $request
+     * @param  Day     $object
+     * @param  Request $request
      * @return bool
      */
     protected function crudEditIsGranted($object, Request $request)
@@ -195,8 +195,8 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @param Day $object
-     * @param Request $request
+     * @param  Day     $object
+     * @param  Request $request
      * @return bool
      */
     protected function crudViewIsGranted($object, Request $request)
@@ -213,8 +213,8 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @param Day $object
-     * @param Request $request
+     * @param  Day     $object
+     * @param  Request $request
      * @return bool
      */
     protected function crudDeleteIsGranted($object, Request $request)

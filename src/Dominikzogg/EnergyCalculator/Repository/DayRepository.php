@@ -9,7 +9,7 @@ use Dominikzogg\EnergyCalculator\Entity\User;
 class DayRepository extends AbstractRepository
 {
     /**
-     * @param array $filterData
+     * @param  array        $filterData
      * @return QueryBuilder
      */
     public function getQueryBuilderForFilterForm(array $filterData = null)
@@ -30,9 +30,9 @@ class DayRepository extends AbstractRepository
     }
 
     /**
-     * @param \DateTime $from
-     * @param \DateTime $to
-     * @param User $user
+     * @param  \DateTime $from
+     * @param  \DateTime $to
+     * @param  User      $user
      * @return Day[]
      */
     public function getInRange(\DateTime $from, \DateTime $to, User $user = null)
@@ -43,23 +43,23 @@ class DayRepository extends AbstractRepository
     }
 
     /**
-     * @param \DateTime $from
-     * @param \DateTime $to
-     * @param User $user
-     * @param string $alias
+     * @param  \DateTime                  $from
+     * @param  \DateTime                  $to
+     * @param  User                       $user
+     * @param  string                     $alias
      * @return \Doctrine\ORM\QueryBuilder
      */
     public function getInRangeQueryBuilder(\DateTime $from, \DateTime $to, User $user = null, $alias = 'd')
     {
         $qb = $this->createQueryBuilder($alias);
-        $qb->andWhere($alias . '.date >= :from');
-        $qb->andWhere($alias . '.date <= :to');
+        $qb->andWhere($alias.'.date >= :from');
+        $qb->andWhere($alias.'.date <= :to');
         $qb->setParameter('from', $from);
         $qb->setParameter('to', $to);
-        $qb->orderBy($alias . '.date', 'ASC');
+        $qb->orderBy($alias.'.date', 'ASC');
 
         if (null !== $user) {
-            $qb->andWhere($alias . '.user = :user');
+            $qb->andWhere($alias.'.user = :user');
             $qb->setParameter('user', $user->getId());
         }
 

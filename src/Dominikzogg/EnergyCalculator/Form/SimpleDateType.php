@@ -12,7 +12,7 @@ class SimpleDateType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -27,7 +27,7 @@ class SimpleDateType extends AbstractType
                     } catch (\Exception $e) {
                         $event->getForm()->addError(
                             new FormError('This value is not a valid date.', null, array(
-                                '%dateformat%' => $this->getDateFormat()
+                                '%dateformat%' => $this->getDateFormat(),
                             ))
                         );
                     }
@@ -51,12 +51,12 @@ class SimpleDateType extends AbstractType
             'attr' => array(
                 'data-provide' => 'datepicker',
                 'data-date-format' => 'dd.mm.yyyy',
-            )
+            ),
         ));
     }
 
     /**
-     * @param \DateTime $dateTime
+     * @param  \DateTime $dateTime
      * @return string
      */
     protected function getData(\DateTime $dateTime = null)
@@ -79,7 +79,7 @@ class SimpleDateType extends AbstractType
     {
         return 'date';
     }
-    
+
     /**
      * @return string
      */

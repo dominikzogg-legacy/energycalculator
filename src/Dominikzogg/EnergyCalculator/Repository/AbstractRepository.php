@@ -10,25 +10,25 @@ abstract class AbstractRepository extends EntityRepository implements QueryBuild
 {
     /**
      * @param QueryBuilder $qb
-     * @param string $alias
-     * @param string $property
-     * @param mixed $value
+     * @param string       $alias
+     * @param string       $property
+     * @param mixed        $value
      */
     protected function addEqualFilter(QueryBuilder $qb, $alias, $property, $value)
     {
-        $qb->andWhere($qb->expr()->eq($alias . '.' . $property, ':' . $property));
+        $qb->andWhere($qb->expr()->eq($alias.'.'.$property, ':'.$property));
         $qb->setParameter($property, $value);
     }
 
     /**
      * @param QueryBuilder $qb
-     * @param string $alias
-     * @param string $property
-     * @param mixed $value
+     * @param string       $alias
+     * @param string       $property
+     * @param mixed        $value
      */
     protected function addLikeFilter(QueryBuilder $qb, $alias, $property, $value)
     {
-        $qb->andWhere($qb->expr()->like($alias . '.' . $property, ':' . $property));
-        $qb->setParameter($property, '%' . $value . '%');
+        $qb->andWhere($qb->expr()->like($alias.'.'.$property, ':'.$property));
+        $qb->setParameter($property, '%'.$value.'%');
     }
 }

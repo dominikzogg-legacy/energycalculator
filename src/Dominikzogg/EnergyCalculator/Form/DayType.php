@@ -21,7 +21,7 @@ class DayType extends AbstractType
     protected $translator;
 
     /**
-     * @param User $user
+     * @param User       $user
      * @param Translator $translator
      */
     public function __construct(User $user, Translator $translator)
@@ -51,7 +51,7 @@ class DayType extends AbstractType
                 'sub_widget_col' => 12,
                 'button_col' => '12 col-lg-offset-2',
                 'by_reference' => false,
-                'error_bubbling' => false
+                'error_bubbling' => false,
             ))
         ;
     }

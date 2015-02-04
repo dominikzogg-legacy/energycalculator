@@ -28,7 +28,7 @@ class DateRangeType extends AbstractType
         parent::setDefaultOptions($resolver);
         $resolver->setDefaults(array(
             'method' => 'GET',
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ));
     }
 

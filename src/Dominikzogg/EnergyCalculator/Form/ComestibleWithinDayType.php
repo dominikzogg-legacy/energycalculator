@@ -23,7 +23,7 @@ class ComestibleWithinDayType extends AbstractType
     protected $translator;
 
     /**
-     * @param User $user
+     * @param User       $user
      * @param Translator $translator
      */
     public function __construct(User $user, Translator $translator)
@@ -48,8 +48,8 @@ class ComestibleWithinDayType extends AbstractType
                 },
                 'required' => false,
                 'attr' => array(
-                    'placeholder' => $this->translator->trans('day.edit.label.comestiblesWithinDay_collection.comestible_default')
-                )
+                    'placeholder' => $this->translator->trans('day.edit.label.comestiblesWithinDay_collection.comestible_default'),
+                ),
             ))
             ->add('amount', 'number', array('required' => true))
         ;

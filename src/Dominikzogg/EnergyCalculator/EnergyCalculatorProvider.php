@@ -4,10 +4,8 @@ namespace Dominikzogg\EnergyCalculator;
 
 use Dominikzogg\EnergyCalculator\Command\UserCreateCommand;
 use Dominikzogg\EnergyCalculator\Entity\User;
-use Dominikzogg\EnergyCalculator\Form\AjaxChoiceType;
 use Dominikzogg\EnergyCalculator\Form\AjaxEntityType;
 use Dominikzogg\EnergyCalculator\Form\EntityType;
-use Dominikzogg\EnergyCalculator\Form\FormTypeExtension;
 use Dominikzogg\EnergyCalculator\Form\SimpleDateType;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
 use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
@@ -21,11 +19,11 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
     public function register(Application $app)
     {
         $app->register(new MenuProvider());
-        
+
         $app->register(new SaxulumUserProvider(), array(
-            'saxulum.userprovider.userclass' => get_class(new User())
+            'saxulum.userprovider.userclass' => get_class(new User()),
         ));
-        
+
         $app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twig) {
             $twig->addExtension(new FormHelperExtension());
 
@@ -48,7 +46,7 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
             $roleHierarchy['ROLE_COMESTIBLE_EDIT'] = array('ROLE_COMESTIBLE_LIST');
             $roleHierarchy['ROLE_COMESTIBLE_VIEW'] = array('ROLE_COMESTIBLE_LIST');
             $roleHierarchy['ROLE_COMESTIBLE_DELETE'] = array('ROLE_COMESTIBLE_LIST');
-            
+
             // day
             $roleHierarchy['ROLE_DAY_LIST'] = array();
             $roleHierarchy['ROLE_DAY_CREATE'] = array('ROLE_DAY_LIST');

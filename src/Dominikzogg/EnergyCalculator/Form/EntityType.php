@@ -48,7 +48,7 @@ class EntityType extends DoctrineType
                 'startLine' => $reflection->getStartLine(),
                 'stopFile' => $reflection->getEndLine(),
                 'uses' => $reflection->getStaticVariables(),
-                'this' => is_callable(array($reflection, 'getClosureThis')) ? $reflection->getClosureThis() : null
+                'this' => is_callable(array($reflection, 'getClosureThis')) ? $reflection->getClosureThis() : null,
             ));
             $queryBuilderHash = hash('sha256', json_encode($queryBuilderHashParts));
         } else {
@@ -73,15 +73,15 @@ class EntityType extends DoctrineType
     }
 
     /**
-     * @param array $data
+     * @param  array $data
      * @return array
      */
     protected function replaceObjectWithHash(array $data)
     {
-        foreach($data as $key => $value) {
-            if(is_array($value)) {
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
                 $data[$key] = $this->replaceObjectWithHash($value);
-            } else if(is_object($value)) {
+            } elseif (is_object($value)) {
                 $data[$key] = spl_object_hash($value);
             }
         }

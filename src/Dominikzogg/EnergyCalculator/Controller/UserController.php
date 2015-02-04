@@ -39,12 +39,12 @@ class UserController extends AbstractCRUDController
 
     /**
      * @param SecurityContextInterface $security
-     * @param ManagerRegistry $doctrine
-     * @param FormFactory $formFactory
-     * @param Paginator $paginator
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param \Twig_Environment $twig
-     * @param UserManager $userManager
+     * @param ManagerRegistry          $doctrine
+     * @param FormFactory              $formFactory
+     * @param Paginator                $paginator
+     * @param UrlGeneratorInterface    $urlGenerator
+     * @param \Twig_Environment        $twig
+     * @param UserManager              $userManager
      */
     public function __construct(
         SecurityContextInterface $security,
@@ -66,7 +66,7 @@ class UserController extends AbstractCRUDController
 
     /**
      * @Route("/", bind="user_list", method="GET")
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function listAction(Request $request)
@@ -76,7 +76,7 @@ class UserController extends AbstractCRUDController
 
     /**
      * @Route("/create", bind="user_create")
-     * @param Request $request
+     * @param  Request                   $request
      * @return Response|RedirectResponse
      */
     public function createAction(Request $request)
@@ -86,7 +86,7 @@ class UserController extends AbstractCRUDController
 
     /**
      * @Route("/edit/{id}", bind="user_edit", asserts={"id"="\d+"})
-     * @param Request $request
+     * @param  Request                   $request
      * @param $id
      * @return Response|RedirectResponse
      */
@@ -97,7 +97,7 @@ class UserController extends AbstractCRUDController
 
     /**
      * @Route("/view/{id}", bind="user_view", asserts={"id"="\d+"})
-     * @param Request $request
+     * @param  Request                   $request
      * @param $id
      * @return Response|RedirectResponse
      */
@@ -108,7 +108,7 @@ class UserController extends AbstractCRUDController
 
     /**
      * @Route("/delete/{id}", bind="user_delete", asserts={"id"="\d+"}, method="GET")
-     * @param Request $request
+     * @param  Request          $request
      * @param $id
      * @return RedirectResponse
      */
@@ -126,7 +126,7 @@ class UserController extends AbstractCRUDController
     }
 
     /**
-     * @param  User        $object
+     * @param  User          $object
      * @param  FormInterface $form
      * @param  Request       $request
      * @return void
@@ -145,7 +145,7 @@ class UserController extends AbstractCRUDController
     }
 
     /**
-     * @param  User        $object
+     * @param  User          $object
      * @param  FormInterface $form
      * @param  Request       $request
      * @return void

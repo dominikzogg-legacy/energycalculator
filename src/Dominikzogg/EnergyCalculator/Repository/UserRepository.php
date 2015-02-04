@@ -7,7 +7,7 @@ use Doctrine\ORM\QueryBuilder;
 class UserRepository extends AbstractRepository
 {
     /**
-     * @param array $filterData
+     * @param  array        $filterData
      * @return QueryBuilder
      */
     public function getQueryBuilderForFilterForm(array $filterData = array())

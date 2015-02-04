@@ -14,7 +14,7 @@ class FormHelperExtension extends \Twig_Extension
     }
 
     /**
-     * @param FormView $formView
+     * @param  FormView $formView
      * @return string
      */
     public function prepareFormLabel(FormView $formView)
@@ -27,7 +27,7 @@ class FormHelperExtension extends \Twig_Extension
                 $collection = true;
             } else {
                 if ($collection) {
-                    $labelParts[] = $name . '_collection';
+                    $labelParts[] = $name.'_collection';
                 } else {
                     $labelParts[] = str_replace('_', '.', $name);
                 }
@@ -37,6 +37,7 @@ class FormHelperExtension extends \Twig_Extension
         $length = count($labelParts);
         $labelParts[$length] = $labelParts[$length-1];
         $labelParts[$length-1] = 'label';
+
         return implode('.', array_reverse($labelParts));
     }
 

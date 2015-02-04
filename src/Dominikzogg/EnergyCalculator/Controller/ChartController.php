@@ -62,7 +62,7 @@ class ChartController
 
     /**
      * @Route("/weight", bind="chart_weight", method="GET")
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function weightAction(Request $request)
@@ -71,7 +71,7 @@ class ChartController
 
         $dateRangeForm = $this->createForm($dateRangeType, array(
             'from' => $this->getDefaultFrom('-1 week'),
-            'to' => $this->getDefaultTo()
+            'to' => $this->getDefaultTo(),
         ));
 
         $dateRangeForm->handleRequest($request);
@@ -93,13 +93,13 @@ class ChartController
             'daterangeform' => $dateRangeForm->createView(),
             'alldays' => $allDays,
             'minweight' => $minWeight,
-            'maxweight' => $maxWeight
+            'maxweight' => $maxWeight,
         ));
     }
 
     /**
      * @Route("/calorie", bind="chart_calorie", method="GET")
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function caloriesAction(Request $request)
@@ -108,7 +108,7 @@ class ChartController
 
         $dateRangeForm = $this->createForm($dateRangeType, array(
             'from' => $this->getDefaultFrom('-1 week'),
-            'to' => $this->getDefaultTo()
+            'to' => $this->getDefaultTo(),
         ));
 
         $dateRangeForm->handleRequest($request);
@@ -130,13 +130,13 @@ class ChartController
             'daterangeform' => $dateRangeForm->createView(),
             'alldays' => $allDays,
             'mincalorie' => $minCalorie,
-            'maxcalorie' => $maxCalorie
+            'maxcalorie' => $maxCalorie,
         ));
     }
 
     /**
      * @Route("/energymix", bind="chart_energymix", method="GET")
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function energymixAction(Request $request)
@@ -145,7 +145,7 @@ class ChartController
 
         $dateRangeForm = $this->createForm($dateRangeType, array(
             'from' => $this->getDefaultFrom('-1 week'),
-            'to' => $this->getDefaultTo()
+            'to' => $this->getDefaultTo(),
         ));
 
         $dateRangeForm->handleRequest($request);
@@ -167,12 +167,12 @@ class ChartController
             'daterangeform' => $dateRangeForm->createView(),
             'alldays' => $allDays,
             'minenergymix' => $minEnergyMix,
-            'maxenergymix' => $maxEnergyMix
+            'maxenergymix' => $maxEnergyMix,
         ));
     }
 
     /**
-     * @param null $modifier
+     * @param  null      $modifier
      * @return \DateTime
      */
     protected function getDefaultFrom($modifier = null)
@@ -187,7 +187,7 @@ class ChartController
     }
 
     /**
-     * @param null $modifier
+     * @param  null      $modifier
      * @return \DateTime
      */
     protected function getDefaultTo($modifier = null)
@@ -202,9 +202,9 @@ class ChartController
     }
 
     /**
-     * @param Day[] $days
-     * @param \DateTime $from
-     * @param \DateTime $to
+     * @param  Day[]     $days
+     * @param  \DateTime $from
+     * @param  \DateTime $to
      * @return Day[]
      */
     protected function getDaysOrNull(array $days, \DateTime $from, \DateTime $to)
@@ -228,7 +228,7 @@ class ChartController
     }
 
     /**
-     * @param Day[] $days
+     * @param  Day[] $days
      * @return float
      */
     protected function getMinWeight(array $days)
@@ -244,7 +244,7 @@ class ChartController
     }
 
     /**
-     * @param Day[] $days
+     * @param  Day[] $days
      * @return float
      */
     protected function getMaxWeight(array $days)
@@ -260,7 +260,7 @@ class ChartController
     }
 
     /**
-     * @param Day[] $days
+     * @param  Day[] $days
      * @return float
      */
     protected function getMinCalorie(array $days)
@@ -276,7 +276,7 @@ class ChartController
     }
 
     /**
-     * @param Day[] $days
+     * @param  Day[] $days
      * @return float
      */
     protected function getMaxCalorie(array $days)
@@ -292,7 +292,7 @@ class ChartController
     }
 
     /**
-     * @param Day[] $days
+     * @param  Day[] $days
      * @return float
      */
     protected function getMinEnergyMix(array $days)
@@ -314,7 +314,7 @@ class ChartController
     }
 
     /**
-     * @param Day[] $days
+     * @param  Day[] $days
      * @return float
      */
     protected function getMaxEnergyMix(array $days)
@@ -344,7 +344,7 @@ class ChartController
     }
 
     /**
-     * @param string $class
+     * @param  string             $class
      * @return ObjectManager|null
      */
     protected function getManagerForClass($class)
@@ -353,7 +353,7 @@ class ChartController
     }
 
     /**
-     * @param string $class
+     * @param  string           $class
      * @return ObjectRepository
      */
     protected function getRepositoryForClass($class)
@@ -367,7 +367,7 @@ class ChartController
     protected function getUser()
     {
         if (is_null($this->security->getToken())) {
-            return null;
+            return;
         }
 
         $user = $this->security->getToken()->getUser();
@@ -381,7 +381,7 @@ class ChartController
 
     /**
      * @param $view
-     * @param  array  $parameters
+     * @param  array    $parameters
      * @return Response
      */
     protected function render($view, array $parameters = array())
@@ -390,9 +390,9 @@ class ChartController
     }
 
     /**
-     * @param  string               $type
-     * @param  null                 $data
-     * @param  array                $options
+     * @param  string $type
+     * @param  null   $data
+     * @param  array  $options
      * @return Form
      */
     protected function createForm($type = 'form', $data = null, array $options = array())

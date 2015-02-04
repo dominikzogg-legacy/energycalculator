@@ -62,7 +62,7 @@ class LoginController
 
     /**
      * @param $view
-     * @param  array  $parameters
+     * @param  array    $parameters
      * @return Response
      */
     protected function render($view, array $parameters = array())

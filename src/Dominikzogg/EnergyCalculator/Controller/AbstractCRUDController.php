@@ -98,7 +98,7 @@ abstract class AbstractCRUDController
     protected function getUser()
     {
         if (is_null($this->security->getToken())) {
-            return null;
+            return;
         }
 
         $user = $this->security->getToken()->getUser();

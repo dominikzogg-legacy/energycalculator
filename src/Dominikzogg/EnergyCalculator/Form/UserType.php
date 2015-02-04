@@ -16,8 +16,8 @@ class UserType extends AbstractUserType
         $builder->add('enabled', 'checkbox', array(
             'required' => false,
             'attr' => array(
-                'align_with_widget' => true
-            )
+                'align_with_widget' => true,
+            ),
         ));
     }
 
@@ -25,7 +25,7 @@ class UserType extends AbstractUserType
     {
         parent::setDefaultOptions($resolver);
         $resolver->setDefaults(array(
-            'translation_domain' => 'messages'
+            'translation_domain' => 'messages',
         ));
     }
 

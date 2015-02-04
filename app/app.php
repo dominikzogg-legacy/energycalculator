@@ -1,7 +1,6 @@
 <?php
 
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
-use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Igorw\Silex\ConfigServiceProvider;
 use Knp\Menu\Integration\Silex\KnpMenuServiceProvider;

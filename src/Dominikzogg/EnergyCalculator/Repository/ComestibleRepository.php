@@ -9,7 +9,7 @@ use Dominikzogg\EnergyCalculator\Entity\User;
 class ComestibleRepository extends AbstractRepository
 {
     /**
-     * @param array $filterData
+     * @param  array        $filterData
      * @return QueryBuilder
      */
     public function getQueryBuilderForFilterForm(array $filterData = array())
@@ -30,8 +30,8 @@ class ComestibleRepository extends AbstractRepository
     }
 
     /**
-     * @param User $user
-     * @param string|null $search
+     * @param  User         $user
+     * @param  string|null  $search
      * @return Comestible[]
      */
     public function searchComestibleOfUser(User $user, $search = null)
@@ -44,8 +44,8 @@ class ComestibleRepository extends AbstractRepository
     }
 
     /**
-     * @param User $user
-     * @param string|null $search
+     * @param  User         $user
+     * @param  string|null  $search
      * @return QueryBuilder
      */
     public function searchComestibleOfUserQb(User $user, $search = null)
@@ -54,9 +54,9 @@ class ComestibleRepository extends AbstractRepository
         $qb->where($qb->expr()->eq('c.user', ':user'));
         $qb->setParameter('user', $user->getId());
 
-        if(null !== $search) {
+        if (null !== $search) {
             $qb->andWhere($qb->expr()->like('c.name', ':name'));
-            $qb->setParameter('name', '%' . $search . '%');
+            $qb->setParameter('name', '%'.$search.'%');
         }
 
         $qb->orderBy('c.name');

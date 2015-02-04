@@ -2,7 +2,6 @@
 
 namespace Dominikzogg\EnergyCalculator\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 
 interface UserReferenceInterface
 {
@@ -12,7 +11,7 @@ interface UserReferenceInterface
     public function getUser();
 
     /**
-     * @param User $user
+     * @param  User  $user
      * @return $this
      */
     public function setUser(User $user);

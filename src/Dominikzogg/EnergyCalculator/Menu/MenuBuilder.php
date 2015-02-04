@@ -53,59 +53,58 @@ class MenuBuilder
 
     /**
      * @param ItemInterface $menu
-     * @param Request $request
+     * @param Request       $request
      */
     protected function createManageMenu(ItemInterface $menu, Request $request)
     {
         $menu->addChild($this->translator->trans('nav.day'), array(
-            'route' => 'day_list'
+            'route' => 'day_list',
         ));
         $menu->addChild($this->translator->trans('nav.comestible'), array(
-            'route' => 'comestible_list'
+            'route' => 'comestible_list',
         ));
     }
 
-
     /**
      * @param ItemInterface $menu
-     * @param Request $request
+     * @param Request       $request
      */
     protected function createChartMenu(ItemInterface $menu, Request $request)
     {
         $chartMenu = $menu->addChild($this->translator->trans('nav.chart.title'));
 
         $chartMenu->addChild($this->translator->trans('nav.chart.weight'), array(
-            'route' => 'chart_weight'
+            'route' => 'chart_weight',
         ));
 
         $chartMenu->addChild($this->translator->trans('nav.chart.calorie'), array(
-            'route' => 'chart_calorie'
+            'route' => 'chart_calorie',
         ));
 
         $chartMenu->addChild($this->translator->trans('nav.chart.energymix'), array(
-            'route' => 'chart_energymix'
+            'route' => 'chart_energymix',
         ));
     }
 
     /**
      * @param ItemInterface $menu
-     * @param Request $request
+     * @param Request       $request
      */
     protected function createAdminMenu(ItemInterface $menu, Request $request)
     {
         $menu->addChild($this->translator->trans('nav.user'), array(
-            'route' => 'user_list'
+            'route' => 'user_list',
         ));
     }
 
     /**
      * @param ItemInterface $menu
-     * @param Request $request
+     * @param Request       $request
      */
     protected function createUserMenu(ItemInterface $menu, Request $request)
     {
         $menu->addChild($this->translator->trans('nav.logout'), array(
-            'route' => 'logout'
+            'route' => 'logout',
         ));
     }
 
@@ -117,7 +116,7 @@ class MenuBuilder
         $token = $this->securityContext->getToken();
 
         if (is_null($token)) {
-            return null;
+            return;
         }
 
         return $token->getUser();
