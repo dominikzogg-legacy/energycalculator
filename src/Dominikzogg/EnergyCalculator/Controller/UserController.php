@@ -10,6 +10,7 @@ use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Saxulum\UserProvider\Manager\UserManager;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -125,10 +126,12 @@ class UserController extends AbstractCRUDController
     }
 
     /**
-     * @param User $object
+     * @param  User        $object
+     * @param  FormInterface $form
+     * @param  Request       $request
      * @return void
      */
-    protected function crudCreatePrePersist($object)
+    protected function crudCreatePrePersist($object, FormInterface $form, Request $request)
     {
         $this->userManager->update($object);
     }
@@ -142,10 +145,12 @@ class UserController extends AbstractCRUDController
     }
 
     /**
-     * @param User $object
+     * @param  User        $object
+     * @param  FormInterface $form
+     * @param  Request       $request
      * @return void
      */
-    protected function crudEditPrePersist($object)
+    protected function crudEditPrePersist($object, FormInterface $form, Request $request)
     {
         $this->userManager->update($object);
     }

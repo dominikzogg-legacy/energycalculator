@@ -141,19 +141,22 @@ class ComestibleController extends AbstractCRUDController
     }
 
     /**
+     * @param  Request $request
+     * @param  array   $formData
      * @return array
      */
-    protected function crudListFormDataEnrich()
+    protected function crudListFormDataEnrich(Request $request, array $formData)
     {
-        return array(
+        return array_replace_recursive($formData, array(
             'user' => $this->getUser()->getId()
-        );
+        ));
     }
 
     /**
+     * @param Request $request
      * @return Comestible
      */
-    protected function crudCreateFactory()
+    protected function crudCreateFactory(Request $request)
     {
         $objectClass = $this->crudObjectClass();
 
@@ -174,9 +177,10 @@ class ComestibleController extends AbstractCRUDController
 
     /**
      * @param Comestible $object
+     * @param Request $request
      * @return bool
      */
-    protected function crudEditIsGranted($object)
+    protected function crudEditIsGranted($object, Request $request)
     {
         if (!$this->security->isGranted($this->crudEditRole(), $object)) {
             return false;
@@ -207,9 +211,10 @@ class ComestibleController extends AbstractCRUDController
 
     /**
      * @param Comestible $object
+     * @param Request $request
      * @return bool
      */
-    protected function crudDeleteIsGranted($object)
+    protected function crudDeleteIsGranted($object, Request $request)
     {
         if (!$this->security->isGranted($this->crudDeleteRole(), $object)) {
             return false;

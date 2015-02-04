@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "961228d9925d63a697ea4291cee28662",
+    "hash": "a26adf4a0f150168582cb7c7fd997b4d",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -1662,16 +1662,16 @@
         },
         {
             "name": "saxulum/saxulum-crud",
-            "version": "1.0-rc4",
+            "version": "2.0-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-crud.git",
-                "reference": "a3e1f8d18104646d2cf058f3a1112b36b626a2a8"
+                "reference": "8b8b776ddf26d7157839e7f68c9add2fc9cd3322"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/a3e1f8d18104646d2cf058f3a1112b36b626a2a8",
-                "reference": "a3e1f8d18104646d2cf058f3a1112b36b626a2a8",
+                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/8b8b776ddf26d7157839e7f68c9add2fc9cd3322",
+                "reference": "8b8b776ddf26d7157839e7f68c9add2fc9cd3322",
                 "shasum": ""
             },
             "require": {
@@ -1690,7 +1690,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -1715,7 +1715,7 @@
                 "silex",
                 "symfony"
             ],
-            "time": "2015-01-30 18:54:38"
+            "time": "2015-02-04 19:35:24"
         },
         {
             "name": "saxulum/saxulum-doctrine-orm-commands",
@@ -3869,7 +3869,7 @@
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": {
-        "saxulum/saxulum-crud": 5,
+        "saxulum/saxulum-crud": 15,
         "select2/select2": 10,
         "saxulum/saxulum-user-provider": 15
     },
