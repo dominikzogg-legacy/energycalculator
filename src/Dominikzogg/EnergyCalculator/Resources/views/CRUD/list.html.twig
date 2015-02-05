@@ -26,25 +26,25 @@
                 </tr>
             </thead>
             <tbody>
-                {% for entity in pagination %}
+                {% for object in pagination %}
                     <tr>
-                        {% block entity_values %}
-                            <td>{{ entity }}</td>
+                        {% block object_values %}
+                            <td>{{ object }}</td>
                         {% endblock %}
-                        {% block entity_actions %}
+                        {% block object_actions %}
                             <td>
-                                {% if editRoute|default(false) %}
-                                    <a class="btn btn-default" href="{{ url(editRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.edit")|trans() }}">
+                                {% if editRoute|default(false) and is_granted(editRole, object) %}
+                                    <a class="btn btn-default" href="{{ url(editRoute, {'id': object.id }) }}" title="{{ (transPrefix~".list.edit")|trans() }}">
                                         <i class="glyphicon glyphicon-pencil"></i>
                                     </a>
                                 {% endif %}
-                                {% if viewRoute|default(false) %}
-                                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.view")|trans() }}">
+                                {% if viewRoute|default(false) and is_granted(viewRole, object)  %}
+                                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': object.id }) }}" title="{{ (transPrefix~".list.view")|trans() }}">
                                         <i class="glyphicon glyphicon-eye-open"></i>
                                     </a>
                                 {% endif %}
-                                {% if deleteRoute|default(false) %}
-                                    <a class="btn btn-danger" data-delete-link href="{{ url(deleteRoute, {'id': entity.id }) }}" title="{{ (transPrefix~".list.delete")|trans() }}">
+                                {% if deleteRoute|default(false) and is_granted(deleteRole, object)  %}
+                                    <a class="btn btn-danger" data-delete-link href="{{ url(deleteRoute, {'id': object.id }) }}" title="{{ (transPrefix~".list.delete")|trans() }}">
                                         <i class="glyphicon glyphicon-remove"></i>
                                     </a>
                                 {% endif %}

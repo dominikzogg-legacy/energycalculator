@@ -62,6 +62,8 @@ chart:
 day:
   create:
     title: Tag erstellen
+    save: *save
+    back: *back
     flash:
       error: 'Der Tag konnte nicht gespeichert werden.'
       success: 'Der Tag wurde erfolgreich gespeichert.'
@@ -119,11 +121,15 @@ day:
 comestible:
   create:
     title: Nahrungsmittel erstellen
+    save: *save
+    back: *back
     flash:
       error: 'Das Nahrungsmittel konnte nicht gespeichert werden.'
       success: 'Das Nahrungsmittel wurde erfolgreich gespeichert.'
   edit:
     title: Nahrungsmittel bearbeiten
+    save: *save
+    back: *back
     flash:
       error: 'Das Nahrungsmittel konnte nicht gespeichert werden.'
       success: 'Das Nahrungsmittel wurde erfolgreich gespeichert.'

@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Form\UserType;
 use Knp\Component\Pager\Paginator;
+use Saxulum\Crud\Pagination\KnpPaginationAdapter;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Saxulum\UserProvider\Manager\UserManager;
@@ -58,7 +59,7 @@ class UserController extends AbstractCRUDController
         $this->security = $security;
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
-        $this->paginator = $paginator;
+        $this->paginator = new KnpPaginationAdapter($paginator);
         $this->urlGenerator = $urlGenerator;
         $this->twig = $twig;
         $this->userManager = $userManager;

@@ -7,6 +7,7 @@ use Dominikzogg\EnergyCalculator\Entity\Day;
 use Dominikzogg\EnergyCalculator\Form\DayListType;
 use Dominikzogg\EnergyCalculator\Form\DayType;
 use Knp\Component\Pager\Paginator;
+use Saxulum\Crud\Pagination\KnpPaginationAdapter;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Symfony\Component\Form\FormFactory;
@@ -58,7 +59,7 @@ class DayController extends AbstractCRUDController
         $this->security = $security;
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
-        $this->paginator = $paginator;
+        $this->paginator = new KnpPaginationAdapter($paginator);
         $this->urlGenerator = $urlGenerator;
         $this->twig = $twig;
         $this->translator = $translator;

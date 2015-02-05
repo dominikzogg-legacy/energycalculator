@@ -367,7 +367,7 @@ class ChartController
     protected function getUser()
     {
         if (is_null($this->security->getToken())) {
-            return;
+            return null;
         }
 
         $user = $this->security->getToken()->getUser();

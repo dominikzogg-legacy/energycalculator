@@ -116,7 +116,7 @@ class MenuBuilder
         $token = $this->securityContext->getToken();
 
         if (is_null($token)) {
-            return;
+            return null;
         }
 
         return $token->getUser();

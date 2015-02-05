@@ -1,44 +1,15 @@
 {% extends "@DominikzoggEnergyCalculator/layout.html.twig" %}
 
+{% import "@DominikzoggEnergyCalculator/macro.html.twig" as macro %}
+
 {% block pagetitle %}{{ (transPrefix~".edit.title")|trans() }}{% endblock %}
 {% block title %}{{ (transPrefix~".edit.title")|trans() }}{% endblock %}
 
 {% block body %}
     <form action="{% block form_action %}{{ url(editRoute, {'id': object.id}) }}{% endblock %}" method="post" {{ form_enctype(form) }} class="form-horizontal">
         {{ bootstrap_set_style('horizontal') }}
-
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-success" name="save" value="{{ (transPrefix~".edit.save")|trans() }}">
-                    <i class="glyphicon glyphicon-save"></i>
-                </button>
-                {% if object.id and viewRoute|default(false) %}
-                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': object.id }) }}" title="{{ (transPrefix~".edit.view")|trans() }}">
-                        <i class="glyphicon glyphicon-eye-open"></i>
-                    </a>
-                {% endif %}
-                <a class="btn btn-default" href="{{ url(listRoute) }}" title="{{ (transPrefix~".edit.back")|trans() }}">
-                    <i class="glyphicon glyphicon-list-alt"></i>
-                </a>
-            </div>
-        </div>
-
+        {% block form_buttons %}{{ macro.editButtons(object, listRoute, listRole, viewRoute, viewRole, transPrefix) }}{% endblock %}
         {{ form_widget(form) }}
-
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-success" name="save" value="{{ (transPrefix~".edit.save")|trans() }}">
-                    <i class="glyphicon glyphicon-save"></i>
-                </button>
-                {% if viewRoute|default(false) and object.id %}
-                    <a class="btn btn-default" href="{{ url(viewRoute, {'id': object.id }) }}" title="{{ (transPrefix~".edit.view")|trans() }}">
-                        <i class="glyphicon glyphicon-eye-open"></i>
-                    </a>
-                {% endif %}
-                <a class="btn btn-default" href="{{ url(listRoute) }}" title="{{ (transPrefix~".edit.back")|trans() }}">
-                    <i class="glyphicon glyphicon-list-alt"></i>
-                </a>
-            </div>
-        </div>
+        {{ block('form_buttons') }}
     </form>
 {% endblock %}

@@ -4,8 +4,8 @@ namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Dominikzogg\EnergyCalculator\Entity\User;
-use Knp\Component\Pager\Paginator;
 use Saxulum\Crud\Controller\CrudTrait;
+use Saxulum\Crud\Pagination\PaginatorInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
@@ -25,7 +25,7 @@ abstract class AbstractCRUDController
     protected $doctrine;
 
     /**
-     * @var Paginator
+     * @var PaginatorInterface
      */
     protected $paginator;
 
@@ -61,7 +61,7 @@ abstract class AbstractCRUDController
     }
 
     /**
-     * @return Paginator
+     * @return PaginatorInterface
      */
     protected function crudPaginator()
     {
@@ -98,7 +98,7 @@ abstract class AbstractCRUDController
     protected function getUser()
     {
         if (is_null($this->security->getToken())) {
-            return;
+            return null;
         }
 
         $user = $this->security->getToken()->getUser();

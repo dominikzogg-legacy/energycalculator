@@ -1,0 +1,49 @@
+{% macro createButtons(object, listRoute, listRole, transPrefix) %}
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-success" name="save" value="{{ (transPrefix~".create.save")|trans() }}" title="{{ (transPrefix~".create.save")|trans() }}">
+                <i class="glyphicon glyphicon-save"></i>
+            </button>
+            {% if listRoute|default(false) and is_granted(listRole) %}
+                <a class="btn btn-default" href="{{ url(listRoute) }}" title="{{ (transPrefix~".create.back")|trans() }}">
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro editButtons(object, listRoute, listRole, viewRoute, viewRole, transPrefix) %}
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-success" name="save" value="{{ (transPrefix~".edit.save")|trans() }}" title="{{ (transPrefix~".edit.save")|trans() }}">
+                <i class="glyphicon glyphicon-save"></i>
+            </button>
+            {% if viewRoute|default(false) and is_granted(viewRole, object) %}
+                <a class="btn btn-default" href="{{ url(viewRoute, {'id': object.id }) }}" title="{{ (transPrefix~".edit.view")|trans() }}">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                </a>
+            {% endif %}
+            {% if listRoute|default(false) and is_granted(listRole) %}
+                <a class="btn btn-default" href="{{ url(listRoute) }}" title="{{ (transPrefix~".edit.back")|trans() }}">
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro viewButtons(object, editRoute, editRole, listRoute, listRole, transPrefix) %}
+    <div class="form-group">
+        {% if editRoute|default(false) and is_granted(editRole, object) %}
+            <a class="btn btn-default" href="{{ url(editRoute, {'id': object.id }) }}" title="{{ (transPrefix~".view.edit")|trans() }}">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </a>
+        {% endif %}
+        {% if listRoute|default(false) and is_granted(listRole) %}
+            <a class="btn btn-default" href="{{ url(listRoute) }}" title="{{ (transPrefix~".view.back")|trans() }}">
+                <i class="glyphicon glyphicon-list-alt"></i>
+            </a>
+        {% endif %}
+    </div>
+{% endmacro %}

@@ -8,6 +8,7 @@ use Dominikzogg\EnergyCalculator\Form\ComestibleListType;
 use Dominikzogg\EnergyCalculator\Form\ComestibleType;
 use Dominikzogg\EnergyCalculator\Repository\ComestibleRepository;
 use Knp\Component\Pager\Paginator;
+use Saxulum\Crud\Pagination\KnpPaginationAdapter;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Symfony\Component\Form\FormFactory;
@@ -52,7 +53,7 @@ class ComestibleController extends AbstractCRUDController
         $this->security = $security;
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
-        $this->paginator = $paginator;
+        $this->paginator = new KnpPaginationAdapter($paginator);
         $this->urlGenerator = $urlGenerator;
         $this->twig = $twig;
     }

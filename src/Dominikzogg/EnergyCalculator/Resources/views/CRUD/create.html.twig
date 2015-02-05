@@ -4,3 +4,5 @@
 {% block title %}{{ (transPrefix~".create.title")|trans() }}{% endblock %}
 
 {% block form_action %}{{ url(createRoute) }}{% endblock %}
+
+{% block form_buttons %}{{ macro.createButtons(object, listRoute, listRole, transPrefix) }}{% endblock %}

@@ -8,10 +8,10 @@
     <th>{{ (transPrefix~".list.fat")|trans() }}</th>
 {% endblock %}
 
-{% block entity_values %}
-    <td>{{ entity.date|date('d.m.Y') }}</td>
-    <td>{{ entity.calorie|round(1) }}</td>
-    <td>{{ entity.protein|round(1) }}</td>
-    <td>{{ entity.carbohydrate|round(1) }}</td>
-    <td>{{ entity.fat|round(1) }}</td>
+{% block object_values %}
+    <td>{{ object.date|date('d.m.Y') }}</td>
+    <td>{{ object.calorie|round(1) }}</td>
+    <td>{{ object.protein|round(1) }}</td>
+    <td>{{ object.carbohydrate|round(1) }}</td>
+    <td>{{ object.fat|round(1) }}</td>
 {% endblock %}
