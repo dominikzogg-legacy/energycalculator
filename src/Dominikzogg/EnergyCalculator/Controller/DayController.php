@@ -169,21 +169,11 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @param  Day     $object
-     * @param  Request $request
-     * @return bool
+     * @return string
      */
-    protected function crudEditIsGranted($object, Request $request)
+    protected function crudEditRole()
     {
-        if (!$this->security->isGranted($this->crudEditRole(), $object)) {
-            return false;
-        }
-
-        if ($object->getUser() != $this->getUser()) {
-            return false;
-        }
-
-        return true;
+        return strtoupper('edit');
     }
 
     /**
@@ -195,39 +185,19 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @param  Day     $object
-     * @param  Request $request
-     * @return bool
+     * @return string
      */
-    protected function crudViewIsGranted($object, Request $request)
+    protected function crudViewRole()
     {
-        if (!$this->security->isGranted($this->crudViewRole(), $object)) {
-            return false;
-        }
-
-        if ($object->getUser() != $this->getUser()) {
-            return false;
-        }
-
-        return true;
+        return strtoupper('view');
     }
 
     /**
-     * @param  Day     $object
-     * @param  Request $request
-     * @return bool
+     * @return string
      */
-    protected function crudDeleteIsGranted($object, Request $request)
+    protected function crudDeleteRole()
     {
-        if (!$this->security->isGranted($this->crudDeleteRole(), $object)) {
-            return false;
-        }
-
-        if ($object->getUser() != $this->getUser()) {
-            return false;
-        }
-
-        return true;
+        return strtoupper('delete');
     }
 
     /**

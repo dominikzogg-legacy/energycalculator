@@ -3,6 +3,7 @@
 namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Dominikzogg\EnergyCalculator\Security\Voter\RelatedObjectInterface;
 use Saxulum\Accessor\Accessors\Get;
 use Saxulum\Accessor\Accessors\Set;
 use Saxulum\Accessor\AccessorTrait;
@@ -26,7 +27,7 @@ use Saxulum\Accessor\Prop;
  * @method float getDefaultValue()
  * @method $this setDefaultValue(float $defaultValue)
  */
-class Comestible implements UserReferenceInterface
+class Comestible implements UserReferenceInterface, RelatedObjectInterface
 {
     use AccessorTrait;
     use UserReferenceTrait;
@@ -92,5 +93,13 @@ class Comestible implements UserReferenceInterface
         $this->_prop((new Prop('carbohydrate', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
         $this->_prop((new Prop('fat', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
         $this->_prop((new Prop('defaultValue', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+    }
+
+    /**
+     * @return string
+     */
+    public function getRoleNamePart()
+    {
+        return 'comestible';
     }
 }

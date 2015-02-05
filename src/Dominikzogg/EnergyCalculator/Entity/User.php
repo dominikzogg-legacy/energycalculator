@@ -3,6 +3,7 @@
 namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Dominikzogg\EnergyCalculator\Security\Voter\RelatedObjectInterface;
 use Saxulum\UserProvider\Model\AbstractUser;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -16,7 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * )
  * @UniqueEntity("username")
  */
-class User extends AbstractUser
+class User extends AbstractUser implements RelatedObjectInterface
 {
     /**
      * @var int
@@ -61,4 +62,20 @@ class User extends AbstractUser
      * @ORM\Column(name="enabled", type="boolean")
      */
     protected $enabled = false;
+
+    /**
+     * @return array
+     */
+    public function getSecurityRelatedObjects()
+    {
+        return array($this);
+    }
+
+    /**
+     * @return string
+     */
+    public function getRoleNamePart()
+    {
+        return 'user';
+    }
 }

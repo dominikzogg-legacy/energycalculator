@@ -118,6 +118,22 @@ class UserController extends AbstractCRUDController
     }
 
     /**
+     * @return string
+     */
+    protected function crudListRole()
+    {
+        return strtoupper('role_admin');
+    }
+
+    /**
+     * @return string
+     */
+    protected function crudCreateRole()
+    {
+        return strtoupper('role_admin');
+    }
+
+    /**
      * @return FormTypeInterface
      */
     protected function crudCreateFormType()
@@ -137,6 +153,14 @@ class UserController extends AbstractCRUDController
     }
 
     /**
+     * @return string
+     */
+    protected function crudEditRole()
+    {
+        return strtoupper('role_admin');
+    }
+
+    /**
      * @return FormTypeInterface
      */
     protected function crudEditFormType()
@@ -153,6 +177,22 @@ class UserController extends AbstractCRUDController
     protected function crudEditPrePersist($object, FormInterface $form, Request $request)
     {
         $this->userManager->update($object);
+    }
+
+    /**
+     * @return string
+     */
+    protected function crudViewRole()
+    {
+        return strtoupper('role_admin');
+    }
+
+    /**
+     * @return string
+     */
+    protected function crudDeleteRole()
+    {
+        return strtoupper('role_admin');
     }
 
     /**

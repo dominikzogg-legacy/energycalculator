@@ -3,6 +3,7 @@
 namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Dominikzogg\EnergyCalculator\Security\Voter\RelatedObjectInterface;
 
 trait UserReferenceTrait
 {
@@ -30,5 +31,13 @@ trait UserReferenceTrait
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return RelatedObjectInterface[]
+     */
+    public function getSecurityRelatedObjects()
+    {
+        return array($this->getUser());
     }
 }
