@@ -8,7 +8,7 @@ use Dominikzogg\EnergyCalculator\Form\AjaxEntityType;
 use Dominikzogg\EnergyCalculator\Form\EntityType;
 use Dominikzogg\EnergyCalculator\Form\SimpleDateType;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
-use Dominikzogg\EnergyCalculator\Security\Voter\RelatedObjectVoter;
+use Dominikzogg\EnergyCalculator\Voter\RelatedObjectVoter;
 use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
 use Saxulum\BundleProvider\Provider\AbstractBundleProvider;
 use Saxulum\UserProvider\Model\AbstractUser;

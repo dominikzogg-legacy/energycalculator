@@ -5,7 +5,7 @@ namespace Dominikzogg\EnergyCalculator\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Dominikzogg\EnergyCalculator\Security\Voter\RelatedObjectInterface;
+use Dominikzogg\EnergyCalculator\Voter\RelatedObjectInterface;
 use Saxulum\Accessor\Accessors\Add;
 use Saxulum\Accessor\Accessors\Get;
 use Saxulum\Accessor\Accessors\Remove;

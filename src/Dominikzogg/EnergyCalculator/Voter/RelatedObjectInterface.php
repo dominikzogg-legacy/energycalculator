@@ -1,6 +1,6 @@
 <?php
 
-namespace Dominikzogg\EnergyCalculator\Security\Voter;
+namespace Dominikzogg\EnergyCalculator\Voter;
 
 interface RelatedObjectInterface
 {

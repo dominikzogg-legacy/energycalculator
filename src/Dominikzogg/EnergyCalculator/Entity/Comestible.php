@@ -3,7 +3,7 @@
 namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Dominikzogg\EnergyCalculator\Security\Voter\RelatedObjectInterface;
+use Dominikzogg\EnergyCalculator\Voter\RelatedObjectInterface;
 use Saxulum\Accessor\Accessors\Get;
 use Saxulum\Accessor\Accessors\Set;
 use Saxulum\Accessor\AccessorTrait;

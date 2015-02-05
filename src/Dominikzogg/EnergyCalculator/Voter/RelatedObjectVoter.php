@@ -1,6 +1,6 @@
 <?php
 
-namespace Dominikzogg\EnergyCalculator\Security\Voter;
+namespace Dominikzogg\EnergyCalculator\Voter;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -54,7 +54,7 @@ class RelatedObjectVoter implements VoterInterface
             return false;
         }
 
-        if($reflection->implementsInterface('Dominikzogg\EnergyCalculator\Security\Voter\RelatedObjectInterface')) {
+        if($reflection->implementsInterface('Dominikzogg\EnergyCalculator\Voter\RelatedObjectInterface')) {
             return true;
         }
 

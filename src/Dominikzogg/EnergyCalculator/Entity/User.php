@@ -3,7 +3,7 @@
 namespace Dominikzogg\EnergyCalculator\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Dominikzogg\EnergyCalculator\Security\Voter\RelatedObjectInterface;
+use Dominikzogg\EnergyCalculator\Voter\RelatedObjectInterface;
 use Saxulum\UserProvider\Model\AbstractUser;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
