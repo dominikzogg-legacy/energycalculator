@@ -5,7 +5,7 @@
             ajax: {
                 url: $selector.attr('data-route'),
                 dataType: 'json',
-                delay: 250,
+                delay: 150,
                 data: function (params) {
                     return {
                         q: params.term,
