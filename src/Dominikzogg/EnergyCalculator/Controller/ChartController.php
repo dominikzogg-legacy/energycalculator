@@ -172,7 +172,7 @@ class ChartController
     }
 
     /**
-     * @param  null      $modifier
+     * @param  string|null      $modifier
      * @return \DateTime
      */
     protected function getDefaultFrom($modifier = null)
@@ -187,7 +187,7 @@ class ChartController
     }
 
     /**
-     * @param  null      $modifier
+     * @param  string|null      $modifier
      * @return \DateTime
      */
     protected function getDefaultTo($modifier = null)
