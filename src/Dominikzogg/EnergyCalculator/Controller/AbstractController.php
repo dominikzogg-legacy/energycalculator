@@ -34,7 +34,7 @@ abstract class AbstractController
     protected $security;
 
     /**
-     * @return User|Null|string
+     * @return User|null
      */
     protected function getUser()
     {
