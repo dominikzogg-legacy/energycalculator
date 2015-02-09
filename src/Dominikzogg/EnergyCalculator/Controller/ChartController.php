@@ -3,15 +3,11 @@
 namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Dominikzogg\EnergyCalculator\Entity\Day;
-use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Form\DateRangeType;
 use Dominikzogg\EnergyCalculator\Repository\DayRepository;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
-use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,28 +22,8 @@ use Symfony\Component\Security\Core\SecurityContext;
  *      "twig"
  * })
  */
-class ChartController
+class ChartController extends AbstractController
 {
-    /**
-     * @var ManagerRegistry
-     */
-    protected $doctrine;
-
-    /**
-     * @var SecurityContext
-     */
-    protected $security;
-
-    /**
-     * @var \Twig_Environment
-     */
-    protected $twig;
-
-    /**
-     * @var FormFactory
-     */
-    protected $formFactory;
-
     public function __construct(
         ManagerRegistry $doctrine,
         FormFactory $formFactory,
@@ -333,70 +309,5 @@ class ChartController
         }
 
         return null !== $maxEnergyMix ? $maxEnergyMix : 1000;
-    }
-
-    /**
-     * @return ManagerRegistry
-     */
-    protected function getDoctrine()
-    {
-        return $this->doctrine;
-    }
-
-    /**
-     * @param  string             $class
-     * @return ObjectManager|null
-     */
-    protected function getManagerForClass($class)
-    {
-        return $this->doctrine->getManagerForClass($class);
-    }
-
-    /**
-     * @param  string           $class
-     * @return ObjectRepository
-     */
-    protected function getRepositoryForClass($class)
-    {
-        return $this->getManagerForClass($class)->getRepository($class);
-    }
-
-    /**
-     * @return User|Null|string
-     */
-    protected function getUser()
-    {
-        if (is_null($this->security->getToken())) {
-            return null;
-        }
-
-        $user = $this->security->getToken()->getUser();
-
-        if ($user instanceof User) {
-            $user = $this->doctrine->getManager()->getRepository(get_class($user))->find($user->getId());
-        }
-
-        return $user;
-    }
-
-    /**
-     * @param $view
-     * @param  array    $parameters
-     * @return Response
-     */
-    protected function render($view, array $parameters = array())
-    {
-        return new Response($this->twig->render($view, $parameters));
-    }
-
-    /**
-     * @param  string $type
-     * @param  null   $data
-     * @param  array  $options
-     * @return Form
-     */
-    protected function createForm($type = 'form', $data = null, array $options = array())
-    {
-        return $this->formFactory->create($type, $data, $options);
     }
 }
