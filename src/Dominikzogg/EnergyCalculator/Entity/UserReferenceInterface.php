@@ -2,7 +2,6 @@
 
 namespace Dominikzogg\EnergyCalculator\Entity;
 
-
 interface UserReferenceInterface
 {
     /**

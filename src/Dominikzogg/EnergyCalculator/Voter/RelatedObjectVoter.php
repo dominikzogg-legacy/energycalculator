@@ -31,11 +31,8 @@ class RelatedObjectVoter implements VoterInterface
     }
 
     /**
-     * Checks if the voter supports the given attribute.
-     *
-     * @param string $attribute An attribute
-     *
-     * @return Boolean true if this Voter supports the attribute, false otherwise
+     * @param  string $attribute
+     * @return bool
      */
     public function supportsAttribute($attribute)
     {
@@ -43,7 +40,7 @@ class RelatedObjectVoter implements VoterInterface
     }
 
     /**
-     * @param string $class
+     * @param  string $class
      * @return bool
      */
     public function supportsClass($class)
@@ -54,7 +51,7 @@ class RelatedObjectVoter implements VoterInterface
             return false;
         }
 
-        if($reflection->implementsInterface('Dominikzogg\EnergyCalculator\Voter\RelatedObjectInterface')) {
+        if ($reflection->implementsInterface('Dominikzogg\EnergyCalculator\Voter\RelatedObjectInterface')) {
             return true;
         }
 
@@ -62,9 +59,9 @@ class RelatedObjectVoter implements VoterInterface
     }
 
     /**
-     * @param \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token
-     * @param null|object $object
-     * @param array $attributes
+     * @param  TokenInterface $token
+     * @param  null|object    $object
+     * @param  array          $attributes
      * @return int
      */
     public function vote(TokenInterface $token, $object, array $attributes)
@@ -127,8 +124,8 @@ class RelatedObjectVoter implements VoterInterface
     }
 
     /**
-     * @param array $attributes
-     * @param RelatedObjectInterface $object
+     * @param  array                  $attributes
+     * @param  RelatedObjectInterface $object
      * @return array
      */
     protected function getNeededRoles(array $attributes, RelatedObjectInterface $object)
@@ -136,31 +133,31 @@ class RelatedObjectVoter implements VoterInterface
         $roles = array();
         $prefix = $this->getNeededRolesPrefix($object);
         foreach ($attributes as $attribute) {
-            $roles[] = $prefix . $attribute;
+            $roles[] = $prefix.$attribute;
         }
 
         return $roles;
     }
 
     /**
-     * @param RelatedObjectInterface $object
+     * @param  RelatedObjectInterface $object
      * @return string
      */
     protected function getNeededRolesPrefix(RelatedObjectInterface $object)
     {
-        return 'RELATED_' . strtoupper($object->getRoleNamePart()) . '_';
+        return 'RELATED_'.strtoupper($object->getRoleNamePart()).'_';
     }
 
     /**
-     * @param RelatedObjectInterface $user
-     * @param RelatedObjectInterface $object
+     * @param  RelatedObjectInterface $user
+     * @param  RelatedObjectInterface $object
      * @return bool
      */
     protected function isRelatedObject(RelatedObjectInterface $user, RelatedObjectInterface $object)
     {
-        foreach($user->getSecurityRelatedObjects() as $usro) {
-            foreach($object->getSecurityRelatedObjects() as $osro) {
-                if($usro === $osro) {
+        foreach ($user->getSecurityRelatedObjects() as $usro) {
+            foreach ($object->getSecurityRelatedObjects() as $osro) {
+                if ($usro === $osro) {
                     return true;
                 }
             }
@@ -175,6 +172,7 @@ class RelatedObjectVoter implements VoterInterface
     protected function getName()
     {
         $explode = explode("\\", get_class($this));
+
         return substr(end($explode), 0, -5);
     }
 }
