@@ -34,18 +34,25 @@ abstract class AbstractController
     protected $security;
 
     /**
-     * @return User|null
+     * @return User
+     * @throws \Exception
      */
     protected function getUser()
     {
         if (is_null($this->security->getToken())) {
-            return null;
+            throw new \Exception("No user token!");
         }
 
         $user = $this->security->getToken()->getUser();
 
-        if ($user instanceof User) {
-            $user = $this->doctrine->getManager()->getRepository(get_class($user))->find($user->getId());
+        if(!$user instanceof User) {
+            throw new \Exception("Invalid user token!");
+        }
+
+        $user = $this->doctrine->getManager()->getRepository(get_class($user))->find($user->getId());
+
+        if(null === $user) {
+            throw new \Exception("User not found in database!");
         }
 
         return $user;
