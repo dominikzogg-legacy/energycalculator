@@ -57,7 +57,7 @@ class ChartController extends AbstractController
         $to = $dateRangeFormData['to'];
 
         /** @var DayRepository $repo */
-        $repo = $this->getRepositoryForClass(get_class(new Day()));
+        $repo = $this->getRepositoryForClass(Day::class);
 
         $days = $repo->getInRange($from, $to, $this->getUser());
         $allDays = $this->getDaysOrNull($days, $from, $to);
@@ -94,7 +94,7 @@ class ChartController extends AbstractController
         $to = $dateRangeFormData['to'];
 
         /** @var DayRepository $repo */
-        $repo = $this->getRepositoryForClass(get_class(new Day()));
+        $repo = $this->getRepositoryForClass(Day::class);
 
         $days = $repo->getInRange($from, $to, $this->getUser());
         $allDays = $this->getDaysOrNull($days, $from, $to);
@@ -131,7 +131,7 @@ class ChartController extends AbstractController
         $to = $dateRangeFormData['to'];
 
         /** @var DayRepository $repo */
-        $repo = $this->getRepositoryForClass(get_class(new Day()));
+        $repo = $this->getRepositoryForClass(Day::class);
 
         $days = $repo->getInRange($from, $to, $this->getUser());
         $allDays = $this->getDaysOrNull($days, $from, $to);

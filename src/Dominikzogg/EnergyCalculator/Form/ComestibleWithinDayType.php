@@ -62,7 +62,7 @@ class ComestibleWithinDayType extends AbstractType
     {
         parent::setDefaultOptions($resolver);
         $resolver->setDefaults(array(
-            'data_class' => get_class(new ComestibleWithinDay()),
+            'data_class' => ComestibleWithinDay::class,
         ));
     }
 

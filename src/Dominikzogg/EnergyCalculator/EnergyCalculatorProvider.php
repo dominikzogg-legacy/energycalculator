@@ -23,7 +23,7 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
         $app->register(new MenuProvider());
 
         $app->register(new SaxulumUserProvider(), array(
-            'saxulum.userprovider.userclass' => get_class(new User()),
+            'saxulum.userprovider.userclass' => User::class,
         ));
 
         $app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twig) {
