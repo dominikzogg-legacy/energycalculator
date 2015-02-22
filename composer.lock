@@ -1710,16 +1710,16 @@
         },
         {
             "name": "saxulum/saxulum-crud",
-            "version": "2.0-alpha5",
+            "version": "2.0-alpha8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-crud.git",
-                "reference": "8b63b9a99e3d0d96153994a337e432c4a1ac7442"
+                "reference": "d16c640cdef25d7795ef30ee38fa45edb2d3cd69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/8b63b9a99e3d0d96153994a337e432c4a1ac7442",
-                "reference": "8b63b9a99e3d0d96153994a337e432c4a1ac7442",
+                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/d16c640cdef25d7795ef30ee38fa45edb2d3cd69",
+                "reference": "d16c640cdef25d7795ef30ee38fa45edb2d3cd69",
                 "shasum": ""
             },
             "require": {
@@ -1762,7 +1762,7 @@
                 "silex",
                 "symfony"
             ],
-            "time": "2015-02-14 18:30:38"
+            "time": "2015-02-22 18:41:19"
         },
         {
             "name": "saxulum/saxulum-doctrine-orm-commands",

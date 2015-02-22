@@ -9,8 +9,8 @@ use Dominikzogg\EnergyCalculator\Form\EntityType;
 use Dominikzogg\EnergyCalculator\Form\SimpleDateType;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
 use Dominikzogg\EnergyCalculator\Voter\RelatedObjectVoter;
-use Dominikzogg\EnergyCalculator\Twig\FormHelperExtension;
 use Saxulum\BundleProvider\Provider\AbstractBundleProvider;
+use Saxulum\Crud\Twig\FormLabelExtension;
 use Saxulum\UserProvider\Model\AbstractUser;
 use Saxulum\UserProvider\Silex\Provider\SaxulumUserProvider;
 use Silex\Application;
@@ -27,7 +27,7 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
         ));
 
         $app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twig) {
-            $twig->addExtension(new FormHelperExtension());
+            $twig->addExtension(new FormLabelExtension());
 
             return $twig;
         }));
