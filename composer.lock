@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a26adf4a0f150168582cb7c7fd997b4d",
+    "hash": "e7f52ff2a7db60d68fbed2bdbf5c30ad",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -616,6 +616,54 @@
                 "orm"
             ],
             "time": "2014-12-16 13:45:01"
+        },
+        {
+            "name": "dominikzogg/helper-functions",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dominikzogg/helper-functions.git",
+                "reference": "69d551063fb83aaa9f95cc4ad7c2f56a768ce821"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dominikzogg/helper-functions/zipball/69d551063fb83aaa9f95cc4ad7c2f56a768ce821",
+                "reference": "69d551063fb83aaa9f95cc4ad7c2f56a768ce821",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/utf8.php",
+                    "src/Dominikzogg/array_functions.php",
+                    "src/Dominikzogg/class_functions.php",
+                    "src/Dominikzogg/debuging_functions.php",
+                    "src/Dominikzogg/string_functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dominik Zogg",
+                    "email": "dominik.zogg@gmail.com"
+                },
+                {
+                    "name": "Andreas Gohr",
+                    "email": "andi@splitbrain.org"
+                }
+            ],
+            "description": "Some helper functions from daily work",
+            "keywords": [
+                "functions",
+                "helper functions"
+            ],
+            "time": "2015-02-17 11:38:37"
         },
         {
             "name": "eternicode/bootstrap-datepicker",
