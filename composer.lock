@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a26adf4a0f150168582cb7c7fd997b4d",
+    "hash": "4c75bb5b3281f91ece2da205c61b3b14",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -2269,10 +2269,10 @@
         },
         {
             "name": "select2/select2",
-            "version": "4.0-beta3",
+            "version": "4.0-rc1",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/select2/select2/archive/4.0.0-beta.3.zip",
+                "url": "https://github.com/select2/select2/archive/4.0.0-rc.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -3875,7 +3875,7 @@
     "minimum-stability": "alpha",
     "stability-flags": {
         "saxulum/saxulum-crud": 15,
-        "select2/select2": 10,
+        "select2/select2": 5,
         "saxulum/saxulum-user-provider": 15
     },
     "prefer-stable": true,
