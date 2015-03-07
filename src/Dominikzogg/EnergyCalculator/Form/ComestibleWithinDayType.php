@@ -2,13 +2,14 @@
 
 namespace Dominikzogg\EnergyCalculator\Form;
 
+use Doctrine\ORM\QueryBuilder;
 use Dominikzogg\EnergyCalculator\Entity\Comestible;
 use Dominikzogg\EnergyCalculator\Entity\ComestibleWithinDay;
 use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Repository\ComestibleRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class ComestibleWithinDayType extends AbstractType
 {
@@ -18,18 +19,24 @@ class ComestibleWithinDayType extends AbstractType
     protected $user;
 
     /**
-     * @var Translator
+     * @var TranslatorInterface
      */
     protected $translator;
 
     /**
-     * @param User       $user
-     * @param Translator $translator
+     * @var QueryBuilder
      */
-    public function __construct(User $user, Translator $translator)
+    protected $comestibleQb;
+
+    /**
+     * @param User       $user
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(User $user, TranslatorInterface $translator, QueryBuilder $comestibleQb)
     {
         $this->user = $user;
         $this->translator = $translator;
+        $this->comestibleQb = $comestibleQb;
     }
 
     /**
@@ -43,9 +50,7 @@ class ComestibleWithinDayType extends AbstractType
                 'class' => Comestible::class,
                 'route' => 'comestible_choice',
                 'property' => 'name',
-                'query_builder' => function (ComestibleRepository $er) {
-                    return $er->searchComestibleOfUserQb($this->user);
-                },
+                'query_builder' => $this->comestibleQb,
                 'required' => false,
                 'attr' => array(
                     'placeholder' => $this->translator->trans('day.edit.label.comestibles_within_day_collection.comestible_default'),

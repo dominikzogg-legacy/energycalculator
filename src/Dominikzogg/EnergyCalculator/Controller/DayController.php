@@ -3,9 +3,11 @@
 namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Dominikzogg\EnergyCalculator\Entity\Comestible;
 use Dominikzogg\EnergyCalculator\Entity\Day;
 use Dominikzogg\EnergyCalculator\Form\DayListType;
 use Dominikzogg\EnergyCalculator\Form\DayType;
+use Dominikzogg\EnergyCalculator\Repository\ComestibleRepository;
 use Knp\Component\Pager\Paginator;
 use Saxulum\Crud\Pagination\KnpPaginationAdapter;
 use Saxulum\RouteController\Annotation\DI;
@@ -166,7 +168,7 @@ class DayController extends AbstractCRUDController
      */
     protected function crudCreateFormType()
     {
-        return new DayType($this->getUser(), $this->translator);
+        return $this->getEditForm();
     }
 
     /**
@@ -182,7 +184,23 @@ class DayController extends AbstractCRUDController
      */
     protected function crudEditFormType()
     {
-        return new DayType($this->getUser(), $this->translator);
+        return $this->getEditForm();
+    }
+
+    /**
+     * @return DayType
+     * @throws \Exception
+     */
+    protected function getEditForm()
+    {
+        /** @var ComestibleRepository $repo */
+        $repo = $this->crudRepositoryForClass(Comestible::class);
+
+        return new DayType(
+            $this->getUser(),
+            $this->translator,
+            $repo->searchComestibleOfUserQb($this->getUser())
+        );
     }
 
     /**

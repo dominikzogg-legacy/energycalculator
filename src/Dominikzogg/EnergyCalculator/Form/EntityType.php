@@ -15,14 +15,13 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\ORMQueryBuilderLoader;
 use Symfony\Bridge\Doctrine\Form\Type\DoctrineType;
-use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 class EntityType extends DoctrineType
 {
     /**
-     * @var array
+     * @var ORMQueryBuilderLoader[]
      */
-    private $loaderCache = array();
+    private $loaderCache;
 
     /**
      * Return the default loader object.
@@ -32,36 +31,26 @@ class EntityType extends DoctrineType
      * @param string        $class
      *
      * @return ORMQueryBuilderLoader
-     *
-     * @throws UnexpectedTypeException
      */
     public function getLoader(ObjectManager $manager, $queryBuilder, $class)
     {
-        if (!($queryBuilder instanceof QueryBuilder || $queryBuilder instanceof \Closure)) {
-            throw new UnexpectedTypeException($queryBuilder, 'Doctrine\ORM\QueryBuilder or \Closure');
+        $queryBuilderHash = null;
+
+        if($queryBuilder instanceof QueryBuilder) {
+            $queryBuilderHash = $this->getQueryBuilderHash($queryBuilder);
         }
 
-        if ($queryBuilder instanceof \Closure) {
-            $reflection = new \ReflectionFunction($queryBuilder);
-            $queryBuilderHashParts = $this->replaceObjectWithHash(array(
-                'filename' => $reflection->getFileName(),
-                'startLine' => $reflection->getStartLine(),
-                'stopFile' => $reflection->getEndLine(),
-                'uses' => $reflection->getStaticVariables(),
-                'this' => is_callable(array($reflection, 'getClosureThis')) ? $reflection->getClosureThis() : null,
-            ));
-            $queryBuilderHash = hash('sha256', json_encode($queryBuilderHashParts));
-        } else {
-            $queryBuilderHash = spl_object_hash($queryBuilder);
+        if(null === $queryBuilderHash) {
+            return new ORMQueryBuilderLoader(
+                $queryBuilder,
+                $manager,
+                $class
+            );
         }
 
-        $loaderHash = hash('sha256', json_encode(array(
-            'manager' => spl_object_hash($manager),
-            'queryBuilder' => $queryBuilderHash,
-            'class' => $class,
-        )));
+        $loaderHash = $this->getLoaderHash($manager, $queryBuilderHash, $class);
 
-        if (!isset($this->loaderCache[$loaderHash])) {
+        if(!isset($this->loaderCache[$loaderHash])) {
             $this->loaderCache[$loaderHash] = new ORMQueryBuilderLoader(
                 $queryBuilder,
                 $manager,
@@ -73,20 +62,30 @@ class EntityType extends DoctrineType
     }
 
     /**
-     * @param  array $data
-     * @return array
+     * @param QueryBuilder $queryBuilder
+     * @return string
      */
-    protected function replaceObjectWithHash(array $data)
+    protected function getQueryBuilderHash(QueryBuilder $queryBuilder)
     {
-        foreach ($data as $key => $value) {
-            if (is_array($value)) {
-                $data[$key] = $this->replaceObjectWithHash($value);
-            } elseif (is_object($value)) {
-                $data[$key] = spl_object_hash($value);
-            }
-        }
+        return hash('sha256', json_encode(array(
+             'sql' => $queryBuilder->getQuery()->getSQL(),
+             'parameters' => $queryBuilder->getParameters(),
+        )));
+    }
 
-        return $data;
+    /**
+     * @param ObjectManager $manager
+     * @param string $queryBuilderHash
+     * @param string $class
+     * @return string
+     */
+    protected function getLoaderHash(ObjectManager $manager, $queryBuilderHash, $class)
+    {
+        return hash('sha256', json_encode(array(
+            'manager' => spl_object_hash($manager),
+            'queryBuilder' => $queryBuilderHash,
+            'class' => $class,
+        )));
     }
 
     public function getName()

@@ -2,11 +2,12 @@
 
 namespace Dominikzogg\EnergyCalculator\Form;
 
+use Doctrine\ORM\QueryBuilder;
 use Dominikzogg\EnergyCalculator\Entity\Day;
 use Dominikzogg\EnergyCalculator\Entity\User;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class DayType extends AbstractType
 {
@@ -16,18 +17,24 @@ class DayType extends AbstractType
     protected $user;
 
     /**
-     * @var Translator
+     * @var TranslatorInterface
      */
     protected $translator;
 
     /**
-     * @param User       $user
-     * @param Translator $translator
+     * @var QueryBuilder
      */
-    public function __construct(User $user, Translator $translator)
+    protected $comestibleQb;
+
+    /**
+     * @param User       $user
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(User $user, TranslatorInterface $translator, QueryBuilder $comestibleQb)
     {
         $this->user = $user;
         $this->translator = $translator;
+        $this->comestibleQb = $comestibleQb;
     }
 
     /**
@@ -43,7 +50,7 @@ class DayType extends AbstractType
             ->add('date', 'simpledate', array('required' => false))
             ->add('weight', 'number', array('required' => false))
             ->add('comestiblesWithinDay', 'bootstrap_collection', array(
-                'type' => new ComestibleWithinDayType($this->user, $this->translator),
+                'type' => new ComestibleWithinDayType($this->user, $this->translator, $this->comestibleQb),
                 'allow_add' => true,
                 'add_button_text' => $addButtonText,
                 'allow_delete' => true,
