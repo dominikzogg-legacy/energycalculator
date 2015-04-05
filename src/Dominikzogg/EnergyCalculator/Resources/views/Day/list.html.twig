@@ -9,5 +9,5 @@
 {% block object_values %}
     <td>{{ object.date|date('d.m.y') }}</td>
     <td>{{ object.calorie|round(1) }}</td>
-    <td>{{ object.protein|round(1) }} / {{ object.carbohydrate|round(1) }} / {{ object.fat|round(1) }}</td>
+    <td class="shortPCF">{{ object.protein|round(1) }} / {{ object.carbohydrate|round(1) }} / {{ object.fat|round(1) }}</td>
 {% endblock %}

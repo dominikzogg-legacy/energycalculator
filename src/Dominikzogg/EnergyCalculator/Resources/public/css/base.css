@@ -75,6 +75,7 @@ h1 {
     vertical-align: middle;
 }
 
+.table-list > tbody > tr > td.shortPCF,
 .table-list > tbody > tr > td.actions {
     white-space: nowrap;
 }
