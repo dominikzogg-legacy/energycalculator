@@ -3,15 +3,11 @@
 {% block table_labels %}
     <th>{{ (transPrefix~".list.date")|trans() }}</th>
     <th>{{ (transPrefix~".list.calorie")|trans() }}</th>
-    <th>{{ (transPrefix~".list.protein")|trans() }}</th>
-    <th>{{ (transPrefix~".list.carbohydrate")|trans() }}</th>
-    <th>{{ (transPrefix~".list.fat")|trans() }}</th>
+    <th>{{ (transPrefix~".list.shortPCF")|trans() }}</th>
 {% endblock %}
 
 {% block object_values %}
     <td>{{ object.date|date('d.m.y') }}</td>
     <td>{{ object.calorie|round(1) }}</td>
-    <td>{{ object.protein|round(1) }}</td>
-    <td>{{ object.carbohydrate|round(1) }}</td>
-    <td>{{ object.fat|round(1) }}</td>
+    <td>{{ object.protein|round(1) }} / {{ object.carbohydrate|round(1) }} / {{ object.fat|round(1) }}</td>
 {% endblock %}

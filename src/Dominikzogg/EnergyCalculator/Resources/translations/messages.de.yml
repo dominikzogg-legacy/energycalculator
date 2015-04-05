@@ -31,6 +31,7 @@ view: &view anzeigen
 username: &username Benutzername
 value: &value Wert
 
+shortPCF: &shortPCF E / K / F
 calorie: &calorie Kcal
 protein: &protein E
 carbohydrate: &carbohydrate K
@@ -92,9 +93,7 @@ day:
     title: Tages Liste
     date: *date
     calorie: *calorie
-    protein: *protein
-    carbohydrate: *carbohydrate
-    fat: *fat
+    shortPCF: *shortPCF
     actions: *actions
     edit: *edit
     view: *view
@@ -148,10 +147,8 @@ comestible:
   list:
     title: Nahrungsmittel Liste
     name: *name
+    shortPCF: *shortPCF
     calorie: *calorie
-    protein: *protein
-    carbohydrate: *carbohydrate
-    fat: *fat
     actions: *actions
     edit: *edit
     delete: *delete
