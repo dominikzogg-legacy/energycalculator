@@ -21,7 +21,7 @@ class EntityType extends DoctrineType
     /**
      * @var ORMQueryBuilderLoader[]
      */
-    private $loaderCache;
+    private $loaderCache = array();
 
     /**
      * Return the default loader object.
@@ -36,11 +36,7 @@ class EntityType extends DoctrineType
     {
         $queryBuilderHash = null;
 
-        if($queryBuilder instanceof QueryBuilder) {
-            $queryBuilderHash = $this->getQueryBuilderHash($queryBuilder);
-        }
-
-        if(null === $queryBuilderHash) {
+        if (!$queryBuilder instanceof QueryBuilder) {
             return new ORMQueryBuilderLoader(
                 $queryBuilder,
                 $manager,
@@ -48,9 +44,10 @@ class EntityType extends DoctrineType
             );
         }
 
+        $queryBuilderHash = $this->getQueryBuilderHash($queryBuilder);
         $loaderHash = $this->getLoaderHash($manager, $queryBuilderHash, $class);
 
-        if(!isset($this->loaderCache[$loaderHash])) {
+        if (!isset($this->loaderCache[$loaderHash])) {
             $this->loaderCache[$loaderHash] = new ORMQueryBuilderLoader(
                 $queryBuilder,
                 $manager,
@@ -63,20 +60,22 @@ class EntityType extends DoctrineType
 
     /**
      * @param QueryBuilder $queryBuilder
+     *
      * @return string
      */
     protected function getQueryBuilderHash(QueryBuilder $queryBuilder)
     {
         return hash('sha256', json_encode(array(
-             'sql' => $queryBuilder->getQuery()->getSQL(),
-             'parameters' => $queryBuilder->getParameters(),
+            'sql' => $queryBuilder->getQuery()->getSQL(),
+            'parameters' => $queryBuilder->getParameters(),
         )));
     }
 
     /**
      * @param ObjectManager $manager
-     * @param string $queryBuilderHash
-     * @param string $class
+     * @param string        $queryBuilderHash
+     * @param string        $class
+     *
      * @return string
      */
     protected function getLoaderHash(ObjectManager $manager, $queryBuilderHash, $class)
