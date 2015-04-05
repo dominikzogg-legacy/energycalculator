@@ -70,3 +70,7 @@ h1 {
 .select2-container--default.select2-container--focus .select2-selection--multiple {
     border: 1px solid #CCC;
 }
+
+.table-list > tbody > tr > td {
+    vertical-align: middle;
+}
