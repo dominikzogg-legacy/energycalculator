@@ -74,3 +74,7 @@ h1 {
 .table-list > tbody > tr > td {
     vertical-align: middle;
 }
+
+.table-list > tbody > tr > td.actions {
+    white-space: nowrap;
+}

@@ -32,7 +32,7 @@
                             <td>{{ object }}</td>
                         {% endblock %}
                         {% block object_actions %}
-                            <td>
+                            <td class="actions">
                                 {% if editRoute|default(false) and is_granted(editRole, object) %}
                                     <a class="btn btn-default btn-sm" href="{{ url(editRoute, {'id': object.id }) }}" title="{{ (transPrefix~".list.edit")|trans() }}">
                                         <i class="glyphicon glyphicon-pencil"></i>
