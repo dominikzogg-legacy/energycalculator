@@ -36,15 +36,15 @@
         "silex/silex": "~1.2",
         "silex/web-profiler": "~1.0.2",
         "swiftmailer/swiftmailer": "~5.0",
-        "symfony/doctrine-bridge": "~2.3",
-        "symfony/config": "~2.3",
-        "symfony/finder": "~2.3",
-        "symfony/form": "~2.3",
-        "symfony/security": "~2.3",
-        "symfony/translation": "~2.3",
-        "symfony/twig-bridge": "~2.3",
-        "symfony/validator": "~2.3",
-        "symfony/yaml": "~2.3",
+        "symfony/doctrine-bridge": "~2.3,<2.7",
+        "symfony/config": "~2.3,<2.7",
+        "symfony/finder": "~2.3,<2.7",
+        "symfony/form": "~2.3,<2.7",
+        "symfony/security": "~2.3,<2.7",
+        "symfony/translation": "~2.3,<2.7",
+        "symfony/twig-bridge": "~2.3,<2.7",
+        "symfony/validator": "~2.3,<2.7",
+        "symfony/yaml": "~2.3,<2.7",
         "twig/twig": "~1.2",
         "twbs/bootstrap": "~3.1.1",
 
@@ -82,9 +82,9 @@
             "type": "package",
             "package": {
                 "name": "select2/select2",
-                "version": "4.0-rc1",
+                "version": "4.0-rc2",
                 "dist": {
-                    "url": "https://github.com/select2/select2/archive/4.0.0-rc.1.zip",
+                    "url": "https://github.com/select2/select2/archive/4.0.0-rc.2.zip",
                     "type": "zip"
                 }
             }
@@ -104,9 +104,9 @@
             "type": "package",
             "package": {
                 "name": "eternicode/bootstrap-datepicker",
-                "version": "1.3.1",
+                "version": "1.4.0",
                 "dist": {
-                    "url": "https://github.com/eternicode/bootstrap-datepicker/archive/1.3.1.zip",
+                    "url": "https://github.com/eternicode/bootstrap-datepicker/archive/v1.4.0.zip",
                     "type": "zip"
                 }
             }
