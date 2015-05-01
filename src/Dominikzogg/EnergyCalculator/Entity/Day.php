@@ -21,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="day", uniqueConstraints={
  *      @ORM\UniqueConstraint(name="day_per_user_idx", columns={"date", "user_id"})
  * })
+ * @ORM\HasLifecycleCallbacks
  * @UniqueEntity(fields={"date", "user"}, message="day.unique")
  * @method float getId()
  * @method \DateTime getDate()
@@ -73,6 +74,18 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
      */
     protected $comestiblesWithinDay;
 
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updatedAt;
+
     public function __construct()
     {
         $this->date = new \DateTime();
@@ -91,6 +104,8 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
                 ->method(Remove::PREFIX)
                 ->method(Set::PREFIX)
         );
+        $this->_prop((new Prop('createdAt', '\DateTime'))->method(Get::PREFIX));
+        $this->_prop((new Prop('updatedAt', '\DateTime'))->method(Get::PREFIX));
     }
 
     /**
@@ -151,6 +166,22 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
         }
 
         return $fat;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
     }
 
     /**

@@ -13,6 +13,7 @@ use Saxulum\Accessor\Prop;
 /**
  * @ORM\Entity(repositoryClass="Dominikzogg\EnergyCalculator\Repository\ComestibleRepository")
  * @ORM\Table(name="comestible")
+ * @ORM\HasLifecycleCallbacks
  * @method int getId()
  * @method string getName()
  * @method $this setName(string $name)
@@ -77,6 +78,18 @@ class Comestible implements UserReferenceInterface, RelatedObjectInterface
     protected $defaultValue;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    protected $updatedAt;
+
+    /**
      * @return string
      */
     public function __toString()
@@ -93,6 +106,24 @@ class Comestible implements UserReferenceInterface, RelatedObjectInterface
         $this->_prop((new Prop('carbohydrate', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
         $this->_prop((new Prop('fat', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
         $this->_prop((new Prop('defaultValue', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
+        $this->_prop((new Prop('createdAt', '\DateTime'))->method(Get::PREFIX));
+        $this->_prop((new Prop('updatedAt', '\DateTime'))->method(Get::PREFIX));
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
     }
 
     /**
