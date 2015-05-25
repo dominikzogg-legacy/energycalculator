@@ -38,6 +38,16 @@ use Saxulum\Validator\Silex\Provider\SaxulumValidatorProvider;
 // annotation registry
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
+function getRuntimeDir()
+{
+    $runtimeDirConfigFile = __DIR__ . '/runtime_dir_config.php';
+    if(is_file($runtimeDirConfigFile)) {
+        return require $runtimeDirConfigFile;
+    }
+
+    return __DIR__;
+}
+
 // accessor registry
 AccessorRegistry::registerAccessor(new Add());
 AccessorRegistry::registerAccessor(new Get());
@@ -48,7 +58,8 @@ AccessorRegistry::registerAccessor(new Set());
 // create new silex app
 $app = new Application();
 
-$app['root'] = dirname(__DIR__);
+$app['root_dir'] = dirname(__DIR__);
+$app['runtime_dir'] = getRuntimeDir();
 $app['debug'] = isset($debug) ? $debug : false;
 $app['env'] = isset($env) ? $env : 'prod';
 
@@ -86,9 +97,9 @@ if ($app['debug']) {
 $app->register(new \Dominikzogg\EnergyCalculator\EnergyCalculatorProvider());
 
 // config overrides
-$app->register(new ConfigServiceProvider("{$app['root']}/app/config/config.yml", array('root_dir' => $app['root'], 'env' => $app['env'])));
-$app->register(new ConfigServiceProvider("{$app['root']}/app/config/config_{$app['env']}.yml", array('root_dir' => $app['root'])));
-$app->register(new ConfigServiceProvider("{$app['root']}/app/config/parameters.yml"));
+$app->register(new ConfigServiceProvider("{$app['root_dir']}/app/config/config.yml", array('root_dir' => $app['root_dir'], 'runtime_dir' => $app['runtime_dir'], 'env' => $app['env'])));
+$app->register(new ConfigServiceProvider("{$app['root_dir']}/app/config/config_{$app['env']}.yml", array('root_dir' => $app['root_dir'], 'runtime_dir' => $app['runtime_dir'])));
+$app->register(new ConfigServiceProvider("{$app['root_dir']}/app/config/parameters.yml"));
 
 // return the app
 return $app;

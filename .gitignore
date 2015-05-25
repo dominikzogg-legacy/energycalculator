@@ -1,5 +1,7 @@
+/.vagrant
 /app/cache
 /app/config/parameters.yml
+/app/runtime_dir_config.php
 /app/log
 /assets
 /vendor
