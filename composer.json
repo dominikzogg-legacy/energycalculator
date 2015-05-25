@@ -49,7 +49,7 @@
         "twbs/bootstrap": "~3.1.1",
 
         "saxulum/saxulum-crud": "~2.0@alpha",
-        "select2/select2": "~4.0@rc",
+        "select2/select2": "~4.0",
         "eternicode/bootstrap-datepicker": "~1.3,>=1.3.1",
         "excanvas/excanvas": "3.0",
         "nnnick/chartjs": "0.2",
@@ -82,9 +82,9 @@
             "type": "package",
             "package": {
                 "name": "select2/select2",
-                "version": "4.0-rc2",
+                "version": "4.0",
                 "dist": {
-                    "url": "https://github.com/select2/select2/archive/4.0.0-rc.2.zip",
+                    "url": "https://github.com/select2/select2/archive/4.0.0.zip",
                     "type": "zip"
                 }
             }
