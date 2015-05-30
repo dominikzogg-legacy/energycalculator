@@ -31,7 +31,7 @@ function checkAllowedIp($remoteAddress)
 
 if (isset($_SERVER['HTTP_CLIENT_IP'])
     || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
-    || !checkAllowedIp($_SERVER['REMOTE_ADDR'])
+    || !(checkAllowedIp($_SERVER['REMOTE_ADDR']) || php_sapi_name() === 'cli-server')
 ) {
     header('HTTP/1.0 403 Forbidden');
     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
