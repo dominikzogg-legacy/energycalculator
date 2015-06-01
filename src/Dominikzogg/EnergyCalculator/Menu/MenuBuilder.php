@@ -6,7 +6,8 @@ use Dominikzogg\EnergyCalculator\Entity\User;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class MenuBuilder
@@ -17,19 +18,35 @@ class MenuBuilder
     protected $menuFactory;
 
     /**
-     * @var SecurityContextInterface
+     * @var AuthorizationCheckerInterface
      */
-    protected $securityContext;
+    protected $authorizationChecker;
+
+    /**
+     * @var TokenStorageInterface
+     */
+    protected $tokenStorage;
 
     /**
      * @var TranslatorInterface
      */
     protected $translator;
 
-    public function __construct(FactoryInterface $menuFactory, SecurityContextInterface $securityContext, TranslatorInterface $translator)
-    {
+    /**
+     * @param FactoryInterface $menuFactory
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param TokenStorageInterface $tokenStorage
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(
+        FactoryInterface $menuFactory,
+        AuthorizationCheckerInterface $authorizationChecker,
+        TokenStorageInterface $tokenStorage,
+        TranslatorInterface $translator
+    ) {
         $this->menuFactory = $menuFactory;
-        $this->securityContext = $securityContext;
+        $this->authorizationChecker = $authorizationChecker;
+        $this->tokenStorage = $tokenStorage;
         $this->translator = $translator;
     }
 
@@ -41,7 +58,7 @@ class MenuBuilder
             $this->createManageMenu($menu, $request);
             $this->createChartMenu($menu, $request);
 
-            if ($this->securityContext->isGranted('ROLE_ADMIN')) {
+            if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
                 $this->createAdminMenu($menu, $request);
             }
 
@@ -113,7 +130,7 @@ class MenuBuilder
      */
     protected function getUser()
     {
-        $token = $this->securityContext->getToken();
+        $token = $this->tokenStorage->getToken();
 
         if (is_null($token)) {
             return null;

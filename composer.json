@@ -13,7 +13,7 @@
     "require": {
         "php": "~5.5",
         "dflydev/doctrine-orm-service-provider": "~1.0,>=1.0.4",
-        "igorw/config-service-provider": "~1.2",
+        "igorw/config-service-provider": "dev-update-yml-driver@dev",
         "jquery/jquery": "1.11.1",
         "knplabs/knp-menu": "~2.0",
         "monolog/monolog": "1.5.*",
@@ -33,24 +33,18 @@
         "saxulum/saxulum-translation-provider": "~1.0,>=1.0.3",
         "saxulum/saxulum-validator-provider": "~1.0",
         "saxulum/saxulum-webprofiler-provider": "~1.1,>=1.1.1",
-        "silex/silex": "~1.2",
+        "silex/silex": "~1.3@dev",
         "silex/web-profiler": "~1.0.2",
         "swiftmailer/swiftmailer": "~5.0",
-        "symfony/debug": "~2.3,<2.7",
-        "symfony/doctrine-bridge": "~2.3,<2.7",
-        "symfony/config": "~2.3,<2.7",
-        "symfony/filesystem": "~2.3,<2.7",
-        "symfony/finder": "~2.3,<2.7",
-        "symfony/form": "~2.3,<2.7",
-        "symfony/options-resolver": "~2.3,<2.7",
-        "symfony/process": "~2.3,<2.7",
-        "symfony/property-access": "~2.3,<2.7",
-        "symfony/security": "~2.3,<2.7",
-        "symfony/stopwatch": "~2.3,<2.7",
-        "symfony/translation": "~2.3,<2.7",
-        "symfony/twig-bridge": "~2.3,<2.7",
-        "symfony/validator": "~2.3,<2.7",
-        "symfony/yaml": "~2.3,<2.7",
+        "symfony/doctrine-bridge": "~2.3,<3.0",
+        "symfony/config": "~2.3,<3.0",
+        "symfony/finder": "~2.3,<3.0",
+        "symfony/form": "~2.3,<3.0",
+        "symfony/security": "~2.3,<3.0",
+        "symfony/translation": "~2.3,<3.0",
+        "symfony/twig-bridge": "~2.3,<3.0",
+        "symfony/validator": "~2.3,<3.0",
+        "symfony/yaml": "~2.3,<3.0",
         "twig/twig": "~1.2",
         "twbs/bootstrap": "~3.1.1",
 
@@ -116,6 +110,10 @@
                     "type": "zip"
                 }
             }
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:bonuspaper/ConfigServiceProvider.git"
         }
     ],
     "minimum-stability": "alpha",

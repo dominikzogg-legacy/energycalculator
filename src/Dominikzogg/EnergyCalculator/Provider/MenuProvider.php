@@ -11,7 +11,12 @@ class MenuProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $app['menu_builder'] = $app->share(function (Application $app) {
-            return new MenuBuilder($app['knp_menu.factory'], $app['security'], $app['translator']);
+            return new MenuBuilder(
+                $app['knp_menu.factory'],
+                $app['security.authorization_checker'],
+                $app['security.token_storage'],
+                $app['translator']
+            );
         });
 
         $app['main_menu'] = function (Application $app) {
