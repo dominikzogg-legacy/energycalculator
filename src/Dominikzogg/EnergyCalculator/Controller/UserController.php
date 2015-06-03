@@ -17,12 +17,14 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * @Route("/{_locale}/user")
  * @DI(serviceIds={
- *      "security",
+ *      "security.authorization_checker",
+ *      "security.token_storage",
  *      "doctrine",
  *      "form.factory",
  *      "knp_paginator",
@@ -39,7 +41,8 @@ class UserController extends AbstractCRUDController
     protected $userManager;
 
     /**
-     * @param SecurityContextInterface $security
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param TokenStorageInterface $tokenStorage
      * @param ManagerRegistry          $doctrine
      * @param FormFactory              $formFactory
      * @param Paginator                $paginator
@@ -48,7 +51,8 @@ class UserController extends AbstractCRUDController
      * @param UserManager              $userManager
      */
     public function __construct(
-        SecurityContextInterface $security,
+        AuthorizationCheckerInterface $authorizationChecker,
+        TokenStorageInterface $tokenStorage,
         ManagerRegistry $doctrine,
         FormFactory $formFactory,
         Paginator $paginator,
@@ -56,7 +60,8 @@ class UserController extends AbstractCRUDController
         \Twig_Environment $twig,
         UserManager $userManager
     ) {
-        $this->security = $security;
+        $this->authorizationChecker = $authorizationChecker;
+        $this->tokenStorage = $tokenStorage;
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
         $this->paginator = new KnpPaginationAdapter($paginator);

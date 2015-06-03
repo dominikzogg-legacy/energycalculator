@@ -2,16 +2,17 @@
 
 namespace Dominikzogg\EnergyCalculator\Form;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SimpleDateType extends AbstractType
 {
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
+
         $resolver->setDefaults(array(
             'widget' => 'single_text',
             'format' => 'dd.MM.yyyy',

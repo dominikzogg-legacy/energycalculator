@@ -9,7 +9,8 @@ use Dominikzogg\EnergyCalculator\Entity\User;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 abstract class AbstractController
 {
@@ -29,9 +30,14 @@ abstract class AbstractController
     protected $formFactory;
 
     /**
-     * @var SecurityContextInterface
+     * @var AuthorizationCheckerInterface
      */
-    protected $security;
+    protected $authorizationChecker;
+
+    /**
+     * @var TokenStorageInterface
+     */
+    protected $tokenStorage;
 
     /**
      * @return User
@@ -39,11 +45,11 @@ abstract class AbstractController
      */
     protected function getUser()
     {
-        if (is_null($this->security->getToken())) {
+        if (null === $token = $this->tokenStorage->getToken()) {
             throw new \Exception("No user token!");
         }
 
-        $user = $this->security->getToken()->getUser();
+        $user = $token->getUser();
 
         if(!$user instanceof User) {
             throw new \Exception("Invalid user token!");

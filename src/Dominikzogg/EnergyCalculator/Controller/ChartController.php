@@ -11,14 +11,14 @@ use Saxulum\RouteController\Annotation\Route;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @Route("/{_locale}/chart")
  * @DI(serviceIds={
  *      "doctrine",
  *      "form.factory",
- *      "security",
+ *      "security.token_storage",
  *      "twig"
  * })
  */
@@ -27,12 +27,12 @@ class ChartController extends AbstractController
     public function __construct(
         ManagerRegistry $doctrine,
         FormFactory $formFactory,
-        SecurityContext $security,
+        TokenStorageInterface $tokenStorage,
         \Twig_Environment $twig
     ) {
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
-        $this->security = $security;
+        $this->tokenStorage = $tokenStorage;
         $this->twig = $twig;
     }
 

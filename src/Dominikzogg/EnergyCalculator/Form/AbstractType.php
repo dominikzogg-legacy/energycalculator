@@ -3,12 +3,16 @@
 namespace Dominikzogg\EnergyCalculator\Form;
 
 use Symfony\Component\Form\AbstractType as BaseAbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class AbstractType extends BaseAbstractType
 {
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'translation_domain' => 'messages',
         ));

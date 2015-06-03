@@ -7,7 +7,7 @@ use Saxulum\Crud\Controller\CrudTrait;
 use Saxulum\Crud\Pagination\PaginatorInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 abstract class AbstractCRUDController extends AbstractController
 {
@@ -64,11 +64,11 @@ abstract class AbstractCRUDController extends AbstractController
     }
 
     /**
-     * @return SecurityContextInterface
+     * @return AuthorizationCheckerInterface
      */
-    protected function crudSecurity()
+    protected function crudAuthorizationChecker()
     {
-        return $this->security;
+        return $this->authorizationChecker;
     }
 
     /**

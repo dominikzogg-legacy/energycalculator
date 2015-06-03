@@ -4,7 +4,7 @@ namespace Dominikzogg\EnergyCalculator\Form;
 
 use Saxulum\UserProvider\Form\AbstractUserType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractUserType
 {
@@ -21,9 +21,13 @@ class UserType extends AbstractUserType
         ));
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
+
         $resolver->setDefaults(array(
             'translation_domain' => 'messages',
         ));

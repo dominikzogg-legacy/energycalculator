@@ -4,7 +4,7 @@ namespace Dominikzogg\EnergyCalculator\Form;
 
 use Dominikzogg\EnergyCalculator\Entity\Comestible;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ComestibleType extends AbstractType
 {
@@ -25,11 +25,12 @@ class ComestibleType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
+
         $resolver->setDefaults(array(
             'data_class' => Comestible::class,
         ));

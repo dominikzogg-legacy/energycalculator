@@ -6,9 +6,8 @@ use Doctrine\ORM\QueryBuilder;
 use Dominikzogg\EnergyCalculator\Entity\Comestible;
 use Dominikzogg\EnergyCalculator\Entity\ComestibleWithinDay;
 use Dominikzogg\EnergyCalculator\Entity\User;
-use Dominikzogg\EnergyCalculator\Repository\ComestibleRepository;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class ComestibleWithinDayType extends AbstractType
@@ -61,11 +60,12 @@ class ComestibleWithinDayType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
+
         $resolver->setDefaults(array(
             'data_class' => ComestibleWithinDay::class,
         ));

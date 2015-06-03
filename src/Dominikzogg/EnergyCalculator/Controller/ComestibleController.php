@@ -19,12 +19,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @Route("/{_locale}/comestible")
  * @DI(serviceIds={
- *      "security",
+ *      "security.authorization_checker",
+ *      "security.token_storage",
  *      "doctrine",
  *      "form.factory",
  *      "knp_paginator",
@@ -35,7 +38,8 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 class ComestibleController extends AbstractCRUDController
 {
     /**
-     * @param SecurityContextInterface $security
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param TokenStorageInterface $tokenStorage
      * @param ManagerRegistry          $doctrine
      * @param FormFactory              $formFactory
      * @param Paginator                $paginator
@@ -43,14 +47,16 @@ class ComestibleController extends AbstractCRUDController
      * @param \Twig_Environment        $twig
      */
     public function __construct(
-        SecurityContextInterface $security,
+        AuthorizationCheckerInterface $authorizationChecker,
+        TokenStorageInterface $tokenStorage,
         ManagerRegistry $doctrine,
         FormFactory $formFactory,
         Paginator $paginator,
         UrlGeneratorInterface $urlGenerator,
         \Twig_Environment $twig
     ) {
-        $this->security = $security;
+        $this->authorizationChecker = $authorizationChecker;
+        $this->tokenStorage = $tokenStorage;
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
         $this->paginator = new KnpPaginationAdapter($paginator);

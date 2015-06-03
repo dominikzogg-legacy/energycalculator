@@ -18,13 +18,15 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @Route("/{_locale}/day")
  * @DI(serviceIds={
- *      "security",
+ *      "security.authorization_checker",
+ *      "security.token_storage",
  *      "doctrine",
  *      "form.factory",
  *      "knp_paginator",
@@ -41,7 +43,8 @@ class DayController extends AbstractCRUDController
     protected $translator;
 
     /**
-     * @param SecurityContextInterface $security
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param TokenStorageInterface $tokenStorage
      * @param ManagerRegistry          $doctrine
      * @param FormFactory              $formFactory
      * @param Paginator                $paginator
@@ -50,7 +53,8 @@ class DayController extends AbstractCRUDController
      * @param TranslatorInterface      $translator
      */
     public function __construct(
-        SecurityContextInterface $security,
+        AuthorizationCheckerInterface $authorizationChecker,
+        TokenStorageInterface $tokenStorage,
         ManagerRegistry $doctrine,
         FormFactory $formFactory,
         Paginator $paginator,
@@ -58,7 +62,8 @@ class DayController extends AbstractCRUDController
         \Twig_Environment $twig,
         TranslatorInterface $translator
     ) {
-        $this->security = $security;
+        $this->authorizationChecker = $authorizationChecker;
+        $this->tokenStorage = $tokenStorage;
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
         $this->paginator = new KnpPaginationAdapter($paginator);
