@@ -21,7 +21,7 @@
         "oyejorge/less.php": "~1.7",
         "saxulum/saxulum-accessor": "~2.0",
         "saxulum/saxulum-assetic-twig-provider": "~1.4,>=1.4.1",
-        "saxulum/saxulum-bootstrap-provider": "~1.0,>=1.0.3",
+        "saxulum/saxulum-bootstrap-provider": "~1.0,>=1.0.5",
         "saxulum/saxulum-bundle-provider": "~1.1",
         "saxulum/saxulum-collection-js": "~1.0,>=1.0.1",
         "saxulum/saxulum-console": "~2.1,>=2.1.3",

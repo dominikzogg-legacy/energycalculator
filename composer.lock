@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "22419fa97118c50a14fb558a59102f6b",
+    "hash": "73a5280cb3e8da0eab3e79c22c393308",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -1484,16 +1484,16 @@
         },
         {
             "name": "saxulum/saxulum-bootstrap-provider",
-            "version": "1.0.3",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-bootstrap-provider.git",
-                "reference": "1425976fd46f26123dc8318dbf67f89898014184"
+                "reference": "77d3e9785a4f08a2d85fa43bc60c46dac3af3f76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/1425976fd46f26123dc8318dbf67f89898014184",
-                "reference": "1425976fd46f26123dc8318dbf67f89898014184",
+                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/77d3e9785a4f08a2d85fa43bc60c46dac3af3f76",
+                "reference": "77d3e9785a4f08a2d85fa43bc60c46dac3af3f76",
                 "shasum": ""
             },
             "require": {
@@ -1535,7 +1535,7 @@
                 "bootstrap",
                 "silex"
             ],
-            "time": "2014-10-05 08:34:50"
+            "time": "2015-06-03 21:23:35"
         },
         {
             "name": "saxulum/saxulum-bundle-provider",
