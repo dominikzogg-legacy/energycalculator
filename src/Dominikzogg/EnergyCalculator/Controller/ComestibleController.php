@@ -8,6 +8,7 @@ use Dominikzogg\EnergyCalculator\Form\ComestibleListType;
 use Dominikzogg\EnergyCalculator\Form\ComestibleType;
 use Dominikzogg\EnergyCalculator\Repository\ComestibleRepository;
 use Knp\Component\Pager\Paginator;
+use Saxulum\Crud\Listing\ListingFactory;
 use Saxulum\Crud\Pagination\KnpPaginationAdapter;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
@@ -28,6 +29,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
  * @DI(serviceIds={
  *      "security.authorization_checker",
  *      "security.token_storage",
+ *      "saxulum.crud.listing.factory",
  *      "doctrine",
  *      "form.factory",
  *      "knp_paginator",
@@ -40,6 +42,7 @@ class ComestibleController extends AbstractCRUDController
     /**
      * @param AuthorizationCheckerInterface $authorizationChecker
      * @param TokenStorageInterface $tokenStorage
+     * @param ListingFactory $listingFactory
      * @param ManagerRegistry          $doctrine
      * @param FormFactory              $formFactory
      * @param Paginator                $paginator
@@ -49,6 +52,7 @@ class ComestibleController extends AbstractCRUDController
     public function __construct(
         AuthorizationCheckerInterface $authorizationChecker,
         TokenStorageInterface $tokenStorage,
+        ListingFactory $listingFactory,
         ManagerRegistry $doctrine,
         FormFactory $formFactory,
         Paginator $paginator,
@@ -57,6 +61,7 @@ class ComestibleController extends AbstractCRUDController
     ) {
         $this->authorizationChecker = $authorizationChecker;
         $this->tokenStorage = $tokenStorage;
+        $this->listingFactory = $listingFactory;
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
         $this->paginator = new KnpPaginationAdapter($paginator);

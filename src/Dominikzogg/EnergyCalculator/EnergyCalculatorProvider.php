@@ -10,6 +10,7 @@ use Dominikzogg\EnergyCalculator\Form\SimpleDateType;
 use Dominikzogg\EnergyCalculator\Provider\MenuProvider;
 use Dominikzogg\EnergyCalculator\Voter\RelatedObjectVoter;
 use Saxulum\BundleProvider\Provider\AbstractBundleProvider;
+use Saxulum\Crud\Listing\ListingFactory;
 use Saxulum\Crud\Twig\FormLabelExtension;
 use Saxulum\UserProvider\Model\AbstractUser;
 use Saxulum\UserProvider\Silex\Provider\SaxulumUserProvider;
@@ -95,6 +96,14 @@ class EnergyCalculatorProvider extends AbstractBundleProvider
                 return $commands;
             })
         );
+
+        $app['saxulum.crud.listing.types'] = $app->share(function(){
+            return array();
+        });
+
+        $app['saxulum.crud.listing.factory'] = $app->share(function() use ($app) {
+            return new ListingFactory($app['saxulum.crud.listing.types']);
+        });
 
         $this->addControllers($app);
         $this->addDoctrineOrmMappings($app);

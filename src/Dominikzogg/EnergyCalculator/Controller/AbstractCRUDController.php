@@ -4,6 +4,7 @@ namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Saxulum\Crud\Controller\CrudTrait;
+use Saxulum\Crud\Listing\ListingFactory;
 use Saxulum\Crud\Pagination\PaginatorInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -22,6 +23,19 @@ abstract class AbstractCRUDController extends AbstractController
      * @var UrlGeneratorInterface
      */
     protected $urlGenerator;
+
+    /**
+     * @var ListingFactory
+     */
+    protected $listingFactory;
+
+    /**
+     * @return AuthorizationCheckerInterface
+     */
+    protected function crudAuthorizationChecker()
+    {
+        return $this->authorizationChecker;
+    }
 
     /**
      * @return FormFactory
@@ -64,11 +78,11 @@ abstract class AbstractCRUDController extends AbstractController
     }
 
     /**
-     * @return AuthorizationCheckerInterface
+     * @return ListingFactory
      */
-    protected function crudAuthorizationChecker()
+    protected function crudListingFactory()
     {
-        return $this->authorizationChecker;
+        return $this->listingFactory;
     }
 
     /**
