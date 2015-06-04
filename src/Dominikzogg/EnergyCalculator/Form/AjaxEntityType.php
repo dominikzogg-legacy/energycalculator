@@ -21,7 +21,7 @@ class AjaxEntityType extends EntityType
 
         $resolver->setRequired(array(
             'route',
-            'property',
+            'choice_label',
         ));
     }
 

@@ -48,7 +48,7 @@ class ComestibleWithinDayType extends AbstractType
             ->add('comestible', 'ajax_entity', array(
                 'class' => Comestible::class,
                 'route' => 'comestible_choice',
-                'property' => 'name',
+                'choice_label' => 'name',
                 'query_builder' => $this->comestibleQb,
                 'required' => false,
                 'attr' => array(

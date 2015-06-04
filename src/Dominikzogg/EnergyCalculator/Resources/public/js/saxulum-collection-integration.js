@@ -9,7 +9,7 @@
                 data: function (params) {
                     return {
                         q: params.term,
-                        page: $selector.attr('data-property')
+                        choice_label: $selector.attr('data-choice-label')
                     };
                 },
                 processResults: function (data) {

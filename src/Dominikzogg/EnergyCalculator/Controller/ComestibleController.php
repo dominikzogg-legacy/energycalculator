@@ -118,7 +118,7 @@ class ComestibleController extends AbstractCRUDController
      */
     public function choiceAction(Request $request)
     {
-        $property = $request->query->get('property', 'name');
+        $choiceLabel = $request->query->get('choice_label', 'name');
         $search = urldecode($request->query->get('q', ''));
 
         /** @var ComestibleRepository $repo */
@@ -128,7 +128,7 @@ class ComestibleController extends AbstractCRUDController
         foreach ($repo->searchComestibleOfUser($this->getUser(), $search) as $comestible) {
             $data[] = array(
                 'id' => $comestible->getId(),
-                'text' => $propertyAccessor->getValue($comestible, $property),
+                'text' => $propertyAccessor->getValue($comestible, $choiceLabel),
                 'default' => $comestible->getDefaultValue(),
             );
         }
