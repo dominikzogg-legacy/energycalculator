@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "73a5280cb3e8da0eab3e79c22c393308",
+    "hash": "2b35fb3cfd42f3cdf559c7da98eaa39c",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -2335,16 +2335,16 @@
         },
         {
             "name": "silex/silex",
-            "version": "1.3.x-dev",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex.git",
-                "reference": "6a0921866110d140b5875eaac330f9060b872c1e"
+                "reference": "2d623a4853c37005d3790e5e7897a2c30b492caf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex/zipball/6a0921866110d140b5875eaac330f9060b872c1e",
-                "reference": "6a0921866110d140b5875eaac330f9060b872c1e",
+                "url": "https://api.github.com/repos/silexphp/Silex/zipball/2d623a4853c37005d3790e5e7897a2c30b492caf",
+                "reference": "2d623a4853c37005d3790e5e7897a2c30b492caf",
                 "shasum": ""
             },
             "require": {
@@ -2413,21 +2413,21 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2015-05-28 16:50:35"
+            "time": "2015-06-04 21:27:48"
         },
         {
             "name": "silex/web-profiler",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "target-dir": "Silex/Provider",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex-WebProfiler.git",
-                "reference": "49ae2ae6fc1fa4e3eec26f0fb5b05b9fe1582a1f"
+                "reference": "2afc6ba14f345d0a2ef70fe656e8a59ff52beb49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex-WebProfiler/zipball/49ae2ae6fc1fa4e3eec26f0fb5b05b9fe1582a1f",
-                "reference": "49ae2ae6fc1fa4e3eec26f0fb5b05b9fe1582a1f",
+                "url": "https://api.github.com/repos/silexphp/Silex-WebProfiler/zipball/2afc6ba14f345d0a2ef70fe656e8a59ff52beb49",
+                "reference": "2afc6ba14f345d0a2ef70fe656e8a59ff52beb49",
                 "shasum": ""
             },
             "require": {
@@ -2458,7 +2458,7 @@
             ],
             "description": "A WebProfiler for Silex",
             "homepage": "http://silex.sensiolabs.org/",
-            "time": "2015-04-19 10:15:17"
+            "time": "2015-06-04 14:27:33"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3960,7 +3960,6 @@
     "minimum-stability": "alpha",
     "stability-flags": {
         "igorw/config-service-provider": 20,
-        "silex/silex": 20,
         "saxulum/saxulum-crud": 15,
         "saxulum/saxulum-user-provider": 15
     },
