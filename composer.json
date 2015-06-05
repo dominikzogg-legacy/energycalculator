@@ -13,7 +13,7 @@
     "require": {
         "php": "~5.5",
         "dflydev/doctrine-orm-service-provider": "~1.0,>=1.0.4",
-        "igorw/config-service-provider": "dev-update-yml-driver@dev",
+        "saxulum/config-service-provider": "~1.2,>=1.2.3",
         "jquery/jquery": "1.11.1",
         "knplabs/knp-menu": "~2.0",
         "monolog/monolog": "1.5.*",

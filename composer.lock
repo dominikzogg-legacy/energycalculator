@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2b35fb3cfd42f3cdf559c7da98eaa39c",
+    "hash": "50bd5d8d60113f108df8c1abb03eaec0",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -691,64 +691,6 @@
             "type": "library"
         },
         {
-            "name": "igorw/config-service-provider",
-            "version": "dev-update-yml-driver",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bonuspaper/ConfigServiceProvider.git",
-                "reference": "5bd36be61e67d8f63342afa3108d654d7240e57b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bonuspaper/ConfigServiceProvider/zipball/5bd36be61e67d8f63342afa3108d654d7240e57b",
-                "reference": "5bd36be61e67d8f63342afa3108d654d7240e57b",
-                "shasum": ""
-            },
-            "require": {
-                "silex/silex": "~1.0"
-            },
-            "require-dev": {
-                "jamesmoss/toml": "~0.1",
-                "symfony/yaml": "~2.2"
-            },
-            "suggest": {
-                "jamesmoss/toml": "~0.1",
-                "symfony/yaml": "~2.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Igorw\\Silex": "src"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Igor Wiedler",
-                    "email": "igor@wiedler.ch"
-                },
-                {
-                    "name": "Contributors",
-                    "homepage": "https://github.com/igorw/ConfigServiceProvider/contributors"
-                }
-            ],
-            "description": "A config ServiceProvider for Silex with support for php, json and yaml.",
-            "keywords": [
-                "silex"
-            ],
-            "support": {
-                "source": "https://github.com/bonuspaper/ConfigServiceProvider/tree/update-yml-driver"
-            },
-            "time": "2015-02-04 04:11:36"
-        },
-        {
             "name": "jdorn/sql-formatter",
             "version": "v1.2.17",
             "source": {
@@ -1320,6 +1262,65 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "saxulum/config-service-provider",
+            "version": "v1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saxulum/ConfigServiceProvider.git",
+                "reference": "3d8e19718bf32a6fd22012ee621a7dc033c36a56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saxulum/ConfigServiceProvider/zipball/3d8e19718bf32a6fd22012ee621a7dc033c36a56",
+                "reference": "3d8e19718bf32a6fd22012ee621a7dc033c36a56",
+                "shasum": ""
+            },
+            "require": {
+                "silex/silex": "~1.0"
+            },
+            "replace": {
+                "igorw/config-service-provider": "self.version"
+            },
+            "require-dev": {
+                "jamesmoss/toml": "~0.1",
+                "symfony/yaml": "~2.2"
+            },
+            "suggest": {
+                "jamesmoss/toml": "~0.1",
+                "symfony/yaml": "~2.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Igorw\\Silex": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/igorw/ConfigServiceProvider/contributors"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                }
+            ],
+            "description": "A config ServiceProvider for Silex with support for php, json and yaml.",
+            "keywords": [
+                "silex"
+            ],
+            "time": "2015-06-05 19:34:06"
         },
         {
             "name": "saxulum/saxulum-accessor",
@@ -3960,7 +3961,6 @@
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": {
-        "igorw/config-service-provider": 20,
         "saxulum/saxulum-crud": 15,
         "saxulum/saxulum-user-provider": 15
     },
