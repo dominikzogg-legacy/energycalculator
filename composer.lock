@@ -2164,23 +2164,24 @@
         },
         {
             "name": "saxulum/saxulum-user-provider",
-            "version": "1.0-alpha5",
+            "version": "1.0-alpha6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-user-provider.git",
-                "reference": "4e8f95c10c4d26abc9157a2fa4f87725a448eada"
+                "reference": "2139938caee0a9609751469490f0e2c07e458e89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-user-provider/zipball/4e8f95c10c4d26abc9157a2fa4f87725a448eada",
-                "reference": "4e8f95c10c4d26abc9157a2fa4f87725a448eada",
+                "url": "https://api.github.com/repos/saxulum/saxulum-user-provider/zipball/2139938caee0a9609751469490f0e2c07e458e89",
+                "reference": "2139938caee0a9609751469490f0e2c07e458e89",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.3",
                 "php": ">=5.3.3",
                 "pimple/pimple": "~1.1",
-                "symfony/security": "~2.3"
+                "symfony/security": "~2.4",
+                "symfony/validator": "~2.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
@@ -2218,7 +2219,7 @@
                 "user",
                 "userprovider"
             ],
-            "time": "2015-05-25 09:50:11"
+            "time": "2015-06-05 05:27:46"
         },
         {
             "name": "saxulum/saxulum-validator-provider",
