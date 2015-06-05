@@ -2164,16 +2164,16 @@
         },
         {
             "name": "saxulum/saxulum-user-provider",
-            "version": "1.0-alpha6",
+            "version": "1.0-alpha7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-user-provider.git",
-                "reference": "2139938caee0a9609751469490f0e2c07e458e89"
+                "reference": "291c47155f4a1eebd4baf97c4ad4c7cff05e877b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-user-provider/zipball/2139938caee0a9609751469490f0e2c07e458e89",
-                "reference": "2139938caee0a9609751469490f0e2c07e458e89",
+                "url": "https://api.github.com/repos/saxulum/saxulum-user-provider/zipball/291c47155f4a1eebd4baf97c4ad4c7cff05e877b",
+                "reference": "291c47155f4a1eebd4baf97c4ad4c7cff05e877b",
                 "shasum": ""
             },
             "require": {
@@ -2219,7 +2219,7 @@
                 "user",
                 "userprovider"
             ],
-            "time": "2015-06-05 05:27:46"
+            "time": "2015-06-05 05:34:03"
         },
         {
             "name": "saxulum/saxulum-validator-provider",
