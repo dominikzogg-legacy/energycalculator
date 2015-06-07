@@ -20,7 +20,7 @@ orm.proxies_dir: %runtime_dir%/cache/%env%/doctrine/proxies
 profiler.cache_dir: %runtime_dir%/cache/%env%/profiler
 
 assetic.asset.root: %root_dir%
-assetic.asset.asset_root: %root_dir%/assets
+assetic.asset.asset_root: %root_dir%/web/assets
 assetic_asset_path: assets
 
 route_controller_cache: %runtime_dir%/cache/%env%/controller

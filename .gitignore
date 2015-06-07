@@ -3,7 +3,7 @@
 /app/config/parameters.yml
 /app/runtime_dir_config.php
 /app/log
-/assets
+/web/assets
 /vendor
 saxulum.db
 

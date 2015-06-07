@@ -37,12 +37,12 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
 }
 
-$loader = require_once __DIR__ . '/app/autoload.php';
+$loader = require_once __DIR__ . '/../app/autoload.php';
 
 $env = 'dev';
 $debug = true;
 
 /** @var Silex\Application $app */
-$app = require_once __DIR__.'/app/app.php';
+$app = require_once __DIR__.'/../app/app.php';
 
 $app->run();
