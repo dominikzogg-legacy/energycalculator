@@ -867,7 +867,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -1214,7 +1214,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "Pimple is a simple Dependency Injection Container for PHP 5.3",
@@ -1718,16 +1720,16 @@
         },
         {
             "name": "saxulum/saxulum-crud",
-            "version": "2.0-alpha13",
+            "version": "2.0-alpha14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-crud.git",
-                "reference": "6c6f012b2bebb2e91826e5b345145d89fae438ce"
+                "reference": "ee16e4a68917e903330d76c7cd318378ef581ffb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/6c6f012b2bebb2e91826e5b345145d89fae438ce",
-                "reference": "6c6f012b2bebb2e91826e5b345145d89fae438ce",
+                "url": "https://api.github.com/repos/saxulum/saxulum-crud/zipball/ee16e4a68917e903330d76c7cd318378ef581ffb",
+                "reference": "ee16e4a68917e903330d76c7cd318378ef581ffb",
                 "shasum": ""
             },
             "require": {
@@ -1743,7 +1745,8 @@
                 "doctrine/orm": "~2.4,>=2.4.6",
                 "knplabs/knp-components": "~1.3,>=1.3.1",
                 "pagerfanta/pagerfanta": "~1.0,>=1.0.3",
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "~4.0",
+                "pimple/pimple": "~3.0"
             },
             "type": "library",
             "extra": {
@@ -1773,7 +1776,7 @@
                 "silex",
                 "symfony"
             ],
-            "time": "2015-06-03 20:17:51"
+            "time": "2015-06-03 21:16:32"
         },
         {
             "name": "saxulum/saxulum-doctrine-orm-commands",
@@ -2464,23 +2467,23 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.0",
+            "version": "v5.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f"
+                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/31454f258f10329ae7c48763eb898a75c39e0a9f",
-                "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/0697e6aa65c83edf97bb0f23d8763f94e3f11421",
+                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.1"
+                "mockery/mockery": "~0.9.1,<0.9.4"
             },
             "type": "library",
             "extra": {
@@ -2509,10 +2512,11 @@
             "description": "Swiftmailer, free feature-rich PHP mailer",
             "homepage": "http://swiftmailer.org",
             "keywords": [
+                "email",
                 "mail",
                 "mailer"
             ],
-            "time": "2015-03-14 06:06:39"
+            "time": "2015-06-06 14:19:39"
         },
         {
             "name": "symfony/config",
@@ -3901,16 +3905,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.18.1",
+            "version": "v1.18.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "9f70492f44398e276d1b81c1b43adfe6751c7b7f"
+                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9f70492f44398e276d1b81c1b43adfe6751c7b7f",
-                "reference": "9f70492f44398e276d1b81c1b43adfe6751c7b7f",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e8e6575abf6102af53ec283f7f14b89e304fa602",
+                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602",
                 "shasum": ""
             },
             "require": {
@@ -3954,7 +3958,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-04-19 08:30:27"
+            "time": "2015-06-06 23:31:24"
         }
     ],
     "packages-dev": [],
