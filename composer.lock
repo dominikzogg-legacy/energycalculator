@@ -1111,10 +1111,10 @@
         },
         {
             "name": "nnnick/chartjs",
-            "version": "0.2",
+            "version": "1.0.2",
             "dist": {
-                "type": "file",
-                "url": "https://raw.githubusercontent.com/nnnick/Chart.js/master/Chart.js",
+                "type": "zip",
+                "url": "https://github.com/nnnick/Chart.js/archive/v1.0.2.zip",
                 "reference": null,
                 "shasum": null
             },
