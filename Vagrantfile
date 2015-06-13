@@ -1,6 +1,6 @@
 require 'yaml'
 
-projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant.yaml")
+projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant.yml")
 sshforwardport = Random.rand(49152..65535)
 
 Vagrant.configure(2) do |config|
@@ -44,7 +44,20 @@ Vagrant.configure(2) do |config|
     v.customize ['modifyvm', :id, '--nictype2', 'virtio']
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
 
-    config.vm.synced_folder "./", "/vagrant", :nfs => true, nfs_udp: false
+    if Vagrant::Util::Platform.windows?
+      config.vm.synced_folder "./", "/vagrant", type: "smb"
+    else
+      config.vm.synced_folder "./", "/vagrant", type: "nfs", nfs_udp: false
+    end
+  end
+
+  # for vmware
+  config.vm.provider "vmware_fusion" do |v|
+    v.vmx["memsize"] = "1024"
+    v.vmx["numvcpus"] = "1"
+    v.vmx["vhv.enable"] = "TRUE"
+
+    config.vm.synced_folder "./", "/vagrant"
   end
 
   # Provisioning
