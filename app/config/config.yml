@@ -13,6 +13,9 @@ security.firewalls:
   unsecured:
     anonymous: true
 
+session.storage.options:
+    gc_probability: 0
+
 monolog.logfile: %runtime_dir%/log/%env%.log
 
 orm.proxies_dir: %runtime_dir%/cache/%env%/doctrine/proxies
