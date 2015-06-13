@@ -4,8 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "50bd5d8d60113f108df8c1abb03eaec0",
+    "hash": "098732e168ef1b9c2df0010601948665",
     "packages": [
+        {
+            "name": "arv/excanvas",
+            "version": "3.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/arv/ExplorerCanvas/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
         {
             "name": "dflydev/doctrine-orm-service-provider",
             "version": "v1.0.6",
@@ -674,17 +685,6 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/eternicode/bootstrap-datepicker/archive/v1.4.0.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
-        },
-        {
-            "name": "excanvas/excanvas",
-            "version": "3.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://explorercanvas.googlecode.com/archive/m3.zip",
                 "reference": null,
                 "shasum": null
             },

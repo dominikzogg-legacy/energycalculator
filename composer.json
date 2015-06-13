@@ -51,7 +51,7 @@
         "saxulum/saxulum-crud": "~2.0@alpha",
         "select2/select2": "~4.0",
         "eternicode/bootstrap-datepicker": "~1.3,>=1.3.1",
-        "excanvas/excanvas": "3.0",
+        "arv/excanvas": "3.0",
         "nnnick/chartjs": "0.2",
         "saxulum/saxulum-user-provider": "~1.0@alpha"
     },
@@ -92,10 +92,10 @@
         {
             "type": "package",
             "package": {
-                "name": "excanvas/excanvas",
+                "name": "arv/excanvas",
                 "version": "3.0",
                 "dist": {
-                    "url": "https://explorercanvas.googlecode.com/archive/m3.zip",
+                    "url": "https://github.com/arv/ExplorerCanvas/archive/master.zip",
                     "type": "zip"
                 }
             }
