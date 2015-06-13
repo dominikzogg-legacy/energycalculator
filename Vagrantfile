@@ -45,7 +45,7 @@ Vagrant.configure(2) do |config|
     if Vagrant::Util::Platform.windows?
       config.vm.synced_folder "./", "/vagrant", type: "smb"
     else
-      v.customize ['modifyvm', :id, '--nictype0', 'virtio']
+      # use virtio networkcards on unix hosts
       v.customize ['modifyvm', :id, '--nictype1', 'virtio']
       v.customize ['modifyvm', :id, '--nictype2', 'virtio']
       
