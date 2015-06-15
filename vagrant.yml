@@ -1,4 +1,3 @@
 ---
-hostname: "energycalculator.dev"
-relative_document_root: "/web"
-index: "app_dev.php"
+hostname: 'energycalculator.dev'
+application: 'symfony'
