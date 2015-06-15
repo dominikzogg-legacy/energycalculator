@@ -6,12 +6,9 @@
     - apt-transport-https
 
 - name: APT | update sources.list
-  template:
-    src=sources.list.j2
+  copy:
+    src=sources.list
     dest=/etc/apt/sources.list
-
-- shell: cd /tmp && wget https://deb.nodesource.com/gpgkey/nodesource.gpg.key && apt-key add nodesource.gpg.key
-- shell: apt-key adv --keyserver keys.gnupg.net --recv-keys E9C74FEEA2098A6E
 
 - name: APT | Update apt cache
   apt: update_cache=yes
@@ -19,7 +16,7 @@
 - name: APT | Upgrade
   apt: upgrade=full
 
-- name: Locale | Install locales
+- name: Locale | install
   apt: name={{ item }} state=present
   with_items:
     - locales-all
@@ -36,7 +33,7 @@
 - name: Timezone | Update tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
 
-- name: Tools | Install additional tools
+- name: Tools | install
   apt: name={{ item }} state=present
   with_items:
     - vim
