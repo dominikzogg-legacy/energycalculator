@@ -6,3 +6,9 @@
 ## Requirements
 
  * php: >=5.5
+
+## Vagrant
+
+Check the informations at [dominikzogg/vagrant-virtualbox-ansible][1]
+
+[1]: https://github.com/dominikzogg/vagrant-virtualbox-ansible/blob/master/README.md
