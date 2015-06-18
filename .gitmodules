@@ -1,0 +1,4 @@
+[submodule "vagrant-virtualbox-ansible"]
+	path = vagrant-virtualbox-ansible
+	url = https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
+	branch = v1
