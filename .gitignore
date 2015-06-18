@@ -1,10 +1,8 @@
-/.vagrant
 /app/cache
 /app/config/parameters.yml
 /app/runtime_dir_config.php
 /app/log
 /web/assets
 /vendor
-saxulum.db
 
 .idea
