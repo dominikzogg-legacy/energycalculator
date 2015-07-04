@@ -33,7 +33,7 @@ class IndexController
     }
 
     /**
-     * @Route("/{_locale}", bind="index", method="GET")
+     * @Route("/{_locale}", bind="index", method="GET", asserts={"_locale"="([a-z]{2}|[a-z]{2}_[A-Z]{2})"})
      */
     public function indexAction()
     {

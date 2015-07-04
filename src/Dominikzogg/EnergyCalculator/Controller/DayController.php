@@ -24,7 +24,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * @Route("/{_locale}/day")
+ * @Route("/{_locale}/day", asserts={"_locale"="([a-z]{2}|[a-z]{2}_[A-Z]{2})"})
  * @DI(serviceIds={
  *      "security.authorization_checker",
  *      "security.token_storage",

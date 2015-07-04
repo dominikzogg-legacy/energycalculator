@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
- * @Route("/{_locale}/chart")
+ * @Route("/{_locale}/chart", asserts={"_locale"="([a-z]{2}|[a-z]{2}_[A-Z]{2})"})
  * @DI(serviceIds={
  *      "doctrine",
  *      "form.factory",

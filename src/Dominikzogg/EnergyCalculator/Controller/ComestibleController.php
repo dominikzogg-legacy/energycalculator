@@ -25,7 +25,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
- * @Route("/{_locale}/comestible")
+ * @Route("/{_locale}/comestible", asserts={"_locale"="([a-z]{2}|[a-z]{2}_[A-Z]{2})"})
  * @DI(serviceIds={
  *      "security.authorization_checker",
  *      "security.token_storage",

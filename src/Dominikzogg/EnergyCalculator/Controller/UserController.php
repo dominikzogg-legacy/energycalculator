@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
- * @Route("/{_locale}/user")
+ * @Route("/{_locale}/user", asserts={"_locale"="([a-z]{2}|[a-z]{2}_[A-Z]{2})"})
  * @DI(serviceIds={
  *      "security.authorization_checker",
  *      "security.token_storage",

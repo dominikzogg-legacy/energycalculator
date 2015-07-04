@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/{_locale}")
+ * @Route("/{_locale}", asserts={"_locale"="([a-z]{2}|[a-z]{2}_[A-Z]{2})"})
  * @DI(serviceIds={
  *      "security.last_error",
  *      "twig"
