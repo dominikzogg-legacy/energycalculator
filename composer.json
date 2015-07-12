@@ -16,7 +16,7 @@
         "saxulum/config-service-provider": "~1.2,>=1.2.3",
         "jquery/jquery": "1.11.1",
         "knplabs/knp-menu": "~2.0",
-        "monolog/monolog": "1.5.*",
+        "monolog/monolog": "~1.0,>=1.15.0",
         "mrclay/minify": "~2.2.0",
         "oyejorge/less.php": "~1.7",
         "saxulum/saxulum-accessor": "~2.0",
