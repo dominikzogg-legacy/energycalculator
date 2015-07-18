@@ -9,6 +9,6 @@
 
 ## Vagrant
 
-Check the informations at [dominikzogg/vagrant-virtualbox-ansible][1]
+Check the informations at [dominikzogg/vagrant-php][1]
 
-[1]: https://github.com/dominikzogg/vagrant-virtualbox-ansible/blob/master/README.md
+[1]: https://github.com/dominikzogg/vagrant-php/blob/v1/README.md
