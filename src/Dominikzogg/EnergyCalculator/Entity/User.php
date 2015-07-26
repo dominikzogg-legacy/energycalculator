@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="Dominikzogg\EnergyCalculator\Repository\UserRepository")
  * @ORM\Table(
- *     name="user",
+ *     name="sf_user",
  *     uniqueConstraints={
  *         @ORM\UniqueConstraint(name="username_idx", columns={"username"})
  *     }
