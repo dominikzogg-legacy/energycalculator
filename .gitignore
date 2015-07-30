@@ -5,4 +5,6 @@
 /web/assets
 /vendor
 
+vagrant-user.yml
+
 .idea
