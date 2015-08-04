@@ -9,7 +9,6 @@ use Dominikzogg\EnergyCalculator\Form\ComestibleType;
 use Dominikzogg\EnergyCalculator\Repository\ComestibleRepository;
 use Knp\Component\Pager\Paginator;
 use Saxulum\Crud\Listing\ListingFactory;
-use Saxulum\Crud\Pagination\KnpPaginationAdapter;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Symfony\Component\Form\FormFactory;
@@ -64,7 +63,7 @@ class ComestibleController extends AbstractCRUDController
         $this->listingFactory = $listingFactory;
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
-        $this->paginator = new KnpPaginationAdapter($paginator);
+        $this->paginator = $paginator;
         $this->urlGenerator = $urlGenerator;
         $this->twig = $twig;
     }
@@ -145,9 +144,11 @@ class ComestibleController extends AbstractCRUDController
     }
 
     /**
+     * @param Request $request
+     *
      * @return FormTypeInterface
      */
-    protected function crudListFormType()
+    protected function crudListFormType(Request $request)
     {
         return new ComestibleListType();
     }
@@ -180,9 +181,12 @@ class ComestibleController extends AbstractCRUDController
     }
 
     /**
+     * @param Request $request
+     * @param object $object
+     *
      * @return FormTypeInterface
      */
-    protected function crudCreateFormType()
+    protected function crudCreateFormType(Request $request, $object)
     {
         return new ComestibleType();
     }
@@ -196,9 +200,12 @@ class ComestibleController extends AbstractCRUDController
     }
 
     /**
+     * @param Request $request
+     * @param object $object
+     *
      * @return FormTypeInterface
      */
-    protected function crudEditFormType()
+    protected function crudEditFormType(Request $request, $object)
     {
         return new ComestibleType();
     }

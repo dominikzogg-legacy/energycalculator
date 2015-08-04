@@ -7,7 +7,6 @@ use Dominikzogg\EnergyCalculator\Entity\User;
 use Dominikzogg\EnergyCalculator\Form\UserType;
 use Knp\Component\Pager\Paginator;
 use Saxulum\Crud\Listing\ListingFactory;
-use Saxulum\Crud\Pagination\KnpPaginationAdapter;
 use Saxulum\RouteController\Annotation\DI;
 use Saxulum\RouteController\Annotation\Route;
 use Saxulum\UserProvider\Manager\UserManager;
@@ -69,7 +68,7 @@ class UserController extends AbstractCRUDController
         $this->listingFactory = $listingFactory;
         $this->doctrine = $doctrine;
         $this->formFactory = $formFactory;
-        $this->paginator = new KnpPaginationAdapter($paginator);
+        $this->paginator = $paginator;
         $this->urlGenerator = $urlGenerator;
         $this->twig = $twig;
         $this->userManager = $userManager;
@@ -145,9 +144,12 @@ class UserController extends AbstractCRUDController
     }
 
     /**
+     * @param Request $request
+     * @param object $object
+     *
      * @return FormTypeInterface
      */
-    protected function crudCreateFormType()
+    protected function crudCreateFormType(Request $request, $object)
     {
         return new UserType($this->crudObjectClass());
     }
@@ -172,9 +174,12 @@ class UserController extends AbstractCRUDController
     }
 
     /**
+     * @param Request $request
+     * @param object $object
+     *
      * @return FormTypeInterface
      */
-    protected function crudEditFormType()
+    protected function crudEditFormType(Request $request, $object)
     {
         return new UserType($this->crudObjectClass());
     }

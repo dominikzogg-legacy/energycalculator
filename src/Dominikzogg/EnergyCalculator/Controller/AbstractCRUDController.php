@@ -3,9 +3,9 @@
 namespace Dominikzogg\EnergyCalculator\Controller;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 use Saxulum\Crud\Controller\CrudTrait;
 use Saxulum\Crud\Listing\ListingFactory;
-use Saxulum\Crud\Pagination\PaginatorInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
