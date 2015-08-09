@@ -1499,22 +1499,22 @@
         },
         {
             "name": "saxulum/saxulum-bootstrap-provider",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-bootstrap-provider.git",
-                "reference": "77d3e9785a4f08a2d85fa43bc60c46dac3af3f76"
+                "reference": "246846b4c19f84956efdf544d06022487b4c914b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/77d3e9785a4f08a2d85fa43bc60c46dac3af3f76",
-                "reference": "77d3e9785a4f08a2d85fa43bc60c46dac3af3f76",
+                "url": "https://api.github.com/repos/saxulum/saxulum-bootstrap-provider/zipball/246846b4c19f84956efdf544d06022487b4c914b",
+                "reference": "246846b4c19f84956efdf544d06022487b4c914b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3",
                 "pimple/pimple": "~1.1",
-                "symfony/form": "~2.3",
+                "symfony/form": "~2.7",
                 "twig/twig": "~1.2"
             },
             "require-dev": {
@@ -1550,7 +1550,7 @@
                 "bootstrap",
                 "silex"
             ],
-            "time": "2015-06-03 21:23:35"
+            "time": "2015-08-09 08:11:17"
         },
         {
             "name": "saxulum/saxulum-bundle-provider",
