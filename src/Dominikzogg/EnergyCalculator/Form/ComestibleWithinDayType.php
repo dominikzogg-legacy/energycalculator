@@ -52,6 +52,7 @@ class ComestibleWithinDayType extends AbstractType
                 'query_builder' => $this->comestibleQb,
                 'required' => false,
                 'attr' => array(
+                    'data-ajax' => true,
                     'placeholder' => $this->translator->trans('day.edit.label.comestibles_within_day_collection.comestible_default'),
                 ),
             ))

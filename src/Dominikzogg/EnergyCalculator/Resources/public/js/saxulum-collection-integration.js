@@ -1,5 +1,5 @@
 (function($){
-    var addSelectPicker = function($selector){
+    var addAjaxSelect = function($selector){
         $selector.select2({
             multiple: $selector.attr('multiple'),
             ajax: {
@@ -32,14 +32,26 @@
             minimumInputLength: 1
         });
     };
+    var addSelect = function($selector) {
+        $selector.select2({
+            multiple: $selector.attr('multiple')
+        });
+    };
     $(document).ready(function(){
         $('form').saxulumCollection('init', {});
-        $('select').each(function(i, element){
-            addSelectPicker($(element));
+        $('select:not([data-ajax])').each(function(i, element){
+            addSelect($(element));
         });
-
+        $('select[data-ajax]').each(function(i, element){
+            addAjaxSelect($(element));
+        });
     });
     $(document).on('saxulum-collection.add', function(e, $element){
-        addSelectPicker($('select', $element));
+        $('select:not([data-ajax])', $element).each(function(i, element){
+            addSelect($(element));
+        });
+        $('select[data-ajax]', $element).each(function(i, element){
+            addAjaxSelect($(element));
+        });
     });
 })(jQuery);
