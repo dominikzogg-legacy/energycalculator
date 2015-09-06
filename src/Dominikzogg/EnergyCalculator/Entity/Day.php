@@ -70,6 +70,7 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
     /**
      * @var ComestibleWithinDay[]|Collection
      * @ORM\OneToMany(targetEntity="ComestibleWithinDay", mappedBy="day", cascade={"persist"})
+     * @ORM\OrderBy({"createdAt"="ASC", "id"="ASC"})
      * @Assert\Valid()
      */
     protected $comestiblesWithinDay;
