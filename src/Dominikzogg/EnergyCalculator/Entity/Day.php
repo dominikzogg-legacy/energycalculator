@@ -40,7 +40,7 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
 
     /**
      * @var int
-     * @ORM\Column(name="id", type="string")
+     * @ORM\Column(name="id", type="string", length=24)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
