@@ -22,9 +22,9 @@ class User extends AbstractUser implements RelatedObjectInterface
 {
     /**
      * @var int
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="string")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     protected $id;
 
@@ -75,6 +75,13 @@ class User extends AbstractUser implements RelatedObjectInterface
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
+
+    public function __construct()
+    {
+        $this->id = new \MongoId();
+
+        parent::__construct();
+    }
 
     /**
      * @ORM\PrePersist()

@@ -95,7 +95,7 @@ class UserController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/edit/{id}", bind="user_edit", asserts={"id"="\d+"})
+     * @Route("/edit/{id}", bind="user_edit", asserts={"id"="[0-9a-f]{1,24}"})
      * @param  Request                   $request
      * @param $id
      * @return Response|RedirectResponse
@@ -106,7 +106,7 @@ class UserController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/view/{id}", bind="user_view", asserts={"id"="\d+"})
+     * @Route("/view/{id}", bind="user_view", asserts={"id"="[0-9a-f]{1,24}"})
      * @param  Request                   $request
      * @param $id
      * @return Response|RedirectResponse
@@ -117,7 +117,7 @@ class UserController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/delete/{id}", bind="user_delete", asserts={"id"="\d+"}, method="GET")
+     * @Route("/delete/{id}", bind="user_delete", asserts={"id"="[0-9a-f]{1,24}"}, method="GET")
      * @param  Request          $request
      * @param $id
      * @return RedirectResponse

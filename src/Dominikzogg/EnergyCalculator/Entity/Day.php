@@ -40,9 +40,9 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
 
     /**
      * @var int
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="string")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     protected $id;
 
@@ -88,6 +88,7 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
 
     public function __construct()
     {
+        $this->id = new \MongoId();
         $this->date = new \DateTime();
         $this->comestiblesWithinDay = new ArrayCollection();
     }

@@ -89,7 +89,7 @@ class ComestibleController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/edit/{id}", bind="comestible_edit", asserts={"id"="\d+"})
+     * @Route("/edit/{id}", bind="comestible_edit", asserts={"id"="[0-9a-f]{1,24}"})
      * @param  Request                   $request
      * @param $id
      * @return Response|RedirectResponse
@@ -100,7 +100,7 @@ class ComestibleController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/delete/{id}", bind="comestible_delete", asserts={"id"="\d+"}, method="GET")
+     * @Route("/delete/{id}", bind="comestible_delete", asserts={"id"="[0-9a-f]{1,24}"}, method="GET")
      * @param  Request          $request
      * @param $id
      * @return RedirectResponse

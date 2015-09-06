@@ -97,7 +97,7 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/edit/{id}", bind="day_edit", asserts={"id"="\d+"})
+     * @Route("/edit/{id}", bind="day_edit", asserts={"id"="[0-9a-f]{1,24}"})
      * @param  Request                   $request
      * @param $id
      * @return Response|RedirectResponse
@@ -108,7 +108,7 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/view/{id}", bind="day_view", asserts={"id"="\d+"}, method="GET")
+     * @Route("/view/{id}", bind="day_view", asserts={"id"="[0-9a-f]{1,24}"}, method="GET")
      * @param  Request  $request
      * @param $id
      * @return Response
@@ -119,7 +119,7 @@ class DayController extends AbstractCRUDController
     }
 
     /**
-     * @Route("/delete/{id}", bind="day_delete", asserts={"id"="\d+"}, method="GET")
+     * @Route("/delete/{id}", bind="day_delete", asserts={"id"="[0-9a-f]{1,24}"}, method="GET")
      * @param  Request          $request
      * @param $id
      * @return RedirectResponse

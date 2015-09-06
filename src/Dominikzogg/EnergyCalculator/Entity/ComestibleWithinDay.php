@@ -28,9 +28,9 @@ class ComestibleWithinDay
 
     /**
      * @var int
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="string")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     protected $id;
 
@@ -68,6 +68,11 @@ class ComestibleWithinDay
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
+
+    public function __construct()
+    {
+        $this->id = new \MongoId();
+    }
 
     /**
      * @return string
