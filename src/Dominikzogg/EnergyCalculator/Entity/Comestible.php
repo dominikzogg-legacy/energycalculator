@@ -34,7 +34,7 @@ class Comestible implements UserReferenceInterface, RelatedObjectInterface
     use UserReferenceTrait;
 
     /**
-     * @var int
+     * @var string
      * @ORM\Column(name="id", type="string", length=24)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")

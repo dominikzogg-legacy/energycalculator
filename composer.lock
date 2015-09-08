@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0e475b4c5ece24267b768324acc95c41",
+    "hash": "4baf764510df6fda299e1ca053b3cf06",
     "packages": [
         {
             "name": "arv/excanvas",
@@ -2024,16 +2024,16 @@
         },
         {
             "name": "saxulum/saxulum-mongoid",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-mongoid.git",
-                "reference": "387b750df4870fe3c6dcaa6fb8bdd1b8edf73261"
+                "reference": "275a64ddcad4204a75102010e2165f9092682667"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-mongoid/zipball/387b750df4870fe3c6dcaa6fb8bdd1b8edf73261",
-                "reference": "387b750df4870fe3c6dcaa6fb8bdd1b8edf73261",
+                "url": "https://api.github.com/repos/saxulum/saxulum-mongoid/zipball/275a64ddcad4204a75102010e2165f9092682667",
+                "reference": "275a64ddcad4204a75102010e2165f9092682667",
                 "shasum": ""
             },
             "require": {
@@ -2066,7 +2066,7 @@
                 "mongoid",
                 "saxulum"
             ],
-            "time": "2015-09-06 17:00:14"
+            "time": "2015-09-08 18:31:40"
         },
         {
             "name": "saxulum/saxulum-pagination-provider",

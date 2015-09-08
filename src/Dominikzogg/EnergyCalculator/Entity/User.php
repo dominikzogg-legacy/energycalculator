@@ -21,7 +21,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class User extends AbstractUser implements RelatedObjectInterface
 {
     /**
-     * @var int
+     * @var string
      * @ORM\Column(name="id", type="string", length=24)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
