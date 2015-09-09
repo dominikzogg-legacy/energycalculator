@@ -15,7 +15,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *         @ORM\UniqueConstraint(name="username_idx", columns={"username"})
  *     }
  * )
- * @ORM\HasLifecycleCallbacks
  * @UniqueEntity("username")
  */
 class User extends AbstractUser implements RelatedObjectInterface
@@ -70,41 +69,12 @@ class User extends AbstractUser implements RelatedObjectInterface
      */
     protected $createdAt;
 
-    /**
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    protected $updatedAt;
-
     public function __construct()
     {
         $this->id = new \MongoId();
+        $this->createdAt = new \DateTime();
 
         parent::__construct();
-    }
-
-    /**
-     * @ORM\PrePersist()
-     */
-    public function setCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * @ORM\PreUpdate()
-     */
-    public function setUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

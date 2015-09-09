@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="comestible_within_day")
- * @ORM\HasLifecycleCallbacks
  * @method int getId()
  * @method Day getDay()
  * @method $this setDay(Day $day)
@@ -21,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @method $this setComestible(Comestible $comestible)
  * @method float getAmount()
  * @method $this setAmount(float $amount)
+ * @method \DateTime getCreatedAt()
  */
 class ComestibleWithinDay
 {
@@ -63,15 +63,10 @@ class ComestibleWithinDay
      */
     protected $createdAt;
 
-    /**
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    protected $updatedAt;
-
     public function __construct()
     {
         $this->id = new \MongoId();
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -97,7 +92,6 @@ class ComestibleWithinDay
         );
         $this->_prop((new Prop('amount', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
         $this->_prop((new Prop('createdAt', '\DateTime'))->method(Get::PREFIX));
-        $this->_prop((new Prop('updatedAt', '\DateTime'))->method(Get::PREFIX));
     }
 
     /**
@@ -138,21 +132,5 @@ class ComestibleWithinDay
     public function getFat()
     {
         return $this->getComestible()->getFat() * $this->getAmount() / 100;
-    }
-
-    /**
-     * @ORM\PrePersist()
-     */
-    public function setCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * @ORM\PreUpdate()
-     */
-    public function setUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
     }
 }

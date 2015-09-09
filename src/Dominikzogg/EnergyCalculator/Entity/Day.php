@@ -21,7 +21,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="day", uniqueConstraints={
  *      @ORM\UniqueConstraint(name="day_per_user_idx", columns={"date", "user_id"})
  * })
- * @ORM\HasLifecycleCallbacks
  * @UniqueEntity(fields={"date", "user"}, message="day.unique")
  * @method float getId()
  * @method \DateTime getDate()
@@ -32,6 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @method ComestibleWithinDay[] getComestiblesWithinDay()
  * @method $this removeComestiblesWithinDay(ComestibleWithinDay $comestiblesWithinDay)
  * @method $this setComestiblesWithinDay(array $comestiblesWithinDay)
+ * @method \DateTime getCreatedAt()
  */
 class Day implements UserReferenceInterface, RelatedObjectInterface
 {
@@ -81,17 +81,12 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
      */
     protected $createdAt;
 
-    /**
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    protected $updatedAt;
-
     public function __construct()
     {
         $this->id = new \MongoId();
         $this->date = new \DateTime();
         $this->comestiblesWithinDay = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     protected function _initProps()
@@ -107,7 +102,6 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
                 ->method(Set::PREFIX)
         );
         $this->_prop((new Prop('createdAt', '\DateTime'))->method(Get::PREFIX));
-        $this->_prop((new Prop('updatedAt', '\DateTime'))->method(Get::PREFIX));
     }
 
     /**
@@ -168,22 +162,6 @@ class Day implements UserReferenceInterface, RelatedObjectInterface
         }
 
         return $fat;
-    }
-
-    /**
-     * @ORM\PrePersist()
-     */
-    public function setCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * @ORM\PreUpdate()
-     */
-    public function setUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
     }
 
     /**

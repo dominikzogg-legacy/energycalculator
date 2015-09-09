@@ -13,7 +13,6 @@ use Saxulum\Accessor\Prop;
 /**
  * @ORM\Entity(repositoryClass="Dominikzogg\EnergyCalculator\Repository\ComestibleRepository")
  * @ORM\Table(name="comestible")
- * @ORM\HasLifecycleCallbacks
  * @method int getId()
  * @method string getName()
  * @method $this setName(string $name)
@@ -27,6 +26,7 @@ use Saxulum\Accessor\Prop;
  * @method $this setFat(float $fat)
  * @method float getDefaultValue()
  * @method $this setDefaultValue(float $defaultValue)
+ * @method \DateTime getCreatedAt()
  */
 class Comestible implements UserReferenceInterface, RelatedObjectInterface
 {
@@ -83,15 +83,10 @@ class Comestible implements UserReferenceInterface, RelatedObjectInterface
      */
     protected $createdAt;
 
-    /**
-     * @var \DateTime
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    protected $updatedAt;
-
     public function __construct()
     {
         $this->id = new \MongoId();
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -112,23 +107,6 @@ class Comestible implements UserReferenceInterface, RelatedObjectInterface
         $this->_prop((new Prop('fat', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
         $this->_prop((new Prop('defaultValue', Hint::NUMERIC))->method(Get::PREFIX)->method(Set::PREFIX));
         $this->_prop((new Prop('createdAt', '\DateTime'))->method(Get::PREFIX));
-        $this->_prop((new Prop('updatedAt', '\DateTime'))->method(Get::PREFIX));
-    }
-
-    /**
-     * @ORM\PrePersist()
-     */
-    public function setCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * @ORM\PreUpdate()
-     */
-    public function setUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
     }
 
     /**
