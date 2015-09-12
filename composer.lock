@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9b626e863d8d1486fa0653624ac12e2e",
+    "hash": "2bd10e831781d3665831dae0956ce483",
     "packages": [
         {
             "name": "arv/excanvas",
@@ -1342,16 +1342,16 @@
         },
         {
             "name": "saxulum/saxulum-accessor",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-accessor.git",
-                "reference": "6648df7e0642a8e4abbf7a84f8c71ffbe7fdec10"
+                "reference": "23aa9f9d4c575859315dbfa6b0f6bfa6869a6d6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-accessor/zipball/6648df7e0642a8e4abbf7a84f8c71ffbe7fdec10",
-                "reference": "6648df7e0642a8e4abbf7a84f8c71ffbe7fdec10",
+                "url": "https://api.github.com/repos/saxulum/saxulum-accessor/zipball/23aa9f9d4c575859315dbfa6b0f6bfa6869a6d6e",
+                "reference": "23aa9f9d4c575859315dbfa6b0f6bfa6869a6d6e",
                 "shasum": ""
             },
             "require": {
@@ -1367,8 +1367,8 @@
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Saxulum\\Accessor": "src/"
+                "psr-4": {
+                    "Saxulum\\Accessor\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1387,7 +1387,7 @@
                 "class",
                 "saxulum"
             ],
-            "time": "2014-09-30 20:38:47"
+            "time": "2015-09-12 13:44:43"
         },
         {
             "name": "saxulum/saxulum-annotation-manager",
@@ -1870,16 +1870,16 @@
         },
         {
             "name": "saxulum/saxulum-doctrine-orm-manager-registry-provider",
-            "version": "2.2.1",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-doctrine-orm-manager-registry-provider.git",
-                "reference": "04844c8ab040c1a4b1117d74225a5cc7afa37fce"
+                "reference": "7e3c62bab2739aee044b254908c9edbfc3032f60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-doctrine-orm-manager-registry-provider/zipball/04844c8ab040c1a4b1117d74225a5cc7afa37fce",
-                "reference": "04844c8ab040c1a4b1117d74225a5cc7afa37fce",
+                "url": "https://api.github.com/repos/saxulum/saxulum-doctrine-orm-manager-registry-provider/zipball/7e3c62bab2739aee044b254908c9edbfc3032f60",
+                "reference": "7e3c62bab2739aee044b254908c9edbfc3032f60",
                 "shasum": ""
             },
             "require": {
@@ -1906,8 +1906,8 @@
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Saxulum\\DoctrineOrmManagerRegistry": "src/"
+                "psr-4": {
+                    "Saxulum\\DoctrineOrmManagerRegistry\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1929,7 +1929,7 @@
                 "registrymanager",
                 "silex"
             ],
-            "time": "2015-05-29 05:19:57"
+            "time": "2015-09-12 13:34:41"
         },
         {
             "name": "saxulum/saxulum-hint",
