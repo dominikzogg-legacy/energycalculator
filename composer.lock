@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "67c14a9673b804895befdf3845cf9b52",
+    "hash": "9b626e863d8d1486fa0653624ac12e2e",
     "packages": [
         {
             "name": "arv/excanvas",
@@ -1283,16 +1283,16 @@
         },
         {
             "name": "saxulum/config-service-provider",
-            "version": "v1.2.3",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/ConfigServiceProvider.git",
-                "reference": "3d8e19718bf32a6fd22012ee621a7dc033c36a56"
+                "reference": "441aafbbac999b0ccdc29ec8b54cf23243d847a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/ConfigServiceProvider/zipball/3d8e19718bf32a6fd22012ee621a7dc033c36a56",
-                "reference": "3d8e19718bf32a6fd22012ee621a7dc033c36a56",
+                "url": "https://api.github.com/repos/saxulum/ConfigServiceProvider/zipball/441aafbbac999b0ccdc29ec8b54cf23243d847a7",
+                "reference": "441aafbbac999b0ccdc29ec8b54cf23243d847a7",
                 "shasum": ""
             },
             "require": {
@@ -1338,7 +1338,7 @@
             "keywords": [
                 "silex"
             ],
-            "time": "2015-06-05 19:34:06"
+            "time": "2015-08-09 07:46:25"
         },
         {
             "name": "saxulum/saxulum-accessor",
@@ -3916,22 +3916,25 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v3.1.1",
+            "version": "v3.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "a365d8689c3f3cee7f1acf86b61270ecca8e106d"
+                "reference": "16b48259a62f576e52c903c476bd42b90ab22482"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/a365d8689c3f3cee7f1acf86b61270ecca8e106d",
-                "reference": "a365d8689c3f3cee7f1acf86b61270ecca8e106d",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16b48259a62f576e52c903c476bd42b90ab22482",
+                "reference": "16b48259a62f576e52c903c476bd42b90ab22482",
                 "shasum": ""
+            },
+            "replace": {
+                "twitter/bootstrap": "self.version"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-master": "3.3.x-dev"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3948,13 +3951,19 @@
                     "email": "markdotto@gmail.com"
                 }
             ],
-            "description": "Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.",
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
             "homepage": "http://getbootstrap.com",
             "keywords": [
-                "bootstrap",
-                "css"
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "less",
+                "mobile-first",
+                "responsive",
+                "web"
             ],
-            "time": "2014-02-13 17:24:59"
+            "time": "2015-06-16 16:13:22"
         },
         {
             "name": "twig/twig",
