@@ -1,4 +1,0 @@
-[submodule "vagrant-php"]
-	path = vagrant-php
-	url = https://github.com/dominikzogg/vagrant-php.git
-	branch = v1-ubuntu
