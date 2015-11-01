@@ -9,6 +9,6 @@
 
 ## Vagrant
 
-Check the informations at [dominikzogg/vagrant-php][1]
+Check the informations at [vagrant-php/ubuntu][1]
 
-[1]: https://github.com/dominikzogg/vagrant-php/blob/v1-ubuntu/README.md
+[1]: https://github.com/vagrant-php/ubuntu
