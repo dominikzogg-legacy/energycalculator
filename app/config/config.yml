@@ -5,7 +5,7 @@ cache_dir: %runtime_dir%/cache/%env%
 twig.options:
   cache: %runtime_dir%/cache/%env%/twig
 twig.form.templates:
-  - @DominikzoggEnergyCalculator/form.html.twig
+  - "@DominikzoggEnergyCalculator/form.html.twig"
 
 http_cache.cache_dir: %runtime_dir%/cache/%env%/httpcache
 
@@ -33,9 +33,9 @@ console.cache: %runtime_dir%/cache/%env%/console
 translation_cache: %runtime_dir%/cache/%env%/translation
 
 knp_menu.default_renderer: twig
-knp_menu.template: @DominikzoggEnergyCalculator/menu.html.twig
+knp_menu.template: "@DominikzoggEnergyCalculator/menu.html.twig"
 
 knp_paginator.options:
   subscriberOptions:
-    defaultPaginationTemplate: @SaxulumPaginationProvider/twitter_bootstrap_v3_pagination.html.twig
+    defaultPaginationTemplate: "@SaxulumPaginationProvider/twitter_bootstrap_v3_pagination.html.twig"
     defaultPageRange: 3

@@ -36,7 +36,7 @@ class ComestibleListType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'comestible_list';
     }

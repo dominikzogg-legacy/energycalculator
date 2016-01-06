@@ -87,7 +87,7 @@ class EntityType extends DoctrineType
         )));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'entity';
     }

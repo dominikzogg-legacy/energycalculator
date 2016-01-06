@@ -36,7 +36,7 @@ class ComestibleType extends AbstractType
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'comestible_edit';
     }

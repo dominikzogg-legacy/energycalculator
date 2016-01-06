@@ -75,7 +75,7 @@ class DayType extends AbstractType
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'day_edit';
     }

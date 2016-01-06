@@ -72,7 +72,7 @@ class ComestibleWithinDayType extends AbstractType
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'comestible_within_day';
     }

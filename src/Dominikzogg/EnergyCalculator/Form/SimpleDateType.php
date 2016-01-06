@@ -34,7 +34,7 @@ class SimpleDateType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'simpledate';
     }

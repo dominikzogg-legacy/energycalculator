@@ -36,7 +36,7 @@ class UserType extends AbstractUserType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'user_edit';
     }
