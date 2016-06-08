@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0cc49aa3a6d38dc6dad6bea750a7e764",
-    "content-hash": "0a275166cd0373276b40e373e84ed220",
+    "hash": "8cd299dde7f7ec16dc2e25f0f3ad7b0d",
+    "content-hash": "2b706051a474c5467651692156c2d384",
     "packages": [
         {
             "name": "arv/excanvas",
@@ -2400,34 +2400,34 @@
         },
         {
             "name": "saxulum/saxulum-webprofiler-provider",
-            "version": "1.2.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-webprofiler-provider.git",
-                "reference": "813b8c17697223b536d254bb702929c486b08b24"
+                "reference": "59ae0a6feabea38ebadeca1302d8fb1256ebb873"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-webprofiler-provider/zipball/813b8c17697223b536d254bb702929c486b08b24",
-                "reference": "813b8c17697223b536d254bb702929c486b08b24",
+                "url": "https://api.github.com/repos/saxulum/saxulum-webprofiler-provider/zipball/59ae0a6feabea38ebadeca1302d8fb1256ebb873",
+                "reference": "59ae0a6feabea38ebadeca1302d8fb1256ebb873",
                 "shasum": ""
             },
             "require": {
                 "jdorn/sql-formatter": "~1.1",
-                "php": ">=5.3.3,<8.0",
+                "php": ">=5.3.9,<8.0",
                 "psr/log": "1.0.*",
                 "silex/silex": "~1.0",
                 "silex/web-profiler": "~1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7",
+                "phpunit/phpunit": "~4.0",
                 "saxulum/saxulum-doctrine-mongodb-odm-manager-registry-provider": "~1.0",
                 "saxulum/saxulum-doctrine-orm-manager-registry-provider": "~2.0"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Saxulum\\SaxulumWebProfiler": "src"
+                "psr-4": {
+                    "Saxulum\\SaxulumWebProfiler\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2446,7 +2446,7 @@
                 "silex",
                 "webprofiler"
             ],
-            "time": "2015-11-28 12:53:59"
+            "time": "2016-06-08 19:39:30"
         },
         {
             "name": "select2/select2",
